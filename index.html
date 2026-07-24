@@ -7,11 +7,15 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
-.container{max-width:500px;margin:0 auto;padding:20px}
+.container{max-width:500px;margin:0 auto;padding:20px;padding-bottom:80px}
 header{text-align:center;padding:30px 0}
 header h1{font-size:2rem;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
 .card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border-radius:20px;padding:25px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.2)}
 .card h2{font-size:1.3rem;margin-bottom:15px;color:#a8e6cf}
+.card h3{font-size:1.1rem;margin:15px 0 8px;color:#ffd700}
+.card p,.card li{font-size:0.95rem;line-height:1.6;opacity:0.95}
+.card ul{padding-left:20px}
+.card li{margin-bottom:10px}
 .btn{display:block;width:100%;padding:15px;background:#ffd700;color:#0d3b1a;border:none;border-radius:12px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-top:15px}
 .checklist-item{display:flex;align-items:flex-start;margin-bottom:15px}
 .checklist-item input{width:22px;height:22px;margin-right:12px;margin-top:2px;accent-color:#ffd700}
@@ -20,11 +24,31 @@ header h1{font-size:2rem;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0
 .progress-text{text-align:center;margin-top:10px;font-size:0.9rem;font-weight:bold}
 footer{text-align:center;padding:20px;font-size:0.8rem;opacity:0.7}
 .icon{font-size:2.5rem;text-align:center;margin-bottom:10px}
+.nav{display:flex;overflow-x:auto;gap:10px;margin-bottom:20px;padding-bottom:5px}
+.nav button{flex:0 0 auto;padding:10px 18px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.85rem;cursor:pointer;white-space:nowrap}
+.nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
+.secaoo{display:none}
+.secaoo.ativa{display:block}
+.partido{background:rgba(255,255,255,0.05);border-radius:10px;padding:12px;margin-bottom:10px;border-left:4px solid #ffd700}
+.partido strong{color:#ffd700}
+.numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:0.85rem}
+.dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:15px;margin:10px 0}
 </style>
 </head>
 <body>
 <div class="container">
 <header><div class="icon">🗳️</div><h1>Voto Consciente</h1><p>Informação é poder. Vote com consciência!</p></header>
+
+<div class="nav">
+<button onclick="mostrar('check')" class="active" id="btn-check">✅ Checklist</button>
+<button onclick="mostrar('edu')" id="btn-edu">📚 Educação</button>
+<button onclick="mostrar('partidos')" id="btn-partidos">🏛️ Partidos</button>
+<button onclick="mostrar('cargos')" id="btn-cargos">⚖️ Cargos</button>
+<button onclick="mostrar('urna')" id="btn-urna">🖥️ Urna</button>
+</div>
+
+<!-- CHECKLIST -->
+<div id="check" class="secaoo ativa">
 <div class="card"><h2>📋 Checklist do Eleitor Consciente</h2>
 <div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Consultei a ficha limpa do candidato</label></div>
 <div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Li o plano de governo/propostas</label></div>
@@ -34,18 +58,67 @@ footer{text-align:center;padding:20px;font-size:0.8rem;opacity:0.7}
 <div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Conferi o local e horário de votação</label></div>
 <div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Levei título de eleitor e documento com foto</label></div>
 <div class="progress-bar"><div class="progress-fill" id="pb"></div></div><div class="progress-text" id="pt">0% concluído</div></div>
-<div class="card"><h2>💡 Dicas para Analisar Candidatos</h2><ul><li><strong>Não vote pelo marketing:</strong> Propaganda política não reflete a realidade.</li><li><strong>Pesquise em fontes oficiais:</strong> TSE, Receita Federal, Tribunais de Contas.</li><li><strong>Vote no projeto, não na pessoa:</strong> O plano de governo é mais importante que a simpatia pessoal.</li><li><strong>Cuidado com fake news:</strong> Verifique informações antes de compartilhar.</li><li><strong>Compare números:</strong> Verifique se as promessas são viáveis financeiramente.</li></ul></div>
-<div class="card"><h2>🔗 Links Úteis</h2><button class="btn" onclick="window.open('https://www.tse.jus.br','_blank')">🌐 TSE - Tribunal Superior Eleitoral</button><button class="btn" onclick="window.open('https://divulgacandcontas.tse.jus.br','_blank')">📊 Divulgação de Candidaturas</button><button class="btn" onclick="window.open('https://www.fichalimpa.org.br','_blank')">✅ Ficha Limpa</button></div>
-<div class="card"><h2>🎯 Sobre o Voto Consciente</h2><p>Votar com consciência é um ato de cidadania. Significa escolher representantes baseado em informações verificáveis, propostas claras e histórico comprovado.</p><p style="margin-top:10px"><em>"O voto é a maior ferramenta de mudança social em uma democracia."</em></p></div>
-<footer><p>© 2026 Voto Consciente - Educando eleitores</p></footer></div>
-<script>
-function atualizar(){
-var c=document.querySelectorAll('input[type="checkbox"]'),m=0;
-c.forEach(function(x){if(x.checked)m++});
-var p=Math.round(m/c.length*100);
-document.getElementById('pb').style.width=p+'%';
-document.getElementById('pt').textContent=p===100?'🎉 Parabéns! Você está preparado para votar!':p+'% concluído';
-}
-</script>
-</body>
-</html>
+
+<div class="card"><h2>💡 Dicas para Analisar Candidatos</h2>
+<div class="dica-box">🔍 <strong>Não vote pelo marketing:</strong> Propaganda política não reflete a realidade. Pesquise além dos outdoors e redes sociais.</div>
+<div class="dica-box">📊 <strong>Vote no projeto, não na pessoa:</strong> O plano de governo é mais importante que a simpatia pessoal.</div>
+<div class="dica-box">⚠️ <strong>Cuidado com fake news:</strong> Verifique informações antes de compartilhar. Use fontes oficiais.</div>
+<div class="dica-box">🧮 <strong>Compare números:</strong> Verifique se as promessas são viáveis financeiramente para o município/estado/país.</div>
+<div class="dica-box">🏛️ <strong>Histórico importa:</strong> Candidatos a reeleição devem ser avaliados pelo que fizeram, não pelo que prometeram.</div>
+</div>
+</div>
+
+<!-- EDUCAÇÃO POLÍTICA -->
+<div id="edu" class="secaoo">
+<div class="card"><h2>📚 Como Funciona o Sistema Eleitoral</h2>
+<h3>🗳️ O que é voto consciente?</h3>
+<p>É quando o eleitor escolhe seus representantes baseado em informações verificáveis, propostas claras e histórico comprovado — não em promessas vazias ou apelo emocional.</p>
+
+<h3>📋 Documentos necessários</h3>
+<ul>
+<li>Título de eleitor (ou certificado de quitação eleitoral)</li>
+<li>Documento oficial com foto (RG, CNH, passaporte)</li>
+<li>Se votar no exterior: passaporte brasileiro válido</li>
+</ul>
+
+<h3>⏰ Horário de votação</h3>
+<p><strong>No Brasil:</strong> das 8h às 17h (horário de Brasília).<br>
+<strong>No exterior:</strong> das 8h às 17h (horário local de cada cidade).</p>
+
+<h3>🚫 O que NÃO pode na seção</h3>
+<ul>
+<li>Usar celular ou qualquer equipamento eletrônico</li>
+<li>Fazer campanha eleitoral (camisetas, adesivos, bonés)</li>
+<li>Portar armas de fogo</li>
+<li>Filmear ou fotografar a urna</li>
+</ul>
+
+<h3>🤔 Voto em branco x Nulo x Abstenção</h3>
+<ul>
+<li><strong>Branco:</strong> aperta o botão "Branco". Vai para o candidato mais votado (legenda).</li>
+<li><strong>Nulo:</strong> digita número inexistente. Não conta para ninguém.</li>
+<li><strong>Abstenção:</strong> não vai votar. Pode ter consequências (multa, impedimento de tirar passaporte).</li>
+</ul>
+</div>
+
+<div class="card"><h2>🎯 Quiz: Você sabe como votar?</h2>
+<p><strong>1. O que acontece se eu votar em branco?</strong></p>
+<p style="margin:5px 0 15px 20px;opacity:0.8">R: O voto é distribuído entre os candidatos mais votados proporcionalmente.</p>
+
+<p><strong>2. Posso usar o celular na cabine?</strong></p>
+<p style="margin:5px 0 15px 20px;opacity:0.8">R: Não! É proibido o uso de qualquer aparelho eletrônico na cabine de votação.</p>
+
+<p><strong>3. E se eu não votar?</strong></p>
+<p style="margin:5px 0 15px 20px;opacity:0.8">R: Você pode ser multado e ter problemas para tirar passaporte, fazer concurso público, etc.</p>
+</div>
+</div>
+
+<!-- PARTIDOS -->
+<div id="partidos" class="secaoo">
+<div class="card"><h2>🏛️ Principais Partidos Políticos do Brasil</h2>
+
+<div class="partido"><strong>MDB</strong> <span class="numero">15</span><br>Centro. Herdeiro do antigo PMDB. Um dos maiores do Congresso.</div>
+
+<div class="partido"><strong>PT</strong> <span class="numero">13</span><br>Esquerda. Fundado em 1980. Maior tempo no poder federal (2003-2016).</div>
+
+<div class="partido"><strong>PSDB</strong> <span class="numero">45</span><br>Centro-dire
