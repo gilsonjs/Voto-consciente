@@ -25,4 +25,252 @@ header h1{font-size:2rem;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0
 footer{text-align:center;padding:20px;font-size:0.8rem;opacity:0.7}
 .icon{font-size:2.5rem;text-align:center;margin-bottom:10px}
 .nav{display:flex;overflow-x:auto;gap:10px;margin-bottom:20px;padding-bottom:5px}
-.nav button{flex:0 0 auto;padding:10px 18px;background:rgba(255,
+.nav button{flex:0 0 auto;padding:10px 18px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.85rem;cursor:pointer;white-space:nowrap}
+.nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
+.secaoo{display:none}
+.secaoo.ativa{display:block}
+.partido{background:rgba(255,255,255,0.05);border-radius:10px;padding:12px;margin-bottom:10px;border-left:4px solid #ffd700}
+.partido strong{color:#ffd700}
+.numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:0.85rem}
+.dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:15px;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<header><div class="icon">🗳️</div><h1>Voto Consciente</h1><p>Informação é poder. Vote com consciência!</p></header>
+
+<div class="nav">
+<button onclick="mostrar('check')" class="active" id="btn-check">✅ Checklist</button>
+<button onclick="mostrar('edu')" id="btn-edu">📚 Educação</button>
+<button onclick="mostrar('partidos')" id="btn-partidos">🏛️ Partidos</button>
+<button onclick="mostrar('cargos')" id="btn-cargos">⚖️ Cargos</button>
+<button onclick="mostrar('urna')" id="btn-urna">🖥️ Urna</button>
+</div>
+
+<!-- CHECKLIST -->
+<div id="check" class="secaoo ativa">
+<div class="card"><h2>📋 Checklist do Eleitor Consciente</h2>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Consultei a ficha limpa do candidato</label></div>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Li o plano de governo/propostas</label></div>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Verifiquei o histórico de mandatos anteriores</label></div>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Analisei fontes de financiamento da campanha</label></div>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Comparei propostas com ações passadas</label></div>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Conferi o local e horário de votação</label></div>
+<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Levei título de eleitor e documento com foto</label></div>
+<div class="progress-bar"><div class="progress-fill" id="pb"></div></div><div class="progress-text" id="pt">0% concluído</div></div>
+
+<div class="card"><h2>💡 Dicas para Analisar Candidatos</h2>
+<div class="dica-box">🔍 <strong>Não vote pelo marketing:</strong> Propaganda política não reflete a realidade. Pesquise além dos outdoors e redes sociais.</div>
+<div class="dica-box">📊 <strong>Vote no projeto, não na pessoa:</strong> O plano de governo é mais importante que a simpatia pessoal.</div>
+<div class="dica-box">⚠️ <strong>Cuidado com fake news:</strong> Verifique informações antes de compartilhar. Use fontes oficiais.</div>
+<div class="dica-box">🧮 <strong>Compare números:</strong> Verifique se as promessas são viáveis financeiramente para o município/estado/país.</div>
+<div class="dica-box">🏛️ <strong>Histórico importa:</strong> Candidatos a reeleição devem ser avaliados pelo que fizeram, não pelo que prometeram.</div>
+</div>
+</div>
+
+<!-- EDUCAÇÃO POLÍTICA -->
+<div id="edu" class="secaoo">
+<div class="card"><h2>📚 Como Funciona o Sistema Eleitoral</h2>
+<h3>🗳️ O que é voto consciente?</h3>
+<p>É quando o eleitor escolhe seus representantes baseado em informações verificáveis, propostas claras e histórico comprovado — não em promessas vazias ou apelo emocional.</p>
+
+<h3>📋 Documentos necessários</h3>
+<ul>
+<li>Título de eleitor (ou certificado de quitação eleitoral)</li>
+<li>Documento oficial com foto (RG, CNH, passaporte)</li>
+<li>Se votar no exterior: passaporte brasileiro válido</li>
+</ul>
+
+<h3>⏰ Horário de votação</h3>
+<p><strong>No Brasil:</strong> das 8h às 17h (horário de Brasília).<br>
+<strong>No exterior:</strong> das 8h às 17h (horário local de cada cidade).</p>
+
+<h3>🚫 O que NÃO pode na seção</h3>
+<ul>
+<li>Usar celular ou qualquer equipamento eletrônico</li>
+<li>Fazer campanha eleitoral (camisetas, adesivos, bonés)</li>
+<li>Portar armas de fogo</li>
+<li>Filmear ou fotografar a urna</li>
+</ul>
+
+<h3>🤔 Voto em branco x Nulo x Abstenção</h3>
+<ul>
+<li><strong>Branco:</strong> aperta o botão "Branco". Vai para o candidato mais votado (legenda).</li>
+<li><strong>Nulo:</strong> digita número inexistente. Não conta para ninguém.</li>
+<li><strong>Abstenção:</strong> não vai votar. Pode ter consequências (multa, impedimento de tirar passaporte).</li>
+</ul>
+</div>
+
+<div class="card"><h2>🎯 Quiz: Você sabe como votar?</h2>
+<p><strong>1. O que acontece se eu votar em branco?</strong></p>
+<p style="margin:5px 0 15px 20px;opacity:0.8">R: O voto é distribuído entre os candidatos mais votados proporcionalmente.</p>
+
+<p><strong>2. Posso usar o celular na cabine?</strong></p>
+<p style="margin:5px 0 15px 20px;opacity:0.8">R: Não! É proibido o uso de qualquer aparelho eletrônico na cabine de votação.</p>
+
+<p><strong>3. E se eu não votar?</strong></p>
+<p style="margin:5px 0 15px 20px;opacity:0.8">R: Você pode ser multado e ter problemas para tirar passaporte, fazer concurso público, etc.</p>
+</div>
+</div>
+
+<!-- PARTIDOS -->
+<div id="partidos" class="secaoo">
+<div class="card"><h2>🏛️ Principais Partidos Políticos do Brasil</h2>
+
+<div class="partido"><strong>MDB</strong> <span class="numero">15</span><br>Centro. Herdeiro do antigo PMDB. Um dos maiores do Congresso.</div>
+
+<div class="partido"><strong>PT</strong> <span class="numero">13</span><br>Esquerda. Fundado em 1980. Maior tempo no poder federal (2003-2016).</div>
+
+<div class="partido"><strong>PSDB</strong> <span class="numero">45</span><br>Centro-direita. Forte em São Paulo. Governou o estado por décadas.</div>
+
+<div class="partido"><strong>PL</strong> <span class="numero">22</span><br>Direita. Cresceu muito nos últimos anos. Atualmente maior bancada na Câmara.</div>
+
+<div class="partido"><strong>PSD</strong> <span class="numero">55</span><br>Centro. Fundado em 2011. Presença forte em vários estados.</div>
+
+<div class="partido"><strong>UNIÃO</strong> <span class="numero">44</span><br>Centro-direita. Resultado da fusão entre DEM e PSL em 2022.</div>
+
+<div class="partido"><strong>PP</strong> <span class="numero">11</span><br>Centro-direita. Antigo Partido Progressista. Forte no agronegócio.</div>
+
+<div class="partido"><strong>Republicanos</strong> <span class="numero">10</span><br>Direita. Ligação com igrejas evangélicas. Crescimento expressivo.</div>
+
+<div class="partido"><strong>PDT</strong> <span class="numero">12</span><br>Centro-esquerda. Trabalhista. Herança de Leonel Brizola.</div>
+
+<div class="partido"><strong>PSB</strong> <span class="numero">40</span><br>Centro-esquerda. Forte no Nordeste. Socialista democrático.</div>
+
+<div class="partido"><strong>Cidadania</strong> <span class="numero">23</span><br>Centro. Antigo PPS. Foco em reformas institucionais.</div>
+
+<div class="partido"><strong>PV</strong> <span class="numero">43</span><br>Centro-esquerda. Pauta ambientalista e sustentabilidade.</div>
+
+<p style="margin-top:15px;font-size:0.85rem;opacity:0.8"><em>⚠️ Os partidos mudam de posicionamento ao longo do tempo. Pesquise as propostas atuais de cada um!</em></p>
+</div>
+</div>
+
+<!-- CARGOS -->
+<div id="cargos" class="secaoo">
+<div class="card"><h2>⚖️ O que cada cargo faz?</h2>
+
+<h3>🧑‍⚖️ Presidente da República</h3>
+<ul>
+<li>Chefia do Executivo Federal</li>
+<li>Propõe leis, edita decretos e Medidas Provisórias</li>
+<li>Indica ministros e dirigentes de estatais</li>
+<li>Comanda as Forças Armadas</li>
+<li>Manda em todo o país</li>
+</ul>
+
+<h3>🏛️ Governador</h3>
+<ul>
+<li>Chefia do Executivo Estadual</li>
+<li>Gerencia saúde, educação e segurança no estado</li>
+<li>Administra recursos do estado</li>
+<li>Indica secretários estaduais</li>
+</ul>
+
+<h3>🏙️ Prefeito</h3>
+<ul>
+<li>Chefia do Executivo Municipal</li>
+<li>Cuida de ruas, iluminação, lixo, transporte local</li>
+<li>Gerencia escolas e postos de saúde municipais</li>
+<li>É o político mais próximo do cidadão</li>
+</ul>
+
+<h3>🗣️ Senador</h3>
+<ul>
+<li>Representa o estado no Congresso Nacional</li>
+<li>8 anos de mandato (eleição alternada a cada 4 anos)</li>
+<li>Aprova leis, indica ministros do STF e STJ</li>
+<li>Pode autorizar processo contra o presidente</li>
+</ul>
+
+<h3>📢 Deputado Federal</h3>
+<ul>
+<li>Representa o povo no Congresso Nacional</li>
+<li>4 anos de mandato</li>
+<li>Cria e vota leis federais</li>
+<li>Fiscaliza o governo federal</li>
+</ul>
+
+<h3>📣 Deputado Estadual</h3>
+<ul>
+<li>Representa o povo na Assembleia Legislativa</li>
+<li>4 anos de mandato</li>
+<li>Cria leis estaduais</li>
+<li>Fiscaliza o governador</li>
+</ul>
+
+<h3>🌳 Vereador</h3>
+<ul>
+<li>Representa o povo na Câmara Municipal</li>
+<li>4 anos de mandato</li>
+<li>Cria leis municipais (postura, zoneamento)</li>
+<li>Fiscaliza o prefeito</li>
+<li>É o cargo mais acessível para começar na política</li>
+</ul>
+</div>
+</div>
+
+<!-- URNA -->
+<div id="urna" class="secaoo">
+<div class="card"><h2>🖥️ Como usar a Urna Eletrônica</h2>
+
+<h3>1️⃣ Identificação</h3>
+<p>Apresente seu documento com foto para o mesário. Ele vai conferir se você está naquela seção eleitoral.</p>
+
+<h3>2️⃣ Entre na cabine</h3>
+<p>Aguarde sua vez e entre na cabine de votação sozinho. Não leve celular!</p>
+
+<h3>3️⃣ Digite o número</h3>
+<p>Use o teclado numérico da urna para digitar o número do candidato:</p>
+<ul>
+<li><strong>Presidente:</strong> 2 dígitos</li>
+<li><strong>Governador:</strong> 2 dígitos</li>
+<li><strong>Senador:</strong> 3 dígitos</li>
+<li><strong>Deputado:</strong> 4 ou 5 dígitos</li>
+<li><strong>Vereador:</strong> 5 dígitos</li>
+</ul>
+
+<h3>4️⃣ Confirme</h3>
+<p>Verifique se a foto e o nome na tela estão corretos. Toque no botão <strong>CONFIRMA</strong> (verde).</p>
+
+<h3>5️⃣ Voto em branco</h3>
+<p>Se quiser votar em branco, aperte o botão <strong>BRANCO</strong> (branco) e depois CONFIRMA.</p>
+
+<h3>6️⃣ Corrigir</h3>
+<p>Se digitou errado, aperte <strong>CORRIGE</strong> (laranja) e digite novamente.</p>
+
+<h3>7️⃣ Fim</h3>
+<p>Após confirmar, ouvirá um bip e aparecerá "FIM" na tela. Pode voltar para casa!</p>
+
+<div class="dica-box" style="margin-top:15px">💡 <strong>Dica:</strong> Anote os números dos seus candidatos no papel antes de ir votar. Na hora da pressão, é fácil esquecer!</div>
+</div>
+
+<div class="card"><h2>📊 Estatísticas Eleitorais</h2>
+<p><strong>Eleitores no Brasil (2026):</strong> ~156 milhões</p>
+<p><strong>Seções eleitorais:</strong> ~100 mil</p>
+<p><strong>Urna eletrônica:</strong> usada desde 1996</p>
+<p><strong>Tempo médio de voto:</strong> 1 minuto e 20 segundos</p>
+<p><strong>Idade mínima para votar:</strong> 16 anos (voto facultativo até 17; obrigatório a partir de 18)</p>
+<p><strong>Voto facultativo:</strong> analfabetos e maiores de 70 anos</p>
+</div>
+</div>
+
+<footer><p>© 2026 Voto Consciente - Educando eleitores</p></footer>
+</div>
+
+<script>
+function atualizar(){
+var c=document.querySelectorAll('input[type="checkbox"]'),m=0;
+c.forEach(function(x){if(x.checked)m++});
+var p=Math.round(m/c.length*100);
+document.getElementById('pb').style.width=p+'%';
+document.getElementById('pt').textContent=p===100?'🎉 Parabéns! Você está preparado para votar!':p+'% concluído';
+}
+function mostrar(id){
+document.querySelectorAll('.secaoo').forEach(function(s){s.classList.remove('ativa')});
+document.getElementById(id).classList.add('ativa');
+document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
+document.getElementById('btn-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>
