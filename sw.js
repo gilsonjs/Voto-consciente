@@ -1,4 +1,4 @@
-const CACHE_NAME = 'voto-consciente-v1';
+const CACHE_NAME = 'voto-consciente-v2';
 const urlsToCache = [
   './index.html',
   './manifest.json'
