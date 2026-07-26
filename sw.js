@@ -1,35 +1,21 @@
-const CACHE_NAME = 'voto-consciente-v2';
-const urlsToCache = [
-  './index.html',
-  './manifest.json',
-  './icone-192.png',
-  './icone-512.png'
-];
+const CACHE_NAME = 'voto-consciente-v2'; // Mude para um número de versão novo (ex: v2, v3...)
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
+// Instalação: força o worker a pular a espera e assumir o controle
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
+// Ativação: limpa os caches antigos e assume o controle das abas abertas
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map(cache => {
+        cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
+            return caches.delete(cache); // Apaga o cache velho
           }
         })
       );
-    })
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    }).then(() => self.clients.claim())
   );
 });
