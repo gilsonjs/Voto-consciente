@@ -58,8 +58,10 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 .vc-tag{padding:2px 7px;border-radius:8px;font-size:0.65rem;background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
 .vc-party-links{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .vc-party-links a{padding:4px 8px;background:rgba(255,255,255,0.1);border-radius:6px;font-size:0.65rem;color:#a8e6cf;text-decoration:none;border:1px solid rgba(255,255,255,0.15)}
-.vc-detail{display:none;background:rgba(0,0,0,0.25);border-radius:10px;padding:10px;margin-top:8px;font-size:0.75rem}
+.vc-detail{display:none;background:rgba(0,0,0,0.25);border-radius:10px;padding:12px;margin-top:8px;font-size:0.75rem}
 .vc-detail.show{display:block}
+.vc-detail-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)}
+.vc-detail-logo{width:36px;height:36px;border-radius:6px;object-fit:contain;background:#fff;padding:2px}
 .vc-detail-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
 .vc-detail-row:last-child{border:none}
 .vc-toggle{color:#ffd700;font-size:0.7rem;cursor:pointer;margin-top:6px;display:inline-block}
@@ -411,7 +413,7 @@ function renderParties(filter='todos', search=''){
     const tagHtml = tags.map(t => '<span class="vc-tag">' + t + '</span>').join('');
     const div = document.createElement('div');
     div.className = 'partido';
-    div.innerHTML = '<div class="vc-party-header">' + logoHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
+    div.innerHTML = '<div class="vc-party-header">' + logoHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-header"><img src="' + p.logo + '" alt="Logo ' + p.sigla + '" class="vc-detail-logo" onerror="this.style.display=\'none\'"><div><strong>' + p.sigla + '</strong> — ' + p.nome + '</div></div><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
     grid.appendChild(div);
   });
 }
