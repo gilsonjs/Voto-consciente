@@ -29,7 +29,6 @@ header p{opacity:0.85;font-size:0.9rem}
 .progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.2);border-radius:4px;margin-top:12px;overflow:hidden}
 .progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
 .progress-text{text-align:center;margin-top:8px;font-size:0.85rem;font-weight:bold}
-footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 .icon{font-size:2.2rem;text-align:center;margin-bottom:8px}
 .nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:12px;background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
 .nav.aberto{display:flex}
@@ -95,7 +94,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 <body>
 <div class="container">
 <header>
-  <!-- Inserção da Logo no topo -->
   <div style="margin-bottom: 12px;">
     <img src="./icone-192.png" alt="Logo Voto Consciente" style="width: 80px; height: 80px; border-radius: 16px; object-fit: contain; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.2);" onerror="this.style.display='none'">
   </div>
@@ -103,12 +101,10 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
   <p>Informação é poder. Vote com consciência!</p>
 </header>
 
-<!-- Botão de Menu Hambúrguer -->
 <div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
   <span>☰</span> Menu de Opções
 </div>
 
-<!-- Navegação -->
 <div class="nav" id="menu-opcoes">
   <button onclick="mostrar('check'); fecharMenu();" class="active" id="btn-check">✅ Checklist</button>
   <button onclick="mostrar('edu'); fecharMenu();" id="btn-edu">📚 Educação</button>
@@ -120,7 +116,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
   <button onclick="mostrar('links'); fecharMenu();" id="btn-links">🔗 Links</button>
 </div>
 
-<!-- CHECKLIST -->
 <div id="check" class="secaoo ativa">
 <div class="card"><h2>📋 Checklist do Eleitor Consciente</h2>
 <div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Consultei a ficha limpa do candidato</label></div>
@@ -141,7 +136,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- EDUCAÇÃO POLÍTICA -->
 <div id="edu" class="secaoo">
 <div class="card"><h2>📚 Como Funciona o Sistema Eleitoral</h2>
 <h3>🗳️ O que é voto consciente?</h3>
@@ -162,7 +156,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- PARTIDOS -->
 <div id="partidos" class="secaoo">
 <div class="card">
 <h2>🤝 Federações Partidárias 2026</h2>
@@ -189,7 +182,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- CARGOS -->
 <div id="cargos" class="secaoo">
 <div class="card"><h2>⚖️ O que cada cargo faz?</h2>
 <h3>🧑‍⚖️ Presidente da República</h3>
@@ -209,7 +201,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- URNA -->
 <div id="urna" class="secaoo">
 <div class="card"><h2>🖥️ Como usar a Urna Eletrônica</h2>
 <h3>1️⃣ Identificação</h3><p>Apresente seu documento com foto para o mesário.</p>
@@ -232,7 +223,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- PESQUISA CANDIDATO -->
 <div id="pesquisa" class="secaoo">
 <div class="card">
 <h2>🔍 Pesquisar Candidato</h2>
@@ -263,7 +253,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- ELEIÇÕES PASSADAS -->
 <div id="eleicoes" class="secaoo">
 <div class="card"><h2>📊 Eleições Presidenciais — Resultados Recentes</h2>
 <div class="eleicao-item">
@@ -305,7 +294,6 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<!-- LINKS ÚTEIS -->
 <div id="links" class="secaoo">
 <div class="card"><h2>🔗 Links Úteis para Pesquisa</h2>
 <div class="links-grid">
@@ -320,12 +308,12 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 <a class="link-card" href="https://www.transparencia.org.br" target="_blank"><h3>🔍 Transparência Brasil</h3><p>ONG que fiscaliza o poder público e combate a corrupção.</p></a>
 <a class="link-card" href="https://www.politize.com.br" target="_blank"><h3>📚 Politize!</h3><p>Educação política de forma simples e acessível para todos.</p></a>
 </div>
-</di
+</div>
 </div>
 
 </div>
+
 <script>
-// Registro do Service Worker PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
@@ -476,7 +464,6 @@ function searchWikipedia(){
   window.open('https://pt.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(name), '_blank');
 }
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', function(){
     renderParties();
     atualizar();
@@ -488,3 +475,4 @@ document.addEventListener('DOMContentLoaded', function(){
     <p style="font-size: 0.9rem; color: #ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
 </footer>
 </body>
+</html>
