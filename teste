@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voto Consciente – (Gjs-2026)</title>
+
+<!-- PWA Manifest e Ícones -->
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="./icone-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
+.container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px}
+header{text-align:center;padding:24px 0}
+header h1{font-size:1.8rem;margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
+header p{opacity:0.85;font-size:0.9rem}
+
+/* ==========================================
+   ESTILOS DO NOVO CARROSSEL DE FOTOS MODERNO
+   ========================================== */
+.carrossel-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    margin-bottom: 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.carrossel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+.slide a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide-legenda {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    padding: 20px 15px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+.btn-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+.btn-nav:hover { background: rgba(0, 0, 0, 0.7); }
+.btn-prev { left: 10px; }
+.btn-next { right: 10px; }
+.indicadores {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+.bolinha {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.bolinha.ativo {
+    background: #ffd700;
+    transform: scale(1.2);
+}
+@media(min-width:600px){
+    .carrossel-container { height: 320px; }
+}
+
+/* ==========================================
+   ESTILOS ORIGINAIS DO SEU PROJETO
+   ========================================== */
+.card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border-radius:20px;padding:20px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.2)}
+.card h2{font-size:1.2rem;margin-bottom:14px;color:#ffd700}
+.card h3{font-size:1rem;margin:14px 0 6px;color:#a8e6cf}
+.card p,.card li{font-size:0.9rem;line-height:1.6;opacity:0.95}
+.card ul{padding-left:18px}
+.card li{margin-bottom:8px}
+.btn{display:block;width:100%;padding:14px;background:#ffd700;color:#0d3b1a;border:none;border-radius:12px;font-size:1rem;font-weight:bold;cursor:pointer;margin-top:12px}
+.checklist-item{display:flex;align-items:flex-start;margin-bottom:12px}
+.checklist-item input{width:20px;height:20px;margin-right:10px;margin-top:2px;accent-color:#ffd700}
+.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.2);border-radius:4px;margin-top:12px;overflow:hidden}
+.progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
+.progress-text{text-align:center;margin-top:8px;font-size:0.85rem;font-weight:bold}
+.nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:12px;background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
+.nav.aberto{display:flex}
+.nav button{flex:0 0 auto;padding:10px 16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.8rem;cursor:pointer;white-space:nowrap;text-align:left}
+.nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
+.secaoo{display:none;animation:fadeIn 0.3s}
+.secaoo.ativa{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.partido{background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s}
+.partido:hover{background:rgba(255,255,255,0.12);transform:translateY(-1px)}
+.numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:0.8rem}
+.dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:12px;margin:8px 0;font-size:0.85rem}
+.vc-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.vc-filter{padding:5px 10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;font-size:0.7rem;cursor:pointer;color:#fff}
+.vc-filter.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
+.vc-search{width:100%;padding:10px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:0.9rem;margin-bottom:12px}
+.vc-search::placeholder{color:rgba(255,255,255,0.5)}
+.vc-party-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.vc-party-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.vc-party-logo{width:48px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.85rem;background:#fff;color:#0d3b1a;box-shadow:0 2px 5px rgba(0,0,0,0.3);border:1px solid rgba(0,0,0,0.1);flex-shrink:0}
+.vc-party-info{flex:1}
+.vc-party-name{font-weight:bold;font-size:0.95rem}
+.vc-party-meta{font-size:0.7rem;opacity:0.7;margin-top:2px}
+.vc-party-desc{font-size:0.8rem;line-height:1.5;opacity:0.85;margin-top:6px}
+.vc-party-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.vc-tag{padding:2px 7px;border-radius:8px;font-size:0.65rem;background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
+.vc-party-links{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.vc-party-links a{padding:4px 8px;background:rgba(255,255,255,0.1);border-radius:6px;font-size:0.65rem;color:#a8e6cf;text-decoration:none;border:1px solid rgba(255,255,255,0.15)}
+.vc-detail{display:none;background:rgba(0,0,0,0.25);border-radius:10px;padding:12px;margin-top:8px;font-size:0.75rem}
+.vc-detail.show{display:block}
+.vc-detail-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)}
+.vc-detail-logo{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.7rem;background:#fff;color:#0d3b1a;flex-shrink:0}
+.vc-detail-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.vc-detail-row:last-child{border:none}
+.vc-toggle{color:#ffd700;font-size:0.7rem;cursor:pointer;margin-top:6px;display:inline-block}
+.vc-count{text-align:center;font-size:0.75rem;opacity:0.6;margin-bottom:10px}
+.vc-federation{background:rgba(168,230,207,0.1);border:1px solid rgba(168,230,207,0.3);border-radius:8px;padding:8px;margin-bottom:8px;font-size:0.8rem}
+.vc-federation strong{color:#a8e6cf}
+.research-input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:1rem;margin-bottom:12px}
+.research-btns{display:flex;gap:8px;flex-wrap:wrap}
+.research-btns button{flex:1;min-width:140px;padding:10px;background:#ffd700;color:#0d3b1a;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:0.8rem}
+.research-btns button.secondary{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3)}
+.eleicao-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.eleicao-item:last-child{border:none}
+.eleicao-ano{color:#ffd700;font-weight:bold;font-size:1rem}
+.eleicao-desc{font-size:0.82rem;opacity:0.85;margin-top:3px}
+.links-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.link-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.1);text-decoration:none;color:#fff;display:block}
+.link-card h3{color:#ffd700;font-size:0.9rem;margin-bottom:4px}
+.link-card p{font-size:0.78rem;opacity:0.7}
+.menu-toggle{background:#800020;color:white;padding:12px 16px;font-size:16px;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2)}
+@media(min-width:600px){
+  .vc-party-grid{grid-template-columns:1fr 1fr}
+  .links-grid{grid-template-columns:1fr 1fr}
+  .research-btns button{flex:none}
+  .nav{flex-direction:row;overflow-x:auto;padding-bottom:4px;background:transparent;box-shadow:none;border:none;display:flex!important}
+  .nav button{flex:0 0 auto;text-align:center}
+  .menu-toggle{display:none}
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+<div class="container">
+<header>
+  <div style="margin-bottom: 12px;">
+    <img src="./icone-192.png" alt="Logo Voto Consciente" style="width: 80px; height: 80px; border-radius: 16px; object-fit: contain; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.2);" onerror="this.style.display='none'">
+  </div>
+  <h1>Voto Consciente 2026</h1>
+  <p>Informação é poder. Vote com consciência!</p>
+</header>
+
+<!-- ==========================================
