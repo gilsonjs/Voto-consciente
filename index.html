@@ -31,8 +31,9 @@ header p{opacity:0.85;font-size:0.9rem}
 .progress-text{text-align:center;margin-top:8px;font-size:0.85rem;font-weight:bold}
 footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 .icon{font-size:2.2rem;text-align:center;margin-bottom:8px}
-.nav{display:flex;overflow-x:auto;gap:8px;margin-bottom:16px;padding-bottom:4px}
-.nav button{flex:0 0 auto;padding:10px 16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.8rem;cursor:pointer;white-space:nowrap}
+.nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:12px;background:rgba(15,23,42,0.95);border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
+.nav.aberto{display:flex}
+.nav button{flex:0 0 auto;padding:10px 16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.8rem;cursor:pointer;white-space:nowrap;text-align:left}
 .nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
 .secaoo{display:none;animation:fadeIn 0.3s}
 .secaoo.ativa{display:block}
@@ -77,23 +78,28 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 .link-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.1);text-decoration:none;color:#fff;display:block}
 .link-card h3{color:#ffd700;font-size:0.9rem;margin-bottom:4px}
 .link-card p{font-size:0.78rem;opacity:0.7}
+.menu-toggle{background:#1e293b;color:white;padding:12px 16px;font-size:16px;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2)}
 @media(min-width:600px){
   .vc-party-grid{grid-template-columns:1fr 1fr}
   .links-grid{grid-template-columns:1fr 1fr}
   .research-btns button{flex:none}
+  .nav{flex-direction:row;overflow-x:auto;padding-bottom:4px;background:transparent;box-shadow:none;border:none;display:flex!important}
+  .nav button{flex:0 0 auto;text-align:center}
+  .menu-toggle{display:none}
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 <div class="container">
 <header><div class="icon">🗳️</div><h1>Voto Consciente 2026</h1><p>Informação é poder. Vote com consciência!</p></header>
 
-<!-- Botão de Tracinhos (Hambúrguer) -->
-<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
+<!-- Botão de Menu Hambúrguer -->
+<div class="menu-toggle" onclick="toggleMenu()">
   <span>☰</span> Menu de Opções
 </div>
 
-<!-- Seus botões de navegação atualizados -->
+<!-- Navegação -->
 <div class="nav" id="menu-opcoes">
   <button onclick="mostrar('check'); fecharMenu();" class="active" id="btn-check">✅ Checklist</button>
   <button onclick="mostrar('edu'); fecharMenu();" id="btn-edu">📚 Educação</button>
@@ -104,6 +110,7 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
   <button onclick="mostrar('eleicoes'); fecharMenu();" id="btn-eleicoes">📊 Eleições</button>
   <button onclick="mostrar('links'); fecharMenu();" id="btn-links">🔗 Links</button>
 </div>
+
 <!-- CHECKLIST -->
 <div id="check" class="secaoo ativa">
 <div class="card"><h2>📋 Checklist do Eleitor Consciente</h2>
@@ -307,7 +314,7 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </div>
 </div>
 
-<footer><p>© 2026 Voto Consciente —  Educando eleitores – Gilson Silva | Dados do TSE e fontes públicas</p></footer>
+<footer><p>© 2026 Voto Consciente — Educando eleitores – Gilson Silva | Dados do TSE e fontes públicas</p></footer>
 </div>
 
 <script>
@@ -321,18 +328,31 @@ if ('serviceWorker' in navigator) {
 }
 
 function atualizar(){
-var c=document.querySelectorAll('input[type="checkbox"]'),m=0;
-c.forEach(function(x){if(x.checked)m++});
-var p=Math.round(m/c.length*100);
-document.getElementById('pb').style.width=p+'%';
-document.getElementById('pt').textContent=p===100?'🎉 Parabéns! Você está preparado para votar!':p+'% concluído';
+  var c = document.querySelectorAll('#check input[type="checkbox"]'), m = 0;
+  c.forEach(function(x){ if(x.checked) m++; });
+  var p = c.length > 0 ? Math.round(m / c.length * 100) : 0;
+  document.getElementById('pb').style.width = p + '%';
+  document.getElementById('pt').textContent = p === 100 ? '🎉 Parabéns! Você está preparado para votar!' : p + '% concluído';
 }
 
 function mostrar(id){
-document.querySelectorAll('.secaoo').forEach(function(s){s.classList.remove('ativa')});
-document.getElementById(id).classList.add('ativa');
-document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
-document.getElementById('btn-'+id).classList.add('active');
+  document.querySelectorAll('.secaoo').forEach(function(s){ s.classList.remove('ativa'); });
+  var el = document.getElementById(id);
+  if(el) el.classList.add('ativa');
+  document.querySelectorAll('.nav button').forEach(function(b){ b.classList.remove('active'); });
+  var btn = document.getElementById('btn-' + id);
+  if(btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('menu-opcoes');
+  menu.classList.toggle('aberto');
+}
+
+function fecharMenu() {
+  const menu = document.getElementById('menu-opcoes');
+  menu.classList.remove('aberto');
 }
 
 const parties = [
@@ -381,21 +401,22 @@ function renderParties(filter='todos', search=''){
     const s = search.toLowerCase();
     filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(p.num).includes(s));
   }
-  count.textContent = 'Exibindo ' + filtered.length + ' partido' + (filtered.length!==1?'s':'');
+  count.textContent = 'Exibindo ' + filtered.length + ' partido' + (filtered.length !== 1 ? 's' : '');
   filtered.forEach(p => {
-    const placeholderHtml = '<div class="vc-party-logo" style="display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1rem;color:#ffd700;background:rgba(255,215,0,0.15);">'+p.sigla+'</div>';
+    const badgeHtml = '<div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg, #ffd700 0%, #b8860b 100%);color:#0d3b1a;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;box-shadow:0 2px 5px rgba(0,0,0,0.3);text-align:center;padding:2px;line-height:1;">' + p.sigla + '</div>';
     const tags = [p.ideologia];
-    if(p.fed !== 'Nenhuma') tags.push('Fed: '+p.fed);
-    const tagHtml = tags.map(t => '<span class="vc-tag">'+t+'</span>').join('');
+    if(p.fed !== 'Nenhuma') tags.push('Fed: ' + p.fed);
+    const tagHtml = tags.map(t => '<span class="vc-tag">' + t + '</span>').join('');
     const div = document.createElement('div');
     div.className = 'partido';
-    div.innerHTML = '<div class="vc-party-header">'+placeholderHtml+'<div class="vc-party-info"><div class="vc-party-name">'+p.sigla+' <span class="numero">'+p.num+'</span></div><div class="vc-party-meta">'+p.nome+'</div></div></div><div class="vc-party-desc">'+p.hist+'</div><div class="vc-party-tags">'+tagHtml+'</div><div class="vc-party-links"><a href="https://www.google.com/search?q='+encodeURIComponent(p.nome+' partido Brasil')+'" target="_blank">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>'+p.fundação+'</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>'+p.filiados+'</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>'+p.pres+'</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>'+p.fed+'</span></div></div>';
+    div.innerHTML = '<div class="vc-party-header">' + badgeHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
     grid.appendChild(div);
   });
 }
 
 function toggleDetail(el){
   const detail = el.nextElementSibling;
+  if(!detail) return;
   detail.classList.toggle('show');
   el.textContent = detail.classList.contains('show') ? '📊 Ocultar detalhes ▲' : '📊 Ver detalhes ▼';
 }
@@ -412,13 +433,14 @@ function filterParties(){
 }
 
 function getCandidateName(){
-  return document.getElementById('candidateName').value.trim();
+  const el = document.getElementById('candidateName');
+  return el ? el.value.trim() : '';
 }
 
 function searchCandidate(){
   const name = getCandidateName();
   if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.google.com/search?q='+encodeURIComponent(name+' candidato Brasil processo condenação ficha'), '_blank');
+  window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' candidato Brasil processo condenação ficha'), '_blank');
 }
 
 function searchTSE(){
@@ -436,204 +458,26 @@ function searchFichaLimpa(){
 function searchNews(){
   const name = getCandidateName();
   if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.google.com/search?q='+encodeURIComponent(name+' notícias 2026')+'&tbm=nws', '_blank');
+  window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' notícias 2026') + '&tbm=nws', '_blank');
 }
 
 function searchTwitter(){
   const name = getCandidateName();
   if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://x.com/search?q='+encodeURIComponent(name), '_blank');
+  window.open('https://x.com/search?q=' + encodeURIComponent(name), '_blank');
 }
 
 function searchWikipedia(){
   const name = getCandidateName();
   if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://pt.wikipedia.org/wiki/Special:Search?search='+encodeURIComponent(name), '_blank');
+  window.open('https://pt.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(name), '_blank');
 }
 
-renderParties();
-<script>
-// Registro do Service Worker PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW instalado com sucesso!'))
-      .catch(err => console.log('Erro SW:', err));
-  });
-}
-
-function atualizar(){
-  var c=document.querySelectorAll('input[type="checkbox"]'),m=0;
-  c.forEach(function(x){if(x.checked)m++});
-  var p=Math.round(m/c.length*100);
-  document.getElementById('pb').style.width=p+'%';
-  document.getElementById('pt').textContent=p===100?'🎉 Parabéns! Você está preparado para votar!':p+'% concluído';
-}
-
-function mostrar(id){
-  document.querySelectorAll('.secaoo').forEach(function(s){s.classList.remove('ativa')});
-  document.getElementById(id).classList.add('ativa');
-  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
-  document.getElementById('btn-'+id).classList.add('active');
-}
-
-const parties = [
-  {sigla:'MDB',num:15,nome:'Movimento Democrático Brasileiro',filiados:'2.021.001',fundação:'30/06/1981',pres:'Baleia Rossi',ideologia:'centro',hist:'Fundado em 1966 durante a ditadura militar como MDB. Em 1979 virou PMDB e em 2018 voltou a MDB. É o partido com mais filiados do Brasil.',fed:'Nenhuma'},
-  {sigla:'PDT',num:12,nome:'Partido Democrático Trabalhista',filiados:'1.074.679',fundação:'10/11/1981',pres:'Carlos Lupi',ideologia:'centro-esquerda',hist:'Fundado por Leonel Brizola em 1981, reivindica a herança do antigo PTB de Getúlio Vargas. Trabalhista e nacionalista.',fed:'Nenhuma'},
-  {sigla:'PT',num:13,nome:'Partido dos Trabalhadores',filiados:'1.667.292',fundação:'11/02/1982',pres:'Edinho Silva',ideologia:'esquerda',hist:'Fundado em 1980 por sindicalistas e movimentos sociais. Maior partido de esquerda da América Latina.',fed:'FE Brasil'},
-  {sigla:'PCdoB',num:65,nome:'Partido Comunista do Brasil',filiados:'383.815',fundação:'23/06/1988',pres:'Nádia Campeão',ideologia:'esquerda',hist:'Fundado em 1962 após cisão no PCB. Teve atuação clandestina durante a ditadura. Filiado à FE Brasil.',fed:'FE Brasil'},
-  {sigla:'PSB',num:40,nome:'Partido Socialista Brasileiro',filiados:'639.834',fundação:'01/07/1988',pres:'João Henrique Campos',ideologia:'centro-esquerda',hist:'Fundado em 1947, refundado em 1988. Socialista democrático com forte presença no Nordeste.',fed:'Nenhuma'},
-  {sigla:'PSDB',num:45,nome:'Partido da Social Democracia Brasileira',filiados:'1.262.666',fundação:'24/08/1989',pres:'Aécio Neves',ideologia:'centro-direita',hist:'Fundado em 1988 por dissidentes do PMDB. Filiado à federação PSDB Cidadania.',fed:'PSDB Cidadania'},
-  {sigla:'AGIR',num:36,nome:'Agir',filiados:'194.716',fundação:'22/02/1990',pres:'Daniel Tourinho',ideologia:'centro-direita',hist:'Antigo PTC (Partido Trabalhista Cristão). Mudou para Agir em 2022.',fed:'Nenhuma'},
-  {sigla:'MOBILIZA',num:33,nome:'Mobilização Nacional',filiados:'207.430',fundação:'25/10/1990',pres:'Bosco Massarollo',ideologia:'centro',hist:'Antigo PMN. Mudou para Mobiliza em 2023.',fed:'Nenhuma'},
-  {sigla:'CIDADANIA',num:23,nome:'Cidadania',filiados:'414.222',fundação:'19/03/1992',pres:'Alex Manente',ideologia:'centro',hist:'Antigo PPS. Mudou para Cidadania em 2019. Filiado à PSDB Cidadania.',fed:'PSDB Cidadania'},
-  {sigla:'PV',num:43,nome:'Partido Verde',filiados:'340.807',fundação:'30/09/1993',pres:'José Luiz Penna',ideologia:'centro-esquerda',hist:'Fundado em 1986, tem pautas de sustentabilidade e meio ambiente. Filiado à FE Brasil.',fed:'FE Brasil'},
-  {sigla:'AVANTE',num:70,nome:'Avante',filiados:'243.030',fundação:'11/10/1994',pres:'Luis Henrique Resende',ideologia:'centro',hist:'Antigo PTdoB. Mudou para Avante em 2017.',fed:'Nenhuma'},
-  {sigla:'PP',num:11,nome:'Progressistas',filiados:'1.287.489',fundação:'16/11/1995',pres:'Ciro Nogueira',ideologia:'centro-direita',hist:'Resultado da fusão do PPR e PP em 1995. Filiado à União Progressista.',fed:'União Progressista'},
-  {sigla:'PSTU',num:16,nome:'Partido Socialista dos Trabalhadores Unificado',filiados:'14.641',fundação:'19/12/1995',pres:'José Maria de Almeida',ideologia:'extrema-esquerda',hist:'Fundado em 1994 de orientação trotskista.',fed:'Nenhuma'},
-  {sigla:'PCB',num:21,nome:'Partido Comunista Brasileiro',filiados:'11.784',fundação:'09/05/1996',pres:'Edmilson Costa',ideologia:'extrema-esquerda',hist:'Fundado em 1922, um dos partidos mais antigos do Brasil.',fed:'Nenhuma'},
-  {sigla:'PRTB',num:28,nome:'Partido Renovador Trabalhista Brasileiro',filiados:'143.092',fundação:'18/02/1997',pres:'Leonardo Araújo',ideologia:'direita',hist:'Fundado em 1994 com inspiração no trabalhismo e nacionalismo.',fed:'Nenhuma'},
-  {sigla:'DC',num:27,nome:'Democracia Cristã',filiados:'182.849',fundação:'05/08/1997',pres:'João Caldas',ideologia:'centro-direita',hist:'Antigo PSDC. Baseado em valores cristãos.',fed:'Nenhuma'},
-  {sigla:'PCO',num:29,nome:'Partido da Causa Operária',filiados:'7.082',fundação:'30/09/1997',pres:'Rui Costa Pimenta',ideologia:'extrema-esquerda',hist:'Fundado em 1995 por dissidentes do PSTU de orientação trotskista.',fed:'Nenhuma'},
-  {sigla:'PODE',num:20,nome:'Podemos',filiados:'797.724',fundação:'02/10/1997',pres:'Renata Abreu',ideologia:'centro',hist:'Antigo PTN. Incorporou PHS e PSC.',fed:'Nenhuma'},
-  {sigla:'REPUBLICANOS',num:10,nome:'Republicanos',filiados:'565.681',fundação:'25/08/2005',pres:'Marcos Pereira',ideologia:'direita',hist:'Antigo PRB. Mudou para Republicanos em 2019.',fed:'Nenhuma'},
-  {sigla:'PSOL',num:50,nome:'Partido Socialismo e Liberdade',filiados:'291.356',fundação:'15/09/2005',pres:'Paula Coradi',ideologia:'esquerda',hist:'Fundado em 2004 por dissidentes do PT. Filiado à PSOL REDE.',fed:'PSOL REDE'},
-  {sigla:'PL',num:22,nome:'Partido Liberal',filiados:'949.099',fundação:'19/12/2006',pres:'Valdemar Costa Neto',ideologia:'direita',hist:'Antigo PR (Partido da República). Mudou para Partido Liberal em 2019.',fed:'Nenhuma'},
-  {sigla:'PSD',num:55,nome:'Partido Social Democrático',filiados:'465.940',fundação:'27/09/2011',pres:'Gilberto Kassab',ideologia:'centro',hist:'Fundado em 2011 por Kassab e outros políticos de centro.',fed:'Nenhuma'},
-  {sigla:'SOLIDARIEDADE',num:77,nome:'Solidariedade',filiados:'374.558',fundação:'24/09/2013',pres:'Paulo Pereira da Silva',ideologia:'centro-direita',hist:'Fundado em 2012 com base sindical. Filiado à Renovação Solidária.',fed:'Renovação Solidária'},
-  {sigla:'NOVO',num:30,nome:'Partido Novo',filiados:'80.910',fundação:'15/09/2015',pres:'Eduardo Ribeiro',ideologia:'centro-direita',hist:'Defende liberalismo econômico e gestão privada.',fed:'Nenhuma'},
-  {sigla:'REDE',num:18,nome:'Rede Sustentabilidade',filiados:'55.839',fundação:'22/09/2015',pres:'Paulo Lamac',ideologia:'centro-esquerda',hist:'Fundada por Marina Silva. Filiada à PSOL REDE.',fed:'PSOL REDE'},
-  {sigla:'DEMOCRATA',num:35,nome:'Democrata',filiados:'55.602',fundação:'29/09/2015',pres:'Suêd Haidar',ideologia:'centro-direita',hist:'Antigo PMB (Partido da Mulher Brasileira).',fed:'Nenhuma'},
-  {sigla:'UP',num:80,nome:'Unidade Popular',filiados:'14.089',fundação:'10/12/2019',pres:'Leonardo Péricles',ideologia:'esquerda',hist:'Fundado em 2016 por movimentos sociais e sindicais.',fed:'Nenhuma'},
-  {sigla:'UNIÃO',num:44,nome:'União Brasil',filiados:'1.067.839',fundação:'08/02/2022',pres:'Antônio de Rueda',ideologia:'centro-direita',hist:'Fusão entre DEM e PSL em 2022. Filiado à União Progressista.',fed:'União Progressista'},
-  {sigla:'PRD',num:25,nome:'Partido Renovação Democrática',filiados:'09/11/2023',pres:'Ovasco Resende',ideologia:'centro-direita',hist:'Fusão entre PTB e Patriota em 2023. Filiado à Renovação Solidária.',fed:'Renovação Solidária'},
-  {sigla:'MISSÃO',num:14,nome:'Partido Missão',filiados:'23.730',fundação:'04/11/2025',pres:'Renan Ferreira',ideologia:'direita',hist:'Registrado em 2025. Defende liberalismo econômico.',fed:'Nenhuma'}
-];
-
-let currentFilter = 'todos';
-
-function renderParties(filter='todos', search=''){
-  const grid = document.getElementById('partyGrid');
-  const count = document.getElementById('partyCount');
-  if(!grid) return;
-  grid.innerHTML = '';
-  let filtered = parties;
-  if(filter !== 'todos') filtered = filtered.filter(p => p.ideologia === filter);
-  if(search) {
-    const s = search.toLowerCase();
-    filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(p.num).includes(s));
-  }
-  count.textContent = 'Exibindo ' + filtered.length + ' partido' + (filtered.length!==1?'s':'');
-  filtered.forEach(p => {
-    // Símbolo estilizado em dourado para cada partido
-    const badgeHtml = `<div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg, #ffd700 0%, #b8860b 100%);color:#0d3b1a;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;box-shadow:0 2px 5px rgba(0,0,0,0.3);text-align:center;padding:2px;line-height:1;">${p.sigla}</div>`;
-    
-    const tags = [p.ideologia];
-    if(p.fed !== 'Nenhuma') tags.push('Fed: '+p.fed);
-    const tagHtml = tags.map(t => '<span class="vc-tag">'+t+'</span>').join('');
-    const div = document.createElement('div');
-    div.className = 'partido';
-    div.innerHTML = '<div class="vc-party-header">'+badgeHtml+'<div class="vc-party-info"><div class="vc-party-name">'+p.sigla+' <span class="numero">'+p.num+'</span></div><div class="vc-party-meta">'+p.nome+'</div></div></div><div class="vc-party-desc">'+p.hist+'</div><div class="vc-party-tags">'+tagHtml+'</div><div class="vc-party-links"><a href="https://www.google.com/search?q='+encodeURIComponent(p.nome+' partido Brasil')+'" target="_blank">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>'+p.fundação+'</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>'+p.filiados+'</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>'+p.pres+'</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>'+p.fed+'</span></div></div>';
-    grid.appendChild(div);
-  });
-}
-
-function toggleDetail(el){
-  const detail = el.nextElementSibling;
-  detail.classList.toggle('show');
-  el.textContent = detail.classList.contains('show') ? '📊 Ocultar detalhes ▲' : '📊 Ver detalhes ▼';
-}
-
-function filterByIdeology(ideology, evt){
-  currentFilter = ideology;
-  document.querySelectorAll('.vc-filter').forEach(f => f.classList.remove('active'));
-  if(evt && evt.target) evt.target.classList.add('active');
-  renderParties(currentFilter, document.getElementById('partySearch').value);
-}
-
-function filterParties(){
-  renderParties(currentFilter, document.getElementById('partySearch').value);
-}
-
-function getCandidateName(){
-  return document.getElementById('candidateName').value.trim();
-}
-
-function searchCandidate(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.google.com/search?q='+encodeURIComponent(name+' candidato Brasil processo condenação ficha'), '_blank');
-}
-
-function searchTSE(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://divulgacandcontas.tse.jus.br/divulga/#/candidatos', '_blank');
-}
-
-function searchFichaLimpa(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.fichalimpa.org.br', '_blank');
-}
-
-function searchNews(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.google.com/search?q='+encodeURIComponent(name+' notícias 2026')+'&tbm=nws', '_blank');
-}
-
-function searchTwitter(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://x.com/search?q='+encodeURIComponent(name), '_blank');
-}
-.menu-toggle {
-  background: #1e293b;
-  color: white;
-  padding: 12px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  margin: 10px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.nav {
-  .nav {
-  display: none;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 15px;
-  background: rgba(15, 23, 42, 0.95);
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.15);
-}}
-
-.nav.aberto {
-  display: flex;
-}
-function searchWikipedia(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://pt.wikipedia.org/wiki/Special:Search?search='+encodeURIComponent(name), '_blank');
-}
-function toggleMenu() {
-  const menu = document.getElementById('menu-opcoes');
-  menu.classList.toggle('aberto');
-}
-
-function fecharMenu() {
-  const menu = document.getElementById('menu-opcoes');
-  menu.classList.remove('aberto');
-}
-renderParties();
+// Inicialização
+document.addEventListener('DOMContentLoaded', function(){
+  renderParties();
+  atualizar();
+});
 </script>
 </body>
 </html>
