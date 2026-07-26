@@ -29,7 +29,6 @@ header p{opacity:0.85;font-size:0.9rem}
 .progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.2);border-radius:4px;margin-top:12px;overflow:hidden}
 .progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
 .progress-text{text-align:center;margin-top:8px;font-size:0.85rem;font-weight:bold}
-.icon{font-size:2.2rem;text-align:center;margin-bottom:8px}
 .nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:12px;background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
 .nav.aberto{display:flex}
 .nav button{flex:0 0 auto;padding:10px 16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.8rem;cursor:pointer;white-space:nowrap;text-align:left}
@@ -112,6 +111,7 @@ header p{opacity:0.85;font-size:0.9rem}
   <button onclick="mostrar('cargos'); fecharMenu();" id="btn-cargos">⚖️ Cargos</button>
   <button onclick="mostrar('urna'); fecharMenu();" id="btn-urna">💻 Urna</button>
   <button onclick="mostrar('pesquisa'); fecharMenu();" id="btn-pesquisa">🔍 Pesquisa</button>
+  <button onclick="mostrar('apuracao'); fecharMenu();" id="btn-apuracao">⚡ Apuração</button>
   <button onclick="mostrar('eleicoes'); fecharMenu();" id="btn-eleicoes">📊 Eleições</button>
   <button onclick="mostrar('links'); fecharMenu();" id="btn-links">🔗 Links</button>
   <button onclick="mostrar('informacao'); fecharMenu();" id="btn-informacao">ℹ️ Informação</button>
@@ -251,6 +251,22 @@ header p{opacity:0.85;font-size:0.9rem}
 <p>📰 <strong>Imprensa:</strong> Busque notícias de fontes confiáveis sobre o candidato.</p>
 <p>🤝 <strong>Lobbies:</strong> Verifique se o candidato recebeu doações de setores específicos (agronegócio, bancos, etc.).</p>
 </div>
+</div>
+</div>
+
+<div id="apuracao" class="secaoo">
+<div class="card">
+  <h2>⚡ Apuração e Contagem de Votos em Tempo Real</h2>
+  <p>A contagem oficial dos votos no Brasil é realizada exclusivamente pelo <strong>Tribunal Superior Eleitoral (TSE)</strong> por meio de sistemas criptografados e seguros da Justiça Eleitoral.</p>
+  
+  <div class="dica-box">
+    📊 <strong>Acompanhe ao Vivo:</strong> No dia da eleição, você pode consultar a apuração segundo a segundo, por cargo, estado ou município, diretamente pelos canais oficiais do TSE.
+  </div>
+
+  <div class="research-btns" style="margin-top: 15px;">
+    <button onclick="window.open('https://resultados.tse.jus.br', '_blank')">⚡ Resultados Oficiais TSE</button>
+    <button class="secondary" onclick="window.open('https://www.tse.jus.br', '_blank')">🏛️ Portal TSE</button>
+  </div>
 </div>
 </div>
 
