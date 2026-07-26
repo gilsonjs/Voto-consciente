@@ -92,10 +92,18 @@ footer{text-align:center;padding:20px;font-size:0.75rem;opacity:0.6}
 </head>
 <body>
 <div class="container">
-<header><div class="icon">🗳️</div><h1>Voto Consciente 2026</h1><p>Informação é poder. Vote com consciência!</p></header>
+<header>
+  <!-- Inserção da Logo no topo -->
+  <div style="margin-bottom: 12px;">
+    <img src="./icone-192.png" alt="Logo Voto Consciente" style="width: 80px; height: 80px; border-radius: 16px; object-fit: contain; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.2);">
+  </div>
+  <div class="icon">🗳️</div>
+  <h1>Voto Consciente 2026</h1>
+  <p>Informação é poder. Vote com consciência!</p>
+</header>
 
 <!-- Botão de Menu Hambúrguer -->
-<div class="menu-toggle" onclick="toggleMenu()">
+<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
   <span>☰</span> Menu de Opções
 </div>
 
@@ -343,11 +351,6 @@ function mostrar(id){
   var btn = document.getElementById('btn-' + id);
   if(btn) btn.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function toggleMenu() {
-  const menu = document.getElementById('menu-opcoes');
-  menu.classList.toggle('aberto');
 }
 
 function fecharMenu() {
