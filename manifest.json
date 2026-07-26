@@ -1,10 +1,10 @@
 {
-  "name": "Voto Consciente",
-  "short_name": "VotoApp",
+  "name": "Voto Consciente 2026",
+  "short_name": "VotoConsciente",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "background_color": "#1a5f2a",
+  "theme_color": "#0d3b1a",
   "icons": [
     {
       "src": "icone-192.png",
