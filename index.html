@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+2<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -474,5 +474,51 @@ document.addEventListener('DOMContentLoaded', function(){
     <img src="frase-politica-1.png" alt="Se sei que sou um ser político... - Gilson Silva" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
     <p style="font-size: 0.9rem; color: #ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
 </footer>
+<!-- MENU DE COMPARTILHAMENTO - ESTILO WHATSAPP -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+    <div id="menu-compartilhar" style="background: white; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s;" onclick="toggleMenu()">
+        <span style="font-size: 24px; font-weight: bold; line-height: 1;">⋯</span>
+        <span style="font-size: 14px; color: #333; font-weight: bold;">Compartilhar</span>
+    </div>
+
+    <!-- POPUP DE COMPARTILHAMENTO -->
+    <div id="popup-compartilhar" style="display: none; position: absolute; top: 60px; right: 0; background: white; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); padding: 24px; min-width: 220px; text-align: center;">
+        <p style="font-weight: bold; margin-bottom: 15px; font-size: 16px; color: #1a237e;">📢 Compartilhe com amigos e familiares!</p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="https://wa.me/?text=Confira%20o%20Voto%20Consciente!%20https://gilsonjs.github.io/Voto-consciente" target="_blank" style="background: #25D366; color: white; padding: 10px; border-radius: 50px; text-decoration: none; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">📱 WhatsApp</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gilsonjs.github.io/Voto-consciente" target="_blank" style="background: #1877F2; color: white; padding: 10px; border-radius: 50px; text-decoration: none; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">👍 Facebook</a>
+            <button onclick="copiarLink()" style="background: #6c63ff; color: white; padding: 10px; border-radius: 50px; border: none; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">📋 Copiar Link</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        const popup = document.getElementById('popup-compartilhar');
+        if (popup.style.display === 'none' || popup.style.display === '') {
+            popup.style.display = 'block';
+        } else {
+            popup.style.display = 'none';
+        }
+    }
+
+    function copiarLink() {
+        const link = 'https://gilsonjs.github.io/Voto-consciente';
+        navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
+            alert('✅ Link copiado! Compartilhe com seus contatos.');
+        }).catch(() => {
+            alert('📋 Copie manualmente: ' + link);
+        });
+    }
+
+    // Fecha o popup se clicar fora
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('menu-compartilhar');
+        const popup = document.getElementById('popup-compartilhar');
+        if (menu && popup && !menu.contains(event.target) && !popup.contains(event.target)) {
+            popup.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
