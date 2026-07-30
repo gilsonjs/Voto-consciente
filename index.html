@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -175,8 +173,46 @@ header p{opacity:0.85;font-size:0.9rem}
   <h1>Voto Consciente 2026</h1>
   <p>Informação é poder. Vote com consciência!</p>
 </header>
+<!-- INÍCIO DO BLOCO DE PESQUISA DE CANDIDATOS -->
+<section class="card" style="margin-top: 16px;">
+  <h2>🔍 Encontre seu Candidato de Esquerda</h2>
+  <p style="margin-bottom: 12px; opacity: 0.85;">Selecione o estado abaixo para listar os candidatos mapeados diretamente no nosso painel.</p>
+  
+  <select id="filtro-uf" onchange="carregarCandidatosDoEstado()" class="vc-search" style="width: 100%; display: block; background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem; cursor: pointer;">
+    <option value="" style="background: #0d3b1a;">Selecione um Estado (UF)...</option>
+    <option value="AC" style="background: #0d3b1a;">Acre (AC)</option>
+    <option value="AL" style="background: #0d3b1a;">Alagoas (AL)</option>
+    <option value="AP" style="background: #0d3b1a;">Amapá (AP)</option>
+    <option value="AM" style="background: #0d3b1a;">Amazonas (AM)</option>
+    <option value="BA" style="background: #0d3b1a;">Bahia (BA)</option>
+    <option value="CE" style="background: #0d3b1a;">Ceará (CE)</option>
+    <option value="DF" style="background: #0d3b1a;">Distrito Federal (DF)</option>
+    <option value="ES" style="background: #0d3b1a;">Espírito Santo (ES)</option>
+    <option value="GO" style="background: #0d3b1a;">Goiás (GO)</option>
+    <option value="MA" style="background: #0d3b1a;">Maranhão (MA)</option>
+    <option value="MT" style="background: #0d3b1a;">Mato Grosso (MT)</option>
+    <option value="MS" style="background: #0d3b1a;">Mato Grosso do Sul (MS)</option>
+    <option value="MG" style="background: #0d3b1a;">Minas Gerais (MG)</option>
+    <option value="PA" style="background: #0d3b1a;">Pará (PA)</option>
+    <option value="PB" style="background: #0d3b1a;">Paraíba (PB)</option>
+    <option value="PR" style="background: #0d3b1a;">Paraná (PR)</option>
+    <option value="PE" style="background: #0d3b1a;">Pernambuco (PE)</option>
+    <option value="PI" style="background: #0d3b1a;">Piauí (PI)</option>
+    <option value="RJ" style="background: #0d3b1a;">Rio de Janeiro (RJ)</option>
+    <option value="RN" style="background: #0d3b1a;">Rio Grande do Norte (RN)</option>
+    <option value="RS" style="background: #0d3b1a;">Rio Grande do Sul (RS)</option>
+    <option value="RO" style="background: #0d3b1a;">Rondônia (RO)</option>
+    <option value="RR" style="background: #0d3b1a;">Roraima (RR)</option>
+    <option value="SC" style="background: #0d3b1a;">Santa Catarina (SC)</option>
+    <option value="SP" style="background: #0d3b1a;">São Paulo (SP)</option>
+    <option value="SE" style="background: #0d3b1a;">Sergipe (SE)</option>
+    <option value="TO" style="background: #0d3b1a;">Tocantins (TO)</option>
+  </select>
 
-<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
+  <!-- Onde os resultados do JSON vão aparecer -->
+  <div id="container-resultados-candidatos" class="vc-party-grid" style="margin-top: 15px;"></div>
+</section>
+<!-- FIM DO BLOCO DE PESQUISA DE CANDIDATOS --><div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
   <span>☰</span> Menu de Opções
 </div>
 
@@ -583,8 +619,49 @@ document.addEventListener('DOMContentLoaded', function(){
     <img src="frase-politica-1.png" alt="Se sei que sou um ser político... - Gilson Silva" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
     <p style="font-size: 0.9rem; color: #ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
 </footer>
-</body>
+<!-- MOTOR DE BUSCA DE CANDIDATOS VIA JSON -->
+<script>
+async function carregarCandidatosDoEstado() {
+    const ufSelecionada = document.getElementById('filtro-uf').value;
+    const container = document.getElementById('container-resultados-candidatos');
+    
+    // Limpa a busca anterior
+    container.innerHTML = '';
+    if (!ufSelecionada) return;
+
+    try {
+        // Puxa os dados salvos no seu arquivo dados.json
+        const resposta = await fetch('dados.json');
+        const candidatos = await resposta.json();
+        
+        // Filtra os candidatos pela UF escolhida no menu dropdown
+        const filtrados = candidatos.filter(c => c.estado.toUpperCase() === ufSelecionada.toUpperCase());
+
+        if (filtrados.length === 0) {
+            container.innerHTML = '<p style="text-align:center; opacity:0.7; padding:10px; grid-column: 1/-1;">Nenhum candidato cadastrado para este estado até o momento.</p>';
+            return;
+        }
+
+        // Monta os cards na tela mantendo a identidade visual do seu app
+        filtrados.forEach(c => {
+            const cardHtml = `
+                <div class="partido" style="text-align: left; background: rgba(255,255,255,0.08); padding: 14px; border-radius: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span class="numero">${c.numero}</span>
+                        <span class="vc-tag" style="background: #cc0000; color: #fff; border: none; font-weight: bold; padding: 2px 8px; border-radius: 4px;">${c.partido}</span>
+                    </div>
+                    <h3 style="margin: 4px 0; color: #ffd700; font-size: 1.1rem;">${c.nome}</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.9;"><strong>Cargo:</strong> ${c.cargo} | <strong>UF:</strong> ${c.estado}</p>
+                    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 6px; color: #a8e6cf; line-height: 1.4;"><strong>Pautas:</strong> ${c.pautas}</p>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', cardHtml);
+        });
+
+    } catch (erro) {
+        container.innerHTML = '<p style="color:#ff6b6b; text-align:center; grid-column: 1/-1;">Erro ao carregar banco de dados de candidatos. Verifique o arquivo dados.json.</p>';
+        console.error("Erro na busca:", erro);
+    }
+}
+</script></body> 
 </html>
-```
-
-
