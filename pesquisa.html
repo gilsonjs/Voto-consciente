@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesquisa Eleitoral 2026</title>
+<style>
+:root{--p:#1a5fb4;--pd:#104a8e;--s:#26a269;--bg:#f6f8fc;--card:#fff;--t:#1c1c1c;--tl:#5e5e5e;--b:#e2e8f0;--r:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;padding:16px}
+.container{max-width:800px;margin:0 auto;background:var(--card);border-radius:var(--r);box-shadow:0 4px 20px rgba(0,0,0,0.08);overflow:hidden;animation:up .5s ease}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+header{background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);color:#fff;padding:28px 20px;text-align:center}
+header h1{font-size:1.4rem;font-weight:700;margin-bottom:4px}
+header p{opacity:.9;font-size:.88rem}
+.badge{display:inline-flex;align-items:center;gap:5px;background:#dcfce7;color:#166534;padding:5px 12px;border-radius:20px;font-size:.75rem;font-weight:600;margin-top:10px}
+.body{padding:20px}
+.passo-titulo{text-align:center;font-size:1.1rem;font-weight:600;margin-bottom:16px;color:var(--t)}
+.ufs{display:grid;grid-template-columns:repeat(auto-fill,minmax(85px,1fr));gap:6px;margin-bottom:20px}
+.uf-btn{padding:10px 6px;border:2px solid var(--b);background:#fff;border-radius:8px;cursor:pointer;font-weight:600;font-size:.82rem;transition:all .2s;line-height:1.3}
+.uf-btn:hover{border-color:var(--p);background:#f0f7ff}
+.uf-btn.ativo{border-color:var(--p);background:var(--p);color:#fff;box-shadow:0 3px 10px rgba(26,95,180,.25)}
+.uf-btn .uf-nome{font-size:.68rem;font-weight:400;display:block;margin-top:2px}
+.bloco{margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--b)}
+.bloco:last-child{border:none;margin:0;padding:0}
+.titulo{font-size:1rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.num{background:var(--p);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.opcoes{display:flex;flex-direction:column;gap:7px}
+.op-radio{display:flex;align-items:center;padding:11px 14px;border:2px solid var(--b);border-radius:10px;background:#fff;cursor:pointer;transition:all .2s;gap:10px}
+.op-radio:hover{border-color:var(--p);background:#f0f7ff}
+.op-radio input[type="radio"]{width:18px;height:18px;accent-color:var(--p);flex-shrink:0;cursor:pointer}
+.op-radio:has(input[type="radio"]:checked){border-color:var(--p);background:#e8f0fe;box-shadow:0 0 0 3px rgba(26,95,180,.1)}
+.op-radio:has(input[type="radio"]:checked) .op-nome{color:var(--p)}
+.op-check{display:flex;align-items:center;padding:11px 14px;border:2px solid var(--b);border-radius:10px;background:#fff;cursor:pointer;transition:all .2s;gap:10px}
+.op-check:hover{border-color:var(--s);background:#f0fdf4}
+.op-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--s);flex-shrink:0;cursor:pointer}
+.op-check:has(input[type="checkbox"]:checked){border-color:var(--s);background:#dcfce7;box-shadow:0 0 0 3px rgba(38,162,105,.1)}
+.op-nome{font-size:.9rem;font-weight:500}
+.op-info{font-size:.72rem;color:var(--tl);margin-top:1px}
+.op-check.desabilitado{opacity:.45;pointer-events:none}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--s) 0%,#1c7a4e 100%);color:#fff;border:none;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(38,162,105,.3)}
+.btn:disabled{background:#cbd5e1;cursor:not-allowed;transform:none;box-shadow:none}
+.res-bloco{margin-bottom:20px}
+.res-tit{font-size:1rem;font-weight:600;margin-bottom:12px;color:var(--t)}
+.barra{margin-bottom:10px}
+.bar-info{display:flex;justify-content:space-between;margin-bottom:3px;font-size:.85rem}
+.bar-nome{font-weight:600}
+.bar-pct{font-weight:700;color:var(--p)}
+.bar-fundo{height:22px;background:#e2e8f0;border-radius:11px;overflow:hidden}
+.bar-fill{height:100%;border-radius:11px;background:linear-gradient(90deg,var(--p) 0%,#4a90e2 100%);transition:width 1s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:.68rem;font-weight:700;min-width:30px}
+.bar-fill.lider{background:linear-gradient(90deg,var(--s) 0%,#2ecc71 100%)}
+.total{text-align:center;padding:12px;background:#f8fafc;border-radius:10px;margin-top:14px;font-size:.85rem;color:var(--tl)}
+.total strong{color:var(--p);font-size:1.05rem}
+.erro{color:#dc2626;font-size:.82rem;margin-top:6px;display:none;align-items:center;gap:4px}
+.erro.ativo{display:flex}
+.info-linha{font-size:.78rem;color:var(--tl);margin-bottom:10px;font-style:italic}
+.steps{display:flex;justify-content:center;gap:6px;margin-bottom:16px}
+.step{width:28px;height:28px;border-radius:50%;background:var(--b);color:var(--tl);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+.step.ativo{background:var(--p);color:#fff}
+.step.done{background:var(--s);color:#fff}
+@media(max-width:480px){header h1{font-size:1.2rem}.body{padding:14px}.ufs{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+  <header>
+    <h1>🗳️ Pesquisa Eleitoral 2026</h1>
+    <p>Presidente, Senador e Governador</p>
+    <div class="badge"><span>🔒</span> Anônima • 1 voto por navegador</div>
+  </header>
+  <div class="body">
+
+    <div id="passo1">
+      <div class="passo-titulo">📍 Selecione seu estado</div>
+      <div class="ufs" id="ufs"></div>
+      <div class="erro" id="errEstado"><span>⚠️</span> Selecione um estado.</div>
+      <button class="btn" onclick="irPasso2()">Continuar →</button>
+    </div>
+
+    <div id="passo2" style="display:none">
+      <div class="steps"><div class="step done">1</div><div class="step ativo">2</div><div class="step">3</div></div>
+      <div id="votacaoContent"></div>
+      <button class="btn" onclick="enviarVoto()">📤 Enviar Voto</button>
+    </div>
+
+    <div id="passo3" style="display:none">
+      <div class="steps"><div class="step done">1</div><div class="step done">2</div><div class="step ativo">3</div></div>
+      <div id="resultadosContent"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const CONFIG = {
+  presidente: [
+    {id:"p1",nome:"Lula",partido:"PT — Vice: Geraldo Alckmin (PSB)"},
+    {id:"p2",nome:"Flávio Bolsonaro",partido:"PL — Vice: Alfredo Gaspar (PL)"},
+    {id:"p3",nome:"Ronaldo Caiado",partido:"PSD — Vice: Gilberto Kassab (PSD)"},
+    {id:"p4",nome:"Romeu Zema",partido:"Novo — Vice: Eduardo Girão (Novo)"},
+    {id:"p5",nome:"Renan Santos",partido:"Missão"},
+    {id:"p6",nome:"Cabo Daciolo",partido:"Mobiliza"},
+    {id:"p7",nome:"Augusto Cury",partido:"Avante"},
+    {id:"p8",nome:"Hertz Dias",partido:"PSTU"},
+    {id:"p9",nome:"Samara Martins",partido:"UP"},
+    {id:"p10",nome:"Rui Costa Pimenta",partido:"PCO"},
+    {id:"p11",nome:"Edmilson Costa",partido:"PCB"},
+    {id:"p12",nome:"Leonardo Avalanche",partido:"PRTB"},
+    {id:"p13",nome:"Wilson Grassi",partido:"Democrata"},
+    {id:"p14",nome:"Clariana Barão",partido:"DC"},
+    {id:"p15",nome:"Não sei / Indeciso",partido:""},
+    {id:"p16",nome:"Voto nulo/branco",partido:""},
+    {id:"p17",nome:"Não votarei",partido:""}
+  ],
+  estados: {
+    "AC": {
+      governador: [
+        {id:"gAC1",nome:"Alan Rick",partido:"Republicanos"},
+        {id:"gAC2",nome:"Mailza Assis",partido:"PP"},
+        {id:"gAC3",nome:"Thor Dantas",partido:"PSB"},
+        {id:"gAC4",nome:"Tião Bocalom",partido:"PSDB"}
+      ],
+      senador: [
+        {id:"sAC1",nome:"Márcio Bittar",partido:"PL"},
+        {id:"sAC2",nome:"Gladson Cameli",partido:"PP"},
+        {id:"sAC3",nome:"Mara Rocha",partido:"Republicanos"},
+        {id:"sAC4",nome:"Jorge Viana",partido:"PT"},
+        {id:"sAC5",nome:"Petecão",partido:"PSD"},
+        {id:"sAC6",nome:"Eduardo Velloso",partido:"Solidariedade"}
+      ]
+    },
+    "AL": {
+      governador: [
+        {id:"gAL1",nome:"Renan Filho",partido:"MDB"},
+        {id:"gAL2",nome:"Lenilda Luna",partido:"UP"}
+      ],
+      senador: [
+        {id:"sAL1",nome:"Renan Calheiros",partido:"MDB"},
+        {id:"sAL2",nome:"Alfredo Gaspar",partido:"União Brasil"},
+        {id:"sAL3",nome:"Arthur Lira",partido:"PP"},
+        {id:"sAL4",nome:"Marina Cândia",partido:"PSDB"}
+      ]
+    },
+    "AM": {
+      governador: [
+        {id:"gAM1",nome:"David Almeida",partido:"Avante"},
+        {id:"gAM2",nome:"Gilberto Vasconcelos",partido:"PSTU"},
+        {id:"gAM3",nome:"Omar Aziz",partido:"PSD"}
+      ],
+      senador: [
+        {id:"sAM1",nome:"Capitão Alberto",partido:"PL"}
+      ]
+    },
+    "AP": {
+      governador: [
+        {id:"gAP1",nome:"Antônio Furlan (Dr. Furlan)",partido:"PSD"},
+        {id:"gAP2",nome:"Clécio Luís",partido:"União Brasil"}
+      ],
+      senador: [
+        {id:"sAP1",nome:"Lucas Barreto",partido:"PSD"},
+        {id:"sAP2",nome:"Rayssa Furlan",partido:"Podemos"},
+        {id:"sAP3",nome:"Randolfe Rodrigues",partido:"PT"}
+      ]
+    },
+    "BA": {
+      governador: [
+        {id:"gBA1",nome:"Jerônimo Rodrigues",partido:"PT (reeleição)"},
+        {id:"gBA2",nome:"ACM Neto",partido:"União Brasil"},
+        {id:"gBA3",nome:"Aroldo Félix",partido:"UP"},
+        {id:"gBA4",nome:"Ronaldo Mansur",partido:"Psol"}
+      ],
+      senador: [
+        {id:"sBA1",nome:"Jaques Wagner",partido:"PT"},
+        {id:"sBA2",nome:"Rui Costa",partido:"PT"},
+        {id:"sBA3",nome:"João Roma",partido:"PL"},
+        {id:"sBA4",nome:"Angelo Coronel",partido:"Republicanos"}
+      ]
+    },
+    "CE": {
+      governador: [
+        {id:"gCE1",nome:"Elmano de Freitas",partido:"PT (reeleição)"},
+        {id:"gCE2",nome:"Ciro Gomes",partido:"PSDB"},
+        {id:"gCE3",nome:"Serley Leal",partido:"UP"}
+      ],
+      senador: [
+        {id:"sCE1",nome:"Cid Gomes",partido:"PSB"},
+        {id:"sCE2",nome:"Capitão Wagner",partido:"União Brasil"},
+        {id:"sCE3",nome:"Luizianne Lins",partido:"Rede"},
+        {id:"sCE4",nome:"Alcides Fernandes",partido:"PL"}
+      ]
+    },
+    "DF": {
+      governador: [
+        {id:"gDF1",nome:"Leandro Grass",partido:"PT"},
+        {id:"gDF2",nome:"Elisson Ferreira",partido:"Agir"},
+        {id:"gDF3",nome:"Kiko Caputo",partido:"Novo"},
+        {id:"gDF4",nome:"Samara Mineiro",partido:"UP"}
+      ],
+      senador: [
+        {id:"sDF1",nome:"Érika Kokay",partido:"PT"},
+        {id:"sDF2",nome:"Bia Kicis",partido:"PL"},
+        {id:"sDF3",nome:"Michelle Bolsonaro",partido:"PL"}
+      ]
+    },
+    "ES": {
+      governador: [
+        {id:"gES1",nome:"Hélder Salomão",partido:"PT"},
+        {id:"gES2",nome:"Breno Barcelos",partido:"Missão"},
+        {id:"gES3",nome:"Ricardo Ferraço",partido:"PSDB"}
+      ],
+      senador: [
+        {id:"sES1",nome:"Renato Casagrande",partido:"PSB"},
+        {id:"sES2",nome:"Paulo Hartung",partido:"PSD"},
+        {id:"sES3",nome:"Sérgio Meneguelli",partido:"Republicanos"},
+        {id:"sES4",nome:"Maguinha Malta",partido:"PL"},
+        {id:"sES5",nome:"Evair de Melo",partido:"Republicanos"}
+      ]
+    },
+    "GO": {
+      governador: [
+        {id:"gGO1",nome:"Gustavo Gayer",partido:"PL"},
+        {id:"gGO2",nome:"Gracinha Caiado",partido:"União Brasil"},
+        {id:"gGO3",nome:"Vanderlan Cardoso",partido:"PSD"}
+      ],
+      senador: [
+        {id:"sGO1",nome:"Gustavo Gayer",partido:"PL"},
+        {id:"sGO2",nome:"Oséias Varão",partido:"PL"}
+      ]
+    },
+    "MA": {
+      governador: [
+        {id:"gMA1",nome:"Eduardo Braide",partido:"PSD"},
+        {id:"gMA2",nome:"Orleans Brandão",partido:"MDB"},
+        {id:"gMA3",nome:"Roseana Sarney",partido:"MDB"}
+      ],
+      senador: [
+        {id:"sMA1",nome:"Cidônio Gonçalves",partido:"PL"}
+      ]
+    },
+    "MG": {
+      governador: [
+        {id:"gMG1",nome:"Alexandre Kalil",partido:"PDT"},
+        {id:"gMG2",nome:"Cleitinho",partido:"Republicanos"},
+        {id:"gMG3",nome:"Patrus Ananias",partido:"PT"},
+        {id:"gMG4",nome:"Mateus Simões",partido:"PSD"},
+        {id:"gMG5",nome:"Flávio Roscoe",partido:"PL"},
+        {id:"gMG6",nome:"Gabriel Azevedo",partido:"MDB"},
+        {id:"gMG7",nome:"Ben Mendes",partido:"Missão"},
+        {id:"gMG8",nome:"Indira Xavier",partido:"UP"},
+        {id:"gMG9",nome:"Túlio Lopes",partido:"PCB"},
+        {id:"gMG10",nome:"Rafael Duda",partido:"PSTU"},
+        {id:"gMG11",nome:"Henrique Áreas",partido:"PCO"}
+      ],
+      senador: [
+        {id:"sMG1",nome:"Marília Campos",partido:"PT"},
+        {id:"sMG2",nome:"Marcelo Aro",partido:"PP"},
+        {id:"sMG3",nome:"Domingos Sávio",partido:"PL"},
+        {id:"sMG4",nome:"Áurea Carolina",partido:"PSOL"},
+        {id:"sMG5",nome:"Carlos Viana",partido:"PSD"},
+        {id:"sMG6",nome:"Carlin Moura",partido:"Avante"},
+        {id:"sMG7",nome:"Marco Antônio Superman",partido:"Novo"},
+        {id:"sMG8",nome:"Dr. Ramon Moreira",partido:"DC"}
+      ]
+    },
+    "MS": {
+      governador: [
+        {id:"gMS1",nome:"Fábio Trad",partido:"PT"},
+        {id:"gMS2",nome:"Jefferson Bezerra",partido:"Agir"},
+        {id:"gMS3",nome:"Lucien Rezende",partido:"Psol"}
+      ],
+      senador: [
+        {id:"sMS1",nome:"Reinaldo Azambuja",partido:"PL"},
+        {id:"sMS2",nome:"Capitão Contar",partido:"PL"},
+        {id:"sMS3",nome:"Nelsinho Trad",partido:"PSD"}
+      ]
+    },
+    "MT": {
+      governador: [
+        {id:"gMT1",nome:"Rafaell Milas",partido:"Missão"},
+        {id:"gMT2",nome:"Sargento Laudicério Machado",partido:"Agir"},
+        {id:"gMT3",nome:"Wellington Fagundes",partido:"PL"},
+        {id:"gMT4",nome:"Jayme Campos",partido:"União Brasil"}
+      ],
+      senador: [
+        {id:"sMT1",nome:"José Medeiros",partido:"PL"},
+        {id:"sMT2",nome:"Galvan",partido:"Avante"}
+      ]
+    },
+    "PA": {
+      governador: [
+        {id:"gPA1",nome:"Helder Barbalho",partido:"MDB (reeleição)"},
+        {id:"gPA2",nome:"Jader Barbalho Filho",partido:"MDB"}
+      ],
+      senador: [
+        {id:"sPA1",nome:"Éder Mauro",partido:"PL"},
+        {id:"sPA2",nome:"Zequinha Marinho",partido:"Podemos"}
+      ]
+    },
+    "PB": {
+      governador: [
+        {id:"gPB1",nome:"Lucas Ribeiro",partido:"PSD"},
+        {id:"gPB2",nome:"Olímpio Rocha",partido:"Psol"}
+      ],
+      senador: [
+        {id:"sPB1",nome:"Marcelo Queiroga",partido:"PL"}
+      ]
+    },
+    "PE": {
+      governador: [
+        {id:"gPE1",nome:"Raquel Lyra",partido:"PSD (reeleição)"},
+        {id:"gPE2",nome:"João Campos",partido:"PSB"},
+        {id:"gPE3",nome:"Ivan Moraes",partido:"PSOL / Fed. PSOL REDE"},
+        {id:"gPE4",nome:"Camila Falcão",partido:"UP"},
+        {id:"gPE5",nome:"Guilherme Fonseca",partido:"PSTU"},
+        {id:"gPE6",nome:"Jeremias Cosmo",partido:"Democrata"},
+        {id:"gPE7",nome:"Renan Hallais",partido:"Missão"},
+        {id:"gPE8",nome:"Victor Assis",partido:"PCO"}
+      ],
+      senador: [
+        {id:"sPE1",nome:"Humberto Costa",partido:"PT / FE Brasil (reeleição)"},
+        {id:"sPE2",nome:"Fernando Dueire",partido:"PSD (reeleição)"},
+        {id:"sPE3",nome:"Mendonça Filho",partido:"PL"},
+        {id:"sPE4",nome:"Marília Arraes",partido:"PDT"},
+        {id:"sPE5",nome:"Túlio Gadêlha",partido:"PSD"},
+        {id:"sPE6",nome:"Eduardo da Fonte",partido:"PP"},
+        {id:"sPE7",nome:"Carlos Sant'Anna",partido:"Novo"},
+        {id:"sPE8",nome:"Paulo Rubem Santiago",partido:"Rede / Fed. PSOL REDE"},
+        {id:"sPE9",nome:"Pastor Wellington Carneiro",partido:"Mobiliza"},
+        {id:"sPE10",nome:"Pastor Gilvan Costa",partido:"Democrata"},
+        {id:"sPE11",nome:"Samuel Timoteo",partido:"UP"},
+        {id:"sPE12",nome:"Gorett Bitú",partido:"UP"}
+      ]
+    },
+    "PI": {
+      governador: [
+        {id:"gPI1",nome:"Rafael Fonteles",partido:"PT (reeleição)"},
+        {id:"gPI2",nome:"Mainha",partido:"Podemos"},
+        {id:"gPI3",nome:"Lúcia Santos",partido:"PSDB"},
+        {id:"gPI4",nome:"Jesus Rodrigues",partido:"Cidadania"}
+      ],
+      senador: [
+        {id:"sPI1",nome:"Marcelo Castro",partido:"MDB"},
+        {id:"sPI2",nome:"Júlio César",partido:"PSD"},
+        {id:"sPI3",nome:"Ciro Nogueira",partido:"PP"},
+        {id:"sPI4",nome:"Thiago Junqueira",partido:"PL"}
+      ]
+    },
+    "PR": {
+      governador: [
+        {id:"gPR1",nome:"Sandro Alex",partido:"PSD"},
+        {id:"gPR2",nome:"Requião Filho",partido:"PDT"},
+        {id:"gPR3",nome:"Sergio Moro",partido:"PL"},
+        {id:"gPR4",nome:"Rafael Greca",partido:"MDB"},
+        {id:"gPR5",nome:"Ratinho Júnior",partido:"PSD"}
+      ],
+      senador: [
+        {id:"sPR1",nome:"Álvaro Dias",partido:"MDB"},
+        {id:"sPR2",nome:"Deltan Dallagnol",partido:"Novo"},
+        {id:"sPR3",nome:"Gleisi Hoffmann",partido:"PT"},
+        {id:"sPR4",nome:"Filipe Barros",partido:"PL"},
+        {id:"sPR5",nome:"Alexandre Curi",partido:"Republicanos"}
+      ]
+    },
+    "RJ": {
+      governador: [
+        {id:"gRJ1",nome:"Eduardo Paes",partido:"PSD"},
+        {id:"gRJ2",nome:"Anthony Garotinho",partido:"Republicanos"},
+        {id:"gRJ3",nome:"Douglas Ruas",partido:"PL"},
+        {id:"gRJ4",nome:"André Marinho",partido:"Novo"},
+        {id:"gRJ5",nome:"Wilson Witzel",partido:"Democratas"},
+        {id:"gRJ6",nome:"Bombeiro Rafa",partido:"Missão"},
+        {id:"gRJ7",nome:"Cyro Garcia",partido:"PSTU"},
+        {id:"gRJ8",nome:"Juliete Pantoja",partido:"UP"},
+        {id:"gRJ9",nome:"Luan Monteiro",partido:"PCO"},
+        {id:"gRJ10",nome:"Wiliam Siri",partido:"PSOL"},
+        {id:"gRJ11",nome:"André Português",partido:"Republicanos"}
+      ],
+      senador: [
+        {id:"sRJ1",nome:"Benedita da Silva",partido:"PT"},
+        {id:"sRJ2",nome:"Marcelo Crivella",partido:"Republicanos"},
+        {id:"sRJ3",nome:"Márcio Canella",partido:"União Brasil"},
+        {id:"sRJ4",nome:"Carlos Portinho",partido:"PL"},
+        {id:"sRJ5",nome:"Carlos Jordy",partido:"PL"},
+        {id:"sRJ6",nome:"Miro Teixeira",partido:"PDT"},
+        {id:"sRJ7",nome:"Mônica Benício",partido:"PSOL"},
+        {id:"sRJ8",nome:"Pedro Paulo",partido:"PSD"},
+        {id:"sRJ9",nome:"Hélio Secco",partido:"Missão"},
+        {id:"sRJ10",nome:"Marcos Dias",partido:"Podemos"}
+      ]
+    },
+    "RN": {
+      governador: [
+        {id:"gRN1",nome:"Allyson Bezerra",partido:"União Brasil"},
+        {id:"gRN2",nome:"Álvaro Dias",partido:"PL"},
+        {id:"gRN3",nome:"Cadu Xavier",partido:"PT"},
+        {id:"gRN4",nome:"Robério Paulino",partido:"Psol"},
+        {id:"gRN5",nome:"Francisco Dias",partido:"UP"},
+        {id:"gRN6",nome:"Dário Barbosa",partido:"PSTU"}
+      ],
+      senador: [
+        {id:"sRN1",nome:"Styvenson Valentim",partido:"Podemos"},
+        {id:"sRN2",nome:"Coronel Hélio Oliveira",partido:"PL"},
+        {id:"sRN3",nome:"Rafael Motta",partido:"PDT"},
+        {id:"sRN4",nome:"Samanda Alves",partido:"PT"},
+        {id:"sRN5",nome:"Sandro Pimentel",partido:"PSOL"},
+        {id:"sRN6",nome:"Zenaide Maia",partido:"PSD"}
+      ]
+    },
+    "RO": {
+      governador: [
+        {id:"gRO1",nome:"Expedito Netto",partido:"PT"},
+        {id:"gRO2",nome:"Marcos Rogério",partido:"PL"},
+        {id:"gRO3",nome:"Pedro Abib",partido:"MDB"},
+        {id:"gRO4",nome:"Samuel Costa",partido:"PSB"},
+        {id:"gRO5",nome:"Adailton Fúria",partido:"PSD"},
+        {id:"gRO6",nome:"Hildon Chaves",partido:"União Brasil"},
+        {id:"gRO7",nome:"Luiz Carlos Teodoro",partido:"PSOL"}
+      ],
+      senador: [
+        {id:"sRO1",nome:"Fernando Máximo",partido:"União Brasil"},
+        {id:"sRO2",nome:"Bruno Scheid",partido:"PL"},
+        {id:"sRO3",nome:"Acir Gurgacz",partido:"PDT"},
+        {id:"sRO4",nome:"Luciana Oliveira",partido:"PT"},
+        {id:"sRO5",nome:"Luís Fernando",partido:"PSD"},
+        {id:"sRO6",nome:"Mariana Carvalho",partido:"Republicanos"},
+        {id:"sRO7",nome:"Neidinha Suruí",partido:"PSB"}
+      ]
+    },
+    "RR": {
+      governador: [
+        {id:"gRR1",nome:"Arthur Henrique",partido:"PL"},
+        {id:"gRR2",nome:"Edilson Damião",partido:"União Brasil"},
+        {id:"gRR3",nome:"Soldado Sampaio",partido:"Republicanos"},
+        {id:"gRR4",nome:"Antonia Pedrosa",partido:"PT"},
+        {id:"gRR5",nome:"Paulo Cesar Quartiero",partido:"DC"}
+      ],
+      senador: [
+        {id:"sRR1",nome:"Hélio Lopes (Hélio Bolsonaro)",partido:"PL"},
+        {id:"sRR2",nome:"Nicoletti",partido:"PL"},
+        {id:"sRR3",nome:"Teresa Surita",partido:"MDB"},
+        {id:"sRR4",nome:"Denarium",partido:"Republicanos"},
+        {id:"sRR5",nome:"Bartô Macuxi",partido:"PSOL"}
+      ]
+    },
+    "RS": {
+      governador: [
+        {id:"gRS1",nome:"Juliana Brizola",partido:"PDT"},
+        {id:"gRS2",nome:"Luciano Zucco",partido:"PL"},
+        {id:"gRS3",nome:"Gabriel Souza",partido:"MDB"},
+        {id:"gRS4",nome:"Marcelo Maranata",partido:"PSDB"},
+        {id:"gRS5",nome:"Priscila Voigt",partido:"UP"},
+        {id:"gRS6",nome:"Rejane Oliveira",partido:"PSTU"},
+        {id:"gRS7",nome:"Evandro Augusto",partido:"Missão"}
+      ],
+      senador: [
+        {id:"sRS1",nome:"Marcel van Hattem",partido:"Novo"},
+        {id:"sRS2",nome:"Manuela d'Ávila",partido:"PSOL"},
+        {id:"sRS3",nome:"Ubiratan Sanderson",partido:"PL"},
+        {id:"sRS4",nome:"Paulo Pimenta",partido:"PT"},
+        {id:"sRS5",nome:"Germano Rigotto",partido:"MDB"},
+        {id:"sRS6",nome:"Milton Cardoso",partido:"PSDB"},
+        {id:"sRS7",nome:"Frederico Antunes",partido:"PSD"},
+        {id:"sRS8",nome:"Renato Jaguarão",partido:"Cidadania"}
+      ]
+    },
+    "SC": {
+      governador: [
+        {id:"gSC1",nome:"Jorginho Mello",partido:"PL (reeleição)"},
+        {id:"gSC2",nome:"Gelson Merísio",partido:"PSB"},
+        {id:"gSC3",nome:"João Rodrigues",partido:"PSD"},
+        {id:"gSC4",nome:"Laís Chaud",partido:"Unidade Popular"},
+        {id:"gSC5",nome:"Marcelo Brigadeiro",partido:"Missão"},
+        {id:"gSC6",nome:"Ralf Zimmer",partido:"PRD"}
+      ],
+      senador: [
+        {id:"sSC1",nome:"Carlos Bolsonaro",partido:"PL"},
+        {id:"sSC2",nome:"Carol de Toni",partido:"PL"},
+        {id:"sSC3",nome:"Esperidião Amin",partido:"PP"},
+        {id:"sSC4",nome:"Décio Lima",partido:"PT"},
+        {id:"sSC5",nome:"Afrânio Boppré",partido:"PSOL"},
+        {id:"sSC6",nome:"Antídio Lunelli",partido:"MDB"},
+        {id:"sSC7",nome:"Jeferson Rocha",partido:"PRD"}
+      ]
+    },
+    "SE": {
+      governador: [
+        {id:"gSE1",nome:"Fábio Mitidieri",partido:"PSD"},
+        {id:"gSE2",nome:"Valmir de Francisquinho",partido:"Republicanos"},
+        {id:"gSE3",nome:"Ricardo Marques",partido:"PL"},
+        {id:"gSE4",nome:"Emanuel Cacho",partido:"PSDB"},
+        {id:"gSE5",nome:"Dr. Helton Monteiro",partido:"PSOL"}
+      ],
+      senador: [
+        {id:"sSE1",nome:"Alessandro Vieira",partido:"MDB"},
+        {id:"sSE2",nome:"Rogério Carvalho",partido:"PT"},
+        {id:"sSE3",nome:"Delegado André David",partido:"Republicanos"},
+        {id:"sSE4",nome:"Eduardo Amorim",partido:"Republicanos"},
+        {id:"sSE5",nome:"Rodrigo Valadares",partido:"PL"},
+        {id:"sSE6",nome:"Coronel Rocha",partido:"PL"}
+      ]
+    },
+    "SP": {
+      governador: [
+        {id:"gSP1",nome:"Tarcísio de Freitas",partido:"Republicanos (reeleição)"},
+        {id:"gSP2",nome:"Fernando Haddad",partido:"PT"},
+        {id:"gSP3",nome:"Vívian Mendes",partido:"UP"}
+      ],
+      senador: [
+        {id:"sSP1",nome:"Marina Silva",partido:"Rede"},
+        {id:"sSP2",nome:"Simone Tebet",partido:"PSB"},
+        {id:"sSP3",nome:"Ricardo Salles",partido:"Novo"},
+        {id:"sSP4",nome:"André do Prado",partido:"PL"},
+        {id:"sSP5",nome:"Guilherme Derrite",partido:"PP"},
+        {id:"sSP6",nome:"Soninha Francine",partido:"Cidadania"}
+      ]
+    },
+    "TO": {
+      governador: [
+        {id:"gTO1",nome:"Witer Naves",partido:"Psol"},
+        {id:"gTO2",nome:"Ataides de Oliveira",partido:"Novo"}
+      ],
+      senador: [
+        {id:"sTO1",nome:"Outro candidato",partido:""}
+      ]
+    }
+  }
+};
+
+function addPad(lista,prefixo){
+  return [...lista,
+    {id:prefixo+"_outro",nome:"Outro candidato",partido:""},
+    {id:prefixo+"_indeciso",nome:"Não sei / Indeciso",partido:""},
+    {id:prefixo+"_nulo",nome:"Voto nulo/branco",partido:""},
+    {id:prefixo+"_nao",nome:"Não votarei",partido:""}
+  ];
+}
+Object.keys(CONFIG.estados).forEach(uf=>{
+  CONFIG.estados[uf].governador=addPad(CONFIG.estados[uf].governador,"g"+uf);
+  CONFIG.estados[uf].senador=addPad(CONFIG.estados[uf].senador,"s"+uf);
+});
+
+const UFS=[
+  {s:"AC",n:"Acre"},{s:"AL",n:"Alagoas"},{s:"AP",n:"Amapá"},{s:"AM",n:"Amazonas"},
+  {s:"BA",n:"Bahia"},{s:"CE",n:"Ceará"},{s:"DF",n:"Distrito Federal"},{s:"ES",n:"Espírito Santo"},
+  {s:"GO",n:"Goiás"},{s:"MA",n:"Maranhão"},{s:"MT",n:"Mato Grosso"},{s:"MS",n:"Mato Grosso do Sul"},
+  {s:"MG",n:"Minas Gerais"},{s:"PA",n:"Pará"},{s:"PB",n:"Paraíba"},{s:"PR",n:"Paraná"},
+  {s:"PE",n:"Pernambuco"},{s:"PI",n:"Piauí"},{s:"RJ",n:"Rio de Janeiro"},{s:"RN",n:"Rio Grande do Norte"},
+  {s:"RS",n:"Rio Grande do Sul"},{s:"RO",n:"Rondônia"},{s:"RR",n:"Roraima"},{s:"SC",n:"Santa Catarina"},
+  {s:"SP",n:"São Paulo"},{s:"SE",n:"Sergipe"},{s:"TO",n:"Tocantins"}
+];
+
+const SK='pesquisa_eleitoral_2026_v6';
+let UF=null;
+
+function getVotos(){
+  try{const d=localStorage.getItem(SK);return d?JSON.parse(d):initVotos();}
+  catch(e){return initVotos();}
+}
+function initVotos(){
+  const v={pres:{},gov:{},sen:{},total:0,porUF:{}};
+  CONFIG.presidente.forEach(c=>v.pres[c.id]=0);
+  Object.keys(CONFIG.estados).forEach(uf=>{
+    v.porUF[uf]={gov:{},sen:{}};
+    CONFIG.estados[uf].governador.forEach(c=>v.porUF[uf].gov[c.id]=0);
+    CONFIG.estados[uf].senador.forEach(c=>v.porUF[uf].sen[c.id]=0);
+  });
+  return v;
+}
+function salvar(v){try{localStorage.setItem(SK,JSON.stringify(v));}catch(e){}}
+function jaVotou(){return localStorage.getItem(SK+'_votou')==='sim';}
+function marcarVotou(){localStorage.setItem(SK+'_votou','sim');localStorage.setItem(SK+'_uf',UF);}
+function getUFVotou(){return localStorage.getItem(SK+'_uf')||'';}
+
+function renderUFs(){
+  const el=document.getElementById('ufs');
+  el.innerHTML=UFS.map(u=>`<button class="uf-btn" data-uf="${u.s}" onclick="selUF('${u.s}')">${u.s}<span class="uf-nome">${u.n}</span></button>`).join('');
+}
+function selUF(uf){
+  UF=uf;
+  document.querySelectorAll('.uf-btn').forEach(b=>b.classList.toggle('ativo',b.dataset.uf===uf));
+  document.getElementById('errEstado').classList.remove('ativo');
+}
+function irPasso2(){
+  if(!UF){document.getElementById('errEstado').classList.add('ativo');return;}
+  document.getElementById('passo1').style.display='none';
+  document.getElementById('passo2').style.display='block';
+  renderVotacao();
+}
+
+function renderVotacao(){
+  const d=CONFIG.estados[UF];
+  const nomeUF=UFS.find(u=>u.s===UF).n;
+  const el=document.getElementById('votacaoContent');
+  
+  el.innerHTML=`<div class="bloco">
+      <div class="titulo"><span class="num">1</span> Presidente da República <span style="font-size:.78rem;color:var(--tl);font-weight:400">(${CONFIG.presidente.length} candidatos)</span></div>
+      <div class="opcoes" id="opPres"></div>
+      <div class="erro" id="errPres"><span>⚠️</span> Selecione uma opção.</div>
+    </div>
+    <div class="bloco">
+      <div class="titulo"><span class="num">2</span> Governador — ${nomeUF} <span style="font-size:.78rem;color:var(--tl);font-weight:400">(${d.governador.length} candidatos)</span></div>
+      <div class="opcoes" id="opGov"></div>
+      <div class="erro" id="errGov"><span>⚠️</span> Selecione uma opção.</div>
+    </div>
+    <div class="bloco">
+      <div class="titulo"><span class="num">3</span> Senador — ${nomeUF} <span style="font-size:.78rem;color:var(--tl);font-weight:400">(2 vagas • ${d.senador.length} candidatos)</span></div>
+      <div class="info-linha">💡 Você pode selecionar 1 ou 2 candidatos. Na urna, são 2 votos distintos.</div>
+      <div class="opcoes" id="opSen"></div>
+      <div class="erro" id="errSen"><span>⚠️</span> Selecione pelo menos 1 candidato.</div>
+    </div>`;
+  
+  renderRadio('opPres',CONFIG.presidente,'presidente');
+  renderRadio('opGov',d.governador,'governador');
+  renderCheck('opSen',d.senador,'senador');
+}
+
+function renderRadio(containerId,lista,name){
+  const el=document.getElementById(containerId);
+  el.innerHTML=lista.map(c=>`
+    <label class="op-radio">
+      <input type="radio" name="${name}" value="${c.id}">
+      <div class="op-texto">
+        <div class="op-nome">${c.nome}</div>
+        ${c.partido?`<div class="op-info">${c.partido}</div>`:''}
+      </div>
+    </label>
+  `).join('');
+}
+
+function renderCheck(containerId,lista,name){
+  const el=document.getElementById(containerId);
+  el.innerHTML=lista.map(c=>`
+    <label class="op-check" id="chk_${c.id}">
+      <input type="checkbox" name="${name}" value="${c.id}">
+      <div class="op-texto">
+        <div class="op-nome">${c.nome}</div>
+        ${c.partido?`<div class="op-info">${c.partido}</div>`:''}
+      </div>
+    </label>
+  `).join('');
+  
+  el.addEventListener('change',function(e){
+    if(e.target.type!=='checkbox')return;
+    const checks=el.querySelectorAll('input[type="checkbox"]:checked');
+    const todos=el.querySelectorAll('input[type="checkbox"]');
+    if(checks.length>=2){
+      todos.forEach(c=>{if(!c.checked){c.disabled=true;c.closest('.op-check').classList.add('desabilitado');}});
+    }else{
+      todos.forEach(c=>{c.disabled=false;c.closest('.op-check').classList.remove('desabilitado');});
+    }
+  });
+}
+
+function enviarVoto(){
+  const pres=document.querySelector('input[name="presidente"]:checked');
+  const gov=document.querySelector('input[name="governador"]:checked');
+  const sen=document.querySelectorAll('input[name="senador"]:checked');
+  let ok=true;
+  
+  ['errPres','errGov','errSen'].forEach(id=>document.getElementById(id).classList.remove('ativo'));
+  
+  if(!pres){document.getElementById('errPres').classList.add('ativo');ok=false;}
+  if(!gov){document.getElementById('errGov').classList.add('ativo');ok=false;}
+  if(sen.length===0){document.getElementById('errSen').classList.add('ativo');ok=false;}
+  
+  if(!ok)return;
+  
+  const v=getVotos();
+  v.pres[pres.value]++;
+  v.porUF[UF].gov[gov.value]++;
+  sen.forEach(s=>v.porUF[UF].sen[s.value]++);
+  v.total++;
+  salvar(v);
+  marcarVotou();
+  
+  mostrarResultados(v);
+}
+
+function mostrarResultados(v){
+  document.getElementById('passo2').style.display='none';
+  document.getElementById('passo3').style.display='block';
+  const el=document.getElementById('resultadosContent');
+  const nomeUF=UFS.find(u=>u.s===UF).n;
+  
+  el.innerHTML=`<div class="res-bloco">
+      <div class="res-tit">📊 Presidente da República</div>
+      <div id="resPres"></div>
+    </div>
+    <div class="res-bloco">
+      <div class="res-tit">📊 Governador — ${nomeUF}</div>
+      <div id="resGov"></div>
+    </div>
+    <div class="res-bloco">
+      <div class="res-tit">📊 Senador — ${nomeUF}</div>
+      <div id="resSen"></div>
+    </div>
+    <div class="total">Total de participantes: <strong>${v.total.toLocaleString('pt-BR')}</strong> pessoas</div>`;
+  
+  renderBarras('resPres',v.pres,CONFIG.presidente,v.total);
+  renderBarras('resGov',v.porUF[UF].gov,CONFIG.estados[UF].governador);
+  renderBarras('resSen',v.porUF[UF].sen,CONFIG.estados[UF].senador);
+}
+
+function renderBarras(containerId,dadosVotos,candidatos,totalGeral){
+  const el=document.getElementById(containerId);
+  const total=totalGeral!==undefined?totalGeral:Object.values(dadosVotos).reduce((a,b)=>a+b,0);
+  const sorted=candidatos.map(c=>({...c,votos:dadosVotos[c.id]||0})).sort((a,b)=>b.votos-a.votos);
+  const maxV=sorted[0]?.votos||1;
+  
+  el.innerHTML=sorted.map((c,i)=>{
+    const pct=total>0?((c.votos/total)*100).toFixed(1):'0.0';
+    const w=maxV>0?((c.votos/maxV)*100):0;
+    const lider=i===0&&c.votos>0;
+    return `<div class="barra">
+        <div class="bar-info"><span class="bar-nome">${c.nome}</span><span class="bar-pct">${pct}% (${c.votos} voto${c.votos!==1?'s':''})</span></div>
+        <div class="bar-fundo"><div class="bar-fill ${lider?'lider':''}" style="width:0%" data-w="${w}%">${w>12?pct+'%':''}</div></div>
+      </div>`;
+  }).join('');
+  
+  setTimeout(()=>{el.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w);},100);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  renderUFs();
+  if(jaVotou()){
+    const ufSalva=getUFVotou();
+    if(ufSalva&&CONFIG.estados[ufSalva]){
+      UF=ufSalva;
+      document.getElementById('passo1').style.display='none';
+      document.getElementById('passo3').style.display='block';
+      mostrarResultados(getVotos());
+    }
+  }
+});
+</script>
+</body>
+</html>
