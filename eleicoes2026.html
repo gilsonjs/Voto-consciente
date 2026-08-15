@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Voto Consciente - Eleições 2026</title>
+  <style>
+    body {
+      background-color: #4B0F1F; /* vermelho bordô */
+      color: #FFD700; /* amarelo ouro */
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    select, input {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 8px 0;
+    }
+    h2 {
+      margin-top: 20px;
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Confira o Voto Consciente - Eleições 2026</h1>
+
+  <!-- Escolha do estado -->
+  <label for="estado">Selecione o estado:</label>
+  <select id="estado" onchange="carregarCandidatos()">
+    <option value="">-- Escolha --</option>
+    <option value="AC">Acre</option>
+    <option value="AL">Alagoas</option>
+    <option value="AP">Amapá</option>
+    <option value="AM">Amazonas</option>
+    <option value="BA">Bahia</option>
+    <option value="CE">Ceará</option>
