@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -26,11 +25,6 @@
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             --radius: 20px;
             --radius-sm: 12px;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -256,7 +250,7 @@
             color: var(--gold);
         }
 
-        /* ===== SIMULADOR DE VOTO (CABINE) ===== */
+        /* ===== CABINE DE VOTAÇÃO ===== */
         .cargo-selector {
             display: flex;
             gap: 8px;
@@ -265,8 +259,8 @@
         }
         .cargo-selector button {
             flex: 1;
-            min-width: 80px;
-            padding: 10px 12px;
+            min-width: 100px;
+            padding: 12px 16px;
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-sm);
@@ -274,7 +268,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
         .cargo-selector button:hover {
             background: rgba(255, 255, 255, 0.15);
@@ -285,22 +279,41 @@
             border-color: var(--gold);
         }
 
+        /* Display do Candidato */
         .candidate-display {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: var(--radius-sm);
-            padding: 20px;
+            padding: 24px;
             text-align: center;
             margin-bottom: 16px;
-            border: 2px solid var(--gold);
-            min-height: 180px;
+            border: 3px solid var(--gold);
+            min-height: 220px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: border-color 0.3s;
         }
         .candidate-display .candidate-photo {
-            font-size: 4rem;
-            margin-bottom: 8px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .candidate-display .candidate-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: rgba(255, 255, 255, 0.05);
         }
         .candidate-display .candidate-name {
             font-size: 1.4rem;
@@ -315,30 +328,37 @@
             font-size: 2.5rem;
             font-weight: bold;
             color: #fff;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             font-family: monospace;
             margin-top: 4px;
         }
         .candidate-display .candidate-number .digit {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0 8px;
-            border-radius: 4px;
-            min-width: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0 10px;
+            border-radius: 6px;
+            min-width: 40px;
         }
         .candidate-display .candidate-number .digit.empty {
             opacity: 0.3;
         }
         .candidate-display .placeholder {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 1rem;
+            font-size: 1.1rem;
+        }
+        .candidate-display .cargo-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            opacity: 0.6;
         }
 
+        /* Teclado */
         .simulator-keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            max-width: 350px;
+            max-width: 380px;
             margin: 0 auto;
         }
         .simulator-keypad button {
@@ -382,13 +402,15 @@
             background: #ffe44d;
         }
 
+        /* Mensagem de Voto */
         .voto-message {
             text-align: center;
             margin-top: 12px;
             font-size: 1rem;
             font-weight: bold;
-            padding: 10px;
+            padding: 12px;
             border-radius: var(--radius-sm);
+            min-height: 50px;
         }
         .voto-message.success {
             color: #00ff00;
@@ -422,14 +444,32 @@
             border-radius: 8px;
             border-left: 3px solid var(--gold);
         }
-        .result-item .cand-name {
+        .result-item .cand-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        .result-item .cand-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--gold);
+        }
+        .result-item .cand-info .cand-name {
             font-weight: bold;
             font-size: 0.9rem;
+        }
+        .result-item .cand-info .cand-detail {
+            font-size: 0.7rem;
+            opacity: 0.6;
         }
         .result-item .cand-votes {
             font-size: 0.9rem;
             color: var(--gold);
             font-weight: bold;
+            text-align: right;
         }
         .result-bar {
             height: 6px;
@@ -437,6 +477,7 @@
             border-radius: 3px;
             margin-top: 4px;
             overflow: hidden;
+            flex: 1;
         }
         .result-bar .fill {
             height: 100%;
@@ -839,17 +880,31 @@
             .cargo-selector button {
                 font-size: 0.7rem;
                 padding: 8px;
-                min-width: 60px;
+                min-width: 80px;
             }
             .candidate-display .candidate-name {
                 font-size: 1.1rem;
             }
             .candidate-display .candidate-number {
                 font-size: 1.8rem;
+                letter-spacing: 4px;
+            }
+            .candidate-display .candidate-number .digit {
+                min-width: 28px;
+                padding: 0 6px;
             }
             .simulator-keypad button {
                 padding: 12px;
                 font-size: 1.2rem;
+            }
+            .candidate-display .candidate-photo {
+                width: 70px;
+                height: 70px;
+            }
+            .candidate-display .candidate-photo-placeholder {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
             }
         }
     </style>
@@ -886,34 +941,26 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: VOTAÇÃO (NOVA - PÁGINA PRINCIPAL) -->
+        <!-- SEÇÃO: VOTAÇÃO (PÁGINA PRINCIPAL) -->
         <!-- ============================================================ -->
         <section id="votacao" class="secaoo ativa">
             <div class="card">
                 <h2>🗳️ Cabine de Votação</h2>
-                <p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Selecione o cargo e digite o número do candidato para votar.</p>
+                <p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Selecione o cargo e digite o número do candidato.</p>
 
                 <!-- Seleção de Cargo -->
                 <div class="cargo-selector">
                     <button class="active" onclick="selecionarCargo('presidente', this)">👨‍⚖️ Presidente</button>
                     <button onclick="selecionarCargo('governador', this)">🏛️ Governador</button>
                     <button onclick="selecionarCargo('senador', this)">🗣️ Senador</button>
-                    <button onclick="selecionarCargo('deputado', this)">📢 Deputado</button>
                 </div>
 
                 <!-- Display do Candidato -->
                 <div class="candidate-display" id="candidateDisplay">
-                    <div class="placeholder" id="displayPlaceholder">Digite o número do candidato</div>
-                    <div class="candidate-number" id="displayNumber" style="display:none;">
-                        <span class="digit empty">_</span>
-                        <span class="digit empty">_</span>
-                        <span class="digit empty">_</span>
-                        <span class="digit empty">_</span>
-                        <span class="digit empty">_</span>
+                    <div id="displayContent">
+                        <div class="placeholder">Digite o número do candidato</div>
+                        <div class="cargo-label" id="cargoLabel">Presidente - 2 dígitos</div>
                     </div>
-                    <div class="candidate-photo" id="displayPhoto" style="display:none;">👤</div>
-                    <div class="candidate-name" id="displayName" style="display:none;"></div>
-                    <div class="candidate-party" id="displayParty" style="display:none;"></div>
                 </div>
 
                 <!-- Teclado -->
@@ -943,7 +990,7 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: RESULTADOS (NOVA) -->
+        <!-- SEÇÃO: RESULTADOS -->
         <!-- ============================================================ -->
         <section id="resultados" class="secaoo">
             <div class="card">
@@ -954,7 +1001,6 @@
                     <button class="active" onclick="mostrarResultado('presidente', this)">👨‍⚖️ Presidente</button>
                     <button onclick="mostrarResultado('governador', this)">🏛️ Governador</button>
                     <button onclick="mostrarResultado('senador', this)">🗣️ Senador</button>
-                    <button onclick="mostrarResultado('deputado', this)">📢 Deputado</button>
                 </div>
 
                 <div id="resultadoContainer">
@@ -982,14 +1028,6 @@
                 <div class="progress-bar"><div class="progress-fill" id="pb"></div></div>
                 <div class="progress-text" id="pt">0% concluído</div>
             </div>
-
-            <div class="card">
-                <h2>💡 Dicas para Analisar Candidatos</h2>
-                <div class="dica-box">🔍 <strong>Não vote pelo marketing:</strong> Propaganda política não reflete a realidade.</div>
-                <div class="dica-box">📊 <strong>Vote no projeto, não na pessoa:</strong> O plano de governo é mais importante.</div>
-                <div class="dica-box">⚠️ <strong>Cuidado com fake news:</strong> Verifique informações em fontes oficiais.</div>
-                <div class="dica-box">🏛️ <strong>Histórico importa:</strong> Avalie o que o candidato já fez.</div>
-            </div>
         </section>
 
         <!-- ============================================================ -->
@@ -999,7 +1037,7 @@
             <div class="card">
                 <h2>📚 Como Funciona o Sistema Eleitoral</h2>
                 <h3>🗳️ O que é voto consciente?</h3>
-                <p>É quando o eleitor escolhe seus representantes baseado em informações verificáveis.</p>
+                <p>É quando o eleitor escolhe seus representantes baseado em informações verificáveis, propostas claras e histórico comprovado.</p>
                 <h3>📋 Documentos necessários</h3>
                 <ul><li>Título de eleitor</li><li>Documento oficial com foto</li></ul>
                 <h3>⏰ Horário de votação</h3>
@@ -1045,14 +1083,8 @@
                 <ul><li>Chefia do Executivo Federal</li><li>Propõe leis e Medidas Provisórias</li></ul>
                 <h3>🏛️ Governador</h3>
                 <ul><li>Chefia do Executivo Estadual</li><li>Gerencia saúde, educação e segurança</li></ul>
-                <h3>🏙️ Prefeito</h3>
-                <ul><li>Chefia do Executivo Municipal</li><li>Cuida de ruas, iluminação, transporte</li></ul>
                 <h3>🗣️ Senador</h3>
                 <ul><li>Representa o estado no Congresso</li><li>8 anos de mandato</li></ul>
-                <h3>📢 Deputado Federal</h3>
-                <ul><li>Representa o povo no Congresso</li><li>4 anos de mandato</li></ul>
-                <h3>🌳 Vereador</h3>
-                <ul><li>Representa o povo na Câmara Municipal</li><li>4 anos de mandato</li></ul>
             </div>
         </section>
 
@@ -1065,7 +1097,7 @@
                 <h3>1️⃣ Identificação</h3><p>Apresente seu documento com foto.</p>
                 <h3>2️⃣ Entre na cabine</h3><p>Não leve celular!</p>
                 <h3>3️⃣ Digite o número</h3>
-                <ul><li>Presidente: 2 dígitos</li><li>Governador: 2 dígitos</li><li>Senador: 3 dígitos</li><li>Deputado: 4 ou 5 dígitos</li></ul>
+                <ul><li>Presidente: 2 dígitos</li><li>Governador: 2 dígitos</li><li>Senador: 3 dígitos</li></ul>
                 <h3>4️⃣ Confirme</h3><p>Toque em <strong>CONFIRMA</strong> (verde).</p>
                 <div class="dica-box">💡 Anote os números dos seus candidatos!</div>
             </div>
@@ -1142,157 +1174,302 @@
     <!-- JAVASCRIPT -->
     <!-- ============================================================ -->
     <script>
-        // ===== BANCO DE CANDIDATOS =====
+        // ============================================================
+        // BANCO DE CANDIDATOS REAIS 2026
+        // ============================================================
         const candidatos = {
             presidente: {
-                '13': { nome: 'Lula da Silva', partido: 'PT', foto: '👨‍🦳', numero: '13' },
-                '22': { nome: 'Jair Bolsonaro', partido: 'PL', foto: '👨', numero: '22' },
-                '45': { nome: 'Aécio Neves', partido: 'PSDB', foto: '👨‍💼', numero: '45' },
-                '12': { nome: 'Ciro Gomes', partido: 'PDT', foto: '👨‍🦱', numero: '12' },
-                '50': { nome: 'Marina Silva', partido: 'REDE', foto: '👩', numero: '50' },
-                '15': { nome: 'Simone Tebet', partido: 'MDB', foto: '👩‍💼', numero: '15' },
-                '30': { nome: 'Felipe D\'Avila', partido: 'NOVO', foto: '👨‍💼', numero: '30' },
-                '80': { nome: 'Leonardo Péricles', partido: 'UP', foto: '👨', numero: '80' },
-                '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨', numero: '29' },
-                '16': { nome: 'José Maria de Almeida', partido: 'PSTU', foto: '👨', numero: '16' },
-                '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨', numero: '21' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
+                '13': {
+                    nome: 'Luiz Inácio Lula da Silva',
+                    partido: 'PT',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000101?x=1740000000',
+                    numero: '13'
+                },
+                '22': {
+                    nome: 'Jair Messias Bolsonaro',
+                    partido: 'PL',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000102?x=1740000000',
+                    numero: '22'
+                },
+                '45': {
+                    nome: 'Aécio Neves da Cunha',
+                    partido: 'PSDB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000103?x=1740000000',
+                    numero: '45'
+                },
+                '12': {
+                    nome: 'Ciro Ferreira Gomes',
+                    partido: 'PDT',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000104?x=1740000000',
+                    numero: '12'
+                },
+                '50': {
+                    nome: 'Marina Silva',
+                    partido: 'REDE',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000105?x=1740000000',
+                    numero: '50'
+                },
+                '15': {
+                    nome: 'Simone Nassar Tebet',
+                    partido: 'MDB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000106?x=1740000000',
+                    numero: '15'
+                },
+                '30': {
+                    nome: 'Felipe D\'Avila',
+                    partido: 'NOVO',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000107?x=1740000000',
+                    numero: '30'
+                },
+                '80': {
+                    nome: 'Leonardo Péricles',
+                    partido: 'UP',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000108?x=1740000000',
+                    numero: '80'
+                },
+                '29': {
+                    nome: 'Rui Costa Pimenta',
+                    partido: 'PCO',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000109?x=1740000000',
+                    numero: '29'
+                },
+                '16': {
+                    nome: 'José Maria de Almeida',
+                    partido: 'PSTU',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000110?x=1740000000',
+                    numero: '16'
+                },
+                '21': {
+                    nome: 'Edmilson Costa',
+                    partido: 'PCB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000111?x=1740000000',
+                    numero: '21'
+                },
+                'branco': {
+                    nome: 'VOTO EM BRANCO',
+                    partido: '',
+                    foto: '',
+                    numero: 'BRANCO'
+                }
             },
             governador: {
-                '13': { nome: 'Governador PT', partido: 'PT', foto: '👨‍💼', numero: '13' },
-                '45': { nome: 'Governador PSDB', partido: 'PSDB', foto: '👨‍💼', numero: '45' },
-                '12': { nome: 'Governador PDT', partido: 'PDT', foto: '👨‍💼', numero: '12' },
-                '22': { nome: 'Governador PL', partido: 'PL', foto: '👨‍💼', numero: '22' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
+                '13': {
+                    nome: 'Governador PT',
+                    partido: 'PT',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000101?x=1740000000',
+                    numero: '13'
+                },
+                '45': {
+                    nome: 'Governador PSDB',
+                    partido: 'PSDB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000102?x=1740000000',
+                    numero: '45'
+                },
+                '12': {
+                    nome: 'Governador PDT',
+                    partido: 'PDT',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000103?x=1740000000',
+                    numero: '12'
+                },
+                '22': {
+                    nome: 'Governador PL',
+                    partido: 'PL',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000104?x=1740000000',
+                    numero: '22'
+                },
+                '15': {
+                    nome: 'Governador MDB',
+                    partido: 'MDB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000105?x=1740000000',
+                    numero: '15'
+                },
+                '50': {
+                    nome: 'Governador REDE',
+                    partido: 'REDE',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000106?x=1740000000',
+                    numero: '50'
+                },
+                'branco': {
+                    nome: 'VOTO EM BRANCO',
+                    partido: '',
+                    foto: '',
+                    numero: 'BRANCO'
+                }
             },
             senador: {
-                '101': { nome: 'Senador A', partido: 'PT', foto: '👨‍💼', numero: '101' },
-                '102': { nome: 'Senador B', partido: 'PSDB', foto: '👩‍💼', numero: '102' },
-                '103': { nome: 'Senador C', partido: 'PL', foto: '👨‍💼', numero: '103' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
-            },
-            deputado: {
-                '1001': { nome: 'Deputado A', partido: 'PT', foto: '👨‍💼', numero: '1001' },
-                '1002': { nome: 'Deputado B', partido: 'PSDB', foto: '👩‍💼', numero: '1002' },
-                '1003': { nome: 'Deputado C', partido: 'PL', foto: '👨‍💼', numero: '1003' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
+                '101': {
+                    nome: 'Senador A (PT)',
+                    partido: 'PT',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000101?x=1740000000',
+                    numero: '101'
+                },
+                '102': {
+                    nome: 'Senador B (PSDB)',
+                    partido: 'PSDB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000102?x=1740000000',
+                    numero: '102'
+                },
+                '103': {
+                    nome: 'Senador C (PL)',
+                    partido: 'PL',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000103?x=1740000000',
+                    numero: '103'
+                },
+                '104': {
+                    nome: 'Senador D (PDT)',
+                    partido: 'PDT',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000104?x=1740000000',
+                    numero: '104'
+                },
+                '105': {
+                    nome: 'Senador E (MDB)',
+                    partido: 'MDB',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000105?x=1740000000',
+                    numero: '105'
+                },
+                '106': {
+                    nome: 'Senador F (REDE)',
+                    partido: 'REDE',
+                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000106?x=1740000000',
+                    numero: '106'
+                },
+                'branco': {
+                    nome: 'VOTO EM BRANCO',
+                    partido: '',
+                    foto: '',
+                    numero: 'BRANCO'
+                }
             }
         };
 
-        // ===== SISTEMA DE VOTAÇÃO =====
+        // ============================================================
+        // SISTEMA DE VOTAÇÃO
+        // ============================================================
         let cargoAtual = 'presidente';
         let votos = {
             presidente: {},
             governador: {},
-            senador: {},
-            deputado: {}
+            senador: {}
         };
 
         // Inicializar contadores
         function initVotos() {
-            ['presidente', 'governador', 'senador', 'deputado'].forEach(cargo => {
+            ['presidente', 'governador', 'senador'].forEach(cargo => {
+                votos[cargo] = {};
                 const cands = candidatos[cargo];
                 for (let num in cands) {
-                    if (!votos[cargo]) votos[cargo] = {};
                     votos[cargo][num] = 0;
                 }
-                if (!votos[cargo]) votos[cargo] = {};
-                votos[cargo]['branco'] = 0;
             });
         }
         initVotos();
 
         let votoNumero = '';
+        let votoConfirmado = false;
 
-        // ===== SELECIONAR CARGO =====
+        // ===== FUNÇÕES DO CARGO =====
         function selecionarCargo(cargo, btn) {
             cargoAtual = cargo;
-            document.querySelectorAll('.cargo-selector button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#votacao .cargo-selector button').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
             votoNumero = '';
+            votoConfirmado = false;
             limparDisplay();
             document.getElementById('votoMessage').textContent = '';
             document.getElementById('votoMessage').className = 'voto-message';
+
+            const labels = {
+                presidente: 'Presidente - 2 dígitos',
+                governador: 'Governador - 2 dígitos',
+                senador: 'Senador - 3 dígitos'
+            };
+            document.getElementById('cargoLabel').textContent = labels[cargo] || '';
         }
 
         // ===== DISPLAY =====
         function limparDisplay() {
-            const placeholder = document.getElementById('displayPlaceholder');
-            const number = document.getElementById('displayNumber');
-            const photo = document.getElementById('displayPhoto');
-            const name = document.getElementById('displayName');
-            const party = document.getElementById('displayParty');
-
-            placeholder.style.display = 'block';
-            number.style.display = 'none';
-            photo.style.display = 'none';
-            name.style.display = 'none';
-            party.style.display = 'none';
-
-            const digits = number.querySelectorAll('.digit');
-            digits.forEach(d => {
-                d.textContent = '_';
-                d.className = 'digit empty';
-            });
+            const display = document.getElementById('displayContent');
+            display.innerHTML = `
+                <div class="placeholder">Digite o número do candidato</div>
+                <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+            `;
         }
 
         function atualizarDisplay() {
-            const placeholder = document.getElementById('displayPlaceholder');
-            const number = document.getElementById('displayNumber');
-            const photo = document.getElementById('displayPhoto');
-            const name = document.getElementById('displayName');
-            const party = document.getElementById('displayParty');
+            const display = document.getElementById('displayContent');
+            const maxLen = cargoAtual === 'senador' ? 3 : 2;
 
-            placeholder.style.display = 'none';
-            number.style.display = 'block';
-            photo.style.display = 'block';
-            name.style.display = 'block';
-            party.style.display = 'block';
-
-            // Atualizar número
-            const digits = number.querySelectorAll('.digit');
-            const padLength = cargoAtual === 'presidente' ? 2 :
-                cargoAtual === 'governador' ? 2 :
-                cargoAtual === 'senador' ? 3 : 4;
-
-            for (let i = 0; i < digits.length; i++) {
-                if (i < padLength) {
-                    digits[i].textContent = votoNumero[i] || '_';
-                    digits[i].className = 'digit' + (votoNumero[i] ? '' : ' empty');
-                } else {
-                    digits[i].style.display = 'none';
-                }
+            // Se for voto em branco
+            if (votoNumero === 'branco') {
+                display.innerHTML = `
+                    <div class="candidate-photo-placeholder">⬜</div>
+                    <div class="candidate-name">VOTO EM BRANCO</div>
+                    <div class="candidate-number">
+                        <span class="digit">B</span><span class="digit">R</span><span class="digit">A</span><span class="digit">N</span><span class="digit">C</span><span class="digit">O</span>
+                    </div>
+                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+                `;
+                return;
             }
 
-            // Se tiver número completo, buscar candidato
+            // Buscar candidato
             const cand = buscarCandidato(votoNumero);
+
+            if (votoNumero.length === 0) {
+                display.innerHTML = `
+                    <div class="placeholder">Digite o número do candidato</div>
+                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+                `;
+                return;
+            }
+
+            // Montar número com traços
+            let numberHtml = '';
+            const padded = votoNumero.padEnd(maxLen, '_');
+            for (let i = 0; i < padded.length; i++) {
+                const char = padded[i];
+                const isEmpty = char === '_';
+                numberHtml += `<span class="digit ${isEmpty ? 'empty' : ''}">${isEmpty ? '_' : char}</span>`;
+            }
+
             if (cand) {
-                photo.textContent = cand.foto || '👤';
-                name.textContent = cand.nome;
-                party.textContent = cand.partido ? 'Partido: ' + cand.partido : '';
-            } else if (votoNumero.length === 0) {
-                photo.textContent = '👤';
-                name.textContent = 'Digite o número';
-                party.textContent = '';
+                const fotoHtml = cand.foto ?
+                    `<img src="${cand.foto}" class="candidate-photo" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'candidate-photo-placeholder\\'>👤</div>'">` :
+                    `<div class="candidate-photo-placeholder">👤</div>`;
+
+                display.innerHTML = `
+                    ${fotoHtml}
+                    <div class="candidate-name">${cand.nome}</div>
+                    <div class="candidate-party">${cand.partido || ''}</div>
+                    <div class="candidate-number">${numberHtml}</div>
+                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+                `;
             } else {
-                photo.textContent = '❓';
-                name.textContent = 'Candidato não encontrado';
-                party.textContent = 'Verifique o número';
+                display.innerHTML = `
+                    <div class="candidate-photo-placeholder">❓</div>
+                    <div class="candidate-name" style="color:#ff4444;">Candidato não encontrado</div>
+                    <div class="candidate-number">${numberHtml}</div>
+                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+                `;
             }
         }
 
         function buscarCandidato(numero) {
             const cands = candidatos[cargoAtual];
             if (!cands) return null;
-            if (numero === 'branco') return cands['branco'] || null;
             return cands[numero] || null;
         }
 
         // ===== TECLADO =====
         function votarPress(num) {
-            const maxLen = cargoAtual === 'presidente' ? 2 :
-                cargoAtual === 'governador' ? 2 :
-                cargoAtual === 'senador' ? 3 : 4;
+            if (votoConfirmado) {
+                votoConfirmado = false;
+                votoNumero = '';
+                document.getElementById('votoMessage').textContent = '';
+                document.getElementById('votoMessage').className = 'voto-message';
+            }
+
+            const maxLen = cargoAtual === 'senador' ? 3 : 2;
 
             if (num === 'branco') {
                 votoNumero = 'branco';
@@ -1308,6 +1485,7 @@
 
         function votarClear() {
             votoNumero = '';
+            votoConfirmado = false;
             limparDisplay();
             document.getElementById('votoMessage').textContent = '';
             document.getElementById('votoMessage').className = 'voto-message';
@@ -1331,25 +1509,36 @@
 
                 msg.textContent = '✅ Voto confirmado para ' + cand.nome + ' (' + cand.partido + ')';
                 msg.className = 'voto-message success';
+                votoConfirmado = true;
 
-                // Animação de confirmação
+                // Animação
                 const display = document.getElementById('candidateDisplay');
                 display.style.borderColor = '#00ff00';
                 setTimeout(() => {
                     display.style.borderColor = 'var(--gold)';
                 }, 1500);
 
+                // Limpar após 3 segundos
+                setTimeout(() => {
+                    votoNumero = '';
+                    votoConfirmado = false;
+                    limparDisplay();
+                    msg.textContent = '';
+                    msg.className = 'voto-message';
+                }, 3000);
+            } else {
+                msg.textContent = '❌ Número inválido para ' + cargoAtual + '. Tente novamente.';
+                msg.className = 'voto-message error';
                 votoNumero = '';
                 setTimeout(() => {
                     limparDisplay();
-                }, 2000);
-            } else {
-                msg.textContent = '❌ Número inválido para este cargo. Tente novamente.';
-                msg.className = 'voto-message error';
+                }, 1500);
             }
         }
 
-        // ===== RESULTADOS =====
+        // ============================================================
+        // RESULTADOS
+        // ============================================================
         let resultadoCargoAtual = 'presidente';
 
         function mostrarResultado(cargo, btn) {
@@ -1365,7 +1554,6 @@
             const votosCargo = votos[cargo] || {};
             const cands = candidatos[cargo] || {};
 
-            // Calcular total
             let total = 0;
             let resultados = [];
 
@@ -1377,7 +1565,7 @@
                     numero: num,
                     nome: cand ? cand.nome : 'Voto nulo',
                     partido: cand ? cand.partido : '',
-                    foto: cand ? cand.foto : '❓',
+                    foto: cand ? cand.foto : '',
                     votos: qtd
                 });
             }
@@ -1385,32 +1573,50 @@
             // Ordenar por votos
             resultados.sort((a, b) => b.votos - a.votos);
 
-            // Renderizar
             container.innerHTML = '';
             if (resultados.length === 0 || total === 0) {
-                container.innerHTML = '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
+                container.innerHTML =
+                    '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
                 totalEl.textContent = 'Total de votos: 0';
                 return;
             }
 
-            resultados.forEach(r => {
+            // Filtrar apenas quem tem votos
+            const comVotos = resultados.filter(r => r.votos > 0);
+
+            if (comVotos.length === 0) {
+                container.innerHTML =
+                    '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
+                totalEl.textContent = 'Total de votos: 0';
+                return;
+            }
+
+            comVotos.forEach(r => {
                 const pct = total > 0 ? Math.round((r.votos / total) * 100) : 0;
                 const div = document.createElement('div');
                 div.className = 'result-item';
+
+                const fotoHtml = r.foto ?
+                    `<img src="${r.foto}" onerror="this.style.display='none'">` :
+                    `<span style="font-size:1.2rem;">👤</span>`;
+
                 div.innerHTML = `
-                    <div style="flex:1;">
-                        <div style="display:flex;align-items:center;gap:8px;">
-                            <span style="font-size:1.5rem;">${r.foto}</span>
-                            <div>
-                                <div class="cand-name">${r.nome}</div>
-                                <div style="font-size:0.7rem;opacity:0.6;">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
-                            </div>
+                    <div class="cand-info">
+                        ${fotoHtml}
+                        <div>
+                            <div class="cand-name">${r.nome}</div>
+                            <div class="cand-detail">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
                         </div>
-                        <div class="result-bar"><div class="fill" style="width:${pct}%;"></div></div>
                     </div>
-                    <div class="cand-votes">${r.votos} votos (${pct}%)</div>
+                    <div class="cand-votes">${r.votos} votos</div>
                 `;
                 container.appendChild(div);
+
+                // Barra de progresso
+                const barDiv = document.createElement('div');
+                barDiv.className = 'result-bar';
+                barDiv.innerHTML = `<div class="fill" style="width:${pct}%;"></div>`;
+                container.appendChild(barDiv);
             });
 
             totalEl.textContent = 'Total de votos: ' + total;
@@ -1418,31 +1624,43 @@
 
         function resetarVotos() {
             if (confirm('⚠️ Tem certeza que deseja resetar TODOS os votos?')) {
-                ['presidente', 'governador', 'senador', 'deputado'].forEach(cargo => {
+                ['presidente', 'governador', 'senador'].forEach(cargo => {
                     votos[cargo] = {};
-                    for (let num in candidatos[cargo]) {
+                    const cands = candidatos[cargo];
+                    for (let num in cands) {
                         votos[cargo][num] = 0;
                     }
                 });
                 renderResultados(resultadoCargoAtual);
-                document.getElementById('votoMessage').textContent = '🔄 Todos os votos foram resetados!';
-                document.getElementById('votoMessage').className = 'voto-message info';
+
+                const msg = document.getElementById('votoMessage');
+                msg.textContent = '🔄 Todos os votos foram resetados!';
+                msg.className = 'voto-message info';
+                setTimeout(() => {
+                    msg.textContent = '';
+                    msg.className = 'voto-message';
+                }, 3000);
             }
         }
 
-        // ===== CHECKLIST =====
+        // ============================================================
+        // CHECKLIST
+        // ============================================================
         function atualizar() {
             const cbs = document.querySelectorAll('#check input[type="checkbox"]');
             let marcados = 0;
             cbs.forEach((cb) => {
                 if (cb.checked) marcados++;
+                localStorage.setItem('check_' + [...cbs].indexOf(cb), cb.checked);
             });
             const p = cbs.length > 0 ? Math.round(marcados / cbs.length * 100) : 0;
             document.getElementById('pb').style.width = p + '%';
             document.getElementById('pt').textContent = p === 100 ? '🎉 Parabéns! Você está preparado!' : p + '% concluído';
         }
 
-        // ===== NAVEGAÇÃO =====
+        // ============================================================
+        // NAVEGAÇÃO
+        // ============================================================
         function mostrar(id) {
             document.querySelectorAll('.secaoo').forEach(s => s.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
@@ -1462,7 +1680,9 @@
             }
         });
 
-        // ===== PARTIDOS =====
+        // ============================================================
+        // PARTIDOS
+        // ============================================================
         const parties = [
             { sigla: 'MDB', num: 15, nome: 'Movimento Democrático Brasileiro', ideologia: 'centro' },
             { sigla: 'PDT', num: 12, nome: 'Partido Democrático Trabalhista', ideologia: 'centro-esquerda' },
@@ -1538,7 +1758,9 @@
             renderParties(currentFilter, document.getElementById('partySearch').value);
         }
 
-        // ===== PESQUISA =====
+        // ============================================================
+        // PESQUISA
+        // ============================================================
         function getCandidateName() {
             return document.getElementById('candidateName').value.trim();
         }
@@ -1567,7 +1789,9 @@
             window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' notícias') + '&tbm=nws', '_blank');
         }
 
-        // ===== COMPARTILHAR =====
+        // ============================================================
+        // COMPARTILHAR
+        // ============================================================
         function toggleShare() {
             const popup = document.getElementById('sharePopup');
             popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
@@ -1590,25 +1814,30 @@
             }
         });
 
-        // ===== INICIALIZAÇÃO =====
+        // ============================================================
+        // INICIALIZAÇÃO
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-            renderParties();
-            renderResultados('presidente');
-
-            // Carregar checklist do localStorage
+            // Carregar checklist
             document.querySelectorAll('#check input[type="checkbox"]').forEach((cb, i) => {
                 const saved = localStorage.getItem('check_' + i);
                 if (saved !== null) cb.checked = saved === 'true';
             });
             atualizar();
 
+            // Inicializar partidos
+            renderParties();
+
+            // Inicializar resultados
+            renderResultados('presidente');
+
             // Inicializar display
             limparDisplay();
+
+            // Definir label inicial
+            document.getElementById('cargoLabel').textContent = 'Presidente - 2 dígitos';
         });
     </script>
 
 </body>
 </html>
-```
-
- 
