@@ -38,7 +38,6 @@
             padding: 16px;
             padding-bottom: 80px;
         }
-
         header {
             text-align: center;
             padding: 20px 0;
@@ -63,7 +62,6 @@
             border: 2px solid rgba(255, 255, 255, 0.15);
             background: rgba(255, 255, 255, 0.05);
         }
-
         .card {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -102,7 +100,6 @@
         .card li {
             margin-bottom: 8px;
         }
-
         .menu-toggle {
             background: var(--menu-bg);
             color: var(--text-primary);
@@ -158,7 +155,6 @@
             font-weight: bold;
             border-color: var(--gold);
         }
-
         .secaoo {
             display: none;
             animation: fadeIn 0.3s ease;
@@ -176,7 +172,6 @@
                 transform: translateY(0);
             }
         }
-
         .checklist-item {
             display: flex;
             align-items: flex-start;
@@ -226,7 +221,6 @@
             font-weight: bold;
             color: var(--gold);
         }
-
         .dica-box {
             background: rgba(255, 215, 0, 0.08);
             border-left: 4px solid var(--gold);
@@ -272,7 +266,6 @@
             color: #0d3b1a;
             border-color: var(--gold);
         }
-
         .candidate-display {
             background: rgba(0, 0, 0, 0.4);
             border-radius: var(--radius-sm);
@@ -345,7 +338,6 @@
             margin-top: 4px;
             opacity: 0.6;
         }
-
         .simulator-keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -393,7 +385,6 @@
         .simulator-keypad .blank:hover {
             background: #ffe44d;
         }
-
         .voto-message {
             text-align: center;
             margin-top: 12px;
@@ -639,7 +630,6 @@
             opacity: 0.6;
             margin-bottom: 10px;
         }
-
         .research-input {
             width: 100%;
             padding: 12px 14px;
@@ -683,7 +673,6 @@
         .research-btns button.secondary:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
         .eleicao-item {
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -701,7 +690,6 @@
             opacity: 0.85;
             margin-top: 2px;
         }
-
         .links-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -732,7 +720,6 @@
             opacity: 0.7;
             margin: 0;
         }
-
         footer {
             text-align: center;
             margin-top: 10px;
@@ -743,7 +730,6 @@
             color: var(--text-primary);
             opacity: 0.7;
         }
-
         .share-fab {
             position: fixed;
             top: 8px;
@@ -1155,21 +1141,23 @@
     <!-- ============================================================ -->
     <script>
         // ============================================================
-        // BANCO DE CANDIDATOS COM FOTOS (EMOJIS)
+        // CANDIDATOS OFICIAIS 2026 - COM FIGURINHAS
         // ============================================================
         const candidatos = {
             presidente: {
                 '13': { nome: 'Luiz Inácio Lula da Silva', partido: 'PT', foto: '👨‍🦳', numero: '13' },
-                '22': { nome: 'Jair Messias Bolsonaro', partido: 'PL', foto: '👨', numero: '22' },
-                '12': { nome: 'Ciro Ferreira Gomes', partido: 'PDT', foto: '👨‍🦱', numero: '12' },
-                '50': { nome: 'Marina Silva', partido: 'REDE', foto: '👩', numero: '50' },
-                '15': { nome: 'Simone Nassar Tebet', partido: 'MDB', foto: '👩‍💼', numero: '15' },
-                '45': { nome: 'Aécio Neves da Cunha', partido: 'PSDB', foto: '👨‍💼', numero: '45' },
-                '30': { nome: 'Felipe D\'Avila', partido: 'NOVO', foto: '👨‍💼', numero: '30' },
-                '80': { nome: 'Leonardo Péricles', partido: 'UP', foto: '👨', numero: '80' },
+                '22': { nome: 'Flávio Bolsonaro', partido: 'PL', foto: '👨', numero: '22' },
+                '55': { nome: 'Ronaldo Caiado', partido: 'PSD', foto: '👨‍🦱', numero: '55' },
+                '30': { nome: 'Romeu Zema', partido: 'NOVO', foto: '👨‍💼', numero: '30' },
+                '14': { nome: 'Renan Santos', partido: 'Missão', foto: '👨', numero: '14' },
+                '70': { nome: 'Augusto Cury', partido: 'Avante', foto: '👨‍🦰', numero: '70' },
+                '16': { nome: 'Hertz Dias', partido: 'PSTU', foto: '👨', numero: '16' },
+                '80': { nome: 'Samara Martins', partido: 'UP', foto: '👩', numero: '80' },
+                '27': { nome: 'Clariana Barão', partido: 'DC', foto: '👩‍🦳', numero: '27' },
                 '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨', numero: '29' },
-                '16': { nome: 'José Maria de Almeida', partido: 'PSTU', foto: '👨', numero: '16' },
                 '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨', numero: '21' },
+                '28': { nome: 'Leonardo Avalanche', partido: 'PRTB', foto: '👨', numero: '28' },
+                '35': { nome: 'Wilson Grassi', partido: 'Democrata', foto: '👨', numero: '35' },
                 'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
             },
             governador: {
