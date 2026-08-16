@@ -3,40 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voto Consciente 2026 - Cabine de Votação</title>
-    <link rel="manifest" href="./manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="./icone-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
+    <title>Voto Consciente 2026</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        :root {
-            --bg-primary: #0d3b1a;
-            --bg-secondary: #1a5f2a;
-            --bg-card: rgba(26, 95, 42, 0.92);
-            --text-primary: #ffffff;
-            --text-secondary: #a8e6cf;
-            --gold: #ffd700;
-            --gold-dark: #e6c200;
-            --menu-bg: #800020;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --radius: 20px;
-            --radius-sm: 12px;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(145deg, #0d3b1a, #1a5f2a);
             min-height: 100vh;
-            color: var(--text-primary);
+            color: #fff;
+            padding: 16px;
         }
         .container {
             max-width: 720px;
             margin: 0 auto;
-            padding: 16px;
-            padding-bottom: 80px;
         }
         header {
             text-align: center;
@@ -44,65 +27,42 @@
         }
         header h1 {
             font-size: 2rem;
-            margin-bottom: 6px;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            color: var(--text-primary);
         }
         header p {
             opacity: 0.85;
-            font-size: 1rem;
-            color: var(--text-primary);
         }
-        .logo-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            object-fit: contain;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
+        .logo {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 8px;
         }
         .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            border-radius: var(--radius);
+            background: rgba(26, 95, 42, 0.88);
+            border-radius: 20px;
             padding: 20px;
             margin-bottom: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
         }
         .card h2 {
-            color: var(--gold);
+            color: #ffd700;
             font-size: 1.2rem;
             margin-bottom: 14px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .card h3 {
-            color: var(--text-secondary);
+            color: #a8e6cf;
             font-size: 1rem;
             margin: 14px 0 6px;
         }
-        .card p,
-        .card li {
-            color: var(--text-primary);
+        .card p {
+            color: #fff;
             opacity: 0.95;
-            font-size: 0.95rem;
             line-height: 1.7;
         }
-        .card ul {
-            padding-left: 20px;
-        }
-        .card li {
-            margin-bottom: 8px;
-        }
         .menu-toggle {
-            background: var(--menu-bg);
-            color: var(--text-primary);
+            background: #800020;
+            color: #fff;
             padding: 14px 18px;
             font-size: 16px;
             font-weight: bold;
@@ -110,12 +70,10 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            border-radius: var(--radius-sm);
+            border-radius: 12px;
             margin: 10px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-            transition: background 0.3s;
         }
         .menu-toggle:hover {
             background: #a00028;
@@ -128,9 +86,7 @@
             padding: 14px;
             background: rgba(128, 0, 32, 0.92);
             border-radius: 14px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
         }
         .nav.aberto {
             display: flex;
@@ -139,21 +95,19 @@
             padding: 12px 16px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
+            border-radius: 12px;
+            color: #fff;
             font-size: 0.9rem;
             cursor: pointer;
             text-align: left;
-            transition: background 0.3s;
         }
         .nav button:hover {
             background: rgba(255, 255, 255, 0.15);
         }
         .nav button.active {
-            background: var(--gold);
+            background: #ffd700;
             color: #0d3b1a;
             font-weight: bold;
-            border-color: var(--gold);
         }
         .secaoo {
             display: none;
@@ -172,30 +126,27 @@
                 transform: translateY(0);
             }
         }
+
+        /* ===== CHECKLIST ===== */
         .checklist-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 10px;
             background: rgba(255, 255, 255, 0.06);
             padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: background 0.3s;
-        }
-        .checklist-item:hover {
-            background: rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
         }
         .checklist-item input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             margin-right: 14px;
             margin-top: 2px;
-            accent-color: var(--gold);
+            accent-color: #ffd700;
             flex-shrink: 0;
             cursor: pointer;
         }
         .checklist-item label {
-            color: var(--text-primary);
+            color: #fff;
             font-size: 0.95rem;
             cursor: pointer;
         }
@@ -209,36 +160,20 @@
         }
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--gold), #ffed4a);
+            background: linear-gradient(90deg, #ffd700, #ffed4a);
             border-radius: 6px;
             width: 0%;
             transition: width 0.6s ease;
         }
         .progress-text {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 8px;
             font-size: 0.9rem;
             font-weight: bold;
-            color: var(--gold);
-        }
-        .dica-box {
-            background: rgba(255, 215, 0, 0.08);
-            border-left: 4px solid var(--gold);
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            transition: background 0.3s;
-        }
-        .dica-box:hover {
-            background: rgba(255, 215, 0, 0.14);
-        }
-        .dica-box strong {
-            color: var(--gold);
+            color: #ffd700;
         }
 
-        /* ===== CABINE DE VOTAÇÃO ===== */
+        /* ===== VOTAÇÃO ===== */
         .cargo-selector {
             display: flex;
             gap: 8px;
@@ -247,105 +182,82 @@
         }
         .cargo-selector button {
             flex: 1;
-            min-width: 100px;
-            padding: 12px 16px;
+            min-width: 80px;
+            padding: 10px;
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
+            border-radius: 12px;
+            color: #fff;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.85rem;
         }
         .cargo-selector button:hover {
             background: rgba(255, 255, 255, 0.15);
         }
         .cargo-selector button.active {
-            background: var(--gold);
+            background: #ffd700;
             color: #0d3b1a;
-            border-color: var(--gold);
+            border-color: #ffd700;
         }
+
         .candidate-display {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: var(--radius-sm);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
             padding: 24px;
             text-align: center;
             margin-bottom: 16px;
-            border: 3px solid var(--gold);
-            min-height: 200px;
+            border: 3px solid #ffd700;
+            min-height: 180px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: border-color 0.3s;
         }
-        .candidate-display .candidate-photo {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold);
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.1);
+        .candidate-display .foto {
+            font-size: 4rem;
+            margin-bottom: 4px;
         }
-        .candidate-display .candidate-photo-placeholder {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .candidate-display .candidate-name {
+        .candidate-display .nome {
             font-size: 1.3rem;
             font-weight: bold;
-            color: var(--gold);
+            color: #ffd700;
         }
-        .candidate-display .candidate-party {
+        .candidate-display .partido {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #a8e6cf;
         }
-        .candidate-display .candidate-number {
+        .candidate-display .numero {
             font-size: 2.5rem;
             font-weight: bold;
             color: #fff;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             font-family: monospace;
             margin-top: 4px;
         }
-        .candidate-display .candidate-number .digit {
+        .candidate-display .numero .digito {
             display: inline-block;
             background: rgba(255, 255, 255, 0.08);
             padding: 0 10px;
             border-radius: 6px;
-            min-width: 40px;
+            min-width: 35px;
         }
-        .candidate-display .candidate-number .digit.empty {
+        .candidate-display .numero .digito.vazio {
             opacity: 0.3;
         }
         .candidate-display .placeholder {
             color: rgba(255, 255, 255, 0.4);
             font-size: 1.1rem;
         }
-        .candidate-display .cargo-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-            opacity: 0.6;
-        }
-        .simulator-keypad {
+
+        .teclado {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            max-width: 380px;
+            max-width: 350px;
             margin: 0 auto;
         }
-        .simulator-keypad button {
+        .teclado button {
             padding: 16px;
             font-size: 1.5rem;
             font-weight: bold;
@@ -353,161 +265,136 @@
             border-radius: 8px;
             cursor: pointer;
             background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
+            color: #fff;
             transition: all 0.2s;
         }
-        .simulator-keypad button:hover {
+        .teclado button:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.02);
         }
-        .simulator-keypad button:active {
-            transform: scale(0.95);
-        }
-        .simulator-keypad .confirm {
+        .teclado .confirma {
             background: #00a800;
             color: #fff;
             grid-column: span 2;
         }
-        .simulator-keypad .confirm:hover {
+        .teclado .confirma:hover {
             background: #00c800;
         }
-        .simulator-keypad .clear {
+        .teclado .corrige {
             background: #cc0000;
             color: #fff;
         }
-        .simulator-keypad .clear:hover {
+        .teclado .corrige:hover {
             background: #ff0000;
         }
-        .simulator-keypad .blank {
+        .teclado .branco {
             background: #ffd700;
             color: #0d3b1a;
         }
-        .simulator-keypad .blank:hover {
+        .teclado .branco:hover {
             background: #ffe44d;
         }
-        .voto-message {
+
+        .mensagem {
             text-align: center;
             margin-top: 12px;
             font-size: 1rem;
             font-weight: bold;
-            padding: 12px;
-            border-radius: var(--radius-sm);
-            min-height: 50px;
+            padding: 10px;
+            border-radius: 12px;
+            min-height: 45px;
         }
-        .voto-message.success {
+        .mensagem.sucesso {
             color: #00ff00;
             background: rgba(0, 255, 0, 0.1);
             border: 1px solid #00ff00;
         }
-        .voto-message.error {
+        .mensagem.erro {
             color: #ff4444;
             background: rgba(255, 0, 0, 0.1);
             border: 1px solid #ff4444;
         }
-        .voto-message.info {
-            color: var(--gold);
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--gold);
-        }
 
         /* ===== RESULTADOS ===== */
-        .result-stats {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            margin-top: 12px;
-        }
-        .result-item {
+        .resultado-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 14px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            border-left: 3px solid var(--gold);
+            margin-bottom: 6px;
+            border-left: 3px solid #ffd700;
         }
-        .result-item .cand-info {
+        .resultado-item .info {
             display: flex;
             align-items: center;
             gap: 10px;
-            flex: 1;
         }
-        .result-item .cand-info .cand-photo {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            background: rgba(255, 255, 255, 0.1);
+        .resultado-item .info .foto {
+            font-size: 1.5rem;
         }
-        .result-item .cand-info .cand-name {
+        .resultado-item .info .nome {
             font-weight: bold;
             font-size: 0.9rem;
         }
-        .result-item .cand-info .cand-detail {
+        .resultado-item .info .detalhe {
             font-size: 0.7rem;
             opacity: 0.6;
         }
-        .result-item .cand-votes {
-            font-size: 0.9rem;
-            color: var(--gold);
+        .resultado-item .votos {
+            color: #ffd700;
             font-weight: bold;
-            text-align: right;
+            font-size: 0.9rem;
         }
-        .result-bar {
+        .barra {
             height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
             margin-top: 4px;
+            margin-bottom: 10px;
             overflow: hidden;
-            flex: 1;
         }
-        .result-bar .fill {
+        .barra .preenchimento {
             height: 100%;
-            background: linear-gradient(90deg, var(--gold), #ffed4a);
+            background: linear-gradient(90deg, #ffd700, #ffed4a);
             border-radius: 3px;
             transition: width 0.5s ease;
         }
-        .result-total {
+        .total-votos {
             text-align: center;
             margin-top: 12px;
             font-size: 0.85rem;
             opacity: 0.7;
         }
-        .btn-reset-votes {
+        .btn-reset {
             display: block;
             width: 100%;
             padding: 12px;
             background: #cc0000;
             color: #fff;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 12px;
-            transition: background 0.3s;
         }
-        .btn-reset-votes:hover {
+        .btn-reset:hover {
             background: #ff0000;
         }
 
         /* ===== PARTIDOS ===== */
         .partido {
             background: rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-sm);
+            border-radius: 12px;
             padding: 12px 14px;
             margin-bottom: 10px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s;
         }
         .partido:hover {
             background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-2px);
         }
-        .numero {
-            background: var(--gold);
+        .numero-partido {
+            background: #ffd700;
             color: #0d3b1a;
             padding: 2px 10px;
             border-radius: 5px;
@@ -527,14 +414,13 @@
             border-radius: 14px;
             font-size: 0.7rem;
             cursor: pointer;
-            color: var(--text-primary);
-            transition: all 0.2s;
+            color: #fff;
         }
         .vc-filter:hover {
             background: rgba(255, 255, 255, 0.18);
         }
         .vc-filter.active {
-            background: var(--gold);
+            background: #ffd700;
             color: #0d3b1a;
             font-weight: bold;
         }
@@ -544,13 +430,13 @@
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 10px;
-            color: var(--text-primary);
+            color: #fff;
             font-size: 0.9rem;
             margin-bottom: 12px;
         }
         .vc-search:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: #ffd700;
         }
         .vc-search::placeholder {
             color: rgba(255, 255, 255, 0.5);
@@ -564,65 +450,39 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 6px;
         }
         .vc-party-logo {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             background: #fff;
             color: #0d3b1a;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             flex-shrink: 0;
         }
         .vc-party-info {
             flex: 1;
-            min-width: 0;
         }
         .vc-party-name {
             font-weight: bold;
             font-size: 0.9rem;
-            color: var(--text-primary);
+            color: #fff;
         }
         .vc-party-meta {
             font-size: 0.7rem;
             opacity: 0.7;
-        }
-        .vc-party-desc {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            opacity: 0.85;
-            margin-top: 4px;
-        }
-        .vc-party-tags {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            margin-top: 6px;
         }
         .vc-tag {
             padding: 2px 8px;
             border-radius: 8px;
             font-size: 0.6rem;
             background: rgba(255, 215, 0, 0.12);
-            color: var(--gold);
+            color: #ffd700;
             border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        .vc-federation {
-            background: rgba(168, 230, 207, 0.08);
-            border-left: 3px solid var(--text-secondary);
-            border-radius: 6px;
-            padding: 8px 12px;
-            margin-bottom: 8px;
-            font-size: 0.8rem;
-        }
-        .vc-federation strong {
-            color: var(--text-secondary);
         }
         .vc-count {
             text-align: center;
@@ -630,66 +490,19 @@
             opacity: 0.6;
             margin-bottom: 10px;
         }
-        .research-input {
-            width: 100%;
-            padding: 12px 14px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 12px;
-        }
-        .research-input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-        .research-btns {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .research-btns button {
-            flex: 1;
-            min-width: 100px;
-            padding: 10px;
-            background: var(--gold);
-            color: #0d3b1a;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
+        .vc-federation {
+            background: rgba(168, 230, 207, 0.08);
+            border-left: 3px solid #a8e6cf;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
             font-size: 0.8rem;
-            transition: transform 0.2s;
         }
-        .research-btns button:hover {
-            transform: scale(1.02);
+        .vc-federation strong {
+            color: #a8e6cf;
         }
-        .research-btns button.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .research-btns button.secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        .eleicao-item {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .eleicao-item:last-child {
-            border: none;
-        }
-        .eleicao-ano {
-            color: var(--gold);
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        .eleicao-desc {
-            font-size: 0.82rem;
-            opacity: 0.85;
-            margin-top: 2px;
-        }
+
+        /* ===== LINKS ===== */
         .links-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -701,109 +514,49 @@
             padding: 12px 14px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             text-decoration: none;
-            color: var(--text-primary);
+            color: #fff;
             display: block;
-            transition: all 0.25s;
         }
         .link-card:hover {
             background: rgba(255, 255, 255, 0.12);
-            transform: translateX(4px);
-            border-color: var(--gold);
+            border-color: #ffd700;
         }
         .link-card h3 {
-            color: var(--gold);
+            color: #ffd700;
             font-size: 0.9rem;
-            margin-bottom: 2px;
         }
         .link-card p {
             font-size: 0.78rem;
             opacity: 0.7;
             margin: 0;
         }
+
         footer {
             text-align: center;
             margin-top: 10px;
             padding: 10px;
-        }
-        footer p {
             font-size: 0.8rem;
-            color: var(--text-primary);
+            color: #ddd;
             opacity: 0.7;
         }
-        .share-fab {
-            position: fixed;
-            top: 8px;
-            right: 16px;
-            z-index: 9999;
-            background: #fff;
-            border-radius: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            padding: 8px 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            font-family: inherit;
-            transition: transform 0.2s;
-        }
-        .share-fab:hover {
-            transform: scale(1.03);
-        }
-        .share-popup {
-            display: none;
-            position: absolute;
-            top: 58px;
-            right: 0;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            min-width: 200px;
-            text-align: center;
-            animation: fadeIn 0.2s;
-        }
-        .share-popup p {
-            font-weight: bold;
-            margin-bottom: 12px;
-            font-size: 14px;
-            color: #1a237e;
-        }
-        .share-popup a,
-        .share-popup button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
+
+        .btn {
+            display: block;
             width: 100%;
-            margin-bottom: 6px;
-            transition: transform 0.15s;
+            padding: 14px;
+            background: #ffd700;
+            color: #0d3b1a;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
         }
-        .share-popup a:hover,
-        .share-popup button:hover {
-            transform: scale(1.02);
-        }
-        .share-whatsapp {
-            background: #25D366;
-            color: #fff;
-        }
-        .share-facebook {
-            background: #1877F2;
-            color: #fff;
-        }
-        .share-copy {
-            background: #6c63ff;
-            color: #fff;
+        .btn:hover {
+            background: #e6c200;
         }
 
-        @media(min-width:600px) {
+        @media (min-width: 600px) {
             .vc-party-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -821,7 +574,6 @@
             }
             .nav button {
                 flex: 0 0 auto;
-                text-align: center;
                 padding: 8px 14px;
                 font-size: 0.75rem;
                 background: rgba(255, 255, 255, 0.08);
@@ -829,56 +581,24 @@
             .menu-toggle {
                 display: none;
             }
-            header h1 {
-                font-size: 2.2rem;
-            }
-            .simulator-keypad {
-                max-width: 400px;
-            }
-            .result-stats {
-                grid-template-columns: 1fr 1fr;
-            }
         }
-        @media(max-width:400px) {
+        @media (max-width: 400px) {
             .container {
                 padding: 10px;
             }
             .card {
                 padding: 14px;
             }
-            .research-btns button {
-                min-width: 70px;
-                font-size: 0.7rem;
-                padding: 8px;
-            }
-            .cargo-selector button {
-                font-size: 0.7rem;
-                padding: 8px;
-                min-width: 80px;
-            }
-            .candidate-display .candidate-name {
-                font-size: 1.1rem;
-            }
-            .candidate-display .candidate-number {
-                font-size: 1.8rem;
-                letter-spacing: 4px;
-            }
-            .candidate-display .candidate-number .digit {
-                min-width: 28px;
-                padding: 0 6px;
-            }
-            .simulator-keypad button {
+            .teclado button {
                 padding: 12px;
                 font-size: 1.2rem;
             }
-            .candidate-display .candidate-photo {
-                width: 70px;
-                height: 70px;
-            }
-            .candidate-display .candidate-photo-placeholder {
-                width: 70px;
-                height: 70px;
+            .candidate-display .numero {
                 font-size: 2rem;
+                letter-spacing: 4px;
+            }
+            .candidate-display .foto {
+                font-size: 3rem;
             }
         }
     </style>
@@ -888,39 +608,32 @@
     <div class="container">
 
         <header>
-            <div style="margin-bottom:10px;">
-                <img src="./icone-192.png" alt="Logo Voto Consciente" class="logo-img" onerror="this.style.display='none'">
-            </div>
-            <h1>🗳️ Voto Consciente 2026</h1>
+            <span class="logo">🗳️</span>
+            <h1>Voto Consciente 2026</h1>
             <p>Informação é poder. Vote com consciência!</p>
         </header>
 
-        <button class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
-            <span>☰</span> Menu de Opções
+        <button class="menu-toggle" onclick="toggleMenu()">
+            ☰ Menu de Opções
         </button>
 
-        <div class="nav" id="menu-opcoes">
+        <div class="nav" id="menuOpcoes">
             <button onclick="mostrar('votacao')" class="active" id="btn-votacao">🗳️ Votação</button>
             <button onclick="mostrar('resultados')" id="btn-resultados">📊 Resultados</button>
             <button onclick="mostrar('check')" id="btn-check">✅ Checklist</button>
-            <button onclick="mostrar('edu')" id="btn-edu">📚 Educação</button>
             <button onclick="mostrar('partidos')" id="btn-partidos">🏛️ Partidos</button>
-            <button onclick="mostrar('cargos')" id="btn-cargos">⚖️ Cargos</button>
-            <button onclick="mostrar('urna')" id="btn-urna">💻 Urna</button>
-            <button onclick="mostrar('pesquisa')" id="btn-pesquisa">🔍 Pesquisa</button>
-            <button onclick="mostrar('eleicoes')" id="btn-eleicoes">📊 Eleições</button>
             <button onclick="mostrar('links')" id="btn-links">🔗 Links</button>
         </div>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: VOTAÇÃO -->
+        <!-- VOTAÇÃO -->
         <!-- ============================================================ -->
         <section id="votacao" class="secaoo ativa">
             <div class="card">
                 <h2>🗳️ Cabine de Votação</h2>
                 <p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Selecione o cargo e digite o número do candidato.</p>
 
-                <div class="cargo-selector">
+                <div class="cargo-selector" id="cargoSelector">
                     <button class="active" onclick="selecionarCargo('presidente', this)">👨‍⚖️ Presidente</button>
                     <button onclick="selecionarCargo('governador', this)">🏛️ Governador</button>
                     <button onclick="selecionarCargo('senador', this)">🗣️ Senador</button>
@@ -929,11 +642,10 @@
                 <div class="candidate-display" id="candidateDisplay">
                     <div id="displayContent">
                         <div class="placeholder">Digite o número do candidato</div>
-                        <div class="cargo-label" id="cargoLabel">Presidente - 2 dígitos</div>
                     </div>
                 </div>
 
-                <div class="simulator-keypad">
+                <div class="teclado" id="teclado">
                     <button onclick="votarPress('1')">1</button>
                     <button onclick="votarPress('2')">2</button>
                     <button onclick="votarPress('3')">3</button>
@@ -944,27 +656,29 @@
                     <button onclick="votarPress('8')">8</button>
                     <button onclick="votarPress('9')">9</button>
                     <button onclick="votarPress('0')">0</button>
-                    <button class="blank" onclick="votarPress('branco')">BRANCO</button>
-                    <button class="clear" onclick="votarClear()">CORRIGE</button>
-                    <button class="confirm" onclick="votarConfirm()">CONFIRMA</button>
+                    <button class="branco" onclick="votarPress('branco')">BRANCO</button>
+                    <button class="corrige" onclick="votarClear()">CORRIGE</button>
+                    <button class="confirma" onclick="votarConfirm()">CONFIRMA</button>
                 </div>
 
-                <div class="voto-message" id="votoMessage"></div>
+                <div class="mensagem" id="mensagem"></div>
             </div>
 
             <div class="card">
                 <h2>💡 Dica</h2>
-                <div class="dica-box">🔍 <strong>Pesquise antes de votar!</strong> Conheça as propostas de cada candidato antes de confirmar seu voto.</div>
+                <div class="checklist-item" style="background:rgba(255,215,0,0.08);border-left:4px solid #ffd700;">
+                    🔍 Pesquise as propostas dos candidatos antes de votar!
+                </div>
             </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: RESULTADOS -->
+        <!-- RESULTADOS -->
         <!-- ============================================================ -->
         <section id="resultados" class="secaoo">
             <div class="card">
                 <h2>📊 Resultados da Votação</h2>
-                <p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Consulta de votos computados por cargo.</p>
+                <p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Votos computados por cargo.</p>
 
                 <div class="cargo-selector">
                     <button class="active" onclick="mostrarResultado('presidente', this)">👨‍⚖️ Presidente</button>
@@ -973,16 +687,16 @@
                 </div>
 
                 <div id="resultadoContainer">
-                    <div class="result-stats" id="resultStats"></div>
-                    <div class="result-total" id="resultTotal">Total de votos: 0</div>
+                    <div id="resultStats"></div>
+                    <div class="total-votos" id="resultTotal">Total de votos: 0</div>
                 </div>
 
-                <button class="btn-reset-votes" onclick="resetarVotos()">🔄 Resetar todos os votos</button>
+                <button class="btn-reset" onclick="resetarVotos()">🔄 Resetar todos os votos</button>
             </div>
         </section>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: CHECKLIST -->
+        <!-- CHECKLIST -->
         <!-- ============================================================ -->
         <section id="check" class="secaoo">
             <div class="card">
@@ -1000,24 +714,7 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: EDUCAÇÃO -->
-        <!-- ============================================================ -->
-        <section id="edu" class="secaoo">
-            <div class="card">
-                <h2>📚 Como Funciona o Sistema Eleitoral</h2>
-                <h3>🗳️ O que é voto consciente?</h3>
-                <p>É quando o eleitor escolhe seus representantes baseado em informações verificáveis, propostas claras e histórico comprovado.</p>
-                <h3>📋 Documentos necessários</h3>
-                <ul><li>Título de eleitor</li><li>Documento oficial com foto</li></ul>
-                <h3>⏰ Horário de votação</h3>
-                <p>Das 8h às 17h (horário de Brasília).</p>
-                <h3>🚫 O que NÃO pode na seção</h3>
-                <ul><li>Usar celular</li><li>Fazer campanha</li><li>Filmar a urna</li></ul>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SEÇÃO: PARTIDOS -->
+        <!-- PARTIDOS -->
         <!-- ============================================================ -->
         <section id="partidos" class="secaoo">
             <div class="card">
@@ -1029,13 +726,13 @@
                 <div class="vc-federation"><strong>🟢 União Progressista:</strong> UNIÃO (44) + PP (11)</div>
             </div>
             <div class="card">
-                <h2>🏛️ Todos os 30 Partidos Políticos</h2>
-                <input type="text" class="vc-search" id="partySearch" placeholder="🔍 Buscar partido..." oninput="filterParties()">
+                <h2>🏛️ Partidos Políticos</h2>
+                <input type="text" class="vc-search" id="partySearch" placeholder="🔍 Buscar partido..." oninput="filtrarPartidos()">
                 <div class="vc-filters">
-                    <button class="vc-filter active" onclick="filterByIdeology('todos', event)">Todos</button>
-                    <button class="vc-filter" onclick="filterByIdeology('esquerda', event)">Esquerda</button>
-                    <button class="vc-filter" onclick="filterByIdeology('centro', event)">Centro</button>
-                    <button class="vc-filter" onclick="filterByIdeology('direita', event)">Direita</button>
+                    <button class="vc-filter active" onclick="filtrarIdeologia('todos', event)">Todos</button>
+                    <button class="vc-filter" onclick="filtrarIdeologia('esquerda', event)">Esquerda</button>
+                    <button class="vc-filter" onclick="filtrarIdeologia('centro', event)">Centro</button>
+                    <button class="vc-filter" onclick="filtrarIdeologia('direita', event)">Direita</button>
                 </div>
                 <div class="vc-count" id="partyCount">Exibindo partidos</div>
                 <div class="vc-party-grid" id="partyGrid"></div>
@@ -1043,72 +740,14 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: CARGOS -->
-        <!-- ============================================================ -->
-        <section id="cargos" class="secaoo">
-            <div class="card">
-                <h2>⚖️ O que cada cargo faz?</h2>
-                <h3>🧑‍⚖️ Presidente</h3>
-                <ul><li>Chefia do Executivo Federal</li><li>Propõe leis e Medidas Provisórias</li></ul>
-                <h3>🏛️ Governador</h3>
-                <ul><li>Chefia do Executivo Estadual</li><li>Gerencia saúde, educação e segurança</li></ul>
-                <h3>🗣️ Senador</h3>
-                <ul><li>Representa o estado no Congresso</li><li>8 anos de mandato</li></ul>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SEÇÃO: URNA -->
-        <!-- ============================================================ -->
-        <section id="urna" class="secaoo">
-            <div class="card">
-                <h2>🖥️ Como usar a Urna Eletrônica</h2>
-                <h3>1️⃣ Identificação</h3><p>Apresente seu documento com foto.</p>
-                <h3>2️⃣ Entre na cabine</h3><p>Não leve celular!</p>
-                <h3>3️⃣ Digite o número</h3>
-                <ul><li>Presidente: 2 dígitos</li><li>Governador: 2 dígitos</li><li>Senador: 3 dígitos</li></ul>
-                <h3>4️⃣ Confirme</h3><p>Toque em <strong>CONFIRMA</strong> (verde).</p>
-                <div class="dica-box">💡 Anote os números dos seus candidatos!</div>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SEÇÃO: PESQUISA -->
-        <!-- ============================================================ -->
-        <section id="pesquisa" class="secaoo">
-            <div class="card">
-                <h2>🔍 Pesquisar Candidato</h2>
-                <input type="text" class="research-input" id="candidateName" placeholder="Ex: João da Silva" onkeypress="if(event.key==='Enter')searchCandidate()">
-                <div class="research-btns">
-                    <button onclick="searchCandidate()">🔍 Google</button>
-                    <button class="secondary" onclick="searchTSE()">🏛️ TSE</button>
-                    <button class="secondary" onclick="searchFichaLimpa()">📋 Ficha Limpa</button>
-                    <button class="secondary" onclick="searchNews()">📰 Notícias</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SEÇÃO: ELEIÇÕES -->
-        <!-- ============================================================ -->
-        <section id="eleicoes" class="secaoo">
-            <div class="card">
-                <h2>📊 Eleições Presidenciais</h2>
-                <div class="eleicao-item"><div class="eleicao-ano">2022</div><div class="eleicao-desc"><strong>Lula (PT)</strong> — 60,3%<br><strong>Bolsonaro (PL)</strong> — 39,7%</div></div>
-                <div class="eleicao-item"><div class="eleicao-ano">2018</div><div class="eleicao-desc"><strong>Bolsonaro (PSL)</strong> — 55,1%<br><strong>Haddad (PT)</strong> — 44,9%</div></div>
-                <div class="eleicao-item"><div class="eleicao-ano">2014</div><div class="eleicao-desc"><strong>Dilma (PT)</strong> — 51,6%<br><strong>Aécio (PSDB)</strong> — 48,4%</div></div>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- SEÇÃO: LINKS -->
+        <!-- LINKS -->
         <!-- ============================================================ -->
         <section id="links" class="secaoo">
             <div class="card">
                 <h2>🔗 Links Úteis</h2>
                 <div class="links-grid">
                     <a class="link-card" href="https://www.tse.jus.br" target="_blank"><h3>🏛️ TSE</h3><p>Site oficial da Justiça Eleitoral</p></a>
-                    <a class="link-card" href="https://divulgacandcontas.tse.jus.br" target="_blank"><h3>📋 DivulgaCandContas</h3><p>Consulta de candidatos</p></a>
+                    <a class="link-card" href="https://divulgacandcontas.tse.jus.br" target="_blank"><h3>📋 DivulgaCandContas</h3><p>Consulta de candidatos e contas</p></a>
                     <a class="link-card" href="https://www.fichalimpa.org.br" target="_blank"><h3>⚖️ Ficha Limpa</h3><p>Verifique condenações</p></a>
                     <a class="link-card" href="https://www.politize.com.br" target="_blank"><h3>📚 Politize!</h3><p>Educação política</p></a>
                 </div>
@@ -1116,80 +755,63 @@
         </section>
 
         <footer>
-            <img src="frase-politica-1.png" alt="Frase política" style="max-width:100%;height:auto;border-radius:8px;margin-bottom:12px;" loading="lazy">
             <p>© 2026 Voto Consciente — Gilson Silva</p>
         </footer>
 
     </div>
 
-    <!-- ===== COMPARTILHAR ===== -->
-    <div style="position:fixed;top:12px;right:16px;z-index:9999;">
-        <button class="share-fab" onclick="toggleShare()">
-            <span style="font-size:20px;">⋯</span>
-            <span style="font-size:13px;color:#333;font-weight:600;">Compartilhar</span>
-        </button>
-        <div class="share-popup" id="sharePopup">
-            <p>📢 Compartilhe!</p>
-            <a href="https://wa.me/?text=Voto%20Consciente!%20https://gilsonjs.github.io/Voto-consciente" target="_blank" class="share-whatsapp">📱 WhatsApp</a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gilsonjs.github.io/Voto-consciente" target="_blank" class="share-facebook">👍 Facebook</a>
-            <button onclick="copiarLink()" class="share-copy">📋 Copiar Link</button>
-        </div>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- JAVASCRIPT -->
-    <!-- ============================================================ -->
     <script>
-        // ============================================================
-        // CANDIDATOS OFICIAIS 2026 - COM FIGURINHAS
-        // ============================================================
+        // ================================================================
+        // BANCO DE CANDIDATOS OFICIAIS 2026
+        // ================================================================
         const candidatos = {
             presidente: {
-                '13': { nome: 'Luiz Inácio Lula da Silva', partido: 'PT', foto: '👨‍🦳', numero: '13' },
-                '22': { nome: 'Flávio Bolsonaro', partido: 'PL', foto: '👨', numero: '22' },
-                '55': { nome: 'Ronaldo Caiado', partido: 'PSD', foto: '👨‍🦱', numero: '55' },
-                '30': { nome: 'Romeu Zema', partido: 'NOVO', foto: '👨‍💼', numero: '30' },
-                '14': { nome: 'Renan Santos', partido: 'Missão', foto: '👨', numero: '14' },
-                '70': { nome: 'Augusto Cury', partido: 'Avante', foto: '👨‍🦰', numero: '70' },
-                '16': { nome: 'Hertz Dias', partido: 'PSTU', foto: '👨', numero: '16' },
-                '80': { nome: 'Samara Martins', partido: 'UP', foto: '👩', numero: '80' },
-                '27': { nome: 'Clariana Barão', partido: 'DC', foto: '👩‍🦳', numero: '27' },
-                '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨', numero: '29' },
-                '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨', numero: '21' },
-                '28': { nome: 'Leonardo Avalanche', partido: 'PRTB', foto: '👨', numero: '28' },
-                '35': { nome: 'Wilson Grassi', partido: 'Democrata', foto: '👨', numero: '35' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
+                '13': { nome: 'Luiz Inácio Lula da Silva', partido: 'PT', foto: '👨‍🦳' },
+                '22': { nome: 'Flávio Bolsonaro', partido: 'PL', foto: '👨' },
+                '55': { nome: 'Ronaldo Caiado', partido: 'PSD', foto: '👨‍🦱' },
+                '30': { nome: 'Romeu Zema', partido: 'NOVO', foto: '👨‍💼' },
+                '14': { nome: 'Renan Santos', partido: 'MISSÃO', foto: '👨' },
+                '70': { nome: 'Augusto Cury', partido: 'AVANTE', foto: '👨‍🦰' },
+                '16': { nome: 'Hertz Dias', partido: 'PSTU', foto: '👨' },
+                '80': { nome: 'Samara Martins', partido: 'UP', foto: '👩' },
+                '27': { nome: 'Clariana Barão', partido: 'DC', foto: '👩‍🦳' },
+                '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨' },
+                '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨' },
+                '28': { nome: 'Leonardo Avalanche', partido: 'PRTB', foto: '👨' },
+                '35': { nome: 'Wilson Grassi', partido: 'DEMOCRATA', foto: '👨' }
             },
             governador: {
-                '13': { nome: 'Governador PT', partido: 'PT', foto: '👨‍💼', numero: '13' },
-                '45': { nome: 'Governador PSDB', partido: 'PSDB', foto: '👨‍💼', numero: '45' },
-                '12': { nome: 'Governador PDT', partido: 'PDT', foto: '👨‍💼', numero: '12' },
-                '22': { nome: 'Governador PL', partido: 'PL', foto: '👨‍💼', numero: '22' },
-                '15': { nome: 'Governador MDB', partido: 'MDB', foto: '👨‍💼', numero: '15' },
-                '50': { nome: 'Governador REDE', partido: 'REDE', foto: '👨‍💼', numero: '50' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
+                '13': { nome: 'Governador PT', partido: 'PT', foto: '👨‍💼' },
+                '45': { nome: 'Governador PSDB', partido: 'PSDB', foto: '👨‍💼' },
+                '12': { nome: 'Governador PDT', partido: 'PDT', foto: '👨‍💼' },
+                '22': { nome: 'Governador PL', partido: 'PL', foto: '👨‍💼' },
+                '15': { nome: 'Governador MDB', partido: 'MDB', foto: '👨‍💼' },
+                '50': { nome: 'Governador REDE', partido: 'REDE', foto: '👨‍💼' }
             },
             senador: {
-                '101': { nome: 'Senador A (PT)', partido: 'PT', foto: '👨‍💼', numero: '101' },
-                '102': { nome: 'Senador B (PSDB)', partido: 'PSDB', foto: '👩‍💼', numero: '102' },
-                '103': { nome: 'Senador C (PL)', partido: 'PL', foto: '👨‍💼', numero: '103' },
-                '104': { nome: 'Senador D (PDT)', partido: 'PDT', foto: '👨‍💼', numero: '104' },
-                '105': { nome: 'Senador E (MDB)', partido: 'MDB', foto: '👩‍💼', numero: '105' },
-                '106': { nome: 'Senador F (REDE)', partido: 'REDE', foto: '👨‍💼', numero: '106' },
-                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
+                '101': { nome: 'Senador A - PT', partido: 'PT', foto: '👨‍💼' },
+                '102': { nome: 'Senador B - PSDB', partido: 'PSDB', foto: '👩‍💼' },
+                '103': { nome: 'Senador C - PL', partido: 'PL', foto: '👨‍💼' },
+                '104': { nome: 'Senador D - PDT', partido: 'PDT', foto: '👨‍💼' },
+                '105': { nome: 'Senador E - MDB', partido: 'MDB', foto: '👩‍💼' },
+                '106': { nome: 'Senador F - REDE', partido: 'REDE', foto: '👨‍💼' }
             }
         };
 
-        // ============================================================
+        // ================================================================
         // SISTEMA DE VOTAÇÃO
-        // ============================================================
+        // ================================================================
         let cargoAtual = 'presidente';
+        let votoNumero = '';
+        let votoConfirmado = false;
+
         let votos = {
             presidente: {},
             governador: {},
             senador: {}
         };
 
+        // Inicializar contadores
         function initVotos() {
             ['presidente', 'governador', 'senador'].forEach(cargo => {
                 votos[cargo] = {};
@@ -1197,14 +819,12 @@
                 for (let num in cands) {
                     votos[cargo][num] = 0;
                 }
+                votos[cargo]['branco'] = 0;
             });
         }
         initVotos();
 
-        let votoNumero = '';
-        let votoConfirmado = false;
-
-        // ===== FUNÇÕES DO CARGO =====
+        // ===== SELEÇÃO DE CARGO =====
         function selecionarCargo(cargo, btn) {
             cargoAtual = cargo;
             document.querySelectorAll('#votacao .cargo-selector button').forEach(b => b.classList.remove('active'));
@@ -1212,23 +832,14 @@
             votoNumero = '';
             votoConfirmado = false;
             limparDisplay();
-            document.getElementById('votoMessage').textContent = '';
-            document.getElementById('votoMessage').className = 'voto-message';
-
-            const labels = {
-                presidente: 'Presidente - 2 dígitos',
-                governador: 'Governador - 2 dígitos',
-                senador: 'Senador - 3 dígitos'
-            };
-            document.getElementById('cargoLabel').textContent = labels[cargo] || '';
+            document.getElementById('mensagem').textContent = '';
+            document.getElementById('mensagem').className = 'mensagem';
         }
 
         // ===== DISPLAY =====
         function limparDisplay() {
-            const display = document.getElementById('displayContent');
-            display.innerHTML = `
+            document.getElementById('displayContent').innerHTML = `
                 <div class="placeholder">Digite o número do candidato</div>
-                <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
             `;
         }
 
@@ -1236,50 +847,53 @@
             const display = document.getElementById('displayContent');
             const maxLen = cargoAtual === 'senador' ? 3 : 2;
 
+            // Voto em branco
             if (votoNumero === 'branco') {
                 display.innerHTML = `
-                    <div class="candidate-photo-placeholder">⬜</div>
-                    <div class="candidate-name">VOTO EM BRANCO</div>
-                    <div class="candidate-number">
-                        <span class="digit">B</span><span class="digit">R</span><span class="digit">A</span><span class="digit">N</span><span class="digit">C</span><span class="digit">O</span>
+                    <div class="foto">⬜</div>
+                    <div class="nome">VOTO EM BRANCO</div>
+                    <div class="numero">
+                        <span class="digito">B</span>
+                        <span class="digito">R</span>
+                        <span class="digito">A</span>
+                        <span class="digito">N</span>
+                        <span class="digito">C</span>
+                        <span class="digito">O</span>
                     </div>
-                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
                 `;
                 return;
             }
 
+            // Sem número
+            if (votoNumero.length === 0) {
+                display.innerHTML = `<div class="placeholder">Digite o número do candidato</div>`;
+                return;
+            }
+
+            // Buscar candidato
             const cand = buscarCandidato(votoNumero);
 
-            if (votoNumero.length === 0) {
-                display.innerHTML = `
-                    <div class="placeholder">Digite o número do candidato</div>
-                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
-                `;
-                return;
-            }
-
-            let numberHtml = '';
+            // Montar número
+            let numeroHtml = '';
             const padded = votoNumero.padEnd(maxLen, '_');
             for (let i = 0; i < padded.length; i++) {
                 const char = padded[i];
-                const isEmpty = char === '_';
-                numberHtml += `<span class="digit ${isEmpty ? 'empty' : ''}">${isEmpty ? '_' : char}</span>`;
+                const vazio = char === '_';
+                numeroHtml += `<span class="digito ${vazio ? 'vazio' : ''}">${vazio ? '_' : char}</span>`;
             }
 
             if (cand) {
                 display.innerHTML = `
-                    <div class="candidate-photo-placeholder">${cand.foto || '👤'}</div>
-                    <div class="candidate-name">${cand.nome}</div>
-                    <div class="candidate-party">${cand.partido || ''}</div>
-                    <div class="candidate-number">${numberHtml}</div>
-                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+                    <div class="foto">${cand.foto || '👤'}</div>
+                    <div class="nome">${cand.nome}</div>
+                    <div class="partido">${cand.partido || ''}</div>
+                    <div class="numero">${numeroHtml}</div>
                 `;
             } else {
                 display.innerHTML = `
-                    <div class="candidate-photo-placeholder">❓</div>
-                    <div class="candidate-name" style="color:#ff4444;">Candidato não encontrado</div>
-                    <div class="candidate-number">${numberHtml}</div>
-                    <div class="cargo-label" id="cargoLabel">${document.getElementById('cargoLabel').textContent}</div>
+                    <div class="foto">❓</div>
+                    <div class="nome" style="color:#ff4444;">Candidato não encontrado</div>
+                    <div class="numero">${numeroHtml}</div>
                 `;
             }
         }
@@ -1295,8 +909,8 @@
             if (votoConfirmado) {
                 votoConfirmado = false;
                 votoNumero = '';
-                document.getElementById('votoMessage').textContent = '';
-                document.getElementById('votoMessage').className = 'voto-message';
+                document.getElementById('mensagem').textContent = '';
+                document.getElementById('mensagem').className = 'mensagem';
             }
 
             const maxLen = cargoAtual === 'senador' ? 3 : 2;
@@ -1317,45 +931,41 @@
             votoNumero = '';
             votoConfirmado = false;
             limparDisplay();
-            document.getElementById('votoMessage').textContent = '';
-            document.getElementById('votoMessage').className = 'voto-message';
+            document.getElementById('mensagem').textContent = '';
+            document.getElementById('mensagem').className = 'mensagem';
         }
 
         function votarConfirm() {
-            const msg = document.getElementById('votoMessage');
+            const msg = document.getElementById('mensagem');
 
             if (votoNumero === '') {
                 msg.textContent = '⚠️ Digite o número do candidato antes de confirmar!';
-                msg.className = 'voto-message error';
+                msg.className = 'mensagem erro';
                 return;
             }
 
             const cand = buscarCandidato(votoNumero);
             if (cand) {
+                // Registrar voto
                 if (!votos[cargoAtual]) votos[cargoAtual] = {};
                 if (!votos[cargoAtual][votoNumero]) votos[cargoAtual][votoNumero] = 0;
                 votos[cargoAtual][votoNumero]++;
 
                 msg.textContent = '✅ Voto confirmado para ' + cand.nome + ' (' + cand.partido + ')';
-                msg.className = 'voto-message success';
+                msg.className = 'mensagem sucesso';
                 votoConfirmado = true;
 
-                const display = document.getElementById('candidateDisplay');
-                display.style.borderColor = '#00ff00';
-                setTimeout(() => {
-                    display.style.borderColor = 'var(--gold)';
-                }, 1500);
-
+                // Reset após 2.5s
                 setTimeout(() => {
                     votoNumero = '';
                     votoConfirmado = false;
                     limparDisplay();
                     msg.textContent = '';
-                    msg.className = 'voto-message';
-                }, 3000);
+                    msg.className = 'mensagem';
+                }, 2500);
             } else {
                 msg.textContent = '❌ Número inválido para ' + cargoAtual + '. Tente novamente.';
-                msg.className = 'voto-message error';
+                msg.className = 'mensagem erro';
                 votoNumero = '';
                 setTimeout(() => {
                     limparDisplay();
@@ -1363,9 +973,9 @@
             }
         }
 
-        // ============================================================
+        // ================================================================
         // RESULTADOS
-        // ============================================================
+        // ================================================================
         let resultadoCargoAtual = 'presidente';
 
         function mostrarResultado(cargo, btn) {
@@ -1400,7 +1010,7 @@
             resultados.sort((a, b) => b.votos - a.votos);
 
             container.innerHTML = '';
-            if (resultados.length === 0 || total === 0) {
+            if (total === 0) {
                 container.innerHTML = '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
                 totalEl.textContent = 'Total de votos: 0';
                 return;
@@ -1415,24 +1025,24 @@
             }
 
             comVotos.forEach(r => {
-                const pct = total > 0 ? Math.round((r.votos / total) * 100) : 0;
+                const pct = Math.round((r.votos / total) * 100);
                 const div = document.createElement('div');
-                div.className = 'result-item';
+                div.className = 'resultado-item';
                 div.innerHTML = `
-                    <div class="cand-info">
-                        <div class="cand-photo">${r.foto}</div>
+                    <div class="info">
+                        <span class="foto">${r.foto}</span>
                         <div>
-                            <div class="cand-name">${r.nome}</div>
-                            <div class="cand-detail">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
+                            <div class="nome">${r.nome}</div>
+                            <div class="detalhe">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
                         </div>
                     </div>
-                    <div class="cand-votes">${r.votos} votos</div>
+                    <div class="votos">${r.votos} votos</div>
                 `;
                 container.appendChild(div);
 
                 const barDiv = document.createElement('div');
-                barDiv.className = 'result-bar';
-                barDiv.innerHTML = `<div class="fill" style="width:${pct}%;"></div>`;
+                barDiv.className = 'barra';
+                barDiv.innerHTML = `<div class="preenchimento" style="width:${pct}%;"></div>`;
                 container.appendChild(barDiv);
             });
 
@@ -1447,22 +1057,29 @@
                     for (let num in cands) {
                         votos[cargo][num] = 0;
                     }
+                    votos[cargo]['branco'] = 0;
                 });
                 renderResultados(resultadoCargoAtual);
 
-                const msg = document.getElementById('votoMessage');
+                const msg = document.getElementById('mensagem');
                 msg.textContent = '🔄 Todos os votos foram resetados!';
-                msg.className = 'voto-message info';
+                msg.className = 'mensagem';
+                msg.style.color = '#ffd700';
+                msg.style.background = 'rgba(255,215,0,0.1)';
+                msg.style.border = '1px solid #ffd700';
                 setTimeout(() => {
                     msg.textContent = '';
-                    msg.className = 'voto-message';
+                    msg.className = 'mensagem';
+                    msg.style.color = '';
+                    msg.style.background = '';
+                    msg.style.border = '';
                 }, 3000);
             }
         }
 
-        // ============================================================
+        // ================================================================
         // CHECKLIST
-        // ============================================================
+        // ================================================================
         function atualizar() {
             const cbs = document.querySelectorAll('#check input[type="checkbox"]');
             let marcados = 0;
@@ -1475,30 +1092,34 @@
             document.getElementById('pt').textContent = p === 100 ? '🎉 Parabéns! Você está preparado!' : p + '% concluído';
         }
 
-        // ============================================================
-        // NAVEGAÇÃO
-        // ============================================================
+        // ================================================================
+        // MENU
+        // ================================================================
+        function toggleMenu() {
+            document.getElementById('menuOpcoes').classList.toggle('aberto');
+        }
+
         function mostrar(id) {
             document.querySelectorAll('.secaoo').forEach(s => s.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
             document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
             const btn = document.getElementById('btn-' + id);
             if (btn) btn.classList.add('active');
-            document.getElementById('menu-opcoes').classList.remove('aberto');
+            document.getElementById('menuOpcoes').classList.remove('aberto');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         document.addEventListener('click', function(e) {
-            const menu = document.getElementById('menu-opcoes');
+            const menu = document.getElementById('menuOpcoes');
             const toggle = document.querySelector('.menu-toggle');
             if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
                 menu.classList.remove('aberto');
             }
         });
 
-        // ============================================================
+        // ================================================================
         // PARTIDOS
-        // ============================================================
+        // ================================================================
         const parties = [
             { sigla: 'MDB', num: 15, nome: 'Movimento Democrático Brasileiro', ideologia: 'centro' },
             { sigla: 'PDT', num: 12, nome: 'Partido Democrático Trabalhista', ideologia: 'centro-esquerda' },
@@ -1532,7 +1153,7 @@
             { sigla: 'MISSÃO', num: 14, nome: 'Partido Missão', ideologia: 'direita' }
         ];
 
-        let currentFilter = 'todos';
+        let filtroAtual = 'todos';
 
         function renderParties(filter = 'todos', search = '') {
             const grid = document.getElementById('partyGrid');
@@ -1542,8 +1163,11 @@
             if (filter !== 'todos') filtered = filtered.filter(p => p.ideologia === filter);
             if (search.trim()) {
                 const s = search.toLowerCase().trim();
-                filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(
-                    p.num).includes(s));
+                filtered = filtered.filter(p =>
+                    p.sigla.toLowerCase().includes(s) ||
+                    p.nome.toLowerCase().includes(s) ||
+                    String(p.num).includes(s)
+                );
             }
             document.getElementById('partyCount').textContent = 'Exibindo ' + filtered.length + ' partidos';
             filtered.forEach(p => {
@@ -1553,105 +1177,46 @@
                     <div class="vc-party-header">
                         <div class="vc-party-logo"><span>${p.sigla}</span></div>
                         <div class="vc-party-info">
-                            <div class="vc-party-name">${p.sigla} <span class="numero">${p.num}</span></div>
+                            <div class="vc-party-name">${p.sigla} <span class="numero-partido">${p.num}</span></div>
                             <div class="vc-party-meta">${p.nome}</div>
                         </div>
                     </div>
-                    <div class="vc-party-tags"><span class="vc-tag">${p.ideologia}</span></div>
+                    <div style="margin-top:6px;"><span class="vc-tag">${p.ideologia}</span></div>
                 `;
                 grid.appendChild(div);
             });
         }
 
-        function filterByIdeology(ideology, evt) {
-            currentFilter = ideology;
+        function filtrarIdeologia(ideology, evt) {
+            filtroAtual = ideology;
             document.querySelectorAll('.vc-filter').forEach(f => f.classList.remove('active'));
             if (evt && evt.target) evt.target.classList.add('active');
-            renderParties(currentFilter, document.getElementById('partySearch').value);
+            renderParties(filtroAtual, document.getElementById('partySearch').value);
         }
 
-        function filterParties() {
-            renderParties(currentFilter, document.getElementById('partySearch').value);
+        function filtrarPartidos() {
+            renderParties(filtroAtual, document.getElementById('partySearch').value);
         }
 
-        // ============================================================
-        // PESQUISA
-        // ============================================================
-        function getCandidateName() {
-            return document.getElementById('candidateName').value.trim();
-        }
-
-        function searchCandidate() {
-            const name = getCandidateName();
-            if (!name) { alert('Digite um nome!'); return; }
-            window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' candidato'), '_blank');
-        }
-
-        function searchTSE() {
-            const name = getCandidateName();
-            if (!name) { alert('Digite um nome!'); return; }
-            window.open('https://divulgacandcontas.tse.jus.br', '_blank');
-        }
-
-        function searchFichaLimpa() {
-            const name = getCandidateName();
-            if (!name) { alert('Digite um nome!'); return; }
-            window.open('https://www.fichalimpa.org.br', '_blank');
-        }
-
-        function searchNews() {
-            const name = getCandidateName();
-            if (!name) { alert('Digite um nome!'); return; }
-            window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' notícias') + '&tbm=nws', '_blank');
-        }
-
-        // ============================================================
-        // COMPARTILHAR
-        // ============================================================
-        function toggleShare() {
-            const popup = document.getElementById('sharePopup');
-            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function copiarLink() {
-            const link = 'https://gilsonjs.github.io/Voto-consciente';
-            navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
-                alert('✅ Link copiado!');
-            }).catch(() => {
-                alert('📋 Copie: ' + link);
-            });
-        }
-
-        document.addEventListener('click', function(e) {
-            const popup = document.getElementById('sharePopup');
-            const fab = document.querySelector('.share-fab');
-            if (popup && fab && !fab.contains(e.target) && !popup.contains(e.target)) {
-                popup.style.display = 'none';
-            }
-        });
-
-        // ============================================================
+        // ================================================================
         // INICIALIZAÇÃO
-        // ============================================================
+        // ================================================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Carregar checklist
+            // Checklist
             document.querySelectorAll('#check input[type="checkbox"]').forEach((cb, i) => {
                 const saved = localStorage.getItem('check_' + i);
                 if (saved !== null) cb.checked = saved === 'true';
             });
             atualizar();
 
-            // Inicializar partidos
+            // Partidos
             renderParties();
 
-            // Inicializar resultados
+            // Resultados
             renderResultados('presidente');
 
-            // Inicializar display
+            // Display
             limparDisplay();
-
-            // Definir label inicial
-            document.getElementById('cargoLabel').textContent = 'Presidente - 2 dígitos';
         });
     </script>
 
