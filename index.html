@@ -39,7 +39,6 @@
             padding-bottom: 80px;
         }
 
-        /* ===== HEADER ===== */
         header {
             text-align: center;
             padding: 20px 0;
@@ -65,7 +64,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* ===== CARDS ===== */
         .card {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -105,7 +103,6 @@
             margin-bottom: 8px;
         }
 
-        /* ===== MENU ===== */
         .menu-toggle {
             background: var(--menu-bg);
             color: var(--text-primary);
@@ -162,7 +159,6 @@
             border-color: var(--gold);
         }
 
-        /* ===== SEÇÕES ===== */
         .secaoo {
             display: none;
             animation: fadeIn 0.3s ease;
@@ -181,7 +177,6 @@
             }
         }
 
-        /* ===== CHECKLIST ===== */
         .checklist-item {
             display: flex;
             align-items: flex-start;
@@ -232,7 +227,6 @@
             color: var(--gold);
         }
 
-        /* ===== DICAS ===== */
         .dica-box {
             background: rgba(255, 215, 0, 0.08);
             border-left: 4px solid var(--gold);
@@ -279,7 +273,6 @@
             border-color: var(--gold);
         }
 
-        /* Display do Candidato */
         .candidate-display {
             background: rgba(0, 0, 0, 0.4);
             border-radius: var(--radius-sm);
@@ -287,7 +280,7 @@
             text-align: center;
             margin-bottom: 16px;
             border: 3px solid var(--gold);
-            min-height: 220px;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -295,20 +288,20 @@
             transition: border-color 0.3s;
         }
         .candidate-display .candidate-photo {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             background: rgba(255, 255, 255, 0.1);
         }
         .candidate-display .candidate-photo-placeholder {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -316,7 +309,7 @@
             background: rgba(255, 255, 255, 0.05);
         }
         .candidate-display .candidate-name {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: var(--gold);
         }
@@ -353,7 +346,6 @@
             opacity: 0.6;
         }
 
-        /* Teclado */
         .simulator-keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -402,7 +394,6 @@
             background: #ffe44d;
         }
 
-        /* Mensagem de Voto */
         .voto-message {
             text-align: center;
             margin-top: 12px;
@@ -450,12 +441,15 @@
             gap: 10px;
             flex: 1;
         }
-        .result-item .cand-info img {
+        .result-item .cand-info .cand-photo {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
         }
         .result-item .cand-info .cand-name {
             font-weight: bold;
@@ -646,7 +640,6 @@
             margin-bottom: 10px;
         }
 
-        /* ===== PESQUISA ===== */
         .research-input {
             width: 100%;
             padding: 12px 14px;
@@ -691,7 +684,6 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* ===== ELEIÇÕES ===== */
         .eleicao-item {
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -710,7 +702,6 @@
             margin-top: 2px;
         }
 
-        /* ===== LINKS ===== */
         .links-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -742,7 +733,6 @@
             margin: 0;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             margin-top: 10px;
@@ -754,7 +744,6 @@
             opacity: 0.7;
         }
 
-        /* ===== COMPARTILHAR ===== */
         .share-fab {
             position: fixed;
             top: 8px;
@@ -828,7 +817,6 @@
             color: #fff;
         }
 
-        /* ===== RESPONSIVO ===== */
         @media(min-width:600px) {
             .vc-party-grid {
                 grid-template-columns: 1fr 1fr;
@@ -913,7 +901,6 @@
 
     <div class="container">
 
-        <!-- ===== HEADER ===== -->
         <header>
             <div style="margin-bottom:10px;">
                 <img src="./icone-192.png" alt="Logo Voto Consciente" class="logo-img" onerror="this.style.display='none'">
@@ -922,7 +909,6 @@
             <p>Informação é poder. Vote com consciência!</p>
         </header>
 
-        <!-- ===== MENU ===== -->
         <button class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
             <span>☰</span> Menu de Opções
         </button>
@@ -941,21 +927,19 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: VOTAÇÃO (PÁGINA PRINCIPAL) -->
+        <!-- SEÇÃO: VOTAÇÃO -->
         <!-- ============================================================ -->
         <section id="votacao" class="secaoo ativa">
             <div class="card">
                 <h2>🗳️ Cabine de Votação</h2>
                 <p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Selecione o cargo e digite o número do candidato.</p>
 
-                <!-- Seleção de Cargo -->
                 <div class="cargo-selector">
                     <button class="active" onclick="selecionarCargo('presidente', this)">👨‍⚖️ Presidente</button>
                     <button onclick="selecionarCargo('governador', this)">🏛️ Governador</button>
                     <button onclick="selecionarCargo('senador', this)">🗣️ Senador</button>
                 </div>
 
-                <!-- Display do Candidato -->
                 <div class="candidate-display" id="candidateDisplay">
                     <div id="displayContent">
                         <div class="placeholder">Digite o número do candidato</div>
@@ -963,7 +947,6 @@
                     </div>
                 </div>
 
-                <!-- Teclado -->
                 <div class="simulator-keypad">
                     <button onclick="votarPress('1')">1</button>
                     <button onclick="votarPress('2')">2</button>
@@ -1146,7 +1129,6 @@
             </div>
         </section>
 
-        <!-- ===== FOOTER ===== -->
         <footer>
             <img src="frase-politica-1.png" alt="Frase política" style="max-width:100%;height:auto;border-radius:8px;margin-bottom:12px;" loading="lazy">
             <p>© 2026 Voto Consciente — Gilson Silva</p>
@@ -1154,9 +1136,7 @@
 
     </div>
 
-    <!-- ============================================================ -->
-    <!-- COMPARTILHAR -->
-    <!-- ============================================================ -->
+    <!-- ===== COMPARTILHAR ===== -->
     <div style="position:fixed;top:12px;right:16px;z-index:9999;">
         <button class="share-fab" onclick="toggleShare()">
             <span style="font-size:20px;">⋯</span>
@@ -1175,170 +1155,40 @@
     <!-- ============================================================ -->
     <script>
         // ============================================================
-        // BANCO DE CANDIDATOS REAIS 2026
+        // BANCO DE CANDIDATOS COM FOTOS (EMOJIS)
         // ============================================================
         const candidatos = {
             presidente: {
-                '13': {
-                    nome: 'Luiz Inácio Lula da Silva',
-                    partido: 'PT',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000101?x=1740000000',
-                    numero: '13'
-                },
-                '22': {
-                    nome: 'Jair Messias Bolsonaro',
-                    partido: 'PL',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000102?x=1740000000',
-                    numero: '22'
-                },
-                '45': {
-                    nome: 'Aécio Neves da Cunha',
-                    partido: 'PSDB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000103?x=1740000000',
-                    numero: '45'
-                },
-                '12': {
-                    nome: 'Ciro Ferreira Gomes',
-                    partido: 'PDT',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000104?x=1740000000',
-                    numero: '12'
-                },
-                '50': {
-                    nome: 'Marina Silva',
-                    partido: 'REDE',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000105?x=1740000000',
-                    numero: '50'
-                },
-                '15': {
-                    nome: 'Simone Nassar Tebet',
-                    partido: 'MDB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000106?x=1740000000',
-                    numero: '15'
-                },
-                '30': {
-                    nome: 'Felipe D\'Avila',
-                    partido: 'NOVO',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000107?x=1740000000',
-                    numero: '30'
-                },
-                '80': {
-                    nome: 'Leonardo Péricles',
-                    partido: 'UP',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000108?x=1740000000',
-                    numero: '80'
-                },
-                '29': {
-                    nome: 'Rui Costa Pimenta',
-                    partido: 'PCO',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000109?x=1740000000',
-                    numero: '29'
-                },
-                '16': {
-                    nome: 'José Maria de Almeida',
-                    partido: 'PSTU',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000110?x=1740000000',
-                    numero: '16'
-                },
-                '21': {
-                    nome: 'Edmilson Costa',
-                    partido: 'PCB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/280000000111?x=1740000000',
-                    numero: '21'
-                },
-                'branco': {
-                    nome: 'VOTO EM BRANCO',
-                    partido: '',
-                    foto: '',
-                    numero: 'BRANCO'
-                }
+                '13': { nome: 'Luiz Inácio Lula da Silva', partido: 'PT', foto: '👨‍🦳', numero: '13' },
+                '22': { nome: 'Jair Messias Bolsonaro', partido: 'PL', foto: '👨', numero: '22' },
+                '12': { nome: 'Ciro Ferreira Gomes', partido: 'PDT', foto: '👨‍🦱', numero: '12' },
+                '50': { nome: 'Marina Silva', partido: 'REDE', foto: '👩', numero: '50' },
+                '15': { nome: 'Simone Nassar Tebet', partido: 'MDB', foto: '👩‍💼', numero: '15' },
+                '45': { nome: 'Aécio Neves da Cunha', partido: 'PSDB', foto: '👨‍💼', numero: '45' },
+                '30': { nome: 'Felipe D\'Avila', partido: 'NOVO', foto: '👨‍💼', numero: '30' },
+                '80': { nome: 'Leonardo Péricles', partido: 'UP', foto: '👨', numero: '80' },
+                '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨', numero: '29' },
+                '16': { nome: 'José Maria de Almeida', partido: 'PSTU', foto: '👨', numero: '16' },
+                '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨', numero: '21' },
+                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
             },
             governador: {
-                '13': {
-                    nome: 'Governador PT',
-                    partido: 'PT',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000101?x=1740000000',
-                    numero: '13'
-                },
-                '45': {
-                    nome: 'Governador PSDB',
-                    partido: 'PSDB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000102?x=1740000000',
-                    numero: '45'
-                },
-                '12': {
-                    nome: 'Governador PDT',
-                    partido: 'PDT',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000103?x=1740000000',
-                    numero: '12'
-                },
-                '22': {
-                    nome: 'Governador PL',
-                    partido: 'PL',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000104?x=1740000000',
-                    numero: '22'
-                },
-                '15': {
-                    nome: 'Governador MDB',
-                    partido: 'MDB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000105?x=1740000000',
-                    numero: '15'
-                },
-                '50': {
-                    nome: 'Governador REDE',
-                    partido: 'REDE',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/270000000106?x=1740000000',
-                    numero: '50'
-                },
-                'branco': {
-                    nome: 'VOTO EM BRANCO',
-                    partido: '',
-                    foto: '',
-                    numero: 'BRANCO'
-                }
+                '13': { nome: 'Governador PT', partido: 'PT', foto: '👨‍💼', numero: '13' },
+                '45': { nome: 'Governador PSDB', partido: 'PSDB', foto: '👨‍💼', numero: '45' },
+                '12': { nome: 'Governador PDT', partido: 'PDT', foto: '👨‍💼', numero: '12' },
+                '22': { nome: 'Governador PL', partido: 'PL', foto: '👨‍💼', numero: '22' },
+                '15': { nome: 'Governador MDB', partido: 'MDB', foto: '👨‍💼', numero: '15' },
+                '50': { nome: 'Governador REDE', partido: 'REDE', foto: '👨‍💼', numero: '50' },
+                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
             },
             senador: {
-                '101': {
-                    nome: 'Senador A (PT)',
-                    partido: 'PT',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000101?x=1740000000',
-                    numero: '101'
-                },
-                '102': {
-                    nome: 'Senador B (PSDB)',
-                    partido: 'PSDB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000102?x=1740000000',
-                    numero: '102'
-                },
-                '103': {
-                    nome: 'Senador C (PL)',
-                    partido: 'PL',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000103?x=1740000000',
-                    numero: '103'
-                },
-                '104': {
-                    nome: 'Senador D (PDT)',
-                    partido: 'PDT',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000104?x=1740000000',
-                    numero: '104'
-                },
-                '105': {
-                    nome: 'Senador E (MDB)',
-                    partido: 'MDB',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000105?x=1740000000',
-                    numero: '105'
-                },
-                '106': {
-                    nome: 'Senador F (REDE)',
-                    partido: 'REDE',
-                    foto: 'https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/260000000106?x=1740000000',
-                    numero: '106'
-                },
-                'branco': {
-                    nome: 'VOTO EM BRANCO',
-                    partido: '',
-                    foto: '',
-                    numero: 'BRANCO'
-                }
+                '101': { nome: 'Senador A (PT)', partido: 'PT', foto: '👨‍💼', numero: '101' },
+                '102': { nome: 'Senador B (PSDB)', partido: 'PSDB', foto: '👩‍💼', numero: '102' },
+                '103': { nome: 'Senador C (PL)', partido: 'PL', foto: '👨‍💼', numero: '103' },
+                '104': { nome: 'Senador D (PDT)', partido: 'PDT', foto: '👨‍💼', numero: '104' },
+                '105': { nome: 'Senador E (MDB)', partido: 'MDB', foto: '👩‍💼', numero: '105' },
+                '106': { nome: 'Senador F (REDE)', partido: 'REDE', foto: '👨‍💼', numero: '106' },
+                'branco': { nome: 'VOTO EM BRANCO', partido: '', foto: '⬜', numero: 'BRANCO' }
             }
         };
 
@@ -1352,7 +1202,6 @@
             senador: {}
         };
 
-        // Inicializar contadores
         function initVotos() {
             ['presidente', 'governador', 'senador'].forEach(cargo => {
                 votos[cargo] = {};
@@ -1399,7 +1248,6 @@
             const display = document.getElementById('displayContent');
             const maxLen = cargoAtual === 'senador' ? 3 : 2;
 
-            // Se for voto em branco
             if (votoNumero === 'branco') {
                 display.innerHTML = `
                     <div class="candidate-photo-placeholder">⬜</div>
@@ -1412,7 +1260,6 @@
                 return;
             }
 
-            // Buscar candidato
             const cand = buscarCandidato(votoNumero);
 
             if (votoNumero.length === 0) {
@@ -1423,7 +1270,6 @@
                 return;
             }
 
-            // Montar número com traços
             let numberHtml = '';
             const padded = votoNumero.padEnd(maxLen, '_');
             for (let i = 0; i < padded.length; i++) {
@@ -1433,12 +1279,8 @@
             }
 
             if (cand) {
-                const fotoHtml = cand.foto ?
-                    `<img src="${cand.foto}" class="candidate-photo" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'candidate-photo-placeholder\\'>👤</div>'">` :
-                    `<div class="candidate-photo-placeholder">👤</div>`;
-
                 display.innerHTML = `
-                    ${fotoHtml}
+                    <div class="candidate-photo-placeholder">${cand.foto || '👤'}</div>
                     <div class="candidate-name">${cand.nome}</div>
                     <div class="candidate-party">${cand.partido || ''}</div>
                     <div class="candidate-number">${numberHtml}</div>
@@ -1502,7 +1344,6 @@
 
             const cand = buscarCandidato(votoNumero);
             if (cand) {
-                // Registrar voto
                 if (!votos[cargoAtual]) votos[cargoAtual] = {};
                 if (!votos[cargoAtual][votoNumero]) votos[cargoAtual][votoNumero] = 0;
                 votos[cargoAtual][votoNumero]++;
@@ -1511,14 +1352,12 @@
                 msg.className = 'voto-message success';
                 votoConfirmado = true;
 
-                // Animação
                 const display = document.getElementById('candidateDisplay');
                 display.style.borderColor = '#00ff00';
                 setTimeout(() => {
                     display.style.borderColor = 'var(--gold)';
                 }, 1500);
 
-                // Limpar após 3 segundos
                 setTimeout(() => {
                     votoNumero = '';
                     votoConfirmado = false;
@@ -1565,28 +1404,24 @@
                     numero: num,
                     nome: cand ? cand.nome : 'Voto nulo',
                     partido: cand ? cand.partido : '',
-                    foto: cand ? cand.foto : '',
+                    foto: cand ? cand.foto : '❓',
                     votos: qtd
                 });
             }
 
-            // Ordenar por votos
             resultados.sort((a, b) => b.votos - a.votos);
 
             container.innerHTML = '';
             if (resultados.length === 0 || total === 0) {
-                container.innerHTML =
-                    '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
+                container.innerHTML = '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
                 totalEl.textContent = 'Total de votos: 0';
                 return;
             }
 
-            // Filtrar apenas quem tem votos
             const comVotos = resultados.filter(r => r.votos > 0);
 
             if (comVotos.length === 0) {
-                container.innerHTML =
-                    '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
+                container.innerHTML = '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
                 totalEl.textContent = 'Total de votos: 0';
                 return;
             }
@@ -1595,14 +1430,9 @@
                 const pct = total > 0 ? Math.round((r.votos / total) * 100) : 0;
                 const div = document.createElement('div');
                 div.className = 'result-item';
-
-                const fotoHtml = r.foto ?
-                    `<img src="${r.foto}" onerror="this.style.display='none'">` :
-                    `<span style="font-size:1.2rem;">👤</span>`;
-
                 div.innerHTML = `
                     <div class="cand-info">
-                        ${fotoHtml}
+                        <div class="cand-photo">${r.foto}</div>
                         <div>
                             <div class="cand-name">${r.nome}</div>
                             <div class="cand-detail">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
@@ -1612,7 +1442,6 @@
                 `;
                 container.appendChild(div);
 
-                // Barra de progresso
                 const barDiv = document.createElement('div');
                 barDiv.className = 'result-bar';
                 barDiv.innerHTML = `<div class="fill" style="width:${pct}%;"></div>`;
@@ -1671,7 +1500,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ===== MENU MOBILE =====
         document.addEventListener('click', function(e) {
             const menu = document.getElementById('menu-opcoes');
             const toggle = document.querySelector('.menu-toggle');
