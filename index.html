@@ -36,12 +36,12 @@
             transition: background 0.3s, color 0.3s;
         }
         .container{max-width:720px;margin:0 auto;padding:16px;padding-bottom:80px}
-        
+
         header{text-align:center;padding:20px 0}
         header h1{font-size:2rem;margin-bottom:6px;text-shadow:0 4px 12px rgba(0,0,0,0.4);color:var(--text-primary)}
         header p{opacity:0.85;font-size:1rem;color:var(--text-primary)}
         .logo-img{width:80px;height:80px;border-radius:18px;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,0.4);border:2px solid rgba(255,255,255,0.15)}
-        
+
         .card{background:var(--bg-card);backdrop-filter:blur(12px);border-radius:var(--radius);padding:20px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.12);box-shadow:var(--shadow)}
         .card:hover{transform:translateY(-2px)}
         .card h2{color:var(--gold);font-size:1.2rem;margin-bottom:14px}
@@ -49,7 +49,7 @@
         .card p,.card li{color:var(--text-primary);opacity:0.95;font-size:0.95rem;line-height:1.7}
         .card ul{padding-left:20px}
         .card li{margin-bottom:8px}
-        
+
         .menu-toggle{background:var(--menu-bg);color:var(--text-primary);padding:14px 18px;font-size:16px;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:12px;border-radius:var(--radius-sm);margin:10px 0;border:1px solid rgba(255,255,255,0.1);width:100%}
         .menu-toggle:hover{background:#a00028}
         .nav{display:none;flex-direction:column;gap:6px;margin-bottom:15px;padding:14px;background:rgba(128,0,32,0.92);border-radius:14px;border:1px solid rgba(255,255,255,0.1)}
@@ -57,11 +57,11 @@
         .nav button{padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);color:var(--text-primary);font-size:0.9rem;cursor:pointer;text-align:left}
         .nav button:hover{background:rgba(255,255,255,0.15)}
         .nav button.active{background:var(--gold);color:#0d3b1a;font-weight:bold}
-        
+
         .secaoo{display:none;animation:fadeIn 0.3s ease}
         .secaoo.ativa{display:block}
         @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        
+
         .checklist-item{display:flex;align-items:flex-start;margin-bottom:10px;background:rgba(255,255,255,0.06);padding:10px 14px;border-radius:var(--radius-sm)}
         .checklist-item:hover{background:rgba(255,255,255,0.12)}
         .checklist-item input[type="checkbox"]{width:22px;height:22px;margin-right:14px;margin-top:2px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
@@ -69,19 +69,18 @@
         .progress-bar{width:100%;height:10px;background:rgba(255,255,255,0.15);border-radius:6px;margin-top:16px;overflow:hidden}
         .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#ffed4a);border-radius:6px;width:0%;transition:width 0.6s ease}
         .progress-text{text-align:center;margin-top:10px;font-size:0.9rem;font-weight:bold;color:var(--gold)}
-        
+
         .dica-box{background:rgba(255,215,0,0.08);border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;margin:10px 0;font-size:0.9rem;color:var(--text-primary)}
         .dica-box strong{color:var(--gold)}
-        
+
         .btn{display:block;width:100%;padding:14px;background:var(--gold);color:#0d3b1a;border:none;border-radius:var(--radius-sm);font-size:1rem;font-weight:bold;cursor:pointer}
         .btn:hover{background:#e6c200}
-        
-        /* ===== VOTAÇÃO ===== */
+
         .cargo-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
         .cargo-selector button{flex:1;min-width:80px;padding:10px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);color:var(--text-primary);font-weight:bold;cursor:pointer;transition:all 0.3s;font-size:0.8rem}
         .cargo-selector button:hover{background:rgba(255,255,255,0.15)}
         .cargo-selector button.active{background:var(--gold);color:#0d3b1a;border-color:var(--gold)}
-        
+
         .candidate-display{background:rgba(0,0,0,0.3);border-radius:var(--radius-sm);padding:24px;text-align:center;margin-bottom:16px;border:3px solid var(--gold);min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center}
         .candidate-display .foto{font-size:4rem;margin-bottom:4px}
         .candidate-display .nome{font-size:1.3rem;font-weight:bold;color:var(--gold)}
@@ -90,7 +89,7 @@
         .candidate-display .numero-voto .digito{display:inline-block;background:rgba(255,255,255,0.08);padding:0 10px;border-radius:6px;min-width:35px}
         .candidate-display .numero-voto .digito.vazio{opacity:0.3}
         .candidate-display .placeholder{color:rgba(255,255,255,0.4);font-size:1.1rem}
-        
+
         .teclado{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:350px;margin:0 auto}
         .teclado button{padding:16px;font-size:1.5rem;font-weight:bold;border:none;border-radius:8px;cursor:pointer;background:rgba(255,255,255,0.1);color:var(--text-primary);transition:all 0.2s}
         .teclado button:hover{background:rgba(255,255,255,0.2)}
@@ -100,11 +99,11 @@
         .teclado .corrige:hover{background:#ff0000}
         .teclado .branco{background:#ffd700;color:#0d3b1a}
         .teclado .branco:hover{background:#ffe44d}
-        
+
         .voto-message{text-align:center;margin-top:12px;font-size:1rem;font-weight:bold;padding:10px;border-radius:var(--radius-sm);min-height:45px}
         .voto-message.sucesso{color:#00ff00;background:rgba(0,255,0,0.1);border:1px solid #00ff00}
         .voto-message.erro{color:#ff4444;background:rgba(255,0,0,0.1);border:1px solid #ff4444}
-        
+
         .resultado-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,0.05);border-radius:8px;margin-bottom:6px;border-left:3px solid var(--gold)}
         .resultado-item .info{display:flex;align-items:center;gap:10px}
         .resultado-item .info .foto{font-size:1.5rem}
@@ -116,8 +115,7 @@
         .total-votos{text-align:center;margin-top:12px;font-size:0.85rem;opacity:0.7}
         .btn-reset{display:block;width:100%;padding:12px;background:#cc0000;color:#fff;border:none;border-radius:var(--radius-sm);font-weight:bold;cursor:pointer;margin-top:12px}
         .btn-reset:hover{background:#ff0000}
-        
-        /* ===== PARTIDOS ===== */
+
         .partido{background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.08)}
         .partido:hover{background:rgba(255,255,255,0.12)}
         .numero{background:var(--gold);color:#0d3b1a;padding:2px 10px;border-radius:5px;font-weight:bold;font-size:0.8rem}
@@ -140,8 +138,7 @@
         .vc-federation{background:rgba(168,230,207,0.08);border-left:3px solid var(--text-secondary);border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:0.8rem}
         .vc-federation strong{color:var(--text-secondary)}
         .vc-count{text-align:center;font-size:0.75rem;opacity:0.6;margin-bottom:10px}
-        
-        /* ===== SIMULADOR ===== */
+
         .simulator-display{background:rgba(0,0,0,0.3);border-radius:var(--radius-sm);padding:20px;text-align:center;margin-bottom:16px;border:2px solid var(--gold)}
         .simulator-display .number{font-size:3rem;font-weight:bold;color:var(--gold);letter-spacing:8px;font-family:monospace}
         .simulator-display .candidate-name{font-size:1.2rem;margin-top:8px;color:var(--text-secondary)}
@@ -154,8 +151,7 @@
         .simulator-keypad .clear:hover{background:#ff0000}
         .simulator-keypad .blank{background:#ffd700;color:#0d3b1a}
         .simulator-keypad .blank:hover{background:#ffe44d}
-        
-        /* ===== QUIZ ===== */
+
         .quiz-question{background:rgba(255,255,255,0.05);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.08)}
         .quiz-question h4{color:var(--gold);margin-bottom:8px}
         .quiz-option{display:block;width:100%;padding:10px 14px;margin-bottom:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--text-primary);cursor:pointer;text-align:left}
@@ -164,19 +160,18 @@
         .quiz-option.wrong{background:rgba(200,0,0,0.3);border-color:#c80000}
         .quiz-option.disabled{cursor:default;opacity:0.7}
         .quiz-result{text-align:center;padding:20px;font-size:1.2rem;font-weight:bold;color:var(--gold)}
-        
-        /* ===== LINKS ===== */
+
         .links-grid{display:grid;grid-template-columns:1fr;gap:10px}
         .link-card{background:rgba(255,255,255,0.05);border-radius:10px;padding:12px 14px;border:1px solid rgba(255,255,255,0.08);text-decoration:none;color:var(--text-primary);display:block}
         .link-card:hover{background:rgba(255,255,255,0.12);border-color:var(--gold)}
         .link-card h3{color:var(--gold);font-size:0.9rem;margin-bottom:2px}
         .link-card p{font-size:0.78rem;opacity:0.7;margin:0}
-        
+
         .eleicao-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
         .eleicao-item:last-child{border:none}
         .eleicao-ano{color:var(--gold);font-weight:bold;font-size:1rem}
         .eleicao-desc{font-size:0.82rem;opacity:0.85;margin-top:2px}
-        
+
         .research-input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:var(--text-primary);font-size:1rem;margin-bottom:12px}
         .research-input:focus{outline:none;border-color:var(--gold)}
         .research-btns{display:flex;gap:8px;flex-wrap:wrap}
@@ -184,10 +179,10 @@
         .research-btns button:hover{transform:scale(1.02)}
         .research-btns button.secondary{background:rgba(255,255,255,0.1);color:var(--text-primary);border:1px solid rgba(255,255,255,0.2)}
         .research-btns button.secondary:hover{background:rgba(255,255,255,0.2)}
-        
+
         footer{text-align:center;margin-top:10px;padding:10px}
         footer p{font-size:0.8rem;color:var(--text-primary);opacity:0.7}
-        
+
         .share-fab{position:fixed;top:8px;right:16px;z-index:9999;background:#fff;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.25);padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:8px;border:none;font-family:inherit}
         .share-fab:hover{transform:scale(1.03)}
         .share-popup{display:none;position:absolute;top:58px;right:0;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.3);padding:20px;min-width:200px;text-align:center;animation:fadeIn 0.2s}
@@ -197,10 +192,10 @@
         .share-whatsapp{background:#25D366;color:#fff}
         .share-facebook{background:#1877F2;color:#fff}
         .share-copy{background:#6c63ff;color:#fff}
-        
+
         .theme-toggle{position:fixed;bottom:20px;left:20px;z-index:999;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50%;width:50px;height:50px;font-size:1.5rem;cursor:pointer;color:var(--text-primary);backdrop-filter:blur(8px);transition:all 0.3s;display:flex;align-items:center;justify-content:center}
         .theme-toggle:hover{transform:scale(1.1);background:rgba(255,255,255,0.2)}
-        
+
         @media(min-width:600px){
             .vc-party-grid{grid-template-columns:1fr 1fr}
             .links-grid{grid-template-columns:1fr 1fr}
@@ -243,9 +238,7 @@
         <button onclick="mostrar('links')" id="btn-links">🔗 Links</button>
     </div>
 
-    <!-- ============================================================ -->
     <!-- CHECKLIST -->
-    <!-- ============================================================ -->
     <section id="check" class="secaoo ativa">
         <div class="card">
             <h2>📋 Checklist do Eleitor Consciente</h2>
@@ -268,9 +261,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- EDUCAÇÃO -->
-    <!-- ============================================================ -->
     <section id="edu" class="secaoo">
         <div class="card">
             <h2>📚 Como Funciona o Sistema Eleitoral</h2>
@@ -287,9 +278,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- PARTIDOS -->
-    <!-- ============================================================ -->
     <section id="partidos" class="secaoo">
         <div class="card">
             <h2>🤝 Federações Partidárias 2026</h2>
@@ -313,9 +302,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- CARGOS -->
-    <!-- ============================================================ -->
     <section id="cargos" class="secaoo">
         <div class="card">
             <h2>⚖️ O que cada cargo faz?</h2>
@@ -332,9 +319,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- URNA -->
-    <!-- ============================================================ -->
     <section id="urna" class="secaoo">
         <div class="card">
             <h2>🖥️ Como usar a Urna Eletrônica</h2>
@@ -347,9 +332,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- VOTAÇÃO (NOVA - FUNCIONAL) -->
-    <!-- ============================================================ -->
+    <!-- VOTAÇÃO -->
     <section id="votacao" class="secaoo">
         <div class="card">
             <h2>🗳️ Cabine de Votação</h2>
@@ -405,9 +388,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- SIMULADOR -->
-    <!-- ============================================================ -->
     <section id="simulador" class="secaoo">
         <div class="card">
             <h2>🎯 Simulador de Voto</h2>
@@ -435,9 +416,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- QUIZ -->
-    <!-- ============================================================ -->
     <section id="quiz" class="secaoo">
         <div class="card">
             <h2>📝 Quiz: Você sabe votar?</h2>
@@ -478,9 +457,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- CALENDÁRIO -->
-    <!-- ============================================================ -->
     <section id="calendario" class="secaoo">
         <div class="card">
             <h2>📅 Calendário Eleitoral 2026</h2>
@@ -501,10 +478,34 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- PESQUISA -->
-    <!-- ============================================================ -->
+    <!-- PESQUISA ELEITORAL 2026 — CANDIDATOS OFICIAIS TSE -->
     <section id="pesquisa" class="secaoo">
+        <div class="card">
+            <h2>📊 Pesquisa Eleitoral 2026 — Presidente</h2>
+            <p style="opacity:0.8;font-size:0.85rem;margin-bottom:14px;">Candidatos oficiais registrados no TSE — dados de agosto de 2026.</p>
+
+            <div style="background:rgba(255,0,0,0.1);border:1px solid rgba(255,100,100,0.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;">
+                <p style="font-size:0.8rem;color:#ff9999;margin:0;">📅 <strong>Última atualização:</strong> 16 de agosto de 2026</p>
+            </div>
+
+            <div class="cargo-selector" id="instituteFilter" style="margin-bottom:16px;">
+                <button class="active" onclick="filterResearch('todos', this)">📊 Todos</button>
+                <button onclick="filterResearch('quaest', this)">🔍 Quaest (ago/26)</button>
+                <button onclick="filterResearch('datafolha', this)">📰 Datafolha (jul/26)</button>
+            </div>
+
+            <div id="researchCandidates" style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;"></div>
+
+            <div style="background:rgba(255,215,0,0.06);border-radius:12px;padding:12px 14px;border:1px solid rgba(255,215,0,0.15);margin-bottom:14px;">
+                <p style="font-weight:bold;color:var(--gold);font-size:0.85rem;margin:0 0 8px 0;">📋 Sobre a pesquisa</p>
+                <div id="researchSummary" style="font-size:0.8rem;color:var(--text-primary);opacity:0.9;line-height:1.6;"></div>
+            </div>
+
+            <p style="font-size:0.72rem;color:var(--text-primary);opacity:0.5;line-height:1.5;margin:0;">
+                ⚠️ <strong>Candidatos oficiais</strong> registrados no TSE (convenções realizadas entre 20/07 e 05/08/2026). Pablo Marçal foi registrado pelo PRTB mas permanece <strong>inelegível</strong> por condenações do TRE-SP — Leonardo Avalanche permanece como candidato oficializado pelo partido. Margem de erro: ±2 pontos percentuais. Fontes: Quaest/G1 (14/08/2026), Datafolha/Folha (24/07/2026).
+            </p>
+        </div>
+
         <div class="card">
             <h2>🔍 Pesquisar Candidato</h2>
             <input type="text" class="research-input" id="candidateName" placeholder="Ex: João da Silva" onkeypress="if(event.key==='Enter')searchCandidate()">
@@ -517,9 +518,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- ELEIÇÕES -->
-    <!-- ============================================================ -->
     <section id="eleicoes" class="secaoo">
         <div class="card">
             <h2>📊 Eleições Presidenciais</h2>
@@ -529,9 +528,7 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- LINKS -->
-    <!-- ============================================================ -->
     <section id="links" class="secaoo">
         <div class="card">
             <h2>🔗 Links Úteis</h2>
@@ -551,7 +548,7 @@
 
 </div>
 
-<!-- ===== COMPARTILHAR ===== -->
+<!-- COMPARTILHAR -->
 <div style="position:fixed;top:12px;right:16px;z-index:9999;">
     <button class="share-fab" onclick="toggleShare()">
         <span style="font-size:20px;">⋯</span>
@@ -565,369 +562,789 @@
     </div>
 </div>
 
-<!-- ===== MODO ESCURO ===== -->
+<!-- MODO ESCURO -->
 <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">🌙</button>
 
 <!-- ============================================================ -->
-<!-- JAVASCRIPT COMPLETO -->
+<!-- JAVASCRIPT -->
 <!-- ============================================================ -->
 <script>
-    // ================================================================
-    // CHECKLIST
-    // ================================================================
-    function atualizar() {
-        const cbs = document.querySelectorAll('#check input[type="checkbox"]');
-        let marcados = 0;
-        cbs.forEach((cb) => {
-            if (cb.checked) marcados++;
-            localStorage.setItem('check_' + [...cbs].indexOf(cb), cb.checked);
-        });
-        const p = cbs.length > 0 ? Math.round(marcados / cbs.length * 100) : 0;
-        document.getElementById('pb').style.width = p + '%';
-        document.getElementById('pt').textContent = p === 100 ? '🎉 Parabéns! Você está preparado!' : p + '% concluído';
+/*
+================================================================================
+  📝 COMO ATUALIZAR OS DADOS DA PESQUISA ELEITORAL
+================================================================================
+
+  1. Abra este arquivo em qualquer editor de texto (Bloco de Notas, VS Code, etc.)
+  2. Use Ctrl+F e procure por: "=== DADOS DA PESQUISA ==="
+  3. Você vai encontrar logo abaixo uma lista com todos os candidatos e percentuais
+  4. Só mude os números (pct) e a data de atualização
+  5. Salve o arquivo e suba no seu GitHub de novo
+
+  ⚠️ NÃO apague as vírgulas, aspas ou chaves! Só troque os números.
+
+================================================================================
+*/
+
+// ================================================================
+// === DADOS DA PESQUISA — EDITE AQUI =================================
+// ================================================================
+
+const DATA_ATUALIZACAO = "16 de agosto de 2026";
+
+const PESQUISA_TODOS = [
+    // { numero: 'XX', nome: 'Nome Completo', partido: 'SIGLA', pct: 00 },
+    { numero: '13', nome: 'Luiz Inácio Lula da Silva', partido: 'PT',        pct: 39 },
+    { numero: '22', nome: 'Flávio Bolsonaro',          partido: 'PL',        pct: 32 },
+    { numero: '14', nome: 'Renan Santos',              partido: 'Missão',    pct: 4  },
+    { numero: '55', nome: 'Ronaldo Caiado',            partido: 'PSD',       pct: 4  },
+    { numero: '70', nome: 'Augusto Cury',              partido: 'Avante',    pct: 2  },
+    { numero: '30', nome: 'Romeu Zema',                partido: 'NOVO',      pct: 2  },
+    { numero: '80', nome: 'Samara Martins',            partido: 'UP',        pct: 1  },
+    { numero: '21', nome: 'Edmilson Costa',            partido: 'PCB',       pct: 0  },
+    { numero: '27', nome: 'Clariana Barão',            partido: 'DC',        pct: 0  },
+    { numero: '16', nome: 'Hertz Dias',                partido: 'PSTU',      pct: 0  },
+    { numero: '28', nome: 'Leonardo Avalanche',        partido: 'PRTB',      pct: 0  },
+    { numero: '29', nome: 'Rui Costa Pimenta',         partido: 'PCO',       pct: 0  },
+    { numero: '35', nome: 'Wilson Grassi',             partido: 'Democrata', pct: 0  },
+];
+
+const PESQUISA_QUAEST = [
+    { numero: '13', nome: 'Luiz Inácio Lula da Silva', partido: 'PT',        pct: 38 },
+    { numero: '22', nome: 'Flávio Bolsonaro',          partido: 'PL',        pct: 31 },
+    { numero: '14', nome: 'Renan Santos',              partido: 'Missão',    pct: 4  },
+    { numero: '55', nome: 'Ronaldo Caiado',            partido: 'PSD',       pct: 4  },
+    { numero: '70', nome: 'Augusto Cury',              partido: 'Avante',    pct: 2  },
+    { numero: '30', nome: 'Romeu Zema',                partido: 'NOVO',      pct: 2  },
+    { numero: '80', nome: 'Samara Martins',            partido: 'UP',        pct: 1  },
+    { numero: '21', nome: 'Edmilson Costa',            partido: 'PCB',       pct: 0  },
+    { numero: '27', nome: 'Clariana Barão',            partido: 'DC',        pct: 0  },
+    { numero: '16', nome: 'Hertz Dias',                partido: 'PSTU',      pct: 0  },
+    { numero: '28', nome: 'Leonardo Avalanche',        partido: 'PRTB',      pct: 0  },
+    { numero: '29', nome: 'Rui Costa Pimenta',         partido: 'PCO',       pct: 0  },
+    { numero: '35', nome: 'Wilson Grassi',             partido: 'Democrata', pct: 0  },
+];
+
+const PESQUISA_DATAFOLHA = [
+    { numero: '13', nome: 'Luiz Inácio Lula da Silva', partido: 'PT',        pct: 40 },
+    { numero: '22', nome: 'Flávio Bolsonaro',          partido: 'PL',        pct: 32 },
+    { numero: '14', nome: 'Renan Santos',              partido: 'Missão',    pct: 0  },
+    { numero: '55', nome: 'Ronaldo Caiado',            partido: 'PSD',       pct: 0  },
+    { numero: '70', nome: 'Augusto Cury',              partido: 'Avante',    pct: 0  },
+    { numero: '30', nome: 'Romeu Zema',                partido: 'NOVO',      pct: 0  },
+    { numero: '80', nome: 'Samara Martins',            partido: 'UP',        pct: 0  },
+    { numero: '21', nome: 'Edmilson Costa',            partido: 'PCB',       pct: 0  },
+    { numero: '27', nome: 'Clariana Barão',            partido: 'DC',        pct: 0  },
+    { numero: '16', nome: 'Hertz Dias',                partido: 'PSTU',      pct: 0  },
+    { numero: '28', nome: 'Leonardo Avalanche',        partido: 'PRTB',      pct: 0  },
+    { numero: '29', nome: 'Rui Costa Pimenta',         partido: 'PCO',       pct: 0  },
+    { numero: '35', nome: 'Wilson Grassi',             partido: 'Democrata', pct: 0  },
+];
+
+// Cores dos partidos (não precisa mudar)
+const CORES_PARTIDO = {
+    'PT':        '#c62828',
+    'PL':        '#1565c0',
+    'Missão':    '#5d4037',
+    'PSD':       '#00695c',
+    'Avante':    '#ef6c00',
+    'NOVO':      '#6a1b9a',
+    'UP':        '#ad1457',
+    'PCB':       '#b71c1c',
+    'DC':        '#283593',
+    'PSTU':      '#c62828',
+    'PRTB':      '#4e342e',
+    'PCO':       '#1a237e',
+    'Democrata': '#37474f',
+};
+
+// ================================================================
+// RESTO DO CÓDIGO (não precisa mexer daqui pra baixo)
+// ================================================================
+
+const pesquisaData = {
+    todos: PESQUISA_TODOS.map(c => ({ ...c, cor: CORES_PARTIDO[c.partido] || '#757575', faixa: c.pct + '%' })),
+    quaest: PESQUISA_QUAEST.map(c => ({ ...c, cor: CORES_PARTIDO[c.partido] || '#757575' })),
+    datafolha: PESQUISA_DATAFOLHA.map(c => ({ ...c, cor: CORES_PARTIDO[c.partido] || '#757575' })),
+};
+
+// Adiciona brancos/nulos e indecisos
+const EXTRAS_TODOS = [
+    { num: 'BN', nome: 'Branco / Nulo / Não vai votar', partido: '—', pct: 8,  cor: '#757575', faixa: '8%' },
+    { num: 'IN', nome: 'Indecisos',                     partido: '—', pct: 9,  cor: '#9e9e9e', faixa: '9–10%' },
+];
+const EXTRAS_QUAEST = [
+    { num: 'BN', nome: 'Branco / Nulo / Não vai votar', partido: '—', pct: 8,  cor: '#757575' },
+    { num: 'IN', nome: 'Indecisos',                     partido: '—', pct: 10, cor: '#9e9e9e' },
+];
+const EXTRAS_DATAFOLHA = [
+    { num: 'BN', nome: 'Branco / Nulo / Não vai votar', partido: '—', pct: 0, cor: '#757575' },
+    { num: 'IN', nome: 'Indecisos',                     partido: '—', pct: 0, cor: '#9e9e9e' },
+];
+
+pesquisaData.todos = pesquisaData.todos.map(c => ({ num: c.numero, nome: c.nome, partido: c.partido, pct: c.pct, cor: c.cor, faixa: c.faixa })).concat(EXTRAS_TODOS);
+pesquisaData.quaest = pesquisaData.quaest.map(c => ({ num: c.numero, nome: c.nome, partido: c.partido, pct: c.pct, cor: c.cor })).concat(EXTRAS_QUAEST);
+pesquisaData.datafolha = pesquisaData.datafolha.map(c => ({ num: c.numero, nome: c.nome, partido: c.partido, pct: c.pct, cor: c.cor })).concat(EXTRAS_DATAFOLHA);
+
+const institutosInfo = {
+    quaest: { nome: 'Quaest/G1', data: '10–13 de agosto/2026', margem: '±2 pp', entrevistados: '2.004', metodo: 'presencial', reg: 'BR-06773/2026' },
+    datafolha: { nome: 'Datafolha/Folha', data: '22–24 de julho/2026', margem: '±2 pp', entrevistados: '2.004', metodo: 'presencial', reg: 'BR-01166/2026' }
+};
+
+let filtroAtual = 'todos';
+
+function renderPesquisa(filtro) {
+    filtroAtual = filtro;
+    const container = document.getElementById('researchCandidates');
+    const summary = document.getElementById('researchSummary');
+    const dataLabel = document.querySelector('#pesquisa .card p');
+    if (!container) return;
+
+    // Atualiza a data visível
+    if (dataLabel) {
+        dataLabel.textContent = 'Candidatos oficiais registrados no TSE — atualizado em ' + DATA_ATUALIZACAO + '.';
     }
 
-    // ================================================================
-    // NAVEGAÇÃO
-    // ================================================================
-    function mostrar(id) {
-        document.querySelectorAll('.secaoo').forEach(s => s.classList.remove('ativa'));
-        document.getElementById(id).classList.add('ativa');
-        document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
-        const btn = document.getElementById('btn-' + id);
-        if (btn) btn.classList.add('active');
-        document.getElementById('menu-opcoes').classList.remove('aberto');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    const itens = pesquisaData[filtro];
+    const maxPct = Math.max(...itens.map(i => i.pct));
+    container.innerHTML = '';
 
-    document.addEventListener('click', function(e) {
-        const menu = document.getElementById('menu-opcoes');
-        const toggle = document.querySelector('.menu-toggle');
-        if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
-            menu.classList.remove('aberto');
-        }
-    });
+    itens.forEach(item => {
+        const neutro = item.num === 'BN' || item.num === 'IN';
+        const cor = neutro ? 'rgba(255,255,255,0.3)' : item.cor;
+        const largura = item.pct > 0 ? (item.pct / maxPct * 100) : 0;
+        const faixaTxt = filtro === 'todos' && item.faixa ? `<span style="opacity:0.5;font-size:0.75rem;margin-left:6px;">${item.faixa}</span>` : '';
+        const pctDisplay = item.pct === 0 ? '<span style="font-size:0.85rem;opacity:0.4">—</span>' : `${item.pct}<span style="font-size:0.75rem;opacity:0.7;">%</span>`;
 
-    // ================================================================
-    // PARTIDOS
-    // ================================================================
-    const parties = [
-        {sigla:'MDB',num:15,nome:'Movimento Democrático Brasileiro',ideologia:'centro'},
-        {sigla:'PDT',num:12,nome:'Partido Democrático Trabalhista',ideologia:'centro-esquerda'},
-        {sigla:'PT',num:13,nome:'Partido dos Trabalhadores',ideologia:'esquerda'},
-        {sigla:'PCdoB',num:65,nome:'Partido Comunista do Brasil',ideologia:'esquerda'},
-        {sigla:'PSB',num:40,nome:'Partido Socialista Brasileiro',ideologia:'centro-esquerda'},
-        {sigla:'PSDB',num:45,nome:'Partido da Social Democracia',ideologia:'centro-direita'},
-        {sigla:'AGIR',num:36,nome:'Agir',ideologia:'centro-direita'},
-        {sigla:'MOBILIZA',num:33,nome:'Mobilização Nacional',ideologia:'centro'},
-        {sigla:'CIDADANIA',num:23,nome:'Cidadania',ideologia:'centro'},
-        {sigla:'PV',num:43,nome:'Partido Verde',ideologia:'centro-esquerda'},
-        {sigla:'AVANTE',num:70,nome:'Avante',ideologia:'centro'},
-        {sigla:'PP',num:11,nome:'Progressistas',ideologia:'centro-direita'},
-        {sigla:'PSTU',num:16,nome:'PSTU',ideologia:'extrema-esquerda'},
-        {sigla:'PCB',num:21,nome:'Partido Comunista Brasileiro',ideologia:'extrema-esquerda'},
-        {sigla:'PRTB',num:28,nome:'PRTB',ideologia:'direita'},
-        {sigla:'DC',num:27,nome:'Democracia Cristã',ideologia:'centro-direita'},
-        {sigla:'PCO',num:29,nome:'PCO',ideologia:'extrema-esquerda'},
-        {sigla:'PODE',num:20,nome:'Podemos',ideologia:'centro'},
-        {sigla:'REPUBLICANOS',num:10,nome:'Republicanos',ideologia:'direita'},
-        {sigla:'PSOL',num:50,nome:'PSOL',ideologia:'esquerda'},
-        {sigla:'PL',num:22,nome:'Partido Liberal',ideologia:'direita'},
-        {sigla:'PSD',num:55,nome:'PSD',ideologia:'centro'},
-        {sigla:'SOLIDARIEDADE',num:77,nome:'Solidariedade',ideologia:'centro-direita'},
-        {sigla:'NOVO',num:30,nome:'Partido Novo',ideologia:'centro-direita'},
-        {sigla:'REDE',num:18,nome:'Rede Sustentabilidade',ideologia:'centro-esquerda'},
-        {sigla:'DEMOCRATA',num:35,nome:'Democrata',ideologia:'centro-direita'},
-        {sigla:'UP',num:80,nome:'Unidade Popular',ideologia:'esquerda'},
-        {sigla:'UNIÃO',num:44,nome:'União Brasil',ideologia:'centro-direita'},
-        {sigla:'PRD',num:25,nome:'PRD',ideologia:'centro-direita'},
-        {sigla:'MISSÃO',num:14,nome:'Partido Missão',ideologia:'direita'}
-    ];
-
-    let currentFilter = 'todos';
-
-    function renderParties(filter = 'todos', search = '') {
-        const grid = document.getElementById('partyGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-        let filtered = parties;
-        if (filter !== 'todos') filtered = filtered.filter(p => p.ideologia === filter);
-        if (search.trim()) {
-            const s = search.toLowerCase().trim();
-            filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(p.num).includes(s));
-        }
-        document.getElementById('partyCount').textContent = 'Exibindo ' + filtered.length + ' partidos';
-        filtered.forEach(p => {
-            const div = document.createElement('div');
-            div.className = 'partido';
-            div.innerHTML = `
-                <div class="vc-party-header">
-                    <div class="vc-party-logo"><span>${p.sigla}</span></div>
-                    <div class="vc-party-info">
-                        <div class="vc-party-name">${p.sigla} <span class="numero">${p.num}</span></div>
-                        <div class="vc-party-meta">${p.nome}</div>
-                    </div>
+        const div = document.createElement('div');
+        div.style.cssText = 'display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);';
+        div.innerHTML = `
+            <div style="width:42px;height:42px;border-radius:8px;background:${cor};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;font-family:monospace;">${item.num}</div>
+            <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:4px;flex-wrap:wrap;">
+                    <span style="font-size:0.9rem;font-weight:500;color:var(--text-primary);">${item.nome}</span>
+                    <span style="font-size:0.8rem;color:var(--text-secondary);">${item.partido !== '—' ? '(' + item.partido + ')' : ''}</span>
+                    ${faixaTxt}
                 </div>
-                <div class="vc-party-tags"><span class="vc-tag">${p.ideologia}</span></div>
-            `;
-            grid.appendChild(div);
-        });
-    }
-
-    function filterByIdeology(ideology, evt) {
-        currentFilter = ideology;
-        document.querySelectorAll('.vc-filter').forEach(f => f.classList.remove('active'));
-        if (evt && evt.target) evt.target.classList.add('active');
-        renderParties(currentFilter, document.getElementById('partySearch').value);
-    }
-
-    function filterParties() {
-        renderParties(currentFilter, document.getElementById('partySearch').value);
-    }
-
-    // ================================================================
-    // SIMULADOR
-    // ================================================================
-    let simNumber = '';
-    const simCandidates = {
-        '13': 'Lula (PT)',
-        '22': 'Jair Bolsonaro (PL)',
-        '45': 'Aécio Neves (PSDB)',
-        '12': 'Ciro Gomes (PDT)',
-        '50': 'Marina Silva (REDE)',
-        '15': 'Simone Tebet (MDB)',
-        '30': 'Felipe D\'Avila (NOVO)',
-        '80': 'Leonardo Péricles (UP)',
-        '29': 'Rui Costa Pimenta (PCO)',
-        '16': 'José Maria de Almeida (PSTU)',
-        '21': 'Edmilson Costa (PCB)'
-    };
-
-    function simPress(num) {
-        if (simNumber.length < 5) {
-            if (num === 'branco') {
-                simNumber = 'branco';
-                updateSimDisplay();
-                return;
-            }
-            simNumber += num;
-            updateSimDisplay();
-        }
-    }
-
-    function simClear() {
-        simNumber = '';
-        updateSimDisplay();
-        document.getElementById('simResult').textContent = '';
-    }
-
-    function simConfirm() {
-        const result = document.getElementById('simResult');
-        if (simNumber === '') {
-            result.textContent = '❌ Digite um número!';
-            return;
-        }
-        if (simNumber === 'branco') {
-            result.textContent = '✅ Voto em BRANCO confirmado!';
-            document.getElementById('simCandidate').textContent = 'Voto em BRANCO';
-            simNumber = '';
-            updateSimDisplay();
-            return;
-        }
-        const candidate = simCandidates[simNumber];
-        if (candidate) {
-            result.textContent = '✅ Voto confirmado para: ' + candidate;
-            document.getElementById('simCandidate').textContent = 'Voto confirmado para ' + candidate;
-        } else {
-            result.textContent = '❌ Candidato não encontrado. Nº: ' + simNumber;
-            document.getElementById('simCandidate').textContent = 'Número inválido';
-        }
-        simNumber = '';
-        updateSimDisplay();
-    }
-
-    function updateSimDisplay() {
-        const display = document.getElementById('simNumber');
-        if (simNumber === 'branco') {
-            display.textContent = 'B R A N C O';
-            document.getElementById('simCandidate').textContent = 'Voto em BRANCO';
-            return;
-        }
-        const padded = simNumber.padEnd(5, '_');
-        display.textContent = padded.split('').join(' ');
-        if (simNumber === '') {
-            document.getElementById('simCandidate').textContent = 'Digite o número do candidato';
-        } else {
-            const candidate = simCandidates[simNumber];
-            document.getElementById('simCandidate').textContent = candidate || 'Número ' + simNumber + ' - não encontrado';
-        }
-    }
-
-    // ================================================================
-    // QUIZ
-    // ================================================================
-    let quizScore = 0;
-    let quizAnswered = 0;
-    const quizTotal = 5;
-
-    function checkQuiz(element, isCorrect) {
-        if (element.classList.contains('disabled')) return;
-        const parent = element.closest('.quiz-question');
-        const options = parent.querySelectorAll('.quiz-option');
-        options.forEach(opt => opt.classList.add('disabled'));
-        if (isCorrect) {
-            element.classList.add('correct');
-            quizScore++;
-        } else {
-            element.classList.add('wrong');
-        }
-        quizAnswered++;
-        if (quizAnswered === quizTotal) {
-            document.getElementById('quizResult').textContent = '🎉 Você acertou ' + quizScore + ' de ' + quizTotal + ' questões!';
-            if (quizScore === quizTotal) {
-                document.getElementById('quizResult').textContent += ' 🏆 Parabéns!';
-            }
-        }
-    }
-
-    function resetQuiz() {
-        quizScore = 0;
-        quizAnswered = 0;
-        document.querySelectorAll('.quiz-option').forEach(opt => {
-            opt.classList.remove('correct', 'wrong', 'disabled');
-        });
-        document.getElementById('quizResult').textContent = '';
-    }
-
-    // ================================================================
-    // PESQUISA
-    // ================================================================
-    function getCandidateName() {
-        return document.getElementById('candidateName').value.trim();
-    }
-
-    function searchCandidate() {
-        const name = getCandidateName();
-        if (!name) { alert('Digite um nome!'); return; }
-        window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' candidato'), '_blank');
-    }
-
-    function searchTSE() {
-        const name = getCandidateName();
-        if (!name) { alert('Digite um nome!'); return; }
-        window.open('https://divulgacandcontas.tse.jus.br', '_blank');
-    }
-
-    function searchFichaLimpa() {
-        const name = getCandidateName();
-        if (!name) { alert('Digite um nome!'); return; }
-        window.open('https://www.fichalimpa.org.br', '_blank');
-    }
-
-    function searchNews() {
-        const name = getCandidateName();
-        if (!name) { alert('Digite um nome!'); return; }
-        window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' notícias') + '&tbm=nws', '_blank');
-    }
-
-    // ================================================================
-    // COMPARTILHAR
-    // ================================================================
-    function toggleShare() {
-        const popup = document.getElementById('sharePopup');
-        popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function copiarLink() {
-        const link = 'https://gilsonjs.github.io/Voto-consciente';
-        navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
-            alert('✅ Link copiado!');
-        }).catch(() => {
-            alert('📋 Copie: ' + link);
-        });
-    }
-
-    document.addEventListener('click', function(e) {
-        const popup = document.getElementById('sharePopup');
-        const fab = document.querySelector('.share-fab');
-        if (popup && fab && !fab.contains(e.target) && !popup.contains(e.target)) {
-            popup.style.display = 'none';
-        }
+                <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">
+                    <div style="height:100%;width:${largura}%;background:${cor};border-radius:3px;transition:width 0.6s ease;"></div>
+                </div>
+            </div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--gold);font-family:monospace;min-width:50px;text-align:right;">${pctDisplay}</div>
+        `;
+        container.appendChild(div);
     });
 
-    // ================================================================
-    // TEMA
-    // ================================================================
-    let darkMode = false;
+    document.querySelectorAll('#instituteFilter button').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase().includes(filtro === 'todos' ? 'todos' : institutosInfo[filtro].nome.toLowerCase().split('/')[0]));
+    });
 
-    function toggleTheme() {
-        darkMode = !darkMode;
-        const btn = document.querySelector('.theme-toggle');
-        if (darkMode) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            btn.textContent = '☀️';
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            btn.textContent = '🌙';
+    if (filtro === 'todos') {
+        summary.innerHTML = Object.entries(institutosInfo).map(([k, info]) => `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+                <span><strong style="color:var(--gold);">${info.nome}</strong> — ${info.data}</span>
+                <span style="opacity:0.6;">${info.entrevistados} entrevistados · ${info.margem} · ${info.metodo}</span>
+            </div>
+        `).join('');
+    } else {
+        const info = institutosInfo[filtro];
+        summary.innerHTML = `
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span><strong style="color:var(--gold);">${info.nome}</strong> — ${info.data}</span>
+                <span style="opacity:0.6;">${info.entrevistados} entrevistados · ${info.margem} · ${info.metodo} · Reg. TSE: ${info.reg}</span>
+            </div>
+        `;
+    }
+}
+
+function filterResearch(filtro, btn) {
+    renderPesquisa(filtro);
+}
+
+// ================================================================
+// CHECKLIST
+// ================================================================
+function atualizar() {
+    const cbs = document.querySelectorAll('#check input[type="checkbox"]');
+    let marcados = 0;
+    cbs.forEach((cb) => {
+        if (cb.checked) marcados++;
+        localStorage.setItem('check_' + [...cbs].indexOf(cb), cb.checked);
+    });
+    const p = cbs.length > 0 ? Math.round(marcados / cbs.length * 100) : 0;
+    document.getElementById('pb').style.width = p + '%';
+    document.getElementById('pt').textContent = p === 100 ? '🎉 Parabéns! Você está preparado!' : p + '% concluído';
+}
+
+// ================================================================
+// NAVEGAÇÃO
+// ================================================================
+function mostrar(id) {
+    document.querySelectorAll('.secaoo').forEach(s => s.classList.remove('ativa'));
+    document.getElementById(id).classList.add('ativa');
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    const btn = document.getElementById('btn-' + id);
+    if (btn) btn.classList.add('active');
+    document.getElementById('menu-opcoes').classList.remove('aberto');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('menu-opcoes');
+    const toggle = document.querySelector('.menu-toggle');
+    if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove('aberto');
+    }
+});
+
+// ================================================================
+// PARTIDOS
+// ================================================================
+const parties = [
+    {sigla:'MDB',num:15,nome:'Movimento Democrático Brasileiro',ideologia:'centro'},
+    {sigla:'PDT',num:12,nome:'Partido Democrático Trabalhista',ideologia:'centro-esquerda'},
+    {sigla:'PT',num:13,nome:'Partido dos Trabalhadores',ideologia:'esquerda'},
+    {sigla:'PCdoB',num:65,nome:'Partido Comunista do Brasil',ideologia:'esquerda'},
+    {sigla:'PSB',num:40,nome:'Partido Socialista Brasileiro',ideologia:'centro-esquerda'},
+    {sigla:'PSDB',num:45,nome:'Partido da Social Democracia',ideologia:'centro-direita'},
+    {sigla:'AGIR',num:36,nome:'Agir',ideologia:'centro-direita'},
+    {sigla:'MOBILIZA',num:33,nome:'Mobilização Nacional',ideologia:'centro'},
+    {sigla:'CIDADANIA',num:23,nome:'Cidadania',ideologia:'centro'},
+    {sigla:'PV',num:43,nome:'Partido Verde',ideologia:'centro-esquerda'},
+    {sigla:'AVANTE',num:70,nome:'Avante',ideologia:'centro'},
+    {sigla:'PP',num:11,nome:'Progressistas',ideologia:'centro-direita'},
+    {sigla:'PSTU',num:16,nome:'PSTU',ideologia:'extrema-esquerda'},
+    {sigla:'PCB',num:21,nome:'Partido Comunista Brasileiro',ideologia:'extrema-esquerda'},
+    {sigla:'PRTB',num:28,nome:'PRTB',ideologia:'direita'},
+    {sigla:'DC',num:27,nome:'Democracia Cristã',ideologia:'centro-direita'},
+    {sigla:'PCO',num:29,nome:'PCO',ideologia:'extrema-esquerda'},
+    {sigla:'PODE',num:20,nome:'Podemos',ideologia:'centro'},
+    {sigla:'REPUBLICANOS',num:10,nome:'Republicanos',ideologia:'direita'},
+    {sigla:'PSOL',num:50,nome:'PSOL',ideologia:'esquerda'},
+    {sigla:'PL',num:22,nome:'Partido Liberal',ideologia:'direita'},
+    {sigla:'PSD',num:55,nome:'PSD',ideologia:'centro'},
+    {sigla:'SOLIDARIEDADE',num:77,nome:'Solidariedade',ideologia:'centro-direita'},
+    {sigla:'NOVO',num:30,nome:'Partido Novo',ideologia:'centro-direita'},
+    {sigla:'REDE',num:18,nome:'Rede Sustentabilidade',ideologia:'centro-esquerda'},
+    {sigla:'DEMOCRATA',num:35,nome:'Democrata',ideologia:'centro-direita'},
+    {sigla:'UP',num:80,nome:'Unidade Popular',ideologia:'esquerda'},
+    {sigla:'UNIÃO',num:44,nome:'União Brasil',ideologia:'centro-direita'},
+    {sigla:'PRD',num:25,nome:'PRD',ideologia:'centro-direita'},
+    {sigla:'MISSÃO',num:14,nome:'Partido Missão',ideologia:'direita'}
+];
+
+let currentFilter = 'todos';
+
+function renderParties(filter = 'todos', search = '') {
+    const grid = document.getElementById('partyGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    let filtered = parties;
+    if (filter !== 'todos') filtered = filtered.filter(p => p.ideologia === filter);
+    if (search.trim()) {
+        const s = search.toLowerCase().trim();
+        filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(p.num).includes(s));
+    }
+    document.getElementById('partyCount').textContent = 'Exibindo ' + filtered.length + ' partidos';
+    filtered.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'partido';
+        div.innerHTML = `
+            <div class="vc-party-header">
+                <div class="vc-party-logo"><span>${p.sigla}</span></div>
+                <div class="vc-party-info">
+                    <div class="vc-party-name">${p.sigla} <span class="numero">${p.num}</span></div>
+                    <div class="vc-party-meta">${p.nome}</div>
+                </div>
+            </div>
+            <div class="vc-party-tags"><span class="vc-tag">${p.ideologia}</span></div>
+        `;
+        grid.appendChild(div);
+    });
+}
+
+function filterByIdeology(ideology, evt) {
+    currentFilter = ideology;
+    document.querySelectorAll('.vc-filter').forEach(f => f.classList.remove('active'));
+    if (evt && evt.target) evt.target.classList.add('active');
+    renderParties(currentFilter, document.getElementById('partySearch').value);
+}
+
+function filterParties() {
+    renderParties(currentFilter, document.getElementById('partySearch').value);
+}
+
+// ================================================================
+// SIMULADOR
+// ================================================================
+let simNumber = '';
+const simCandidates = {
+    '13': 'Lula (PT)',
+    '22': 'Flávio Bolsonaro (PL)',
+    '14': 'Renan Santos (Missão)',
+    '55': 'Ronaldo Caiado (PSD)',
+    '70': 'Augusto Cury (Avante)',
+    '30': 'Romeu Zema (NOVO)',
+    '80': 'Samara Martins (UP)',
+    '21': 'Edmilson Costa (PCB)',
+    '27': 'Clariana Barão (DC)',
+    '16': 'Hertz Dias (PSTU)',
+    '28': 'Leonardo Avalanche (PRTB)',
+    '29': 'Rui Costa Pimenta (PCO)',
+    '35': 'Wilson Grassi (Democrata)'
+};
+
+function simPress(num) {
+    if (simNumber.length < 5) {
+        if (num === 'branco') {
+            simNumber = 'branco';
+            updateSimDisplay();
+            return;
+        }
+        simNumber += num;
+        updateSimDisplay();
+    }
+}
+
+function simClear() {
+    simNumber = '';
+    updateSimDisplay();
+    document.getElementById('simResult').textContent = '';
+}
+
+function simConfirm() {
+    const result = document.getElementById('simResult');
+    if (simNumber === '') {
+        result.textContent = '❌ Digite um número!';
+        return;
+    }
+    if (simNumber === 'branco') {
+        result.textContent = '✅ Voto em BRANCO confirmado!';
+        document.getElementById('simCandidate').textContent = 'Voto em BRANCO';
+        simNumber = '';
+        updateSimDisplay();
+        return;
+    }
+    const candidate = simCandidates[simNumber];
+    if (candidate) {
+        result.textContent = '✅ Voto confirmado para: ' + candidate;
+        document.getElementById('simCandidate').textContent = 'Voto confirmado para ' + candidate;
+    } else {
+        result.textContent = '❌ Candidato não encontrado. Nº: ' + simNumber;
+        document.getElementById('simCandidate').textContent = 'Número inválido';
+    }
+    simNumber = '';
+    updateSimDisplay();
+}
+
+function updateSimDisplay() {
+    const display = document.getElementById('simNumber');
+    if (simNumber === 'branco') {
+        display.textContent = 'B R A N C O';
+        document.getElementById('simCandidate').textContent = 'Voto em BRANCO';
+        return;
+    }
+    const padded = simNumber.padEnd(5, '_');
+    display.textContent = padded.split('').join(' ');
+    if (simNumber === '') {
+        document.getElementById('simCandidate').textContent = 'Digite o número do candidato';
+    } else {
+        const candidate = simCandidates[simNumber];
+        document.getElementById('simCandidate').textContent = candidate || 'Número ' + simNumber + ' - não encontrado';
+    }
+}
+
+// ================================================================
+// QUIZ
+// ================================================================
+let quizScore = 0;
+let quizAnswered = 0;
+const quizTotal = 5;
+
+function checkQuiz(element, isCorrect) {
+    if (element.classList.contains('disabled')) return;
+    const parent = element.closest('.quiz-question');
+    const options = parent.querySelectorAll('.quiz-option');
+    options.forEach(opt => opt.classList.add('disabled'));
+    if (isCorrect) {
+        element.classList.add('correct');
+        quizScore++;
+    } else {
+        element.classList.add('wrong');
+    }
+    quizAnswered++;
+    if (quizAnswered === quizTotal) {
+        document.getElementById('quizResult').textContent = '🎉 Você acertou ' + quizScore + ' de ' + quizTotal + ' questões!';
+        if (quizScore === quizTotal) {
+            document.getElementById('quizResult').textContent += ' 🏆 Parabéns!';
         }
     }
+}
 
-    // ================================================================
-    // VOTAÇÃO - CANDIDATOS OFICIAIS 2026
-    // ================================================================
-    const candidatosVotacao = {
-        presidente: {
-            '13': { nome: 'Luiz Inácio Lula da Silva', partido: 'PT', foto: '👨‍🦳' },
-            '22': { nome: 'Flávio Bolsonaro', partido: 'PL', foto: '👨' },
-            '55': { nome: 'Ronaldo Caiado', partido: 'PSD', foto: '👨‍🦱' },
-            '30': { nome: 'Romeu Zema', partido: 'NOVO', foto: '👨‍💼' },
-            '14': { nome: 'Renan Santos', partido: 'MISSÃO', foto: '👨' },
-            '70': { nome: 'Augusto Cury', partido: 'AVANTE', foto: '👨‍🦰' },
-            '16': { nome: 'Hertz Dias', partido: 'PSTU', foto: '👨' },
-            '80': { nome: 'Samara Martins', partido: 'UP', foto: '👩' },
-            '27': { nome: 'Clariana Barão', partido: 'DC', foto: '👩‍🦳' },
-            '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨' },
-            '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨' },
-            '28': { nome: 'Leonardo Avalanche', partido: 'PRTB', foto: '👨' },
-            '35': { nome: 'Wilson Grassi', partido: 'DEMOCRATA', foto: '👨' }
-        },
-        governador: {
-            '13': { nome: 'Governador SP - PT', partido: 'PT', foto: '👨‍💼' },
-            '45': { nome: 'Governador SP - PSDB', partido: 'PSDB', foto: '👨‍💼' },
-            '12': { nome: 'Governador SP - PDT', partido: 'PDT', foto: '👨‍💼' },
-            '22': { nome: 'Governador SP - PL', partido: 'PL', foto: '👨‍💼' },
-            '15': { nome: 'Governador SP - MDB', partido: 'MDB', foto: '👨‍💼' },
-            '50': { nome: 'Governador SP - REDE', partido: 'REDE', foto: '👩‍💼' },
-            '10': { nome: 'Governador SP - Republicanos', partido: 'REPUBLICANOS', foto: '👨‍💼' },
-            '30': { nome: 'Governador SP - NOVO', partido: 'NOVO', foto: '👨‍💼' },
-            '20': { nome: 'Governador SP - PODE', partido: 'PODE', foto: '👨‍💼' },
-            '44': { nome: 'Governador SP - UNIÃO', partido: 'UNIÃO', foto: '👨‍💼' }
-        },
-        senador: {
-            '101': { nome: 'Senador SP - PT', partido: 'PT', foto: '👨‍💼' },
-            '102': { nome: 'Senador SP - PSDB', partido: 'PSDB', foto: '👩‍💼' },
-            '103': { nome: 'Senador SP - PL', partido: 'PL', foto: '👨‍💼' },
-            '104': { nome: 'Senador SP - PDT', partido: 'PDT', foto: '👨‍💼' },
-            '105': { nome: 'Senador SP - MDB', partido: 'MDB', foto: '👩‍💼' },
-            '106': { nome: 'Senador SP - REDE', partido: 'REDE', foto: '👨‍💼' },
-            '107': { nome: 'Senador SP - Republicanos', partido: 'REPUBLICANOS', foto: '👨‍💼' },
-            '108': { nome: 'Senador SP - NOVO', partido: 'NOVO', foto: '👩‍💼' },
-            '109': { nome: 'Senador SP - PODE', partido: 'PODE', foto: '👨‍💼' },
-            '110': { nome: 'Senador SP - UNIÃO', partido: 'UNIÃO', foto: '👨‍💼' }
+function resetQuiz() {
+    quizScore = 0;
+    quizAnswered = 0;
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.classList.remove('correct', 'wrong', 'disabled');
+    });
+    document.getElementById('quizResult').textContent = '';
+}
+
+// ================================================================
+// PESQUISA EXTERNA
+// ================================================================
+function getCandidateName() {
+    return document.getElementById('candidateName').value.trim();
+}
+
+function searchCandidate() {
+    const name = getCandidateName();
+    if (!name) { alert('Digite um nome!'); return; }
+    window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' candidato'), '_blank');
+}
+
+function searchTSE() {
+    const name = getCandidateName();
+    if (!name) { alert('Digite um nome!'); return; }
+    window.open('https://divulgacandcontas.tse.jus.br', '_blank');
+}
+
+function searchFichaLimpa() {
+    const name = getCandidateName();
+    if (!name) { alert('Digite um nome!'); return; }
+    window.open('https://www.fichalimpa.org.br', '_blank');
+}
+
+function searchNews() {
+    const name = getCandidateName();
+    if (!name) { alert('Digite um nome!'); return; }
+    window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' notícias') + '&tbm=nws', '_blank');
+}
+
+// ================================================================
+// COMPARTILHAR
+// ================================================================
+function toggleShare() {
+    const popup = document.getElementById('sharePopup');
+    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+}
+
+function copiarLink() {
+    const link = 'https://gilsonjs.github.io/Voto-consciente';
+    navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
+        alert('✅ Link copiado!');
+    }).catch(() => {
+        alert('📋 Copie: ' + link);
+    });
+}
+
+document.addEventListener('click', function(e) {
+    const popup = document.getElementById('sharePopup');
+    const fab = document.querySelector('.share-fab');
+    if (popup && fab && !fab.contains(e.target) && !popup.contains(e.target)) {
+        popup.style.display = 'none';
+    }
+});
+
+// ================================================================
+// TEMA
+// ================================================================
+let darkMode = false;
+
+function toggleTheme() {
+    darkMode = !darkMode;
+    const btn = document.querySelector('.theme-toggle');
+    if (darkMode) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        btn.textContent = '☀️';
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        btn.textContent = '🌙';
+    }
+}
+
+// ================================================================
+// VOTAÇÃO — CANDIDATOS OFICIAIS 2026
+// ================================================================
+const candidatosVotacao = {
+    presidente: {
+        '13': { nome: 'Luiz Inácio Lula da Silva', partido: 'PT', foto: '👨‍🦳' },
+        '22': { nome: 'Flávio Bolsonaro', partido: 'PL', foto: '👨' },
+        '14': { nome: 'Renan Santos', partido: 'Missão', foto: '👨' },
+        '55': { nome: 'Ronaldo Caiado', partido: 'PSD', foto: '👨‍🦱' },
+        '70': { nome: 'Augusto Cury', partido: 'Avante', foto: '👨‍🦰' },
+        '30': { nome: 'Romeu Zema', partido: 'NOVO', foto: '👨‍💼' },
+        '80': { nome: 'Samara Martins', partido: 'UP', foto: '👩' },
+        '21': { nome: 'Edmilson Costa', partido: 'PCB', foto: '👨' },
+        '27': { nome: 'Clariana Barão', partido: 'DC', foto: '👩‍🦳' },
+        '16': { nome: 'Hertz Dias', partido: 'PSTU', foto: '👨' },
+        '28': { nome: 'Leonardo Avalanche', partido: 'PRTB', foto: '👨' },
+        '29': { nome: 'Rui Costa Pimenta', partido: 'PCO', foto: '👨' },
+        '35': { nome: 'Wilson Grassi', partido: 'Democrata', foto: '👨' }
+    },
+    governador: {
+        '13': { nome: 'Governador SP - PT', partido: 'PT', foto: '👨‍💼' },
+        '45': { nome: 'Governador SP - PSDB', partido: 'PSDB', foto: '👨‍💼' },
+        '12': { nome: 'Governador SP - PDT', partido: 'PDT', foto: '👨‍💼' },
+        '22': { nome: 'Governador SP - PL', partido: 'PL', foto: '👨‍💼' },
+        '15': { nome: 'Governador SP - MDB', partido: 'MDB', foto: '👨‍💼' },
+        '50': { nome: 'Governador SP - REDE', partido: 'REDE', foto: '👩‍💼' },
+        '10': { nome: 'Governador SP - Republicanos', partido: 'REPUBLICANOS', foto: '👨‍💼' },
+        '30': { nome: 'Governador SP - NOVO', partido: 'NOVO', foto: '👨‍💼' },
+        '20': { nome: 'Governador SP - PODE', partido: 'PODE', foto: '👨‍💼' },
+        '44': { nome: 'Governador SP - UNIÃO', partido: 'UNIÃO', foto: '👨‍💼' }
+    },
+    senador: {
+        '101': { nome: 'Senador SP - PT', partido: 'PT', foto: '👨‍💼' },
+        '102': { nome: 'Senador SP - PSDB', partido: 'PSDB', foto: '👩‍💼' },
+        '103': { nome: 'Senador SP - PL', partido: 'PL', foto: '👨‍💼' },
+        '104': { nome: 'Senador SP - PDT', partido: 'PDT', foto: '👨‍💼' },
+        '105': { nome: 'Senador SP - MDB', partido: 'MDB', foto: '👩‍💼' },
+        '106': { nome: 'Senador SP - REDE', partido: 'REDE', foto: '👨‍💼' },
+        '107': { nome: 'Senador SP - Republicanos', partido: 'REPUBLICANOS', foto: '👨‍💼' },
+        '108': { nome: 'Senador SP - NOVO', partido: 'NOVO', foto: '👩‍💼' },
+        '109': { nome: 'Senador SP - PODE', partido: 'PODE', foto: '👨‍💼' },
+        '110': { nome: 'Senador SP - UNIÃO', partido: 'UNIÃO', foto: '👨‍💼' }
+    }
+};
+
+let cargoAtual = 'presidente';
+let votoNumeroVotacao = '';
+let votoConfirmadoVotacao = false;
+
+let votosComputados = {
+    presidente: {},
+    governador: {},
+    senador: {}
+};
+
+function initVotos() {
+    ['presidente', 'governador', 'senador'].forEach(cargo => {
+        votosComputados[cargo] = {};
+        const cands = candidatosVotacao[cargo];
+        for (let num in cands) {
+            votosComputados[cargo][num] = 0;
         }
-    };
+        votosComputados[cargo]['branco'] = 0;
+    });
+}
+initVotos();
 
-    let cargoAtual = 'presidente';
-    let votoNumeroVotacao = '';
-    let votoConfirmadoVotacao = false;
+function selecionarCargo(cargo, btn) {
+    cargoAtual = cargo;
+    document.querySelectorAll('#votacao .cargo-selector').forEach(el => {
+        el.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    });
+    if (btn) btn.classList.add('active');
+    votoNumeroVotacao = '';
+    votoConfirmadoVotacao = false;
+    limparDisplayVotacao();
+    document.getElementById('votoMessage').textContent = '';
+    document.getElementById('votoMessage').className = 'voto-message';
+}
 
-    let votosComputados = {
-        presidente: {},
-        governador: {},
-        senador: {}
-    };
+function limparDisplayVotacao() {
+    document.getElementById('displayContent').innerHTML = `
+        <div class="placeholder">Digite o número do candidato</div>
+    `;
+}
 
-    function initVotos() {
+function atualizarDisplayVotacao() {
+    const display = document.getElementById('displayContent');
+    const maxLen = cargoAtual === 'senador' ? 3 : 2;
+
+    if (votoNumeroVotacao === 'branco') {
+        display.innerHTML = `
+            <div class="foto">⬜</div>
+            <div class="nome">VOTO EM BRANCO</div>
+            <div class="numero-voto">
+                <span class="digito">B</span>
+                <span class="digito">R</span>
+                <span class="digito">A</span>
+                <span class="digito">N</span>
+                <span class="digito">C</span>
+                <span class="digito">O</span>
+            </div>
+        `;
+        return;
+    }
+
+    if (votoNumeroVotacao.length === 0) {
+        display.innerHTML = `<div class="placeholder">Digite o número do candidato</div>`;
+        return;
+    }
+
+    const cand = buscarCandidatoVotacao(votoNumeroVotacao);
+
+    let numeroHtml = '';
+    const padded = votoNumeroVotacao.padEnd(maxLen, '_');
+    for (let i = 0; i < padded.length; i++) {
+        const char = padded[i];
+        const vazio = char === '_';
+        numeroHtml += `<span class="digito ${vazio ? 'vazio' : ''}">${vazio ? '_' : char}</span>`;
+    }
+
+    if (cand) {
+        display.innerHTML = `
+            <div class="foto">${cand.foto || '👤'}</div>
+            <div class="nome">${cand.nome}</div>
+            <div class="partido">${cand.partido || ''}</div>
+            <div class="numero-voto">${numeroHtml}</div>
+        `;
+    } else {
+        display.innerHTML = `
+            <div class="foto">❓</div>
+            <div class="nome" style="color:#ff4444;">Candidato não encontrado</div>
+            <div class="numero-voto">${numeroHtml}</div>
+        `;
+    }
+}
+
+function buscarCandidatoVotacao(numero) {
+    const cands = candidatosVotacao[cargoAtual];
+    if (!cands) return null;
+    return cands[numero] || null;
+}
+
+function votarPress(num) {
+    if (votoConfirmadoVotacao) {
+        votoConfirmadoVotacao = false;
+        votoNumeroVotacao = '';
+        document.getElementById('votoMessage').textContent = '';
+        document.getElementById('votoMessage').className = 'voto-message';
+    }
+
+    const maxLen = cargoAtual === 'senador' ? 3 : 2;
+
+    if (num === 'branco') {
+        votoNumeroVotacao = 'branco';
+        atualizarDisplayVotacao();
+        return;
+    }
+
+    if (votoNumeroVotacao.length < maxLen) {
+        votoNumeroVotacao += num;
+        atualizarDisplayVotacao();
+    }
+}
+
+function votarClear() {
+    votoNumeroVotacao = '';
+    votoConfirmadoVotacao = false;
+    limparDisplayVotacao();
+    document.getElementById('votoMessage').textContent = '';
+    document.getElementById('votoMessage').className = 'voto-message';
+}
+
+function votarConfirm() {
+    const msg = document.getElementById('votoMessage');
+
+    if (votoNumeroVotacao === '') {
+        msg.textContent = '⚠️ Digite o número do candidato!';
+        msg.className = 'voto-message erro';
+        return;
+    }
+
+    const cand = buscarCandidatoVotacao(votoNumeroVotacao);
+    if (cand) {
+        if (!votosComputados[cargoAtual]) votosComputados[cargoAtual] = {};
+        if (!votosComputados[cargoAtual][votoNumeroVotacao]) votosComputados[cargoAtual][votoNumeroVotacao] = 0;
+        votosComputados[cargoAtual][votoNumeroVotacao]++;
+
+        msg.textContent = '✅ Voto confirmado para ' + cand.nome + ' (' + cand.partido + ')';
+        msg.className = 'voto-message sucesso';
+        votoConfirmadoVotacao = true;
+
+        setTimeout(() => {
+            votoNumeroVotacao = '';
+            votoConfirmadoVotacao = false;
+            limparDisplayVotacao();
+            msg.textContent = '';
+            msg.className = 'voto-message';
+            renderResultados(cargoAtual);
+        }, 2500);
+    } else {
+        msg.textContent = '❌ Número inválido para ' + cargoAtual;
+        msg.className = 'voto-message erro';
+        votoNumeroVotacao = '';
+        setTimeout(() => {
+            limparDisplayVotacao();
+        }, 1500);
+    }
+}
+
+let resultadoCargoAtual = 'presidente';
+
+function mostrarResultado(cargo, btn) {
+    if (btn) {
+        document.querySelectorAll('#votacao .cargo-selector').forEach(el => {
+            el.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        });
+        btn.classList.add('active');
+    }
+    resultadoCargoAtual = cargo || resultadoCargoAtual;
+    renderResultados(resultadoCargoAtual);
+}
+
+function renderResultados(cargo) {
+    const container = document.getElementById('resultStats');
+    const totalEl = document.getElementById('resultTotal');
+    const votosCargo = votosComputados[cargo] || {};
+    const cands = candidatosVotacao[cargo] || {};
+
+    let total = 0;
+    let resultados = [];
+
+    for (let num in votosCargo) {
+        const qtd = votosCargo[num] || 0;
+        total += qtd;
+        const cand = cands[num];
+        resultados.push({
+            numero: num,
+            nome: cand ? cand.nome : 'Voto nulo',
+            partido: cand ? cand.partido : '',
+            foto: cand ? cand.foto : '❓',
+            votos: qtd
+        });
+    }
+
+    resultados.sort((a, b) => b.votos - a.votos);
+
+    container.innerHTML = '';
+    if (total === 0) {
+        container.innerHTML = '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
+        totalEl.textContent = 'Total de votos: 0';
+        return;
+    }
+
+    const comVotos = resultados.filter(r => r.votos > 0);
+
+    comVotos.forEach(r => {
+        const pct = Math.round((r.votos / total) * 100);
+        const div = document.createElement('div');
+        div.className = 'resultado-item';
+        div.innerHTML = `
+            <div class="info">
+                <span class="foto">${r.foto}</span>
+                <div>
+                    <div class="nome">${r.nome}</div>
+                    <div class="detalhe">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
+                </div>
+            </div>
+            <div class="votos">${r.votos} votos</div>
+        `;
+        container.appendChild(div);
+
+        const barDiv = document.createElement('div');
+        barDiv.className = 'barra';
+        barDiv.innerHTML = `<div class="preenchimento" style="width:${pct}%;"></div>`;
+        container.appendChild(barDiv);
+    });
+
+    totalEl.textContent = 'Total de votos: ' + total;
+}
+
+function resetarVotos() {
+    if (confirm('⚠️ Tem certeza que deseja resetar TODOS os votos?')) {
         ['presidente', 'governador', 'senador'].forEach(cargo => {
             votosComputados[cargo] = {};
             const cands = candidatosVotacao[cargo];
@@ -936,271 +1353,40 @@
             }
             votosComputados[cargo]['branco'] = 0;
         });
-    }
-    initVotos();
-
-    function selecionarCargo(cargo, btn) {
-        cargoAtual = cargo;
-        document.querySelectorAll('#votacao .cargo-selector').forEach(el => {
-            el.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        });
-        if (btn) btn.classList.add('active');
-        votoNumeroVotacao = '';
-        votoConfirmadoVotacao = false;
-        limparDisplayVotacao();
-        document.getElementById('votoMessage').textContent = '';
-        document.getElementById('votoMessage').className = 'voto-message';
-    }
-
-    function limparDisplayVotacao() {
-        document.getElementById('displayContent').innerHTML = `
-            <div class="placeholder">Digite o número do candidato</div>
-        `;
-    }
-
-    function atualizarDisplayVotacao() {
-        const display = document.getElementById('displayContent');
-        const maxLen = cargoAtual === 'senador' ? 3 : 2;
-
-        if (votoNumeroVotacao === 'branco') {
-            display.innerHTML = `
-                <div class="foto">⬜</div>
-                <div class="nome">VOTO EM BRANCO</div>
-                <div class="numero-voto">
-                    <span class="digito">B</span>
-                    <span class="digito">R</span>
-                    <span class="digito">A</span>
-                    <span class="digito">N</span>
-                    <span class="digito">C</span>
-                    <span class="digito">O</span>
-                </div>
-            `;
-            return;
-        }
-
-        if (votoNumeroVotacao.length === 0) {
-            display.innerHTML = `<div class="placeholder">Digite o número do candidato</div>`;
-            return;
-        }
-
-        const cand = buscarCandidatoVotacao(votoNumeroVotacao);
-
-        let numeroHtml = '';
-        const padded = votoNumeroVotacao.padEnd(maxLen, '_');
-        for (let i = 0; i < padded.length; i++) {
-            const char = padded[i];
-            const vazio = char === '_';
-            numeroHtml += `<span class="digito ${vazio ? 'vazio' : ''}">${vazio ? '_' : char}</span>`;
-        }
-
-        if (cand) {
-            display.innerHTML = `
-                <div class="foto">${cand.foto || '👤'}</div>
-                <div class="nome">${cand.nome}</div>
-                <div class="partido">${cand.partido || ''}</div>
-                <div class="numero-voto">${numeroHtml}</div>
-            `;
-        } else {
-            display.innerHTML = `
-                <div class="foto">❓</div>
-                <div class="nome" style="color:#ff4444;">Candidato não encontrado</div>
-                <div class="numero-voto">${numeroHtml}</div>
-            `;
-        }
-    }
-
-    function buscarCandidatoVotacao(numero) {
-        const cands = candidatosVotacao[cargoAtual];
-        if (!cands) return null;
-        return cands[numero] || null;
-    }
-
-    function votarPress(num) {
-        if (votoConfirmadoVotacao) {
-            votoConfirmadoVotacao = false;
-            votoNumeroVotacao = '';
-            document.getElementById('votoMessage').textContent = '';
-            document.getElementById('votoMessage').className = 'voto-message';
-        }
-
-        const maxLen = cargoAtual === 'senador' ? 3 : 2;
-
-        if (num === 'branco') {
-            votoNumeroVotacao = 'branco';
-            atualizarDisplayVotacao();
-            return;
-        }
-
-        if (votoNumeroVotacao.length < maxLen) {
-            votoNumeroVotacao += num;
-            atualizarDisplayVotacao();
-        }
-    }
-
-    function votarClear() {
-        votoNumeroVotacao = '';
-        votoConfirmadoVotacao = false;
-        limparDisplayVotacao();
-        document.getElementById('votoMessage').textContent = '';
-        document.getElementById('votoMessage').className = 'voto-message';
-    }
-
-    function votarConfirm() {
-        const msg = document.getElementById('votoMessage');
-
-        if (votoNumeroVotacao === '') {
-            msg.textContent = '⚠️ Digite o número do candidato!';
-            msg.className = 'voto-message erro';
-            return;
-        }
-
-        const cand = buscarCandidatoVotacao(votoNumeroVotacao);
-        if (cand) {
-            if (!votosComputados[cargoAtual]) votosComputados[cargoAtual] = {};
-            if (!votosComputados[cargoAtual][votoNumeroVotacao]) votosComputados[cargoAtual][votoNumeroVotacao] = 0;
-            votosComputados[cargoAtual][votoNumeroVotacao]++;
-
-            msg.textContent = '✅ Voto confirmado para ' + cand.nome + ' (' + cand.partido + ')';
-            msg.className = 'voto-message sucesso';
-            votoConfirmadoVotacao = true;
-
-            setTimeout(() => {
-                votoNumeroVotacao = '';
-                votoConfirmadoVotacao = false;
-                limparDisplayVotacao();
-                msg.textContent = '';
-                msg.className = 'voto-message';
-                renderResultados(cargoAtual);
-            }, 2500);
-        } else {
-            msg.textContent = '❌ Número inválido para ' + cargoAtual;
-            msg.className = 'voto-message erro';
-            votoNumeroVotacao = '';
-            setTimeout(() => {
-                limparDisplayVotacao();
-            }, 1500);
-        }
-    }
-
-    let resultadoCargoAtual = 'presidente';
-
-    function mostrarResultado(cargo, btn) {
-        if (btn) {
-            document.querySelectorAll('#votacao .cargo-selector').forEach(el => {
-                el.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            });
-            btn.classList.add('active');
-        }
-        resultadoCargoAtual = cargo || resultadoCargoAtual;
         renderResultados(resultadoCargoAtual);
-    }
 
-    function renderResultados(cargo) {
-        const container = document.getElementById('resultStats');
-        const totalEl = document.getElementById('resultTotal');
-        const votosCargo = votosComputados[cargo] || {};
-        const cands = candidatosVotacao[cargo] || {};
-
-        let total = 0;
-        let resultados = [];
-
-        for (let num in votosCargo) {
-            const qtd = votosCargo[num] || 0;
-            total += qtd;
-            const cand = cands[num];
-            resultados.push({
-                numero: num,
-                nome: cand ? cand.nome : 'Voto nulo',
-                partido: cand ? cand.partido : '',
-                foto: cand ? cand.foto : '❓',
-                votos: qtd
-            });
-        }
-
-        resultados.sort((a, b) => b.votos - a.votos);
-
-        container.innerHTML = '';
-        if (total === 0) {
-            container.innerHTML = '<p style="text-align:center;opacity:0.6;padding:20px;">Nenhum voto computado ainda.</p>';
-            totalEl.textContent = 'Total de votos: 0';
-            return;
-        }
-
-        const comVotos = resultados.filter(r => r.votos > 0);
-
-        comVotos.forEach(r => {
-            const pct = Math.round((r.votos / total) * 100);
-            const div = document.createElement('div');
-            div.className = 'resultado-item';
-            div.innerHTML = `
-                <div class="info">
-                    <span class="foto">${r.foto}</span>
-                    <div>
-                        <div class="nome">${r.nome}</div>
-                        <div class="detalhe">Nº ${r.numero} ${r.partido ? '- ' + r.partido : ''}</div>
-                    </div>
-                </div>
-                <div class="votos">${r.votos} votos</div>
-            `;
-            container.appendChild(div);
-
-            const barDiv = document.createElement('div');
-            barDiv.className = 'barra';
-            barDiv.innerHTML = `<div class="preenchimento" style="width:${pct}%;"></div>`;
-            container.appendChild(barDiv);
-        });
-
-        totalEl.textContent = 'Total de votos: ' + total;
-    }
-
-    function resetarVotos() {
-        if (confirm('⚠️ Tem certeza que deseja resetar TODOS os votos?')) {
-            ['presidente', 'governador', 'senador'].forEach(cargo => {
-                votosComputados[cargo] = {};
-                const cands = candidatosVotacao[cargo];
-                for (let num in cands) {
-                    votosComputados[cargo][num] = 0;
-                }
-                votosComputados[cargo]['branco'] = 0;
-            });
-            renderResultados(resultadoCargoAtual);
-
-            const msg = document.getElementById('votoMessage');
-            msg.textContent = '🔄 Todos os votos foram resetados!';
+        const msg = document.getElementById('votoMessage');
+        msg.textContent = '🔄 Todos os votos foram resetados!';
+        msg.className = 'voto-message';
+        msg.style.color = '#ffd700';
+        msg.style.background = 'rgba(255,215,0,0.1)';
+        msg.style.border = '1px solid #ffd700';
+        setTimeout(() => {
+            msg.textContent = '';
             msg.className = 'voto-message';
-            msg.style.color = '#ffd700';
-            msg.style.background = 'rgba(255,215,0,0.1)';
-            msg.style.border = '1px solid #ffd700';
-            setTimeout(() => {
-                msg.textContent = '';
-                msg.className = 'voto-message';
-                msg.style.color = '';
-                msg.style.background = '';
-                msg.style.border = '';
-            }, 3000);
-        }
+            msg.style.color = '';
+            msg.style.background = '';
+            msg.style.border = '';
+        }, 3000);
     }
+}
 
-    // ================================================================
-    // INICIALIZAÇÃO
-    // ================================================================
-    document.addEventListener('DOMContentLoaded', function() {
-        // Checklist
-        document.querySelectorAll('#check input[type="checkbox"]').forEach((cb, i) => {
-            const saved = localStorage.getItem('check_' + i);
-            if (saved !== null) cb.checked = saved === 'true';
-        });
-        atualizar();
-
-        // Partidos
-        renderParties();
-
-        // Resultados da votação
-        renderResultados('presidente');
-
-        // Display da votação
-        limparDisplayVotacao();
+// ================================================================
+// INICIALIZAÇÃO
+// ================================================================
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#check input[type="checkbox"]').forEach((cb, i) => {
+        const saved = localStorage.getItem('check_' + i);
+        if (saved !== null) cb.checked = saved === 'true';
     });
+    atualizar();
+    renderParties();
+    renderResultados('presidente');
+    limparDisplayVotacao();
+    if (document.getElementById('researchCandidates')) {
+        renderPesquisa('todos');
+    }
+});
 </script>
 
 </body>
