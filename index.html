@@ -1398,5 +1398,23 @@ document.addEventListener('DOMContentLoaded', function() {
 ">
   <img src="AddText_08-17-10.40.30.png" alt="Instalar App" width="40" height="40" id="installBtn">
 </div>
+<script>
+  let deferredPrompt;
+  const installMenu = document.getElementById('installMenu');
+  const installBtn = document.getElementById('installBtn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installMenu.style.display = 'block';
+  });
+
+  installBtn.addEventListener('click', async () => {
+    installMenu.style.display = 'none';
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  });
+</script>
 </body>
 </html>
