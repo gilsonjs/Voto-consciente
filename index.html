@@ -548,11 +548,11 @@
 
 </div>
 
-<!-- COMPARTILHAR -->
-<div style="position:fixed;top:12px;right:16px;z-index:9999;">
+<! COMPARTILHAR -->
+<div style="position:fixed;top:8px;right:10px;z-index:9999;">
     <button class="share-fab" onclick="toggleShare()">
-        <span style="font-size:20px;">⋯</span>
-        <span style="font-size:13px;color:#333;font-weight:600;">Compartilhar</span>
+        <span style="font-size:14px;">⋯</span>
+        <span style="font-size:11px;color:#333;font-weight:600;">Compartilhar</span>
     </button>
     <div class="share-popup" id="sharePopup">
         <p>📢 Compartilhe!</p>
@@ -1388,33 +1388,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-<div id="installMenu" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: transparent;
-  cursor: pointer;
-  display: none;
-">
-  <img src="AddText_08-17-10.40.30.png" alt="Instalar App" width="40" height="40" id="installBtn">
-</div>
-<script>
-  let deferredPrompt;
-  const installMenu = document.getElementById('installMenu');
-  const installBtn = document.getElementById('installBtn');
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installMenu.style.display = 'block';
-  });
-
-  installBtn.addEventListener('click', async () => {
-    installMenu.style.display = 'none';
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  });
-</script>
 </body>
 </html>
