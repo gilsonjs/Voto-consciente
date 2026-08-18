@@ -222,8 +222,23 @@
     <button class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
         <span>☰</span> Menu de Opções
     </button>
+<div style="display:flex;gap:8px;">
+  <!-- Botão Menu -->
+  <button onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')"
+          style="background:#800000;color:#fff;font-weight:600;
+                 border:none;border-radius:6px;padding:6px 10px;
+                 box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
+    ☰ Menu de Opções
+  </button>
 
-    <div class="nav" id="menu-opcoes">
+  <!-- Botão Baixar -->
+  <button onclick="alert('Para instalar: No Android use o menu ⋮ → Adicionar à tela inicial. No iPhone use o botão compartilhar → Adicionar à Tela de Início.')"
+          style="background:#800000;color:#fff;font-weight:600;
+                 border:none;border-radius:6px;padding:6px 10px;
+                 box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
+    ⬇ Baixar
+  </button>
+</div>    <div class="nav" id="menu-opcoes">
         <button onclick="mostrar('check')" class="active" id="btn-check">✅ Checklist</button>
         <button onclick="mostrar('edu')" id="btn-edu">📚 Educação</button>
         <button onclick="mostrar('partidos')" id="btn-partidos">🏛️ Partidos</button>
