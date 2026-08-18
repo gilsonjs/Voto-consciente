@@ -1,4 +1,210 @@
-    // ===== SIMULADOR DE URNA =====
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voto Consciente 2026</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --primary: #1b3b6f;
+            --secondary: #2196F3;
+            --border: #cccccc;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --primary: #2196F3;
+            --secondary: #64b5f6;
+            --border: #444444;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .urna-display {
+            background: #e8ecef;
+            color: #000;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .keypad button {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .keypad .btn-branco { background: #ffffff; color: #000; border: 1px solid #000; }
+        .keypad .btn-corrige { background: #d9534f; color: #fff; }
+        .keypad .btn-confirma { background: #5cb85c; color: #fff; }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-color);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .quiz-option.correct { background: #d4edda; color: #155724; }
+        .quiz-option.wrong { background: #f8d7da; color: #721c24; }
+        .quiz-option.disabled { pointer-events: none; }
+
+        #sharePopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Voto Consciente 2026</h1>
+    <div>
+        <button class="btn" onclick="toggleTheme()">🌓 Alternar Tema</button>
+        <button class="btn" onclick="toggleShare()">🔗 Compartilhar</button>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Simulador de Urna Eletrônica</h2>
+    <div class="urna-display">
+        <div id="simNumber">_ _ _ _ _</div>
+        <div id="simCandidate" style="margin-top: 10px; font-size: 0.9rem; color: #555;">Digite o número do candidato</div>
+    </div>
+    
+    <div class="keypad">
+        <button onclick="simPress('1')">1</button>
+        <button onclick="simPress('2')">2</button>
+        <button onclick="simPress('3')">3</button>
+        <button onclick="simPress('4')">4</button>
+        <button onclick="simPress('5')">5</button>
+        <button onclick="simPress('6')">6</button>
+        <button onclick="simPress('7')">7</button>
+        <button onclick="simPress('8')">8</button>
+        <button onclick="simPress('9')">9</button>
+        <button onclick="simPress('0')">0</button>
+        <button class="btn-branco" onclick="simPress('branco')">BRANCO</button>
+        <button class="btn-corrige" onclick="simClear()">CORRIGE</button>
+        <button class="btn-confirma" style="grid-column: span 3;" onclick="simConfirm()">CONFIRMA</button>
+    </div>
+    <div id="simResult" style="margin-top: 15px; text-align: center; font-weight: bold;"></div>
+</div>
+
+<div class="container">
+    <h2>Pesquisa de Candidatos</h2>
+    <input type="text" id="candidateName" placeholder="Nome do Candidato" style="width: 70%; padding: 8px;">
+    <button class="btn" onclick="searchCandidate()">Google</button>
+    <button class="btn" onclick="searchTSE()">TSE</button>
+    <button class="btn" onclick="searchFichaLimpa()">Ficha Limpa</button>
+</div>
+
+<div class="container" id="quiz">
+    <h2>Quiz do Eleitor</h2>
+    <p>O voto no Brasil é obrigatório para cidadãos alfabetizados entre 18 e 70 anos?</p>
+    <button class="quiz-option" onclick="checkQuiz(this, true)">Sim, é obrigatório nessa faixa etária.</button>
+    <button class="quiz-option" onclick="checkQuiz(this, false)">Não, o voto é opcional para todos.</button>
+</div>
+
+<div id="sharePopup">
+    <h3>Compartilhar WebApp</h3>
+    <p>Copie o link abaixo para enviar aos seus amigos:</p>
+    <button class="btn" onclick="copiarLink()">Copiar Link</button>
+    <button class="btn" onclick="toggleShare()">Fechar</button>
+</div>
+
+<script>
+    // Tabela de legendas e candidatos simulados
+    let simNumber = '';
+    const candidateDB = {
+        '13': 'PT - Partido dos Trabalhadores',
+        '22': 'PL - Partido Liberal',
+        '15': 'MDB - Movimento Democrático Brasileiro',
+        '45': 'PSDB - Partido da Social Democracia Brasileira',
+        '55': 'PSD - Partido Social Democrático',
+        '10': 'Republicanos',
+        '40': 'PSB - Partido Socialista Brasileiro',
+        '12': 'PDT - Partido Trabalhista Brasileiro',
+        '50': 'PSOL - Partido Socialismo e Liberdade',
+        '77': 'Solidariedade',
+        '44': 'União Brasil',
+        '11': 'Progressistas',
+        '30': 'Partido Novo'
+    };
+
     function simPress(val) {
         const display = document.getElementById('simNumber');
         const name = document.getElementById('simCandidate');
@@ -49,10 +255,6 @@
         }
     }
 
-    function resetQuiz() {
-        mostrar('quiz');
-    }
-
     // ===== PESQUISA DE CANDIDATOS =====
     function getCandidateQuery() {
         return encodeURIComponent(document.getElementById('candidateName').value.trim());
@@ -73,25 +275,10 @@
         if (q) window.open(`https://www.google.com/search?q=${q}+ficha+limpa+processo`, '_blank');
     }
 
-    function searchNews() {
-        const q = getCandidateQuery();
-        if (q) window.open(`https://www.google.com/search?q=${q}&tbm=nws`, '_blank');
-    }
-
-    function searchTwitter() {
-        const q = getCandidateQuery();
-        if (q) window.open(`https://x.com/search?q=${q}`, '_blank');
-    }
-
-    function searchWikipedia() {
-        const q = getCandidateQuery();
-        if (q) window.open(`https://pt.wikipedia.org/w/index.php?search=${q}`, '_blank');
-    }
-
     // ===== COMPARTILHAR =====
     function toggleShare() {
         const popup = document.getElementById('sharePopup');
-        popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
     }
 
     function copiarLink() {
@@ -110,11 +297,6 @@
             body.setAttribute('data-theme', 'dark');
         }
     }
-
-    // Inicialização da lista de partidos ao carregar a página
-    document.addEventListener('DOMContentLoaded', () => {
-        renderParties();
-    });
 </script>
 
 </body>
