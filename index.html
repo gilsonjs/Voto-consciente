@@ -227,11 +227,50 @@
           style="background:#800000;color:#fff;font-weight:600;
                  border:none;border-radius:6px;padding:6px 10px;
                  box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
+    <div style="display:flex;gap:8px;">
+  <button onclick="toggleMenu()"
+          style="background:#800000;color:#fff;font-weight:600;
+                 border:none;border-radius:6px;padding:6px 10px;
+                 box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
     ☰ Menu de Opções
   </button>
 
-  <!-- Botão Baixar -->
-  <button onclick="alert('Para instalar: No Android use o menu ⋮ → Adicionar à tela inicial. No iPhone use o botão compartilhar → Adicionar à Tela de Início.')"
+  <button onclick="document.getElementById('msg').style.display='block'"
+          style="background:#800000;color:#fff;font-weight:600;
+                 border:none;border-radius:6px;padding:6px 10px;
+                 box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
+    ⬇ Baixar
+  </button>
+</div>
+
+<div id="menu-opcoes" style="display:none;
+     background:#f9f9f9;border:1px solid #ccc;
+     padding:10px;margin-top:10px;border-radius:6px;">
+  <ul style="list-style:none;padding:0;margin:0;">
+    <li>Instalar na tela inicial</li>
+    <li>Configurações</li>
+    <li>Ajuda</li>
+  </ul>
+</div>
+
+<p id="msg" style="display:none;margin-top:10px;color:#800000;font-weight:600;">
+  Para instalar: No Android use o menu ⋮ → Adicionar à tela inicial.  
+  No iPhone use o botão compartilhar → Adicionar à Tela de Início.
+</p>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('menu-opcoes');
+  menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
+document.addEventListener('click', function(event) {
+  const menu = document.getElementById('menu-opcoes');
+  const button = event.target.closest('button');
+  if (menu.style.display === 'block' && !menu.contains(event.target) && !button) {
+    menu.style.display = 'none';
+  }
+});
+</script>  <button onclick="alert('Para instalar: No Android use o menu ⋮ → Adicionar à tela inicial. No iPhone use o botão compartilhar → Adicionar à Tela de Início.')"
           style="background:#800000;color:#fff;font-weight:600;
                  border:none;border-radius:6px;padding:6px 10px;
                  box-shadow:2px 2px 4px rgba(0,0,0,0.3);">
@@ -1404,4 +1443,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </body>
-</html>
+</html>
