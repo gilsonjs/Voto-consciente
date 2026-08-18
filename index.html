@@ -1,60 +1,40 @@
         '77': 'Solidariedade',
-        '30': 'Partido Novo',
         '44': 'União Brasil',
-        '25': 'PRD',
-        '10': 'Republicanos',
-        '11': 'Progressistas (PP)',
-        '55': 'PSD'
+        '11': 'Progressistas',
+        '30': 'Partido Novo'
     };
 
-    function updateSimDisplay() {
-        const display = document.getElementById('simNumber');
-        const candidate = document.getElementById('simCandidate');
-        
-        if (!display || !candidate) return;
-
-        if (simNumber === '') {
-            display.textContent = '_ _ _ _ _';
-            candidate.textContent = 'Digite o número do candidato';
-        } else if (simNumber === 'BRANCO') {
-            display.textContent = 'BRANCO';
-            candidate.textContent = 'Voto em Branco';
-        } else {
-            display.textContent = simNumber;
-            if (candidateDB[simNumber]) {
-                candidate.textContent = 'Candidato: ' + candidateDB[simNumber];
-            } else {
-                candidate.textContent = 'Candidato Não Cadastrado (Voto Nulo)';
-            }
-        }
-    }
-
     function simPress(val) {
+        const display = document.getElementById('simNumber');
+        const name = document.getElementById('simCandidate');
+        
         if (val === 'branco') {
             simNumber = 'BRANCO';
-        } else if (simNumber !== 'BRANCO' && simNumber.length < 5) {
-            simNumber += val;
+            display.textContent = 'BRANCO';
+            name.textContent = 'Voto em Branco';
+            return;
         }
-        updateSimDisplay();
+
+        if (simNumber === 'BRANCO') simNumber = '';
+        if (simNumber.length < 5) {
+            simNumber += val;
+            display.textContent = simNumber.padEnd(5, ' _');
+            name.textContent = candidateDB[simNumber] || 'Candidato Desconhecido / Voto Nulo';
+        }
     }
 
     function simClear() {
         simNumber = '';
+        document.getElementById('simNumber').textContent = '_ _ _ _ _';
+        document.getElementById('simCandidate').textContent = 'Digite o número do candidato';
         document.getElementById('simResult').textContent = '';
-        updateSimDisplay();
     }
 
     function simConfirm() {
+        if (!simNumber) return;
         const result = document.getElementById('simResult');
-        if (simNumber === '') {
-            result.textContent = '⚠️ Digite um número ou escolha BRANCO antes de confirmar.';
-            return;
-        }
-        
-        result.innerHTML = '🔊 <strong style="color:var(--gold); font-size:1.2rem;">FIM!</strong> Seu voto foi registrado no simulador com sucesso.';
-        setTimeout(() => {
-            simClear();
-        }, 3000);
+        result.textContent = '🔊 FIM! Seu voto simulado para ' + (candidateDB[simNumber] || simNumber) + ' foi registrado com sucesso.';
+        setTimeout(() => { simClear(); }, 3000);
     }
 
     // ===== QUIZ =====
@@ -71,125 +51,52 @@
             btn.classList.add('correct');
         } else {
             btn.classList.add('wrong');
-            options.forEach(opt => {
-                if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes('true')) {
-                    opt.classList.add('correct');
-                }
-            });
-        }
-        calculateQuizResult();
-    }
-
-    function calculateQuizResult() {
-        const correctAnswers = document.querySelectorAll('.quiz-option.correct:not(.disabled)').length;
-        const totalAnswered = document.querySelectorAll('.quiz-option.disabled').length / 3; 
-        const resultDiv = document.getElementById('quizResult');
-
-        if (totalAnswered === 5) {
-            const score = document.querySelectorAll('.quiz-option.correct').length;
-            resultDiv.textContent = `🎯 Você acertou ${score} de 5 perguntas!`;
         }
     }
 
     function resetQuiz() {
-        const container = document.getElementById('quizContainer');
-        document.getElementById('quizResult').textContent = '';
-        
-        const questions = [
-            {
-                q: "1. O que é voto consciente?",
-                opts: [
-                    { t: "Votar no candidato mais famoso", c: false },
-                    { t: "Votar baseado em informações verificáveis", c: true },
-                    { t: "Votar sempre no mesmo partido", c: false }
-                ]
-            },
-            {
-                q: "2. Qual documento é obrigatório para votar?",
-                opts: [
-                    { t: "Apenas o título de eleitor", c: false },
-                    { t: "Documento oficial com foto", c: true },
-                    { t: "Apenas o comprovante de residência", c: false }
-                ]
-            },
-            {
-                q: "3. Pode usar celular na cabine de votação?",
-                opts: [
-                    { t: "Sim, pode tirar foto", c: false },
-                    { t: "Não, é estritamente proibido", c: true },
-                    { t: "Apenas para consultar a cola eleitoral", c: false }
-                ]
-            },
-            {
-                q: "4. O que acontece com o voto em branco?",
-                opts: [
-                    { t: "Vai para o candidato vencedor", c: false },
-                    { t: "Não é contabilizado como voto válido", c: true },
-                    { t: "Anula a eleição se for maioria", c: false }
-                ]
-            },
-            {
-                q: "5. Qual a idade mínima para o voto facultativo?",
-                opts: [
-                    { t: "18 anos", c: false },
-                    { t: "16 anos", c: true },
-                    { t: "21 anos", c: false }
-                ]
-            }
-        ];
-
-        let html = '';
-        questions.forEach(q => {
-            html += `<div class="quiz-question"><h4>${q.q}</h4>`;
-            q.opts.forEach(o => {
-                html += `<button class="quiz-option" onclick="checkQuiz(this, ${o.c})">${o.t}</button>`;
-            });
-            html += `</div>`;
-        });
-        container.innerHTML = html;
+        mostrar('quiz');
     }
 
     // ===== PESQUISA DE CANDIDATOS =====
+    function getCandidateQuery() {
+        return encodeURIComponent(document.getElementById('candidateName').value.trim());
+    }
+
     function searchCandidate() {
-        const name = document.getElementById('candidateName').value;
-        if (!name.trim()) return alert('Digite o nome do candidato!');
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(name)}`, '_blank');
+        const q = getCandidateQuery();
+        if (q) window.open(`https://www.google.com/search?q=${q}`, '_blank');
     }
 
     function searchTSE() {
-        const name = document.getElementById('candidateName').value;
-        if (!name.trim()) return alert('Digite o nome do candidato!');
-        window.open(`https://divulgacandcontas.tse.jus.br/divulga/#/candidatos?q=${encodeURIComponent(name)}`, '_blank');
+        const q = getCandidateQuery();
+        if (q) window.open(`https://divulgacandcontas.tse.jus.br/divulga/#/busca?q=${q}`, '_blank');
     }
 
     function searchFichaLimpa() {
-        const name = document.getElementById('candidateName').value;
-        if (!name.trim()) return alert('Digite o nome do candidato!');
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' ficha limpa processo')}`, '_blank');
+        const q = getCandidateQuery();
+        if (q) window.open(`https://www.google.com/search?q=${q}+ficha+limpa+processo`, '_blank');
     }
 
     function searchNews() {
-        const name = document.getElementById('candidateName').value;
-        if (!name.trim()) return alert('Digite o nome do candidato!');
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(name)}&tbm=nws`, '_blank');
+        const q = getCandidateQuery();
+        if (q) window.open(`https://www.google.com/search?q=${q}&tbm=nws`, '_blank');
     }
 
     function searchTwitter() {
-        const name = document.getElementById('candidateName').value;
-        if (!name.trim()) return alert('Digite o nome do candidato!');
-        window.open(`https://x.com/search?q=${encodeURIComponent(name)}`, '_blank');
+        const q = getCandidateQuery();
+        if (q) window.open(`https://x.com/search?q=${q}`, '_blank');
     }
 
     function searchWikipedia() {
-        const name = document.getElementById('candidateName').value;
-        if (!name.trim()) return alert('Digite o nome do candidato!');
-        window.open(`https://pt.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(name)}`, '_blank');
+        const q = getCandidateQuery();
+        if (q) window.open(`https://pt.wikipedia.org/w/index.php?search=${q}`, '_blank');
     }
 
-    // ===== COMPARTILHAMENTO =====
+    // ===== COMPARTILHAR =====
     function toggleShare() {
         const popup = document.getElementById('sharePopup');
-        popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+        popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
     }
 
     function copiarLink() {
@@ -198,24 +105,21 @@
         toggleShare();
     }
 
-    // ===== TEMA CLARO/ESCURO =====
+    // ===== TEMA CLARO / ESCURO =====
     function toggleTheme() {
         const body = document.body;
-        const btn = document.querySelector('.theme-toggle');
-        if (body.getAttribute('data-theme') === 'dark') {
+        const currentTheme = body.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
             body.removeAttribute('data-theme');
-            btn.textContent = '🌙';
         } else {
             body.setAttribute('data-theme', 'dark');
-            btn.textContent = '☀️';
         }
     }
 
-    // Inicialização ao carregar a página
-    window.onload = function() {
+    // Inicialização da lista de partidos ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
         renderParties();
-        atualizar();
-    };
+    });
 </script>
 
 </body>
