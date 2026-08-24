@@ -11,88 +11,124 @@
 <link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
 
 <style>
+/* Reset e base */
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
-.container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px}
+
+/* Container responsivo */
+.container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px;width:100%}
+
+/* Header */
 header{text-align:center;padding:24px 0;position:relative}
-header h1{font-size:1.8rem;margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
-header p{opacity:0.85;font-size:0.9rem}
-.card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border-radius:20px;padding:20px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.2)}
-.card h2{font-size:1.2rem;margin-bottom:14px;color:#ffd700}
-.card h3{font-size:1rem;margin:14px 0 6px;color:#a8e6cf}
-.card p,.card li{font-size:0.9rem;line-height:1.6;opacity:0.95}
+header h1{font-size:clamp(1.4rem, 5vw, 1.8rem);margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
+header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
+.logo-header{width:clamp(60px, 15vw, 80px);height:clamp(60px, 15vw, 80px);border-radius:16px;object-fit:contain;box-shadow:0 4px 10px rgba(0,0,0,0.3);border:2px solid rgba(255,255,255,0.2)}
+
+/* Cards responsivos */
+.card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:20px;padding:clamp(14px, 3vw, 20px);margin-bottom:16px;border:1px solid rgba(255,255,255,0.2)}
+.card h2{font-size:clamp(1rem, 3vw, 1.2rem);margin-bottom:14px;color:#ffd700}
+.card h3{font-size:clamp(0.85rem, 2.5vw, 1rem);margin:14px 0 6px;color:#a8e6cf}
+.card p,.card li{font-size:clamp(0.8rem, 2.2vw, 0.9rem);line-height:1.6;opacity:0.95}
 .card ul{padding-left:18px}
 .card li{margin-bottom:8px}
-.btn{display:block;width:100%;padding:14px;background:#ffd700;color:#0d3b1a;border:none;border-radius:12px;font-size:1rem;font-weight:bold;cursor:pointer;margin-top:12px}
+
+/* Botões */
+.btn{display:block;width:100%;padding:14px;background:#ffd700;color:#0d3b1a;border:none;border-radius:12px;font-size:clamp(0.9rem, 2.5vw, 1rem);font-weight:bold;cursor:pointer;margin-top:12px;touch-action:manipulation}
+
+/* Checklist */
 .checklist-item{display:flex;align-items:flex-start;margin-bottom:12px}
-.checklist-item input{width:20px;height:20px;margin-right:10px;margin-top:2px;accent-color:#ffd700}
+.checklist-item input{width:clamp(18px, 4vw, 20px);height:clamp(18px, 4vw, 20px);margin-right:10px;margin-top:2px;flex-shrink:0;accent-color:#ffd700;cursor:pointer}
+.checklist-item label{font-size:clamp(0.8rem, 2.2vw, 0.9rem);cursor:pointer}
+
+/* Progresso */
 .progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.2);border-radius:4px;margin-top:12px;overflow:hidden}
 .progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
-.progress-text{text-align:center;margin-top:8px;font-size:0.85rem;font-weight:bold}
-.icon{font-size:2.2rem;text-align:center;margin-bottom:8px}
-.nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:12px;background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
+.progress-text{text-align:center;margin-top:8px;font-size:clamp(0.75rem, 2vw, 0.85rem);font-weight:bold}
+
+/* Menu de navegação */
+.menu-toggle{background:#800020;color:white;padding:clamp(10px, 2.5vw, 14px) 16px;font-size:clamp(14px, 3vw, 16px);font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2);touch-action:manipulation}
+.menu-toggle span{font-size:clamp(20px, 4vw, 24px)}
+
+.nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:clamp(10px, 2vw, 12px);background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
 .nav.aberto{display:flex}
-.nav button{flex:0 0 auto;padding:10px 16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:0.8rem;cursor:pointer;white-space:nowrap;text-align:left}
+.nav button{flex:0 0 auto;padding:clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:clamp(0.7rem, 2vw, 0.8rem);cursor:pointer;white-space:nowrap;text-align:left;touch-action:manipulation}
 .nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
+
+/* Seções */
 .secaoo{display:none;animation:fadeIn 0.3s}
 .secaoo.ativa{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.partido{background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s}
+
+/* Partidos */
+.partido{background:rgba(255,255,255,0.06);border-radius:12px;padding:clamp(10px, 2vw, 12px);margin-bottom:10px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s}
 .partido:hover{background:rgba(255,255,255,0.12);transform:translateY(-1px)}
-.numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:0.8rem}
-.dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:12px;margin:8px 0;font-size:0.85rem}
-.vc-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.vc-filter{padding:5px 10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;font-size:0.7rem;cursor:pointer;color:#fff}
-.vc-filter.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
-.vc-search{width:100%;padding:10px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:0.9rem;margin-bottom:12px}
-.vc-search::placeholder{color:rgba(255,255,255,0.5)}
+.numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:clamp(0.7rem, 1.8vw, 0.8rem)}
+
 .vc-party-grid{display:grid;grid-template-columns:1fr;gap:10px}
 .vc-party-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.vc-party-logo{width:48px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.85rem;background:#fff;color:#0d3b1a;box-shadow:0 2px 5px rgba(0,0,0,0.3);border:1px solid rgba(0,0,0,0.1);flex-shrink:0}
-.vc-party-info{flex:1}
-.vc-party-name{font-weight:bold;font-size:0.95rem}
-.vc-party-meta{font-size:0.7rem;opacity:0.7;margin-top:2px}
-.vc-party-desc{font-size:0.8rem;line-height:1.5;opacity:0.85;margin-top:6px}
-.vc-party-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
-.vc-tag{padding:2px 7px;border-radius:8px;font-size:0.65rem;background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
-.vc-party-links{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.vc-party-links a{padding:4px 8px;background:rgba(255,255,255,0.1);border-radius:6px;font-size:0.65rem;color:#a8e6cf;text-decoration:none;border:1px solid rgba(255,255,255,0.15)}
-.vc-detail{display:none;background:rgba(0,0,0,0.25);border-radius:10px;padding:12px;margin-top:8px;font-size:0.75rem}
+.vc-party-logo{width:clamp(40px, 10vw, 48px);height:clamp(40px, 10vw, 48px);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:clamp(0.7rem, 1.8vw, 0.85rem);background:#fff;color:#0d3b1a;box-shadow:0 2px 5px rgba(0,0,0,0.3);border:1px solid rgba(0,0,0,0.1);flex-shrink:0}
+.vc-party-name{font-weight:bold;font-size:clamp(0.85rem, 2.2vw, 0.95rem)}
+.vc-party-meta{font-size:clamp(0.6rem, 1.6vw, 0.7rem);opacity:0.7;margin-top:2px}
+.vc-party-desc{font-size:clamp(0.7rem, 2vw, 0.8rem);line-height:1.5;opacity:0.85;margin-top:6px}
+.vc-tag{padding:2px 7px;border-radius:8px;font-size:clamp(0.55rem, 1.4vw, 0.65rem);background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
+
+.vc-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.vc-filter{padding:clamp(4px, 1.2vw, 5px) clamp(8px, 2vw, 10px);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;font-size:clamp(0.6rem, 1.6vw, 0.7rem);cursor:pointer;color:#fff;touch-action:manipulation}
+.vc-filter.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
+
+.vc-search{width:100%;padding:clamp(8px, 2vw, 10px) 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:clamp(0.8rem, 2.2vw, 0.9rem);margin-bottom:12px}
+.vc-search::placeholder{color:rgba(255,255,255,0.5)}
+
+.vc-detail{display:none;background:rgba(0,0,0,0.25);border-radius:10px;padding:clamp(10px, 2vw, 12px);margin-top:8px;font-size:clamp(0.65rem, 1.8vw, 0.75rem)}
 .vc-detail.show{display:block}
-.vc-detail-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)}
-.vc-detail-logo{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:0.7rem;background:#fff;color:#0d3b1a;flex-shrink:0}
-.vc-detail-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
-.vc-detail-row:last-child{border:none}
-.vc-toggle{color:#ffd700;font-size:0.7rem;cursor:pointer;margin-top:6px;display:inline-block}
-.vc-count{text-align:center;font-size:0.75rem;opacity:0.6;margin-bottom:10px}
-.vc-federation{background:rgba(168,230,207,0.1);border:1px solid rgba(168,230,207,0.3);border-radius:8px;padding:8px;margin-bottom:8px;font-size:0.8rem}
-.vc-federation strong{color:#a8e6cf}
-.research-input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:1rem;margin-bottom:12px}
+.vc-detail-logo{width:clamp(30px, 8vw, 36px);height:clamp(30px, 8vw, 36px);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:clamp(0.6rem, 1.6vw, 0.7rem);background:#fff;color:#0d3b1a;flex-shrink:0}
+.vc-toggle{color:#ffd700;font-size:clamp(0.6rem, 1.6vw, 0.7rem);cursor:pointer;margin-top:6px;display:inline-block;touch-action:manipulation}
+
+/* Federações */
+.vc-federation{background:rgba(168,230,207,0.1);border:1px solid rgba(168,230,207,0.3);border-radius:8px;padding:clamp(6px, 1.5vw, 8px);margin-bottom:8px;font-size:clamp(0.7rem, 2vw, 0.8rem)}
+
+/* Pesquisa */
+.research-input{width:100%;padding:clamp(10px, 2.5vw, 12px) 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:clamp(0.9rem, 2.5vw, 1rem);margin-bottom:12px}
 .research-btns{display:flex;gap:8px;flex-wrap:wrap}
-.research-btns button{flex:1;min-width:140px;padding:10px;background:#ffd700;color:#0d3b1a;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:0.8rem}
+.research-btns button{flex:1;min-width:clamp(100px, 25vw, 140px);padding:clamp(8px, 2vw, 10px);background:#ffd700;color:#0d3b1a;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:clamp(0.7rem, 1.8vw, 0.8rem);touch-action:manipulation}
 .research-btns button.secondary{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3)}
+
+/* Eleições */
 .eleicao-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
 .eleicao-item:last-child{border:none}
-.eleicao-ano{color:#ffd700;font-weight:bold;font-size:1rem}
-.eleicao-desc{font-size:0.82rem;opacity:0.85;margin-top:3px}
+.eleicao-ano{color:#ffd700;font-weight:bold;font-size:clamp(0.9rem, 2.5vw, 1rem)}
+.eleicao-desc{font-size:clamp(0.7rem, 2vw, 0.82rem);opacity:0.85;margin-top:3px}
+
+/* Links */
 .links-grid{display:grid;grid-template-columns:1fr;gap:10px}
-.link-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.1);text-decoration:none;color:#fff;display:block}
-.link-card h3{color:#ffd700;font-size:0.9rem;margin-bottom:4px}
-.link-card p{font-size:0.78rem;opacity:0.7}
-.menu-toggle{background:#800020;color:white;padding:12px 16px;font-size:16px;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2)}
-.share-menu{position:fixed;top:12px;right:12px;z-index:9999}
-.share-btn{background:white;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.3);padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:0.3s;border:none}
-.share-btn span:first-child{font-size:20px;font-weight:bold;line-height:1;color:#333}
-.share-btn span:last-child{font-size:14px;color:#333;font-weight:bold}
-.share-popup{display:none;position:absolute;top:50px;right:0;background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.3);padding:20px;min-width:220px;text-align:center}
-.share-popup p{font-weight:bold;margin-bottom:15px;font-size:16px;color:#1a237e}
-.share-popup a,.share-popup button{width:100%;margin-bottom:8px;padding:10px;border-radius:50px;text-decoration:none;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;color:white}
+.link-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:clamp(10px, 2vw, 12px);border:1px solid rgba(255,255,255,0.1);text-decoration:none;color:#fff;display:block;transition:all 0.3s}
+.link-card h3{color:#ffd700;font-size:clamp(0.8rem, 2.2vw, 0.9rem);margin-bottom:4px}
+.link-card p{font-size:clamp(0.7rem, 1.8vw, 0.78rem);opacity:0.7}
+
+/* Dicas */
+.dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:clamp(10px, 2vw, 12px);margin:8px 0;font-size:clamp(0.75rem, 2vw, 0.85rem)}
+
+/* Compartilhar */
+.share-menu{position:fixed;top:clamp(8px, 2vw, 12px);right:clamp(8px, 2vw, 12px);z-index:9999}
+.share-btn{background:white;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.3);padding:clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px);cursor:pointer;display:flex;align-items:center;gap:8px;transition:0.3s;border:none;touch-action:manipulation}
+.share-btn span:first-child{font-size:clamp(16px, 4vw, 20px);font-weight:bold;line-height:1;color:#333}
+.share-btn span:last-child{font-size:clamp(12px, 2.5vw, 14px);color:#333;font-weight:bold}
+
+.share-popup{display:none;position:absolute;top:50px;right:0;background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.3);padding:clamp(16px, 4vw, 20px);min-width:clamp(180px, 45vw, 220px);text-align:center}
+.share-popup p{font-weight:bold;margin-bottom:15px;font-size:clamp(14px, 3vw, 16px);color:#1a237e}
+.share-popup a,.share-popup button{width:100%;margin-bottom:8px;padding:clamp(8px, 2vw, 10px);border-radius:50px;text-decoration:none;font-size:clamp(12px, 2.5vw, 14px);display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;color:white;touch-action:manipulation}
 .share-wa{background:#25D366}
 .share-fb{background:#1877F2}
 .share-copy{background:#6c63ff}
-.logo-header{width:80px;height:80px;border-radius:16px;object-fit:contain;box-shadow:0 4px 10px rgba(0,0,0,0.3);border:2px solid rgba(255,255,255,0.2)}
+
+/* Footer */
 footer{text-align:center;margin-top:10px;padding:20px 16px 30px}
 footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
+footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
+
+/* ========== RESPONSIVO ========== */
+
+/* Tablets e telas médias */
 @media(min-width:600px){
   .vc-party-grid{grid-template-columns:1fr 1fr}
   .links-grid{grid-template-columns:1fr 1fr}
@@ -101,6 +137,49 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
   .nav button{flex:0 0 auto;text-align:center}
   .menu-toggle{display:none}
 }
+
+/* Telas grandes (desktop) */
+@media(min-width:1024px){
+  .container{max-width:900px;padding:24px 32px}
+  .vc-party-grid{grid-template-columns:1fr 1fr 1fr}
+  .links-grid{grid-template-columns:1fr 1fr 1fr}
+}
+
+/* Telas muito pequenas (smartphones pequenos) */
+@media(max-width:380px){
+  .container{padding:10px;padding-bottom:80px}
+  .card{padding:12px}
+  .research-btns button{min-width:80px;font-size:0.65rem;padding:8px}
+  .vc-filter{padding:3px 6px;font-size:0.55rem}
+  .vc-party-logo{width:32px;height:32px;font-size:0.6rem}
+  .share-popup{min-width:160px;right:-10px}
+  .share-btn span:last-child{display:none}
+}
+
+/* Orientação paisagem em mobile */
+@media(max-height:500px) and (orientation:landscape){
+  header{padding:12px 0}
+  header h1{font-size:1.2rem}
+  .card{padding:12px;margin-bottom:10px}
+  .logo-header{width:48px;height:48px}
+  .nav button{padding:6px 10px;font-size:0.65rem}
+  .menu-toggle{padding:8px 12px;font-size:0.8rem;margin:5px 0}
+}
+
+/* Acessibilidade: preferência por contraste */
+@media(prefers-contrast:high){
+  .card{background:rgba(0,0,0,0.6);border-color:#ffd700}
+  .vc-party-logo{background:#fff;color:#000}
+  .btn{background:#ffd700;color:#000}
+}
+
+/* Modo escuro (já é escuro, mas mantemos consistência) */
+@media(prefers-color-scheme:dark){
+  body{background:linear-gradient(135deg,#1a3f1a 0%,#0a2a0a 100%)}
+}
+
+/* Animação suave para transições */
+*{transition:background-color 0.3s, border-color 0.3s, transform 0.3s}
 </style>
 <base target="_blank">
 </head>
@@ -252,7 +331,7 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 <div id="pesquisa" class="secaoo">
 <div class="card">
 <h2>🔍 Pesquisar Candidato</h2>
-<p style="opacity:0.8;font-size:0.85rem;margin-bottom:12px;">Digite o nome do candidato para verificar informações em fontes oficiais e na internet:</p>
+<p style="opacity:0.8;font-size:clamp(0.75rem, 2vw, 0.85rem);margin-bottom:12px;">Digite o nome do candidato para verificar informações em fontes oficiais e na internet:</p>
 <input type="text" class="research-input" id="candidateName" placeholder="Ex: João da Silva" onkeypress="if(event.key==='Enter')searchCandidate()">
 <div class="research-btns">
 <button onclick="searchCandidate()">🔍 Pesquisar no Google</button>
@@ -268,7 +347,7 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 </div>
 <div class="card">
 <h2>⚠️ O que procurar na pesquisa?</h2>
-<div style="font-size:0.85rem;line-height:1.7;opacity:0.9;">
+<div style="font-size:clamp(0.75rem, 2vw, 0.85rem);line-height:1.7;opacity:0.9;">
 <p>🚩 <strong>Ficha suja:</strong> Candidatos com condenação em segunda instância estão impedidos pela Lei da Ficha Limpa.</p>
 <p>💰 <strong>Financiamento:</strong> Verifique doações de campanha no site do TSE (Prestação de Contas).</p>
 <p>📜 <strong>Mandatos anteriores:</strong> Busque o histórico de projetos aprovados e frequência em sessões.</p>
@@ -283,32 +362,32 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 <div class="card"><h2>📊 Eleições Presidenciais — Resultados Recentes</h2>
 <div class="eleicao-item">
 <div class="eleicao-ano">2022 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 60,3% (50,9 mi)<br><strong>Jair Bolsonaro (PL)</strong> — 39,7% (33,5 mi)<br><span style="opacity:0.7;font-size:0.75rem;">Abstenção: 20,9% | Votos válidos: 84,4 mi</span></div>
+<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 60,3% (50,9 mi)<br><strong>Jair Bolsonaro (PL)</strong> — 39,7% (33,5 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 20,9% | Votos válidos: 84,4 mi</span></div>
 </div>
 <div class="eleicao-item">
 <div class="eleicao-ano">2018 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Jair Bolsonaro (PSL)</strong> — 55,1% (57,8 mi)<br><strong>Fernando Haddad (PT)</strong> — 44,9% (47,0 mi)<br><span style="opacity:0.7;font-size:0.75rem;">Abstenção: 20,3% | Votos válidos: 104,7 mi</span></div>
+<div class="eleicao-desc"><strong>Jair Bolsonaro (PSL)</strong> — 55,1% (57,8 mi)<br><strong>Fernando Haddad (PT)</strong> — 44,9% (47,0 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 20,3% | Votos válidos: 104,7 mi</span></div>
 </div>
 <div class="eleicao-item">
 <div class="eleicao-ano">2014 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Dilma Rousseff (PT)</strong> — 51,6% (54,5 mi)<br><strong>Aécio Neves (PSDB)</strong> — 48,4% (51,0 mi)<br><span style="opacity:0.7;font-size:0.75rem;">Abstenção: 18,5% | Votos válidos: 105,5 mi</span></div>
+<div class="eleicao-desc"><strong>Dilma Rousseff (PT)</strong> — 51,6% (54,5 mi)<br><strong>Aécio Neves (PSDB)</strong> — 48,4% (51,0 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 18,5% | Votos válidos: 105,5 mi</span></div>
 </div>
 <div class="eleicao-item">
 <div class="eleicao-ano">2010 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Dilma Rousseff (PT)</strong> — 56,0% (55,7 mi)<br><strong>José Serra (PSDB)</strong> — 44,0% (43,7 mi)<br><span style="opacity:0.7;font-size:0.75rem;">Abstenção: 19,5% | Votos válidos: 99,4 mi</span></div>
+<div class="eleicao-desc"><strong>Dilma Rousseff (PT)</strong> — 56,0% (55,7 mi)<br><strong>José Serra (PSDB)</strong> — 44,0% (43,7 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 19,5% | Votos válidos: 99,4 mi</span></div>
 </div>
 <div class="eleicao-item">
 <div class="eleicao-ano">2006 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 60,8% (58,3 mi)<br><strong>Geraldo Alckmin (PSDB)</strong> — 39,2% (37,5 mi)<br><span style="opacity:0.7;font-size:0.75rem;">Abstenção: 17,7% | Votos válidos: 95,8 mi</span></div>
+<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 60,8% (58,3 mi)<br><strong>Geraldo Alckmin (PSDB)</strong> — 39,2% (37,5 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 17,7% | Votos válidos: 95,8 mi</span></div>
 </div>
 <div class="eleicao-item">
 <div class="eleicao-ano">2002 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 61,3% (52,8 mi)<br><strong>José Serra (PSDB)</strong> — 38,7% (33,4 mi)<br><span style="opacity:0.7;font-size:0.75rem;">Abstenção: 18,6% | Votos válidos: 86,2 mi</span></div>
+<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 61,3% (52,8 mi)<br><strong>José Serra (PSDB)</strong> — 38,7% (33,4 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 18,6% | Votos válidos: 86,2 mi</span></div>
 </div>
 </div>
 <div class="card">
 <h2>📈 Curiosidades Eleitorais</h2>
-<div style="font-size:0.85rem;line-height:1.7;opacity:0.9;">
+<div style="font-size:clamp(0.75rem, 2vw, 0.85rem);line-height:1.7;opacity:0.9;">
 <p>🗳️ <strong>Eleitores em 2026:</strong> ~156 milhões de brasileiros aptos a votar.</p>
 <p>🖥️ <strong>Urna eletrônica:</strong> Usada desde 1996, sem registro de fraude comprovada.</p>
 <p>⏱️ <strong>Tempo médio de voto:</strong> 1 minuto e 20 segundos por eleitor.</p>
@@ -339,7 +418,7 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 
 <footer>
   <img src="frase-politica-1.png" alt="Se sei que sou um ser político... - Gilson Silva" onerror="this.style.display='none'">
-  <p style="font-size:0.9rem;color:#ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
+  <p style="font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
 </footer>
 
 </div>
