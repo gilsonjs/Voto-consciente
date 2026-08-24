@@ -1,8 +1,9 @@
-@gilsonjs21<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d3b1a">
 <title>Voto Consciente – (Gjs-2026)</title>
 
 <!-- PWA Manifest e Ícones -->
@@ -14,7 +15,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
 .container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px}
-header{text-align:center;padding:24px 0}
+header{text-align:center;padding:24px 0;position:relative}
 header h1{font-size:1.8rem;margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
 header p{opacity:0.85;font-size:0.9rem}
 .card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border-radius:20px;padding:20px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.2)}
@@ -80,6 +81,19 @@ header p{opacity:0.85;font-size:0.9rem}
 .link-card h3{color:#ffd700;font-size:0.9rem;margin-bottom:4px}
 .link-card p{font-size:0.78rem;opacity:0.7}
 .menu-toggle{background:#800020;color:white;padding:12px 16px;font-size:16px;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2)}
+.share-menu{position:fixed;top:12px;right:12px;z-index:9999}
+.share-btn{background:white;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.3);padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:0.3s;border:none}
+.share-btn span:first-child{font-size:20px;font-weight:bold;line-height:1;color:#333}
+.share-btn span:last-child{font-size:14px;color:#333;font-weight:bold}
+.share-popup{display:none;position:absolute;top:50px;right:0;background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.3);padding:20px;min-width:220px;text-align:center}
+.share-popup p{font-weight:bold;margin-bottom:15px;font-size:16px;color:#1a237e}
+.share-popup a, .share-popup button{width:100%;margin-bottom:8px;padding:10px;border-radius:50px;text-decoration:none;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;color:white}
+.share-wa{background:#25D366}
+.share-fb{background:#1877F2}
+.share-copy{background:#6c63ff}
+.logo-header{width:80px;height:80px;border-radius:16px;object-fit:contain;box-shadow:0 4px 10px rgba(0,0,0,0.3);border:2px solid rgba(255,255,255,0.2)}
+footer{text-align:center;margin-top:10px;padding:20px 16px 30px}
+footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 @media(min-width:600px){
   .vc-party-grid{grid-template-columns:1fr 1fr}
   .links-grid{grid-template-columns:1fr 1fr}
@@ -89,23 +103,37 @@ header p{opacity:0.85;font-size:0.9rem}
   .menu-toggle{display:none}
 }
 </style>
-<base target="_blank">
 </head>
 <body>
+
+<!-- MENU DE COMPARTILHAMENTO -->
+<div class="share-menu">
+  <button class="share-btn" onclick="toggleShare()" aria-label="Compartilhar">
+    <span>⋯</span>
+    <span>Compartilhar</span>
+  </button>
+  <div class="share-popup" id="popup-compartilhar">
+    <p>📢 Compartilhe com amigos!</p>
+    <a href="https://wa.me/?text=Confira%20o%20Voto%20Consciente!%20https://gilsonjs.github.io/Voto-consciente" target="_blank" rel="noopener noreferrer" class="share-wa">📱 WhatsApp</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gilsonjs.github.io/Voto-consciente" target="_blank" rel="noopener noreferrer" class="share-fb">👍 Facebook</a>
+    <button onclick="copiarLink()" class="share-copy">📋 Copiar Link</button>
+  </div>
+</div>
+
 <div class="container">
 <header>
-  <div style="margin-bottom: 12px;">
-    <img src="./icone-192.png" alt="Logo Voto Consciente" style="width: 80px; height: 80px; border-radius: 16px; object-fit: contain; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.2);" onerror="this.style.display='none'">
+  <div style="margin-bottom:12px;">
+    <img src="./icone-192.png" alt="Logo Voto Consciente" class="logo-header" onerror="this.style.display='none'">
   </div>
   <h1>Voto Consciente 2026</h1>
   <p>Informação é poder. Vote com consciência!</p>
 </header>
 
-<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')">
+<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')" role="button" aria-label="Abrir menu">
   <span>☰</span> Menu de Opções
 </div>
 
-<div class="nav" id="menu-opcoes">
+<nav class="nav" id="menu-opcoes">
   <button onclick="mostrar('check'); fecharMenu();" class="active" id="btn-check">✅ Checklist</button>
   <button onclick="mostrar('edu'); fecharMenu();" id="btn-edu">📚 Educação</button>
   <button onclick="mostrar('partidos'); fecharMenu();" id="btn-partidos">🏛️ Partidos</button>
@@ -114,17 +142,17 @@ header p{opacity:0.85;font-size:0.9rem}
   <button onclick="mostrar('pesquisa'); fecharMenu();" id="btn-pesquisa">🔍 Pesquisa</button>
   <button onclick="mostrar('eleicoes'); fecharMenu();" id="btn-eleicoes">📊 Eleições</button>
   <button onclick="mostrar('links'); fecharMenu();" id="btn-links">🔗 Links</button>
-</div>
+</nav>
 
 <div id="check" class="secaoo ativa">
 <div class="card"><h2>📋 Checklist do Eleitor Consciente</h2>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Consultei a ficha limpa do candidato</label></div>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Li o plano de governo/propostas</label></div>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Verifiquei o histórico de mandatos anteriores</label></div>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Analisei fontes de financiamento da campanha</label></div>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Comparei propostas com ações passadas</label></div>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Conferi o local e horário de votação</label></div>
-<div class="checklist-item"><input type="checkbox" onchange="atualizar()"><label>Levei título de eleitor e documento com foto</label></div>
+<div class="checklist-item"><input type="checkbox" id="c1" onchange="atualizar()"><label for="c1">Consultei a ficha limpa do candidato</label></div>
+<div class="checklist-item"><input type="checkbox" id="c2" onchange="atualizar()"><label for="c2">Li o plano de governo/propostas</label></div>
+<div class="checklist-item"><input type="checkbox" id="c3" onchange="atualizar()"><label for="c3">Verifiquei o histórico de mandatos anteriores</label></div>
+<div class="checklist-item"><input type="checkbox" id="c4" onchange="atualizar()"><label for="c4">Analisei fontes de financiamento da campanha</label></div>
+<div class="checklist-item"><input type="checkbox" id="c5" onchange="atualizar()"><label for="c5">Comparei propostas com ações passadas</label></div>
+<div class="checklist-item"><input type="checkbox" id="c6" onchange="atualizar()"><label for="c6">Conferi o local e horário de votação</label></div>
+<div class="checklist-item"><input type="checkbox" id="c7" onchange="atualizar()"><label for="c7">Levei título de eleitor e documento com foto</label></div>
 <div class="progress-bar"><div class="progress-fill" id="pb"></div></div><div class="progress-text" id="pt">0% concluído</div></div>
 
 <div class="card"><h2>💡 Dicas para Analisar Candidatos</h2>
@@ -297,23 +325,29 @@ header p{opacity:0.85;font-size:0.9rem}
 <div id="links" class="secaoo">
 <div class="card"><h2>🔗 Links Úteis para Pesquisa</h2>
 <div class="links-grid">
-<a class="link-card" href="https://www.tse.jus.br" target="_blank"><h3>🏛️ TSE — Tribunal Superior Eleitoral</h3><p>Site oficial com dados de candidatos, resultados, estatísticas e normas eleitorais.</p></a>
-<a class="link-card" href="https://divulgacandcontas.tse.jus.br" target="_blank"><h3>📋 DivulgaCandContas</h3><p>Consulte candidatos, prestação de contas, bens declarados e situação eleitoral.</p></a>
-<a class="link-card" href="https://www.fichalimpa.org.br" target="_blank"><h3>⚖️ Ficha Limpa.org</h3><p>Verifique se candidatos têm condenações que os impedem de concorrer.</p></a>
-<a class="link-card" href="https://www.camara.leg.br" target="_blank"><h3>🏛️ Câmara dos Deputados</h3><p>Acompanhe votações, projetos de lei e atuação dos deputados federais.</p></a>
-<a class="link-card" href="https://www12.senado.leg.br" target="_blank"><h3>🏛️ Senado Federal</h3><p>Consulte projetos, votações e atuação dos senadores.</p></a>
-<a class="link-card" href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank"><h3>📋 Partidos Registrados no TSE</h3><p>Lista oficial dos 30 partidos com registro definitivo no TSE.</p></a>
-<a class="link-card" href="https://www.justicaeleitoral.jus.br" target="_blank"><h3>⚖️ Justiça Eleitoral</h3><p>Portal com serviços para eleitores, candidatos e partidos.</p></a>
-<a class="link-card" href="https://www.planalto.gov.br" target="_blank"><h3>🇧🇷 Planalto</h3><p>Site da Presidência da República com informações do governo federal.</p></a>
-<a class="link-card" href="https://www.transparencia.org.br" target="_blank"><h3>🔍 Transparência Brasil</h3><p>ONG que fiscaliza o poder público e combate a corrupção.</p></a>
-<a class="link-card" href="https://www.politize.com.br" target="_blank"><h3>📚 Politize!</h3><p>Educação política de forma simples e acessível para todos.</p></a>
+<a class="link-card" href="https://www.tse.jus.br" target="_blank" rel="noopener noreferrer"><h3>🏛️ TSE — Tribunal Superior Eleitoral</h3><p>Site oficial com dados de candidatos, resultados, estatísticas e normas eleitorais.</p></a>
+<a class="link-card" href="https://divulgacandcontas.tse.jus.br" target="_blank" rel="noopener noreferrer"><h3>📋 DivulgaCandContas</h3><p>Consulte candidatos, prestação de contas, bens declarados e situação eleitoral.</p></a>
+<a class="link-card" href="https://www.fichalimpa.org.br" target="_blank" rel="noopener noreferrer"><h3>⚖️ Ficha Limpa.org</h3><p>Verifique se candidatos têm condenações que os impedem de concorrer.</p></a>
+<a class="link-card" href="https://www.camara.leg.br" target="_blank" rel="noopener noreferrer"><h3>🏛️ Câmara dos Deputados</h3><p>Acompanhe votações, projetos de lei e atuação dos deputados federais.</p></a>
+<a class="link-card" href="https://www12.senado.leg.br" target="_blank" rel="noopener noreferrer"><h3>🏛️ Senado Federal</h3><p>Consulte projetos, votações e atuação dos senadores.</p></a>
+<a class="link-card" href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank" rel="noopener noreferrer"><h3>📋 Partidos Registrados no TSE</h3><p>Lista oficial dos 30 partidos com registro definitivo no TSE.</p></a>
+<a class="link-card" href="https://www.justicaeleitoral.jus.br" target="_blank" rel="noopener noreferrer"><h3>⚖️ Justiça Eleitoral</h3><p>Portal com serviços para eleitores, candidatos e partidos.</p></a>
+<a class="link-card" href="https://www.planalto.gov.br" target="_blank" rel="noopener noreferrer"><h3>🇧🇷 Planalto</h3><p>Site da Presidência da República com informações do governo federal.</p></a>
+<a class="link-card" href="https://www.transparencia.org.br" target="_blank" rel="noopener noreferrer"><h3>🔍 Transparência Brasil</h3><p>ONG que fiscaliza o poder público e combate a corrupção.</p></a>
+<a class="link-card" href="https://www.politize.com.br" target="_blank" rel="noopener noreferrer"><h3>📚 Politize!</h3><p>Educação política de forma simples e acessível para todos.</p></a>
 </div>
 </div>
 </div>
+
+<footer>
+  <img src="frase-politica-1.png" alt="Se sei que sou um ser político... - Gilson Silva" onerror="this.style.display='none'">
+  <p style="font-size:0.9rem;color:#ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
+</footer>
 
 </div>
 
 <script>
+// Service Worker (PWA)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
@@ -321,6 +355,9 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.log('Erro SW:', err));
   });
 }
+
+// Variável global para filtro de partidos
+let currentFilter = 'todos';
 
 function atualizar(){
   var c = document.querySelectorAll('#check input[type="checkbox"]'), m = 0;
@@ -342,9 +379,49 @@ function mostrar(id){
 
 function fecharMenu() {
   const menu = document.getElementById('menu-opcoes');
-  menu.classList.remove('aberto');
+  if(menu) menu.classList.remove('aberto');
 }
 
+// Compartilhamento
+function toggleShare() {
+  const popup = document.getElementById('popup-compartilhar');
+  if (!popup) return;
+  popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+}
+
+function copiarLink() {
+  const link = 'https://gilsonjs.github.io/Voto-consciente';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
+      alert('✅ Link copiado! Compartilhe com seus contatos.');
+    }).catch(() => {
+      fallbackCopy(link);
+    });
+  } else {
+    fallbackCopy(link);
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  alert('✅ Link copiado! Compartilhe com seus contatos.');
+}
+
+// Fecha popup de compartilhamento ao clicar fora
+document.addEventListener('click', function(event) {
+  const menu = document.querySelector('.share-menu');
+  const popup = document.getElementById('popup-compartilhar');
+  if (menu && popup && !menu.contains(event.target)) {
+    popup.style.display = 'none';
+  }
+});
+
+// Dados dos partidos
 const parties = [
   {sigla:'MDB',num:15,nome:'Movimento Democrático Brasileiro',filiados:'2.021.001',fundação:'30/06/1981',pres:'Baleia Rossi',ideologia:'centro',hist:'Fundado em 1966 durante a ditadura militar como MDB. Em 1979 virou PMDB e em 2018 voltou a MDB. É o partido com mais filiados do Brasil.',fed:'Nenhuma'},
   {sigla:'PDT',num:12,nome:'Partido Democrático Trabalhista',filiados:'1.074.679',fundação:'10/11/1981',pres:'Carlos Lupi',ideologia:'centro-esquerda',hist:'Fundado por Leonel Brizola em 1981, reivindica a herança do antigo PTB de Getúlio Vargas. Trabalhista e nacionalista.',fed:'Nenhuma'},
@@ -400,7 +477,7 @@ function renderParties(filter='todos', search=''){
     
     const div = document.createElement('div');
     div.className = 'partido';
-    div.innerHTML = '<div class="vc-party-header">' + badgeHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-header">' + detailBadgeHtml + '<div><strong>' + p.sigla + '</strong> — ' + p.nome + '</div></div><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
+    div.innerHTML = '<div class="vc-party-header">' + badgeHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank" rel="noopener noreferrer">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank" rel="noopener noreferrer">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank" rel="noopener noreferrer">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-header">' + detailBadgeHtml + '<div><strong>' + p.sigla + '</strong> — ' + p.nome + '</div></div><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
     grid.appendChild(div);
   });
 }
@@ -468,57 +545,6 @@ document.addEventListener('DOMContentLoaded', function(){
     renderParties();
     atualizar();
 });
-</script>
-
-<footer style="text-align: center; margin-top: 5px; padding: 10px;">
-    <img src="frase-politica-1.png" alt="Se sei que sou um ser político... - Gilson Silva" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
-    <p style="font-size: 0.9rem; color: #ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
-</footer>
-<!-- MENU DE COMPARTILHAMENTO - ESTILO WHATSAPP -->
-<div style="position: fixed; top: 8px; right: 16px; z-index: 9999;">
-    <div id="menu-compartilhar" style="background: white; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s;" onclick="toggleMenu()">
-        <span style="font-size: 24px; font-weight: bold; line-height: 1;">⋯</span>
-        <span style="font-size: 14px; color: #333; font-weight: bold;">Compartilhar</span>
-    </div>
-
-    <!-- POPUP DE COMPARTILHAMENTO -->
-    <div id="popup-compartilhar" style="display: none; position: absolute; top: 60px; right: 0; background: white; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); padding: 24px; min-width: 220px; text-align: center;">
-        <p style="font-weight: bold; margin-bottom: 15px; font-size: 16px; color: #1a237e;">📢 Compartilhe com amigos e familiares!</p>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="https://wa.me/?text=Confira%20o%20Voto%20Consciente!%20https://gilsonjs.github.io/Voto-consciente" target="_blank" style="background: #25D366; color: white; padding: 10px; border-radius: 50px; text-decoration: none; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">📱 WhatsApp</a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gilsonjs.github.io/Voto-consciente" target="_blank" style="background: #1877F2; color: white; padding: 10px; border-radius: 50px; text-decoration: none; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">👍 Facebook</a>
-            <button onclick="copiarLink()" style="background: #6c63ff; color: white; padding: 10px; border-radius: 50px; border: none; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">📋 Copiar Link</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    function toggleMenu() {
-        const popup = document.getElementById('popup-compartilhar');
-        if (popup.style.display === 'none' || popup.style.display === '') {
-            popup.style.display = 'block';
-        } else {
-            popup.style.display = 'none';
-        }
-    }
-
-    function copiarLink() {
-        const link = 'https://gilsonjs.github.io/Voto-consciente';
-        navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
-            alert('✅ Link copiado! Compartilhe com seus contatos.');
-        }).catch(() => {
-            alert('📋 Copie manualmente: ' + link);
-        });
-    }
-
-    // Fecha o popup se clicar fora
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('menu-compartilhar');
-        const popup = document.getElementById('popup-compartilhar');
-        if (menu && popup && !menu.contains(event.target) && !popup.contains(event.target)) {
-            popup.style.display = 'none';
-        }
-    });
 </script>
 </body>
 </html>
