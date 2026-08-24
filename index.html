@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0d3b1a">
 <title>Voto Consciente – (Gjs-2026)</title>
 
-<!-- PWA Manifest e Ícones -->
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="./icone-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
@@ -87,7 +86,7 @@ header p{opacity:0.85;font-size:0.9rem}
 .share-btn span:last-child{font-size:14px;color:#333;font-weight:bold}
 .share-popup{display:none;position:absolute;top:50px;right:0;background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.3);padding:20px;min-width:220px;text-align:center}
 .share-popup p{font-weight:bold;margin-bottom:15px;font-size:16px;color:#1a237e}
-.share-popup a, .share-popup button{width:100%;margin-bottom:8px;padding:10px;border-radius:50px;text-decoration:none;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;color:white}
+.share-popup a,.share-popup button{width:100%;margin-bottom:8px;padding:10px;border-radius:50px;text-decoration:none;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;color:white}
 .share-wa{background:#25D366}
 .share-fb{background:#1877F2}
 .share-copy{background:#6c63ff}
@@ -103,14 +102,13 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
   .menu-toggle{display:none}
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 
-<!-- MENU DE COMPARTILHAMENTO -->
 <div class="share-menu">
   <button class="share-btn" onclick="toggleShare()" aria-label="Compartilhar">
-    <span>⋯</span>
-    <span>Compartilhar</span>
+    <span>⋯</span><span>Compartilhar</span>
   </button>
   <div class="share-popup" id="popup-compartilhar">
     <p>📢 Compartilhe com amigos!</p>
@@ -347,7 +345,6 @@ footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 </div>
 
 <script>
-// Service Worker (PWA)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
@@ -356,7 +353,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Variável global para filtro de partidos
 let currentFilter = 'todos';
 
 function atualizar(){
@@ -382,7 +378,6 @@ function fecharMenu() {
   if(menu) menu.classList.remove('aberto');
 }
 
-// Compartilhamento
 function toggleShare() {
   const popup = document.getElementById('popup-compartilhar');
   if (!popup) return;
@@ -394,12 +389,8 @@ function copiarLink() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
       alert('✅ Link copiado! Compartilhe com seus contatos.');
-    }).catch(() => {
-      fallbackCopy(link);
-    });
-  } else {
-    fallbackCopy(link);
-  }
+    }).catch(() => { fallbackCopy(link); });
+  } else { fallbackCopy(link); }
 }
 
 function fallbackCopy(text) {
@@ -412,7 +403,6 @@ function fallbackCopy(text) {
   alert('✅ Link copiado! Compartilhe com seus contatos.');
 }
 
-// Fecha popup de compartilhamento ao clicar fora
 document.addEventListener('click', function(event) {
   const menu = document.querySelector('.share-menu');
   const popup = document.getElementById('popup-compartilhar');
@@ -421,7 +411,6 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// Dados dos partidos
 const parties = [
   {sigla:'MDB',num:15,nome:'Movimento Democrático Brasileiro',filiados:'2.021.001',fundação:'30/06/1981',pres:'Baleia Rossi',ideologia:'centro',hist:'Fundado em 1966 durante a ditadura militar como MDB. Em 1979 virou PMDB e em 2018 voltou a MDB. É o partido com mais filiados do Brasil.',fed:'Nenhuma'},
   {sigla:'PDT',num:12,nome:'Partido Democrático Trabalhista',filiados:'1.074.679',fundação:'10/11/1981',pres:'Carlos Lupi',ideologia:'centro-esquerda',hist:'Fundado por Leonel Brizola em 1981, reivindica a herança do antigo PTB de Getúlio Vargas. Trabalhista e nacionalista.',fed:'Nenhuma'},
@@ -467,14 +456,14 @@ function renderParties(filter='todos', search=''){
     filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(p.num).includes(s));
   }
   count.textContent = 'Exibindo ' + filtered.length + ' partido' + (filtered.length !== 1 ? 's' : '');
-  
+
   filtered.forEach(p => {
     const badgeHtml = '<div class="vc-party-logo"><span>' + p.sigla + '</span></div>';
     const detailBadgeHtml = '<div class="vc-detail-logo"><span>' + p.sigla + '</span></div>';
     const tags = [p.ideologia];
     if(p.fed !== 'Nenhuma') tags.push('Fed: ' + p.fed);
     const tagHtml = tags.map(t => '<span class="vc-tag">' + t + '</span>').join('');
-    
+
     const div = document.createElement('div');
     div.className = 'partido';
     div.innerHTML = '<div class="vc-party-header">' + badgeHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank" rel="noopener noreferrer">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank" rel="noopener noreferrer">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank" rel="noopener noreferrer">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-header">' + detailBadgeHtml + '<div><strong>' + p.sigla + '</strong> — ' + p.nome + '</div></div><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
