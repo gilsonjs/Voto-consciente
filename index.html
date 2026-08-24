@@ -11,20 +11,16 @@
 <link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
 
 <style>
-/* Reset e base */
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
 
-/* Container responsivo */
 .container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px;width:100%}
 
-/* Header */
 header{text-align:center;padding:24px 0;position:relative}
 header h1{font-size:clamp(1.4rem, 5vw, 1.8rem);margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
 header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
 .logo-header{width:clamp(60px, 15vw, 80px);height:clamp(60px, 15vw, 80px);border-radius:16px;object-fit:contain;box-shadow:0 4px 10px rgba(0,0,0,0.3);border:2px solid rgba(255,255,255,0.2)}
 
-/* Cards responsivos */
 .card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:20px;padding:clamp(14px, 3vw, 20px);margin-bottom:16px;border:1px solid rgba(255,255,255,0.2)}
 .card h2{font-size:clamp(1rem, 3vw, 1.2rem);margin-bottom:14px;color:#ffd700}
 .card h3{font-size:clamp(0.85rem, 2.5vw, 1rem);margin:14px 0 6px;color:#a8e6cf}
@@ -32,34 +28,27 @@ header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
 .card ul{padding-left:18px}
 .card li{margin-bottom:8px}
 
-/* Botões */
 .btn{display:block;width:100%;padding:14px;background:#ffd700;color:#0d3b1a;border:none;border-radius:12px;font-size:clamp(0.9rem, 2.5vw, 1rem);font-weight:bold;cursor:pointer;margin-top:12px;touch-action:manipulation}
 
-/* Checklist */
 .checklist-item{display:flex;align-items:flex-start;margin-bottom:12px}
 .checklist-item input{width:clamp(18px, 4vw, 20px);height:clamp(18px, 4vw, 20px);margin-right:10px;margin-top:2px;flex-shrink:0;accent-color:#ffd700;cursor:pointer}
 .checklist-item label{font-size:clamp(0.8rem, 2.2vw, 0.9rem);cursor:pointer}
 
-/* Progresso */
 .progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.2);border-radius:4px;margin-top:12px;overflow:hidden}
 .progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
 .progress-text{text-align:center;margin-top:8px;font-size:clamp(0.75rem, 2vw, 0.85rem);font-weight:bold}
 
-/* Menu de navegação */
-.menu-toggle{background:#800020;color:white;padding:clamp(10px, 2.5vw, 14px) 16px;font-size:clamp(14px, 3vw, 16px);font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2);touch-action:manipulation}
-.menu-toggle span{font-size:clamp(20px, 4vw, 24px)}
+/* MENU - AGORA FICA ABERTO POR PADRÃO */
+.menu-toggle{display:none;} /* Esconde o botão "☰ Menu" */
 
-.nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:clamp(10px, 2vw, 12px);background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
-.nav.aberto{display:flex}
+.nav{display:flex;flex-direction:column;gap:8px;margin-bottom:15px;padding:clamp(10px, 2vw, 12px);background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
 .nav button{flex:0 0 auto;padding:clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:clamp(0.7rem, 2vw, 0.8rem);cursor:pointer;white-space:nowrap;text-align:left;touch-action:manipulation}
 .nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
 
-/* Seções */
 .secaoo{display:none;animation:fadeIn 0.3s}
 .secaoo.ativa{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* Partidos */
 .partido{background:rgba(255,255,255,0.06);border-radius:12px;padding:clamp(10px, 2vw, 12px);margin-bottom:10px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s}
 .partido:hover{background:rgba(255,255,255,0.12);transform:translateY(-1px)}
 .numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:clamp(0.7rem, 1.8vw, 0.8rem)}
@@ -84,31 +73,25 @@ header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
 .vc-detail-logo{width:clamp(30px, 8vw, 36px);height:clamp(30px, 8vw, 36px);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:clamp(0.6rem, 1.6vw, 0.7rem);background:#fff;color:#0d3b1a;flex-shrink:0}
 .vc-toggle{color:#ffd700;font-size:clamp(0.6rem, 1.6vw, 0.7rem);cursor:pointer;margin-top:6px;display:inline-block;touch-action:manipulation}
 
-/* Federações */
 .vc-federation{background:rgba(168,230,207,0.1);border:1px solid rgba(168,230,207,0.3);border-radius:8px;padding:clamp(6px, 1.5vw, 8px);margin-bottom:8px;font-size:clamp(0.7rem, 2vw, 0.8rem)}
 
-/* Pesquisa */
 .research-input{width:100%;padding:clamp(10px, 2.5vw, 12px) 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:clamp(0.9rem, 2.5vw, 1rem);margin-bottom:12px}
 .research-btns{display:flex;gap:8px;flex-wrap:wrap}
 .research-btns button{flex:1;min-width:clamp(100px, 25vw, 140px);padding:clamp(8px, 2vw, 10px);background:#ffd700;color:#0d3b1a;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:clamp(0.7rem, 1.8vw, 0.8rem);touch-action:manipulation}
 .research-btns button.secondary{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3)}
 
-/* Eleições */
 .eleicao-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
 .eleicao-item:last-child{border:none}
 .eleicao-ano{color:#ffd700;font-weight:bold;font-size:clamp(0.9rem, 2.5vw, 1rem)}
 .eleicao-desc{font-size:clamp(0.7rem, 2vw, 0.82rem);opacity:0.85;margin-top:3px}
 
-/* Links */
 .links-grid{display:grid;grid-template-columns:1fr;gap:10px}
 .link-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:clamp(10px, 2vw, 12px);border:1px solid rgba(255,255,255,0.1);text-decoration:none;color:#fff;display:block;transition:all 0.3s}
 .link-card h3{color:#ffd700;font-size:clamp(0.8rem, 2.2vw, 0.9rem);margin-bottom:4px}
 .link-card p{font-size:clamp(0.7rem, 1.8vw, 0.78rem);opacity:0.7}
 
-/* Dicas */
 .dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:clamp(10px, 2vw, 12px);margin:8px 0;font-size:clamp(0.75rem, 2vw, 0.85rem)}
 
-/* Compartilhar */
 .share-menu{position:fixed;top:clamp(8px, 2vw, 12px);right:clamp(8px, 2vw, 12px);z-index:9999}
 .share-btn{background:white;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.3);padding:clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px);cursor:pointer;display:flex;align-items:center;gap:8px;transition:0.3s;border:none;touch-action:manipulation}
 .share-btn span:first-child{font-size:clamp(16px, 4vw, 20px);font-weight:bold;line-height:1;color:#333}
@@ -121,31 +104,25 @@ header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
 .share-fb{background:#1877F2}
 .share-copy{background:#6c63ff}
 
-/* Footer */
 footer{text-align:center;margin-top:10px;padding:20px 16px 30px}
 footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
 footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
 
-/* ========== RESPONSIVO ========== */
-
-/* Tablets e telas médias */
+/* RESPONSIVO - TABLET E DESKTOP */
 @media(min-width:600px){
   .vc-party-grid{grid-template-columns:1fr 1fr}
   .links-grid{grid-template-columns:1fr 1fr}
   .research-btns button{flex:none}
-  .nav{flex-direction:row;overflow-x:auto;padding-bottom:4px;background:transparent;box-shadow:none;border:none;display:flex!important}
+  .nav{flex-direction:row;overflow-x:auto;padding-bottom:4px;background:transparent;box-shadow:none;border:none}
   .nav button{flex:0 0 auto;text-align:center}
-  .menu-toggle{display:none}
 }
 
-/* Telas grandes (desktop) */
 @media(min-width:1024px){
   .container{max-width:900px;padding:24px 32px}
   .vc-party-grid{grid-template-columns:1fr 1fr 1fr}
   .links-grid{grid-template-columns:1fr 1fr 1fr}
 }
 
-/* Telas muito pequenas (smartphones pequenos) */
 @media(max-width:380px){
   .container{padding:10px;padding-bottom:80px}
   .card{padding:12px}
@@ -156,29 +133,24 @@ footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
   .share-btn span:last-child{display:none}
 }
 
-/* Orientação paisagem em mobile */
 @media(max-height:500px) and (orientation:landscape){
   header{padding:12px 0}
   header h1{font-size:1.2rem}
   .card{padding:12px;margin-bottom:10px}
   .logo-header{width:48px;height:48px}
   .nav button{padding:6px 10px;font-size:0.65rem}
-  .menu-toggle{padding:8px 12px;font-size:0.8rem;margin:5px 0}
 }
 
-/* Acessibilidade: preferência por contraste */
 @media(prefers-contrast:high){
   .card{background:rgba(0,0,0,0.6);border-color:#ffd700}
   .vc-party-logo{background:#fff;color:#000}
   .btn{background:#ffd700;color:#000}
 }
 
-/* Modo escuro (já é escuro, mas mantemos consistência) */
 @media(prefers-color-scheme:dark){
   body{background:linear-gradient(135deg,#1a3f1a 0%,#0a2a0a 100%)}
 }
 
-/* Animação suave para transições */
 *{transition:background-color 0.3s, border-color 0.3s, transform 0.3s}
 </style>
 <base target="_blank">
@@ -206,19 +178,16 @@ footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
   <p>Informação é poder. Vote com consciência!</p>
 </header>
 
-<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')" role="button" aria-label="Abrir menu">
-  <span>☰</span> Menu de Opções
-</div>
-
+<!-- MENU SEMPRE VISÍVEL -->
 <nav class="nav" id="menu-opcoes">
-  <button onclick="mostrar('check'); fecharMenu();" class="active" id="btn-check">✅ Checklist</button>
-  <button onclick="mostrar('edu'); fecharMenu();" id="btn-edu">📚 Educação</button>
-  <button onclick="mostrar('partidos'); fecharMenu();" id="btn-partidos">🏛️ Partidos</button>
-  <button onclick="mostrar('cargos'); fecharMenu();" id="btn-cargos">⚖️ Cargos</button>
-  <button onclick="mostrar('urna'); fecharMenu();" id="btn-urna">💻 Urna</button>
-  <button onclick="mostrar('pesquisa'); fecharMenu();" id="btn-pesquisa">🔍 Pesquisa</button>
-  <button onclick="mostrar('eleicoes'); fecharMenu();" id="btn-eleicoes">📊 Eleições</button>
-  <button onclick="mostrar('links'); fecharMenu();" id="btn-links">🔗 Links</button>
+  <button onclick="mostrar('check')" class="active" id="btn-check">✅ Checklist</button>
+  <button onclick="mostrar('edu')" id="btn-edu">📚 Educação</button>
+  <button onclick="mostrar('partidos')" id="btn-partidos">🏛️ Partidos</button>
+  <button onclick="mostrar('cargos')" id="btn-cargos">⚖️ Cargos</button>
+  <button onclick="mostrar('urna')" id="btn-urna">💻 Urna</button>
+  <button onclick="mostrar('pesquisa')" id="btn-pesquisa">🔍 Pesquisa</button>
+  <button onclick="mostrar('eleicoes')" id="btn-eleicoes">📊 Eleições</button>
+  <button onclick="mostrar('links')" id="btn-links">🔗 Links</button>
 </nav>
 
 <div id="check" class="secaoo ativa">
@@ -416,17 +385,17 @@ footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
 </div>
 </div>
 
-<footer style="text-align:center;padding:20px 16px 30px;margin-top:10px;">
-  <p style="font-size:clamp(0.8rem, 2vw, 1rem);color:#ffd700;font-style:italic;margin-bottom:10px;">
-    "Se sei que sou um ser político, por que não agir como tal com plenitude?"
-  </p>
-  <p style="font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#a8e6cf;margin-bottom:15px;">
-    — Gilson Silva
-  </p>
-  <p style="font-size:clamp(0.65rem, 1.6vw, 0.85rem);color:#ddd;border-top:1px solid rgba(255,255,255,0.1);padding-top:15px;">
-    © 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas
-  </p>
-</footer></div>
+<footer>
+  <div style="background:rgba(255,215,0,0.08);border-left:4px solid #ffd700;padding:12px 16px;border-radius:8px;margin-bottom:15px;text-align:center;">
+    <p style="font-style:italic;font-size:clamp(0.9rem, 2.5vw, 1.1rem);color:#ffd700;margin:0;">
+      "Se sei que sou um ser político, por que não agir como tal com plenitude?"
+    </p>
+    <p style="font-size:clamp(0.7rem, 1.8vw, 0.85rem);color:#a8e6cf;margin:4px 0 0;">— Gilson Silva</p>
+  </div>
+  <p style="font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd;">© 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas</p>
+</footer>
+
+</div>
 
 <script>
 if ('serviceWorker' in navigator) {
@@ -455,11 +424,6 @@ function mostrar(id){
   var btn = document.getElementById('btn-' + id);
   if(btn) btn.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function fecharMenu() {
-  const menu = document.getElementById('menu-opcoes');
-  if(menu) menu.classList.remove('aberto');
 }
 
 function toggleShare() {
