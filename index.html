@@ -11,8 +11,17 @@
 <link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
 
 <style>
+/* FORÇAR TELA CHEIA */
+html, body {
+  width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff;width:100%}
 
 .container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px;width:100%}
 
@@ -38,9 +47,8 @@ header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
 .progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
 .progress-text{text-align:center;margin-top:8px;font-size:clamp(0.75rem, 2vw, 0.85rem);font-weight:bold}
 
-/* MENU - AGORA FICA ABERTO POR PADRÃO */
-.menu-toggle{display:none;} /* Esconde o botão "☰ Menu" */
-
+/* MENU - SEMPRE VISÍVEL */
+.menu-toggle{display:none;}
 .nav{display:flex;flex-direction:column;gap:8px;margin-bottom:15px;padding:clamp(10px, 2vw, 12px);background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
 .nav button{flex:0 0 auto;padding:clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:clamp(0.7rem, 2vw, 0.8rem);cursor:pointer;white-space:nowrap;text-align:left;touch-action:manipulation}
 .nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
@@ -104,11 +112,10 @@ header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
 .share-fb{background:#1877F2}
 .share-copy{background:#6c63ff}
 
-footer{text-align:center;margin-top:10px;padding:20px 16px 30px}
-footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
+footer{text-align:center;margin-top:10px;padding:20px 16px 30px;width:100%}
 footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
 
-/* RESPONSIVO - TABLET E DESKTOP */
+/* RESPONSIVO */
 @media(min-width:600px){
   .vc-party-grid{grid-template-columns:1fr 1fr}
   .links-grid{grid-template-columns:1fr 1fr}
@@ -178,7 +185,6 @@ footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
   <p>Informação é poder. Vote com consciência!</p>
 </header>
 
-<!-- MENU SEMPRE VISÍVEL -->
 <nav class="nav" id="menu-opcoes">
   <button onclick="mostrar('check')" class="active" id="btn-check">✅ Checklist</button>
   <button onclick="mostrar('edu')" id="btn-edu">📚 Educação</button>
