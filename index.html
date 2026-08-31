@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0b6b3a">
 <title>Voto Consciente 2026 — Gilson Silva</title>
 <style>
@@ -35,45 +35,42 @@ a { text-decoration: none; color: inherit; }
 header { 
   background: linear-gradient(135deg, #064f2b, #0b9b54); 
   color: #fff; 
-  padding: 18px 0 50px; 
+  padding: 18px 0 40px; 
 }
 nav { 
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
-  gap: 16px; 
   position: relative;
 }
-.brand { font-weight: 900; font-size: 1.25rem; }
+.brand { font-weight: 900; font-size: 1.15rem; }
 .brand span { color: var(--yellow); }
 
 .menu-toggle {
   display: none;
   background: transparent;
-  border: none;
+  border: 1px solid #ffffff66;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  padding: 4px 12px;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 4px 8px;
 }
 
 .menu { 
   display: flex; 
   gap: 8px; 
   flex-wrap: wrap; 
-  justify-content: flex-end; 
 }
 .menu a { 
   padding: 8px 12px; 
   border-radius: 20px; 
   font-size: 0.9rem; 
-  transition: background 0.2s;
 }
-.menu a:hover { background: #ffffff22; }
 
 /* Hero Section */
 .hero { 
-  padding: 40px 0 10px; 
+  padding: 30px 0 10px; 
   display: grid; 
   grid-template-columns: 1.3fr 0.7fr; 
   gap: 30px; 
@@ -86,14 +83,14 @@ nav {
   font-weight: bold; 
   padding: 7px 12px; 
   border-radius: 999px; 
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 .hero h1 { 
-  font-size: clamp(2rem, 6vw, 4.5rem); 
+  font-size: clamp(2rem, 8vw, 4rem); 
   line-height: 1.1; 
   margin: 16px 0; 
 }
-.hero p { font-size: 1.1rem; max-width: 700px; }
+.hero p { font-size: 1.05rem; }
 .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
 .btn { 
   border: 0; 
@@ -117,47 +114,42 @@ nav {
   border-radius: 22px; 
   padding: 25px; 
   text-align: center; 
-  backdrop-filter: blur(6px); 
 }
 .hero-card .vote { font-size: 4rem; }
 
 /* Main Content */
-main { padding: 38px 0; }
-section { margin: 0 0 42px; scroll-margin-top: 25px; }
-.title { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
-.lead { text-align: center; color: var(--muted); margin: 0 auto 25px; max-width: 750px; }
+main { padding: 30px 0; }
+section { margin: 0 0 35px; scroll-margin-top: 20px; }
+.title { text-align: center; font-size: 1.6rem; margin-bottom: 8px; }
+.lead { text-align: center; color: var(--muted); margin: 0 auto 20px; }
 
 /* Grids Adaptáveis */
 .grid { 
   display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: 16px; 
 }
 .card { 
   background: var(--card); 
-  padding: 22px; 
+  padding: 20px; 
   border-radius: 16px; 
-  box-shadow: 0 7px 25px #0b3b1b10; 
-  transition: transform 0.2s;
+  box-shadow: 0 4px 15px #0b3b1b0d; 
 }
 .card h3 { margin-top: 0; }
 .icon { font-size: 2rem; }
-.card:hover { transform: translateY(-2px); }
 
 /* Checklist */
 .check { 
   display: flex; 
   align-items: flex-start; 
   gap: 12px; 
-  padding: 13px; 
+  padding: 12px 0; 
   border-bottom: 1px solid #edf0ed; 
-  cursor: pointer;
 }
 .check input { 
-  width: 22px; 
-  height: 22px; 
+  width: 24px; 
+  height: 24px; 
   accent-color: var(--green); 
-  margin-top: 2px; 
   flex-shrink: 0;
 }
 .progress { height: 16px; background: #e3e8e3; border-radius: 20px; overflow: hidden; }
@@ -169,17 +161,17 @@ section { margin: 0 0 42px; scroll-margin-top: 25px; }
   background: linear-gradient(135deg, #142b55, #07172f); 
   color: #fff; 
   border-radius: 22px; 
-  padding: 25px; 
+  padding: 22px; 
 }
-.live h2 { margin-top: 0; }
+.live h2 { margin-top: 0; font-size: 1.4rem; }
 .live-status { 
   display: inline-flex; 
   align-items: center; 
   gap: 8px; 
   background: #ffffff18; 
-  padding: 8px 12px; 
+  padding: 6px 12px; 
   border-radius: 999px; 
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 .dot { 
   width: 10px; 
@@ -192,74 +184,77 @@ section { margin: 0 0 42px; scroll-margin-top: 25px; }
 @keyframes pulse { 50% { opacity: .25; } }
 
 /* Formulário de Pesquisa */
-.searchbox { display: flex; gap: 10px; flex-wrap: wrap; }
+.searchbox { display: flex; gap: 10px; flex-direction: column; }
 .searchbox input { 
-  flex: 1; 
-  min-width: 200px; 
+  width: 100%; 
   padding: 14px; 
   border: 1px solid #ccd5cd; 
   border-radius: 10px; 
   font-size: 1rem; 
 }
 .searchbox button { 
+  width: 100%;
   background: var(--green); 
   color: #fff; 
   border: 0; 
   border-radius: 10px; 
-  padding: 14px 20px; 
+  padding: 14px; 
   font-weight: bold; 
   cursor: pointer; 
   min-height: 48px;
 }
 
-.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
 .linkbtn { 
   background: #eef6f0; 
   color: #075d32; 
-  padding: 10px 14px; 
+  padding: 10px 12px; 
   border-radius: 9px; 
   font-weight: bold; 
-  display: inline-block;
+  font-size: 0.85rem;
 }
 
-.warning { border-left: 5px solid var(--red); background: #fff7f7; padding: 18px; border-radius: 10px; }
+.warning { border-left: 5px solid var(--red); background: #fff7f7; padding: 16px; border-radius: 10px; }
 
-.jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.jobs { display: grid; grid-template-columns: 1fr; gap: 14px; }
 .job { background: #fff; padding: 18px; border-radius: 14px; border-top: 4px solid var(--green); }
 
 details { background: #fff; border-radius: 12px; padding: 16px; margin: 10px 0; }
 summary { font-weight: bold; cursor: pointer; }
 
-footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; }
-.quote { font-size: 1.1rem; font-style: italic; }
+footer { background: #0a2516; color: #fff; padding: 30px 0; text-align: center; }
+.quote { font-size: 1rem; font-style: italic; }
 
-/* Media Queries para Telas Menores */
-@media (max-width: 820px) {
-  .hero { grid-template-columns: 1fr; padding-top: 20px; }
-  .hero-card { display: none; }
+/* REGRAS ESPECÍFICAS PARA CELULAR */
+@media screen and (max-width: 768px) {
+  nav { flex-wrap: wrap; }
   
-  .menu-toggle { display: block; }
+  .menu-toggle { display: block !important; }
+
   .menu { 
-    display: none; 
+    display: none !important; 
     flex-direction: column; 
     width: 100%; 
-    position: absolute; 
-    top: 100%; 
-    left: 0; 
-    background: #064f2b; 
-    padding: 15px; 
-    border-radius: 0 0 16px 16px; 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    z-index: 100;
+    background: #04381e; 
+    margin-top: 12px;
+    padding: 10px; 
+    border-radius: 10px; 
   }
-  .menu.active { display: flex; }
-  .menu a { width: 100%; text-align: center; padding: 12px; }
-
-  .actions { flex-direction: column; }
-  .btn { width: 100%; }
   
-  .searchbox { flex-direction: column; }
-  .searchbox button { width: 100%; }
+  .menu.show { display: flex !important; }
+  
+  .menu a { 
+    display: block; 
+    padding: 12px; 
+    text-align: center; 
+    border-bottom: 1px solid #ffffff1a;
+  }
+
+  .hero { grid-template-columns: 1fr !important; }
+  .hero-card { display: none !important; }
+
+  .actions { flex-direction: column !important; }
+  .actions .btn { width: 100% !important; box-sizing: border-box; }
 }
 </style>
 </head>
@@ -268,8 +263,8 @@ footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; 
 <div class="wrap">
 <nav>
 <a class="brand" href="#inicio">🗳️ VOTO <span>CONSCIENTE</span> 2026</a>
-<button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">☰</button>
-<div class="menu" id="navMenu">
+<button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">☰ Menu</button>
+<div class="menu" id="mobileMenu">
 <a href="#checklist">Checklist</a>
 <a href="#pesquisa">Pesquisar</a>
 <a href="#votacao">Apuração</a>
@@ -279,9 +274,9 @@ footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; 
 </nav>
 <div class="hero" id="inicio">
 <div>
-<span class="badge">🇧🇷 EDUCAÇÃO ELEITORAL PARA TODOS</span>
+<span class="badge">🇧🇷 EDUCAÇÃO ELEITORAL</span>
 <h1>SEU VOTO<br>TEM PODER.</h1>
-<p>Não escolha apenas pela propaganda, amizade ou promessa. <b>Pesquise. Compare. Questione. Vote consciente.</b></p>
+<p>Não escolha apenas pela propaganda. <b>Pesquise. Compare. Questione. Vote consciente.</b></p>
 <div class="actions">
 <a class="btn primary" href="#checklist">✅ FAZER MEU CHECKLIST</a>
 <a class="btn light" href="#pesquisa">🔎 PESQUISAR CANDIDATO</a>
@@ -295,7 +290,7 @@ footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; 
 
 <main class="wrap">
 <section>
-<h2 class="title">Comece por aqui</h2><p class="lead">Tudo em um só lugar, de forma simples e acessível.</p>
+<h2 class="title">Comece por aqui</h2>
 <div class="grid">
 <a class="card" href="#checklist"><div class="icon">📋</div><h3>Checklist</h3><p>Veja se você pesquisou o suficiente antes de votar.</p></a>
 <a class="card" href="#pesquisa"><div class="icon">🔎</div><h3>Pesquisar candidato</h3><p>Atalhos rápidos para fontes públicas e oficiais.</p></a>
@@ -304,32 +299,32 @@ footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; 
 </section>
 
 <section id="checklist">
-<h2 class="title">📋 Checklist do Eleitor Consciente</h2>
+<h2 class="title">📋 Checklist do Eleitor</h2>
 <div class="card">
 <label class="check"><input type="checkbox"><span>Consultei informações públicas sobre o candidato.</span></label>
 <label class="check"><input type="checkbox"><span>Li propostas e planos de governo.</span></label>
 <label class="check"><input type="checkbox"><span>Verifiquei o histórico político e administrativo.</span></label>
 <label class="check"><input type="checkbox"><span>Comparei candidatos e suas propostas.</span></label>
-<label class="check"><input type="checkbox"><span>Pesquisei em fontes diferentes, não apenas nas redes sociais.</span></label>
-<label class="check"><input type="checkbox"><span>Conferi meu local de votação e os documentos necessários.</span></label>
+<label class="check"><input type="checkbox"><span>Pesquisei em fontes diferentes das redes sociais.</span></label>
+<label class="check"><input type="checkbox"><span>Conferi meu local de votação e documentos.</span></label>
 <div class="percent" id="pct">0% concluído</div><div class="progress"><div class="bar" id="bar"></div></div>
 </div>
 </section>
 
 <section id="votacao">
 <div class="live">
-<div class="live-status"><span class="dot"></span> CENTRAL DE ACOMPANHAMENTO</div>
+<div class="live-status"><span class="dot"></span> ACOMPANHAMENTO</div>
 <h2>📊 ACOMPANHE A VOTAÇÃO</h2>
-<p>Esta página está preparada para levar o eleitor diretamente à <b>apuração oficial da Justiça Eleitoral</b>. No dia da votação, os resultados dependem da divulgação oficial.</p>
+<p>Acompanhe a apuração oficial diretamente na Justiça Eleitoral.</p>
 <div class="actions">
-<a class="btn primary" target="_blank" rel="noopener" href="https://resultados.tse.jus.br/">🔴 RESULTADOS OFICIAIS DO TSE</a>
+<a class="btn primary" target="_blank" rel="noopener" href="https://resultados.tse.jus.br/">🔴 RESULTADOS DO TSE</a>
 <a class="btn light" target="_blank" rel="noopener" href="https://www.tse.jus.br/">🏛️ PORTAL DO TSE</a>
 </div>
 </div>
 </section>
 
 <section id="pesquisa">
-<h2 class="title">🔎 Pesquise um candidato</h2><p class="lead">Digite o nome e abra rapidamente as ferramentas de pesquisa.</p>
+<h2 class="title">🔎 Pesquise um candidato</h2>
 <div class="card">
 <div class="searchbox"><input id="nome" placeholder="Ex.: Nome do candidato"><button onclick="pesquisar()">PESQUISAR</button></div>
 <div class="links">
@@ -338,39 +333,30 @@ footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; 
 <a class="linkbtn" target="_blank" href="https://www.tse.jus.br/">🗳️ TSE</a>
 <a class="linkbtn" id="noticias" target="_blank">📰 Notícias</a>
 </div>
-<p><small>💡 Dica: compare fontes, consulte dados oficiais e observe a data das notícias.</small></p>
 </div>
 </section>
 
 <section id="fakenews">
 <h2 class="title">🚨 Não caia em fake news</h2>
 <div class="grid">
-<div class="card"><div class="icon">✋</div><h3>Pare</h3><p>Não compartilhe imediatamente algo recebido no WhatsApp ou nas redes.</p></div>
-<div class="card"><div class="icon">🔍</div><h3>Verifique</h3><p>Procure a fonte original, a data e outras confirmações.</p></div>
-<div class="card"><div class="icon">📰</div><h3>Compare</h3><p>Consulte fontes oficiais e veículos jornalísticos confiáveis.</p></div>
+<div class="card"><div class="icon">✋</div><h3>Pare</h3><p>Não compartilhe imediatamente o que recebe nas redes.</p></div>
+<div class="card"><div class="icon">🔍</div><h3>Verifique</h3><p>Procure a fonte original e a data das informações.</p></div>
+<div class="card"><div class="icon">📰</div><h3>Compare</h3><p>Consulte veículos jornalísticos confiáveis.</p></div>
 </div>
 </section>
 
 <section id="cargos">
 <h2 class="title">⚖️ O que cada cargo faz?</h2>
 <div class="jobs">
-<div class="job"><h3>🇧🇷 Presidente</h3><p>Chefes do Poder Executivo Federal e responsável pela administração federal.</p></div>
-<div class="job"><h3>🏛️ Governador</h3><p>Chefes do Poder Executivo Estadual e responsáveis pela administração dos estados.</p></div>
-<div class="job"><h3>🗣️ Senador</h3><p>Representa os estados no Senado Federal.</p></div>
-<div class="job"><h3>📢 Deputados</h3><p>Atuam na elaboração de leis e na fiscalização do Poder Executivo, conforme sua esfera.</p></div>
+<div class="job"><h3>🇧🇷 Presidente</h3><p>Chefe do Poder Executivo Federal.</p></div>
+<div class="job"><h3>🏛️ Governador</h3><p>Chefe do Poder Executivo Estadual.</p></div>
+<div class="job"><h3>🗣️ Senador</h3><p>Representa o estado no Congresso.</p></div>
+<div class="job"><h3>📢 Deputados</h3><p>Elaboram leis e fiscalizam o Executivo.</p></div>
 </div>
 </section>
 
 <section>
-<h2 class="title">🗳️ Como votar com consciência</h2>
-<details open><summary>1. Conheça as propostas</summary><p>Leia o que o candidato propõe e pergunte como pretende realizar.</p></details>
-<details><summary>2. Conheça o histórico</summary><p>Observe mandatos anteriores, atuação pública e posições assumidas.</p></details>
-<details><summary>3. Compare</summary><p>Não decida pelo primeiro vídeo ou propaganda que aparecer.</p></details>
-<details><summary>4. Vote</summary><p>Leve seus números anotados e siga as orientações oficiais da Justiça Eleitoral.</p></details>
-</section>
-
-<section>
-<div class="warning"><b>⚠️ Importante:</b> este site tem finalidade educativa. Para candidatura, situação eleitoral, regras e resultados, priorize sempre os canais oficiais da Justiça Eleitoral.</div>
+<div class="warning"><b>⚠️ Importante:</b> Conteúdo educativo. Para dados oficiais, acesse o TSE.</div>
 </section>
 </main>
 
@@ -378,27 +364,22 @@ footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; 
 <div class="wrap">
 <p class="quote">“Se sei que sou um ser político, por que não agir como tal com plenitude?”</p>
 <p><b>— Gilson Silva</b></p>
-<p>© 2026 Voto Consciente — Educando eleitores</p>
+<p>© 2026 Voto Consciente</p>
 </div>
 </footer>
 
 <script>
-// Menu Hamburguer Mobile
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
+function toggleMenu() {
+  var menu = document.getElementById("mobileMenu");
+  menu.classList.toggle("show");
+}
 
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-});
-
-// Fechar menu mobile ao clicar em um item
-document.querySelectorAll('#navMenu a').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('active');
+document.querySelectorAll('#mobileMenu a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById("mobileMenu").classList.remove("show");
   });
 });
 
-// Checklist Lógica
 const checks = [...document.querySelectorAll('#checklist input')], 
       bar = document.getElementById('bar'), 
       pct = document.getElementById('pct');
@@ -418,7 +399,6 @@ function update() {
   pct.textContent = p + '% concluído';
 }
 
-// Busca de Candidato
 function pesquisar() {
   let n = document.getElementById('nome').value.trim();
   if (!n) {
