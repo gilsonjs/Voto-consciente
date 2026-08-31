@@ -2,28 +2,265 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b6b3a">
 <title>Voto Consciente 2026 — Gilson Silva</title>
 <style>
-:root{--green:#08783f;--green2:#0b9b54;--yellow:#ffd400;--blue:#123b75;--red:#c62828;--ink:#17221b;--muted:#607064;--bg:#f4f7f4;--card:#fff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
-a{text-decoration:none;color:inherit}.wrap{width:min(1120px,92%);margin:auto}
-header{background:linear-gradient(135deg,#064f2b,#0b9b54);color:#fff;padding:18px 0 70px}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:900;font-size:1.25rem}.brand span{color:var(--yellow)}
-.menu{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.menu a{padding:8px 10px;border-radius:20px;font-size:.9rem}.menu a:hover{background:#ffffff22}
-.hero{padding:62px 0 10px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}.badge{display:inline-block;background:var(--yellow);color:#222;font-weight:bold;padding:7px 12px;border-radius:999px}.hero h1{font-size:clamp(2.2rem,7vw,4.8rem);line-height:1;margin:16px 0}.hero p{font-size:1.18rem;max-width:700px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{border:0;display:inline-block;padding:14px 19px;border-radius:10px;font-weight:800;cursor:pointer}.primary{background:var(--yellow);color:#1b1b1b}.light{background:#fff;color:#075d32}.outline{border:2px solid #fff;background:transparent;color:#fff}
-.hero-card{background:#ffffff14;border:1px solid #ffffff33;border-radius:22px;padding:25px;text-align:center;backdrop-filter:blur(6px)}.hero-card .vote{font-size:5rem}
-main{padding:38px 0}section{margin:0 0 42px;scroll-margin-top:15px}.title{text-align:center;font-size:2rem;margin-bottom:8px}.lead{text-align:center;color:var(--muted);margin:0 auto 25px;max-width:750px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.card{background:var(--card);padding:22px;border-radius:16px;box-shadow:0 7px 25px #0b3b1b10}.card h3{margin-top:0}.icon{font-size:2rem}.card:hover{transform:translateY(-2px);transition:.2s}
-.check{display:flex;align-items:flex-start;gap:12px;padding:13px;border-bottom:1px solid #edf0ed}.check input{width:21px;height:21px;accent-color:var(--green);margin-top:2px}.progress{height:16px;background:#e3e8e3;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--green2));transition:.3s}.percent{font-weight:bold;margin:10px 0}
-.live{background:linear-gradient(135deg,#142b55,#07172f);color:#fff;border-radius:22px;padding:30px}.live h2{margin-top:0}.live-status{display:inline-flex;align-items:center;gap:8px;background:#ffffff18;padding:8px 12px;border-radius:999px}.dot{width:10px;height:10px;border-radius:50%;background:#ff3b30;display:inline-block;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.25}}
-.searchbox{display:flex;gap:10px;flex-wrap:wrap}.searchbox input{flex:1;min-width:220px;padding:15px;border:1px solid #ccd5cd;border-radius:10px;font-size:1rem}.searchbox button{background:var(--green);color:#fff;border:0;border-radius:10px;padding:0 20px;font-weight:bold;cursor:pointer}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.linkbtn{background:#eef6f0;color:#075d32;padding:10px 14px;border-radius:9px;font-weight:bold}
-.warning{border-left:5px solid var(--red);background:#fff7f7;padding:18px;border-radius:10px}.jobs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.job{background:#fff;padding:18px;border-radius:14px;border-top:4px solid var(--green)}
-details{background:#fff;border-radius:12px;padding:16px;margin:10px 0}summary{font-weight:bold;cursor:pointer}
-footer{background:#0a2516;color:#fff;padding:36px 0;text-align:center}.quote{font-size:1.1rem;font-style:italic}
-@media(max-width:760px){.hero,.grid,.grid.two,.jobs{grid-template-columns:1fr}.hero{padding-top:38px}.hero-card{display:none}.menu{display:none}.title{font-size:1.7rem}.btn{width:100%;text-align:center}.actions{flex-direction:column}}
+:root {
+  --green: #08783f;
+  --green2: #0b9b54;
+  --yellow: #ffd400;
+  --blue: #123b75;
+  --red: #c62828;
+  --ink: #17221b;
+  --muted: #607064;
+  --bg: #f4f7f4;
+  --card: #fff;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+  margin: 0; 
+  font-family: Arial, Helvetica, sans-serif; 
+  color: var(--ink); 
+  background: var(--bg); 
+  line-height: 1.55; 
+}
+
+a { text-decoration: none; color: inherit; }
+.wrap { width: min(1120px, 92%); margin: auto; }
+
+/* Header & Nav */
+header { 
+  background: linear-gradient(135deg, #064f2b, #0b9b54); 
+  color: #fff; 
+  padding: 18px 0 50px; 
+}
+nav { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 16px; 
+  position: relative;
+}
+.brand { font-weight: 900; font-size: 1.25rem; }
+.brand span { color: var(--yellow); }
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.menu { 
+  display: flex; 
+  gap: 8px; 
+  flex-wrap: wrap; 
+  justify-content: flex-end; 
+}
+.menu a { 
+  padding: 8px 12px; 
+  border-radius: 20px; 
+  font-size: 0.9rem; 
+  transition: background 0.2s;
+}
+.menu a:hover { background: #ffffff22; }
+
+/* Hero Section */
+.hero { 
+  padding: 40px 0 10px; 
+  display: grid; 
+  grid-template-columns: 1.3fr 0.7fr; 
+  gap: 30px; 
+  align-items: center; 
+}
+.badge { 
+  display: inline-block; 
+  background: var(--yellow); 
+  color: #222; 
+  font-weight: bold; 
+  padding: 7px 12px; 
+  border-radius: 999px; 
+  font-size: 0.85rem;
+}
+.hero h1 { 
+  font-size: clamp(2rem, 6vw, 4.5rem); 
+  line-height: 1.1; 
+  margin: 16px 0; 
+}
+.hero p { font-size: 1.1rem; max-width: 700px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.btn { 
+  border: 0; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px; 
+  border-radius: 10px; 
+  font-weight: 800; 
+  cursor: pointer; 
+  min-height: 48px;
+  text-align: center;
+}
+.primary { background: var(--yellow); color: #1b1b1b; }
+.light { background: #fff; color: #075d32; }
+.outline { border: 2px solid #fff; background: transparent; color: #fff; }
+
+.hero-card { 
+  background: #ffffff14; 
+  border: 1px solid #ffffff33; 
+  border-radius: 22px; 
+  padding: 25px; 
+  text-align: center; 
+  backdrop-filter: blur(6px); 
+}
+.hero-card .vote { font-size: 4rem; }
+
+/* Main Content */
+main { padding: 38px 0; }
+section { margin: 0 0 42px; scroll-margin-top: 25px; }
+.title { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
+.lead { text-align: center; color: var(--muted); margin: 0 auto 25px; max-width: 750px; }
+
+/* Grids Adaptáveis */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 16px; 
+}
+.card { 
+  background: var(--card); 
+  padding: 22px; 
+  border-radius: 16px; 
+  box-shadow: 0 7px 25px #0b3b1b10; 
+  transition: transform 0.2s;
+}
+.card h3 { margin-top: 0; }
+.icon { font-size: 2rem; }
+.card:hover { transform: translateY(-2px); }
+
+/* Checklist */
+.check { 
+  display: flex; 
+  align-items: flex-start; 
+  gap: 12px; 
+  padding: 13px; 
+  border-bottom: 1px solid #edf0ed; 
+  cursor: pointer;
+}
+.check input { 
+  width: 22px; 
+  height: 22px; 
+  accent-color: var(--green); 
+  margin-top: 2px; 
+  flex-shrink: 0;
+}
+.progress { height: 16px; background: #e3e8e3; border-radius: 20px; overflow: hidden; }
+.bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--green2)); transition: .3s; }
+.percent { font-weight: bold; margin: 10px 0; }
+
+/* Live Box */
+.live { 
+  background: linear-gradient(135deg, #142b55, #07172f); 
+  color: #fff; 
+  border-radius: 22px; 
+  padding: 25px; 
+}
+.live h2 { margin-top: 0; }
+.live-status { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  background: #ffffff18; 
+  padding: 8px 12px; 
+  border-radius: 999px; 
+  font-size: 0.85rem;
+}
+.dot { 
+  width: 10px; 
+  height: 10px; 
+  border-radius: 50%; 
+  background: #ff3b30; 
+  display: inline-block; 
+  animation: pulse 1s infinite;
+}
+@keyframes pulse { 50% { opacity: .25; } }
+
+/* Formulário de Pesquisa */
+.searchbox { display: flex; gap: 10px; flex-wrap: wrap; }
+.searchbox input { 
+  flex: 1; 
+  min-width: 200px; 
+  padding: 14px; 
+  border: 1px solid #ccd5cd; 
+  border-radius: 10px; 
+  font-size: 1rem; 
+}
+.searchbox button { 
+  background: var(--green); 
+  color: #fff; 
+  border: 0; 
+  border-radius: 10px; 
+  padding: 14px 20px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  min-height: 48px;
+}
+
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.linkbtn { 
+  background: #eef6f0; 
+  color: #075d32; 
+  padding: 10px 14px; 
+  border-radius: 9px; 
+  font-weight: bold; 
+  display: inline-block;
+}
+
+.warning { border-left: 5px solid var(--red); background: #fff7f7; padding: 18px; border-radius: 10px; }
+
+.jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.job { background: #fff; padding: 18px; border-radius: 14px; border-top: 4px solid var(--green); }
+
+details { background: #fff; border-radius: 12px; padding: 16px; margin: 10px 0; }
+summary { font-weight: bold; cursor: pointer; }
+
+footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; }
+.quote { font-size: 1.1rem; font-style: italic; }
+
+/* Media Queries para Telas Menores */
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; padding-top: 20px; }
+  .hero-card { display: none; }
+  
+  .menu-toggle { display: block; }
+  .menu { 
+    display: none; 
+    flex-direction: column; 
+    width: 100%; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background: #064f2b; 
+    padding: 15px; 
+    border-radius: 0 0 16px 16px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  .menu.active { display: flex; }
+  .menu a { width: 100%; text-align: center; padding: 12px; }
+
+  .actions { flex-direction: column; }
+  .btn { width: 100%; }
+  
+  .searchbox { flex-direction: column; }
+  .searchbox button { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -31,8 +268,13 @@ footer{background:#0a2516;color:#fff;padding:36px 0;text-align:center}.quote{fon
 <div class="wrap">
 <nav>
 <a class="brand" href="#inicio">🗳️ VOTO <span>CONSCIENTE</span> 2026</a>
-<div class="menu">
-<a href="#checklist">Checklist</a><a href="#pesquisa">Pesquisar</a><a href="#votacao">Apuração</a><a href="#cargos">Cargos</a><a href="#fakenews">Fake News</a>
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">☰</button>
+<div class="menu" id="navMenu">
+<a href="#checklist">Checklist</a>
+<a href="#pesquisa">Pesquisar</a>
+<a href="#votacao">Apuração</a>
+<a href="#cargos">Cargos</a>
+<a href="#fakenews">Fake News</a>
 </div>
 </nav>
 <div class="hero" id="inicio">
@@ -64,12 +306,12 @@ footer{background:#0a2516;color:#fff;padding:36px 0;text-align:center}.quote{fon
 <section id="checklist">
 <h2 class="title">📋 Checklist do Eleitor Consciente</h2>
 <div class="card">
-<div class="check"><input type="checkbox"><label>Consultei informações públicas sobre o candidato.</label></div>
-<div class="check"><input type="checkbox"><label>Li propostas e planos de governo.</label></div>
-<div class="check"><input type="checkbox"><label>Verifiquei o histórico político e administrativo.</label></div>
-<div class="check"><input type="checkbox"><label>Comparei candidatos e suas propostas.</label></div>
-<div class="check"><input type="checkbox"><label>Pesquisei em fontes diferentes, não apenas nas redes sociais.</label></div>
-<div class="check"><input type="checkbox"><label>Conferi meu local de votação e os documentos necessários.</label></div>
+<label class="check"><input type="checkbox"><span>Consultei informações públicas sobre o candidato.</span></label>
+<label class="check"><input type="checkbox"><span>Li propostas e planos de governo.</span></label>
+<label class="check"><input type="checkbox"><span>Verifiquei o histórico político e administrativo.</span></label>
+<label class="check"><input type="checkbox"><span>Comparei candidatos e suas propostas.</span></label>
+<label class="check"><input type="checkbox"><span>Pesquisei em fontes diferentes, não apenas nas redes sociais.</span></label>
+<label class="check"><input type="checkbox"><span>Conferi meu local de votação e os documentos necessários.</span></label>
 <div class="percent" id="pct">0% concluído</div><div class="progress"><div class="bar" id="bar"></div></div>
 </div>
 </section>
@@ -102,7 +344,7 @@ footer{background:#0a2516;color:#fff;padding:36px 0;text-align:center}.quote{fon
 
 <section id="fakenews">
 <h2 class="title">🚨 Não caia em fake news</h2>
-<div class="grid three">
+<div class="grid">
 <div class="card"><div class="icon">✋</div><h3>Pare</h3><p>Não compartilhe imediatamente algo recebido no WhatsApp ou nas redes.</p></div>
 <div class="card"><div class="icon">🔍</div><h3>Verifique</h3><p>Procure a fonte original, a data e outras confirmações.</p></div>
 <div class="card"><div class="icon">📰</div><h3>Compare</h3><p>Consulte fontes oficiais e veículos jornalísticos confiáveis.</p></div>
@@ -141,10 +383,54 @@ footer{background:#0a2516;color:#fff;padding:36px 0;text-align:center}.quote{fon
 </footer>
 
 <script>
-const checks=[...document.querySelectorAll('#checklist input')],bar=document.getElementById('bar'),pct=document.getElementById('pct');
-checks.forEach((c,i)=>{c.checked=localStorage.getItem('vc'+i)==='1';c.onchange=()=>{localStorage.setItem('vc'+i,c.checked?'1':'0');update()}});
-function update(){let n=checks.filter(x=>x.checked).length,p=Math.round(n/checks.length*100);bar.style.width=p+'%';pct.textContent=p+'% concluído';}
-function pesquisar(){let n=document.getElementById('nome').value.trim();if(!n){alert('Digite o nome do candidato.');return}let q=encodeURIComponent(n);document.getElementById('google').href='https://www.google.com/search?q='+q;document.getElementById('noticias').href='https://news.google.com/search?q='+q;window.open('https://www.google.com/search?q='+q,'_blank');}
+// Menu Hamburguer Mobile
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+// Fechar menu mobile ao clicar em um item
+document.querySelectorAll('#navMenu a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+  });
+});
+
+// Checklist Lógica
+const checks = [...document.querySelectorAll('#checklist input')], 
+      bar = document.getElementById('bar'), 
+      pct = document.getElementById('pct');
+
+checks.forEach((c, i) => {
+  c.checked = localStorage.getItem('vc' + i) === '1';
+  c.onchange = () => {
+    localStorage.setItem('vc' + i, c.checked ? '1' : '0');
+    update();
+  };
+});
+
+function update() {
+  let n = checks.filter(x => x.checked).length, 
+      p = Math.round(n / checks.length * 100);
+  bar.style.width = p + '%';
+  pct.textContent = p + '% concluído';
+}
+
+// Busca de Candidato
+function pesquisar() {
+  let n = document.getElementById('nome').value.trim();
+  if (!n) {
+    alert('Digite o nome do candidato.');
+    return;
+  }
+  let q = encodeURIComponent(n);
+  document.getElementById('google').href = 'https://www.google.com/search?q=' + q;
+  document.getElementById('noticias').href = 'https://news.google.com/search?q=' + q;
+  window.open('https://www.google.com/search?q=' + q, '_blank');
+}
+
 update();
 </script>
 </body>
