@@ -1,623 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d3b1a">
-<title>Voto Consciente – (Gjs-2026)</title>
-
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="./icone-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="./icone-512.png">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b6b3a">
+<title>Voto Consciente 2026 — Gilson Silva</title>
 <style>
-/* Reset e base */
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1a5f2a 0%,#0d3b1a 100%);min-height:100vh;color:#fff}
-
-/* Container responsivo */
-.container{max-width:700px;margin:0 auto;padding:16px;padding-bottom:80px;width:100%}
-
-/* Header */
-header{text-align:center;padding:24px 0;position:relative}
-header h1{font-size:clamp(1.4rem, 5vw, 1.8rem);margin-bottom:8px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
-header p{opacity:0.85;font-size:clamp(0.75rem, 2vw, 0.9rem)}
-.logo-header{width:clamp(60px, 15vw, 80px);height:clamp(60px, 15vw, 80px);border-radius:16px;object-fit:contain;box-shadow:0 4px 10px rgba(0,0,0,0.3);border:2px solid rgba(255,255,255,0.2)}
-
-/* Cards responsivos */
-.card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:20px;padding:clamp(14px, 3vw, 20px);margin-bottom:16px;border:1px solid rgba(255,255,255,0.2)}
-.card h2{font-size:clamp(1rem, 3vw, 1.2rem);margin-bottom:14px;color:#ffd700}
-.card h3{font-size:clamp(0.85rem, 2.5vw, 1rem);margin:14px 0 6px;color:#a8e6cf}
-.card p,.card li{font-size:clamp(0.8rem, 2.2vw, 0.9rem);line-height:1.6;opacity:0.95}
-.card ul{padding-left:18px}
-.card li{margin-bottom:8px}
-
-/* Botões */
-.btn{display:block;width:100%;padding:14px;background:#ffd700;color:#0d3b1a;border:none;border-radius:12px;font-size:clamp(0.9rem, 2.5vw, 1rem);font-weight:bold;cursor:pointer;margin-top:12px;touch-action:manipulation}
-
-/* Checklist */
-.checklist-item{display:flex;align-items:flex-start;margin-bottom:12px}
-.checklist-item input{width:clamp(18px, 4vw, 20px);height:clamp(18px, 4vw, 20px);margin-right:10px;margin-top:2px;flex-shrink:0;accent-color:#ffd700;cursor:pointer}
-.checklist-item label{font-size:clamp(0.8rem, 2.2vw, 0.9rem);cursor:pointer}
-
-/* Progresso */
-.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.2);border-radius:4px;margin-top:12px;overflow:hidden}
-.progress-fill{height:100%;background:#ffd700;border-radius:4px;width:0%;transition:width 0.5s}
-.progress-text{text-align:center;margin-top:8px;font-size:clamp(0.75rem, 2vw, 0.85rem);font-weight:bold}
-
-/* Menu de navegação */
-.menu-toggle{background:#800020;color:white;padding:clamp(10px, 2.5vw, 14px) 16px;font-size:clamp(14px, 3vw, 16px);font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:10px 0;box-shadow:0 2px 5px rgba(0,0,0,0.2);touch-action:manipulation}
-.menu-toggle span{font-size:clamp(20px, 4vw, 24px)}
-
-.nav{display:none;flex-direction:column;gap:8px;margin-bottom:15px;padding:clamp(10px, 2vw, 12px);background:#800020;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.15)}
-.nav.aberto{display:flex}
-.nav button{flex:0 0 auto;padding:clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:#fff;font-size:clamp(0.7rem, 2vw, 0.8rem);cursor:pointer;white-space:nowrap;text-align:left;touch-action:manipulation}
-.nav button.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
-
-/* Seções */
-.secaoo{display:none;animation:fadeIn 0.3s}
-.secaoo.ativa{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* Partidos */
-.partido{background:rgba(255,255,255,0.06);border-radius:12px;padding:clamp(10px, 2vw, 12px);margin-bottom:10px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s}
-.partido:hover{background:rgba(255,255,255,0.12);transform:translateY(-1px)}
-.numero{background:#ffd700;color:#0d3b1a;padding:2px 8px;border-radius:5px;font-weight:bold;font-size:clamp(0.7rem, 1.8vw, 0.8rem)}
-
-.vc-party-grid{display:grid;grid-template-columns:1fr;gap:10px}
-.vc-party-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.vc-party-logo{width:clamp(40px, 10vw, 48px);height:clamp(40px, 10vw, 48px);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:clamp(0.7rem, 1.8vw, 0.85rem);background:#fff;color:#0d3b1a;box-shadow:0 2px 5px rgba(0,0,0,0.3);border:1px solid rgba(0,0,0,0.1);flex-shrink:0}
-.vc-party-name{font-weight:bold;font-size:clamp(0.85rem, 2.2vw, 0.95rem)}
-.vc-party-meta{font-size:clamp(0.6rem, 1.6vw, 0.7rem);opacity:0.7;margin-top:2px}
-.vc-party-desc{font-size:clamp(0.7rem, 2vw, 0.8rem);line-height:1.5;opacity:0.85;margin-top:6px}
-.vc-tag{padding:2px 7px;border-radius:8px;font-size:clamp(0.55rem, 1.4vw, 0.65rem);background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
-
-.vc-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.vc-filter{padding:clamp(4px, 1.2vw, 5px) clamp(8px, 2vw, 10px);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;font-size:clamp(0.6rem, 1.6vw, 0.7rem);cursor:pointer;color:#fff;touch-action:manipulation}
-.vc-filter.active{background:#ffd700;color:#0d3b1a;font-weight:bold}
-
-.vc-search{width:100%;padding:clamp(8px, 2vw, 10px) 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:clamp(0.8rem, 2.2vw, 0.9rem);margin-bottom:12px}
-.vc-search::placeholder{color:rgba(255,255,255,0.5)}
-
-.vc-detail{display:none;background:rgba(0,0,0,0.25);border-radius:10px;padding:clamp(10px, 2vw, 12px);margin-top:8px;font-size:clamp(0.65rem, 1.8vw, 0.75rem)}
-.vc-detail.show{display:block}
-.vc-detail-logo{width:clamp(30px, 8vw, 36px);height:clamp(30px, 8vw, 36px);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:clamp(0.6rem, 1.6vw, 0.7rem);background:#fff;color:#0d3b1a;flex-shrink:0}
-.vc-toggle{color:#ffd700;font-size:clamp(0.6rem, 1.6vw, 0.7rem);cursor:pointer;margin-top:6px;display:inline-block;touch-action:manipulation}
-
-/* Federações */
-.vc-federation{background:rgba(168,230,207,0.1);border:1px solid rgba(168,230,207,0.3);border-radius:8px;padding:clamp(6px, 1.5vw, 8px);margin-bottom:8px;font-size:clamp(0.7rem, 2vw, 0.8rem)}
-
-/* Pesquisa */
-.research-input{width:100%;padding:clamp(10px, 2.5vw, 12px) 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;font-size:clamp(0.9rem, 2.5vw, 1rem);margin-bottom:12px}
-.research-btns{display:flex;gap:8px;flex-wrap:wrap}
-.research-btns button{flex:1;min-width:clamp(100px, 25vw, 140px);padding:clamp(8px, 2vw, 10px);background:#ffd700;color:#0d3b1a;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:clamp(0.7rem, 1.8vw, 0.8rem);touch-action:manipulation}
-.research-btns button.secondary{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3)}
-
-/* Eleições */
-.eleicao-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
-.eleicao-item:last-child{border:none}
-.eleicao-ano{color:#ffd700;font-weight:bold;font-size:clamp(0.9rem, 2.5vw, 1rem)}
-.eleicao-desc{font-size:clamp(0.7rem, 2vw, 0.82rem);opacity:0.85;margin-top:3px}
-
-/* Links */
-.links-grid{display:grid;grid-template-columns:1fr;gap:10px}
-.link-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:clamp(10px, 2vw, 12px);border:1px solid rgba(255,255,255,0.1);text-decoration:none;color:#fff;display:block;transition:all 0.3s}
-.link-card h3{color:#ffd700;font-size:clamp(0.8rem, 2.2vw, 0.9rem);margin-bottom:4px}
-.link-card p{font-size:clamp(0.7rem, 1.8vw, 0.78rem);opacity:0.7}
-
-/* Dicas */
-.dica-box{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:clamp(10px, 2vw, 12px);margin:8px 0;font-size:clamp(0.75rem, 2vw, 0.85rem)}
-
-/* Compartilhar */
-.share-menu{position:fixed;top:clamp(8px, 2vw, 12px);right:clamp(8px, 2vw, 12px);z-index:9999}
-.share-btn{background:white;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.3);padding:clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px);cursor:pointer;display:flex;align-items:center;gap:8px;transition:0.3s;border:none;touch-action:manipulation}
-.share-btn span:first-child{font-size:clamp(16px, 4vw, 20px);font-weight:bold;line-height:1;color:#333}
-.share-btn span:last-child{font-size:clamp(12px, 2.5vw, 14px);color:#333;font-weight:bold}
-
-.share-popup{display:none;position:absolute;top:50px;right:0;background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.3);padding:clamp(16px, 4vw, 20px);min-width:clamp(180px, 45vw, 220px);text-align:center}
-.share-popup p{font-weight:bold;margin-bottom:15px;font-size:clamp(14px, 3vw, 16px);color:#1a237e}
-.share-popup a,.share-popup button{width:100%;margin-bottom:8px;padding:clamp(8px, 2vw, 10px);border-radius:50px;text-decoration:none;font-size:clamp(12px, 2.5vw, 14px);display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;color:white;touch-action:manipulation}
-.share-wa{background:#25D366}
-.share-fb{background:#1877F2}
-.share-copy{background:#6c63ff}
-
-/* Footer */
-footer{text-align:center;margin-top:10px;padding:20px 16px 30px}
-footer img{max-width:100%;height:auto;border-radius:8px;margin-bottom:15px}
-footer p{font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#ddd}
-
-/* ========== RESPONSIVO ========== */
-
-/* Tablets e telas médias */
-@media(min-width:600px){
-  .vc-party-grid{grid-template-columns:1fr 1fr}
-  .links-grid{grid-template-columns:1fr 1fr}
-  .research-btns button{flex:none}
-  .nav{flex-direction:row;overflow-x:auto;padding-bottom:4px;background:transparent;box-shadow:none;border:none;display:flex!important}
-  .nav button{flex:0 0 auto;text-align:center}
-  .menu-toggle{display:none}
-}
-
-/* Telas grandes (desktop) */
-@media(min-width:1024px){
-  .container{max-width:900px;padding:24px 32px}
-  .vc-party-grid{grid-template-columns:1fr 1fr 1fr}
-  .links-grid{grid-template-columns:1fr 1fr 1fr}
-}
-
-/* Telas muito pequenas (smartphones pequenos) */
-@media(max-width:380px){
-  .container{padding:10px;padding-bottom:80px}
-  .card{padding:12px}
-  .research-btns button{min-width:80px;font-size:0.65rem;padding:8px}
-  .vc-filter{padding:3px 6px;font-size:0.55rem}
-  .vc-party-logo{width:32px;height:32px;font-size:0.6rem}
-  .share-popup{min-width:160px;right:-10px}
-  .share-btn span:last-child{display:none}
-}
-
-/* Orientação paisagem em mobile */
-@media(max-height:500px) and (orientation:landscape){
-  header{padding:12px 0}
-  header h1{font-size:1.2rem}
-  .card{padding:12px;margin-bottom:10px}
-  .logo-header{width:48px;height:48px}
-  .nav button{padding:6px 10px;font-size:0.65rem}
-  .menu-toggle{padding:8px 12px;font-size:0.8rem;margin:5px 0}
-}
-
-/* Acessibilidade: preferência por contraste */
-@media(prefers-contrast:high){
-  .card{background:rgba(0,0,0,0.6);border-color:#ffd700}
-  .vc-party-logo{background:#fff;color:#000}
-  .btn{background:#ffd700;color:#000}
-}
-
-/* Modo escuro (já é escuro, mas mantemos consistência) */
-@media(prefers-color-scheme:dark){
-  body{background:linear-gradient(135deg,#1a3f1a 0%,#0a2a0a 100%)}
-}
-
-/* Animação suave para transições */
-*{transition:background-color 0.3s, border-color 0.3s, transform 0.3s}
+:root{--green:#08783f;--green2:#0b9b54;--yellow:#ffd400;--blue:#123b75;--red:#c62828;--ink:#17221b;--muted:#607064;--bg:#f4f7f4;--card:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+a{text-decoration:none;color:inherit}.wrap{width:min(1120px,92%);margin:auto}
+header{background:linear-gradient(135deg,#064f2b,#0b9b54);color:#fff;padding:18px 0 70px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:900;font-size:1.25rem}.brand span{color:var(--yellow)}
+.menu{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.menu a{padding:8px 10px;border-radius:20px;font-size:.9rem}.menu a:hover{background:#ffffff22}
+.hero{padding:62px 0 10px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}.badge{display:inline-block;background:var(--yellow);color:#222;font-weight:bold;padding:7px 12px;border-radius:999px}.hero h1{font-size:clamp(2.2rem,7vw,4.8rem);line-height:1;margin:16px 0}.hero p{font-size:1.18rem;max-width:700px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{border:0;display:inline-block;padding:14px 19px;border-radius:10px;font-weight:800;cursor:pointer}.primary{background:var(--yellow);color:#1b1b1b}.light{background:#fff;color:#075d32}.outline{border:2px solid #fff;background:transparent;color:#fff}
+.hero-card{background:#ffffff14;border:1px solid #ffffff33;border-radius:22px;padding:25px;text-align:center;backdrop-filter:blur(6px)}.hero-card .vote{font-size:5rem}
+main{padding:38px 0}section{margin:0 0 42px;scroll-margin-top:15px}.title{text-align:center;font-size:2rem;margin-bottom:8px}.lead{text-align:center;color:var(--muted);margin:0 auto 25px;max-width:750px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.card{background:var(--card);padding:22px;border-radius:16px;box-shadow:0 7px 25px #0b3b1b10}.card h3{margin-top:0}.icon{font-size:2rem}.card:hover{transform:translateY(-2px);transition:.2s}
+.check{display:flex;align-items:flex-start;gap:12px;padding:13px;border-bottom:1px solid #edf0ed}.check input{width:21px;height:21px;accent-color:var(--green);margin-top:2px}.progress{height:16px;background:#e3e8e3;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--green2));transition:.3s}.percent{font-weight:bold;margin:10px 0}
+.live{background:linear-gradient(135deg,#142b55,#07172f);color:#fff;border-radius:22px;padding:30px}.live h2{margin-top:0}.live-status{display:inline-flex;align-items:center;gap:8px;background:#ffffff18;padding:8px 12px;border-radius:999px}.dot{width:10px;height:10px;border-radius:50%;background:#ff3b30;display:inline-block;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.25}}
+.searchbox{display:flex;gap:10px;flex-wrap:wrap}.searchbox input{flex:1;min-width:220px;padding:15px;border:1px solid #ccd5cd;border-radius:10px;font-size:1rem}.searchbox button{background:var(--green);color:#fff;border:0;border-radius:10px;padding:0 20px;font-weight:bold;cursor:pointer}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.linkbtn{background:#eef6f0;color:#075d32;padding:10px 14px;border-radius:9px;font-weight:bold}
+.warning{border-left:5px solid var(--red);background:#fff7f7;padding:18px;border-radius:10px}.jobs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.job{background:#fff;padding:18px;border-radius:14px;border-top:4px solid var(--green)}
+details{background:#fff;border-radius:12px;padding:16px;margin:10px 0}summary{font-weight:bold;cursor:pointer}
+footer{background:#0a2516;color:#fff;padding:36px 0;text-align:center}.quote{font-size:1.1rem;font-style:italic}
+@media(max-width:760px){.hero,.grid,.grid.two,.jobs{grid-template-columns:1fr}.hero{padding-top:38px}.hero-card{display:none}.menu{display:none}.title{font-size:1.7rem}.btn{width:100%;text-align:center}.actions{flex-direction:column}}
 </style>
-<base target="_blank">
 </head>
 <body>
-
-<div class="share-menu">
-  <button class="share-btn" onclick="toggleShare()" aria-label="Compartilhar">
-    <span>⋯</span><span>Compartilhar</span>
-  </button>
-  <div class="share-popup" id="popup-compartilhar">
-    <p>📢 Compartilhe com amigos!</p>
-    <a href="https://wa.me/?text=Confira%20o%20Voto%20Consciente!%20https://gilsonjs.github.io/Voto-consciente" target="_blank" rel="noopener noreferrer" class="share-wa">📱 WhatsApp</a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://gilsonjs.github.io/Voto-consciente" target="_blank" rel="noopener noreferrer" class="share-fb">👍 Facebook</a>
-    <button onclick="copiarLink()" class="share-copy">📋 Copiar Link</button>
-  </div>
-</div>
-
-<div class="container">
 <header>
-  <div style="margin-bottom:12px;">
-    <img src="./icone-192.png" alt="Logo Voto Consciente" class="logo-header" onerror="this.style.display='none'">
-  </div>
-  <h1>Voto Consciente 2026</h1>
-  <p>Informação é poder. Vote com consciência!</p>
+<div class="wrap">
+<nav>
+<a class="brand" href="#inicio">🗳️ VOTO <span>CONSCIENTE</span> 2026</a>
+<div class="menu">
+<a href="#checklist">Checklist</a><a href="#pesquisa">Pesquisar</a><a href="#votacao">Apuração</a><a href="#cargos">Cargos</a><a href="#fakenews">Fake News</a>
+</div>
+</nav>
+<div class="hero" id="inicio">
+<div>
+<span class="badge">🇧🇷 EDUCAÇÃO ELEITORAL PARA TODOS</span>
+<h1>SEU VOTO<br>TEM PODER.</h1>
+<p>Não escolha apenas pela propaganda, amizade ou promessa. <b>Pesquise. Compare. Questione. Vote consciente.</b></p>
+<div class="actions">
+<a class="btn primary" href="#checklist">✅ FAZER MEU CHECKLIST</a>
+<a class="btn light" href="#pesquisa">🔎 PESQUISAR CANDIDATO</a>
+<a class="btn outline" href="#votacao">📊 ACOMPANHAR VOTAÇÃO</a>
+</div>
+</div>
+<div class="hero-card"><div class="vote">🗳️</div><h2>2026</h2><p>Informação é poder.<br>Seu voto decide o futuro.</p></div>
+</div>
+</div>
 </header>
 
-<div class="menu-toggle" onclick="document.getElementById('menu-opcoes').classList.toggle('aberto')" role="button" aria-label="Abrir menu">
-  <span>☰</span> Menu de Opções
+<main class="wrap">
+<section>
+<h2 class="title">Comece por aqui</h2><p class="lead">Tudo em um só lugar, de forma simples e acessível.</p>
+<div class="grid">
+<a class="card" href="#checklist"><div class="icon">📋</div><h3>Checklist</h3><p>Veja se você pesquisou o suficiente antes de votar.</p></a>
+<a class="card" href="#pesquisa"><div class="icon">🔎</div><h3>Pesquisar candidato</h3><p>Atalhos rápidos para fontes públicas e oficiais.</p></a>
+<a class="card" href="#votacao"><div class="icon">📊</div><h3>Acompanhar votação</h3><p>No dia da eleição, acompanhe a apuração oficial.</p></a>
 </div>
+</section>
 
-<nav class="nav" id="menu-opcoes">
-  <button onclick="mostrar('check'); fecharMenu();" class="active" id="btn-check">✅ Checklist</button>
-  <button onclick="mostrar('edu'); fecharMenu();" id="btn-edu">📚 Educação</button>
-  <button onclick="mostrar('partidos'); fecharMenu();" id="btn-partidos">🏛️ Partidos</button>
-  <button onclick="mostrar('cargos'); fecharMenu();" id="btn-cargos">⚖️ Cargos</button>
-  <button onclick="mostrar('urna'); fecharMenu();" id="btn-urna">💻 Urna</button>
-  <button onclick="mostrar('pesquisa'); fecharMenu();" id="btn-pesquisa">🔍 Pesquisa</button>
-  <button onclick="mostrar('eleicoes'); fecharMenu();" id="btn-eleicoes">📊 Eleições</button>
-  <button onclick="mostrar('links'); fecharMenu();" id="btn-links">🔗 Links</button>
-</nav>
-
-<div id="check" class="secaoo ativa">
-<div class="card"><h2>📋 Checklist do Eleitor Consciente</h2>
-<div class="checklist-item"><input type="checkbox" id="c1" onchange="atualizar()"><label for="c1">Consultei a ficha limpa do candidato</label></div>
-<div class="checklist-item"><input type="checkbox" id="c2" onchange="atualizar()"><label for="c2">Li o plano de governo/propostas</label></div>
-<div class="checklist-item"><input type="checkbox" id="c3" onchange="atualizar()"><label for="c3">Verifiquei o histórico de mandatos anteriores</label></div>
-<div class="checklist-item"><input type="checkbox" id="c4" onchange="atualizar()"><label for="c4">Analisei fontes de financiamento da campanha</label></div>
-<div class="checklist-item"><input type="checkbox" id="c5" onchange="atualizar()"><label for="c5">Comparei propostas com ações passadas</label></div>
-<div class="checklist-item"><input type="checkbox" id="c6" onchange="atualizar()"><label for="c6">Conferi o local e horário de votação</label></div>
-<div class="checklist-item"><input type="checkbox" id="c7" onchange="atualizar()"><label for="c7">Levei título de eleitor e documento com foto</label></div>
-<div class="progress-bar"><div class="progress-fill" id="pb"></div></div><div class="progress-text" id="pt">0% concluído</div></div>
-
-<div class="card"><h2>💡 Dicas para Analisar Candidatos</h2>
-<div class="dica-box">🔍 <strong>Não vote pelo marketing:</strong> Propaganda política não reflete a realidade. Pesquise além dos outdoors e redes sociais.</div>
-<div class="dica-box">📊 <strong>Vote no projeto, não na pessoa:</strong> O plano de governo é mais importante que a simpatia pessoal.</div>
-<div class="dica-box">⚠️ <strong>Cuidado com fake news:</strong> Verifique informações antes de compartilhar. Use fontes oficiais.</div>
-<div class="dica-box">🧮 <strong>Compare números:</strong> Verifique se as promessas são viáveis financeiramente para o município/estado/país.</div>
-<div class="dica-box">🏛️ <strong>Histórico importa:</strong> Candidatos a reeleição devem ser avaliados pelo que fizeram, não pelo que prometeram.</div>
-</div>
-</div>
-
-<div id="edu" class="secaoo">
-<div class="card"><h2>📚 Como Funciona o Sistema Eleitoral</h2>
-<h3>🗳️ O que é voto consciente?</h3>
-<p>É quando o eleitor escolhe seus representantes baseado em informações verificáveis, propostas claras e histórico comprovado — não em promessas vazias ou apelo emocional.</p>
-<h3>📋 Documentos necessários</h3>
-<ul><li>Título de eleitor (ou certificado de quitação eleitoral)</li><li>Documento oficial com foto (RG, CNH, passaporte)</li><li>Se votar no exterior: passaporte brasileiro válido</li></ul>
-<h3>⏰ Horário de votação</h3>
-<p><strong>No Brasil:</strong> das 8h às 17h (horário de Brasília).<br><strong>No exterior:</strong> das 8h às 17h (horário local de cada cidade).</p>
-<h3>🚫 O que NÃO pode na seção</h3>
-<ul><li>Usar celular ou qualquer equipamento eletrônico</li><li>Fazer campanha eleitoral (camisetas, adesivos, bonés)</li><li>Portar armas de fogo</li><li>Filmar ou fotografar a urna</li></ul>
-<h3>🤔 Voto em branco x Nulo x Abstenção</h3>
-<ul><li><strong>Branco:</strong> aperta o botão "Branco". Não conta como voto válido.</li><li><strong>Nulo:</strong> digita número inexistente. Não conta para ninguém.</li><li><strong>Abstenção:</strong> não vai votar. Pode ter consequências (multa, impedimento de tirar passaporte).</li></ul>
-</div>
-<div class="card"><h2>🎯 Quiz: Você sabe como votar?</h2>
-<p><strong>1. O que acontece se eu votar em branco?</strong></p><p style="margin:4px 0 12px 18px;opacity:0.8">R: O voto não é contabilizado como válido e é descartado na apuração final.</p>
-<p><strong>2. Posso usar o celular na cabine?</strong></p><p style="margin:4px 0 12px 18px;opacity:0.8">R: Não! É proibido o uso de qualquer aparelho eletrônico na cabine de votação.</p>
-<p><strong>3. E se eu não votar?</strong></p><p style="margin:4px 0 12px 18px;opacity:0.8">R: Você pode ser multado e ter problemas para tirar passaporte, fazer concurso público, etc.</p>
-</div>
-</div>
-
-<div id="partidos" class="secaoo">
+<section id="checklist">
+<h2 class="title">📋 Checklist do Eleitor Consciente</h2>
 <div class="card">
-<h2>🤝 Federações Partidárias 2026</h2>
-<div class="vc-federation"><strong>🇧🇷 FE Brasil:</strong> PT (13) + PCdoB (65) + PV (43)</div>
-<div class="vc-federation"><strong>🔵 PSDB Cidadania:</strong> PSDB (45) + Cidadania (23)</div>
-<div class="vc-federation"><strong>🟣 PSOL REDE:</strong> PSOL (50) + REDE (18)</div>
-<div class="vc-federation"><strong>🟠 Renovação Solidária:</strong> PRD (25) + Solidariedade (77)</div>
-<div class="vc-federation"><strong>🟢 União Progressista:</strong> UNIÃO (44) + PP (11)</div>
+<div class="check"><input type="checkbox"><label>Consultei informações públicas sobre o candidato.</label></div>
+<div class="check"><input type="checkbox"><label>Li propostas e planos de governo.</label></div>
+<div class="check"><input type="checkbox"><label>Verifiquei o histórico político e administrativo.</label></div>
+<div class="check"><input type="checkbox"><label>Comparei candidatos e suas propostas.</label></div>
+<div class="check"><input type="checkbox"><label>Pesquisei em fontes diferentes, não apenas nas redes sociais.</label></div>
+<div class="check"><input type="checkbox"><label>Conferi meu local de votação e os documentos necessários.</label></div>
+<div class="percent" id="pct">0% concluído</div><div class="progress"><div class="bar" id="bar"></div></div>
 </div>
+</section>
+
+<section id="votacao">
+<div class="live">
+<div class="live-status"><span class="dot"></span> CENTRAL DE ACOMPANHAMENTO</div>
+<h2>📊 ACOMPANHE A VOTAÇÃO</h2>
+<p>Esta página está preparada para levar o eleitor diretamente à <b>apuração oficial da Justiça Eleitoral</b>. No dia da votação, os resultados dependem da divulgação oficial.</p>
+<div class="actions">
+<a class="btn primary" target="_blank" rel="noopener" href="https://resultados.tse.jus.br/">🔴 RESULTADOS OFICIAIS DO TSE</a>
+<a class="btn light" target="_blank" rel="noopener" href="https://www.tse.jus.br/">🏛️ PORTAL DO TSE</a>
+</div>
+</div>
+</section>
+
+<section id="pesquisa">
+<h2 class="title">🔎 Pesquise um candidato</h2><p class="lead">Digite o nome e abra rapidamente as ferramentas de pesquisa.</p>
 <div class="card">
-<h2>🏛️ Todos os 30 Partidos Políticos do Brasil</h2>
-<input type="text" class="vc-search" id="partySearch" placeholder="🔍 Buscar por nome, sigla ou número..." oninput="filterParties()">
-<div class="vc-filters" id="ideologyFilters">
-<button class="vc-filter active" onclick="filterByIdeology('todos', event)">Todos</button>
-<button class="vc-filter" onclick="filterByIdeology('esquerda', event)">Esquerda</button>
-<button class="vc-filter" onclick="filterByIdeology('centro-esquerda', event)">Centro-esquerda</button>
-<button class="vc-filter" onclick="filterByIdeology('centro', event)">Centro</button>
-<button class="vc-filter" onclick="filterByIdeology('centro-direita', event)">Centro-direita</button>
-<button class="vc-filter" onclick="filterByIdeology('direita', event)">Direita</button>
-<button class="vc-filter" onclick="filterByIdeology('extrema-esquerda', event)">Extrema-esquerda</button>
+<div class="searchbox"><input id="nome" placeholder="Ex.: Nome do candidato"><button onclick="pesquisar()">PESQUISAR</button></div>
+<div class="links">
+<a class="linkbtn" id="google" target="_blank">🔎 Google</a>
+<a class="linkbtn" target="_blank" href="https://divulgacandcontas.tse.jus.br/">🏛️ DivulgaCandContas</a>
+<a class="linkbtn" target="_blank" href="https://www.tse.jus.br/">🗳️ TSE</a>
+<a class="linkbtn" id="noticias" target="_blank">📰 Notícias</a>
 </div>
-<div class="vc-count" id="partyCount">Exibindo 30 partidos</div>
-<div class="vc-party-grid" id="partyGrid"></div>
+<p><small>💡 Dica: compare fontes, consulte dados oficiais e observe a data das notícias.</small></p>
 </div>
-</div>
+</section>
 
-<div id="cargos" class="secaoo">
-<div class="card"><h2>⚖️ O que cada cargo faz?</h2>
-<h3>🧑‍⚖️ Presidente da República</h3>
-<ul><li>Chefia do Executivo Federal</li><li>Propõe leis, edita decretos e Medidas Provisórias</li><li>Indica ministros e dirigentes de estatais</li><li>Comanda as Forças Armadas</li></ul>
-<h3>🏛️ Governador</h3>
-<ul><li>Chefia do Executivo Estadual</li><li>Gerencia saúde, educação e segurança no estado</li><li>Administra recursos do estado</li></ul>
-<h3>🏙️ Prefeito</h3>
-<ul><li>Chefia do Executivo Municipal</li><li>Cuida de ruas, iluminação, lixo, transporte local</li><li>É o político mais próximo do cidadão</li></ul>
-<h3>🗣️ Senador</h3>
-<ul><li>Representa o estado no Congresso Nacional</li><li>8 anos de mandato (eleição alternada a cada 4 anos)</li><li>Aprova leis, indica ministros do STF e STJ</li></ul>
-<h3>📢 Deputado Federal</h3>
-<ul><li>Representa o povo no Congresso Nacional</li><li>4 anos de mandato</li><li>Cria e vota leis federais</li></ul>
-<h3>📣 Deputado Estadual</h3>
-<ul><li>Representa o povo na Assembleia Legislativa</li><li>4 anos de mandato</li><li>Cria leis estaduais</li></ul>
-<h3>🌳 Vereador</h3>
-<ul><li>Representa o povo na Câmara Municipal</li><li>4 anos de mandato</li><li>Cria leis municipais</li><li>É o cargo mais acessível para começar na política</li></ul>
+<section id="fakenews">
+<h2 class="title">🚨 Não caia em fake news</h2>
+<div class="grid three">
+<div class="card"><div class="icon">✋</div><h3>Pare</h3><p>Não compartilhe imediatamente algo recebido no WhatsApp ou nas redes.</p></div>
+<div class="card"><div class="icon">🔍</div><h3>Verifique</h3><p>Procure a fonte original, a data e outras confirmações.</p></div>
+<div class="card"><div class="icon">📰</div><h3>Compare</h3><p>Consulte fontes oficiais e veículos jornalísticos confiáveis.</p></div>
 </div>
-</div>
+</section>
 
-<div id="urna" class="secaoo">
-<div class="card"><h2>🖥️ Como usar a Urna Eletrônica</h2>
-<h3>1️⃣ Identificação</h3><p>Apresente seu documento com foto para o mesário.</p>
-<h3>2️⃣ Entre na cabine</h3><p>Aguarde sua vez e entre sozinho. Não leve celular!</p>
-<h3>3️⃣ Digite o número</h3>
-<ul><li><strong>Presidente:</strong> 2 dígitos</li><li><strong>Governador:</strong> 2 dígitos</li><li><strong>Senador:</strong> 3 dígitos</li><li><strong>Deputado:</strong> 4 ou 5 dígitos</li><li><strong>Vereador:</strong> 5 dígitos</li></ul>
-<h3>4️⃣ Confirme</h3><p>Verifique se a foto e o nome estão corretos. Toque em <strong>CONFIRMA</strong> (verde).</p>
-<h3>5️⃣ Voto em branco</h3><p>Aperte <strong>BRANCO</strong> e depois CONFIRMA.</p>
-<h3>6️⃣ Corrigir</h3><p>Aperte <strong>CORRIGE</strong> (laranja) e digite novamente.</p>
-<h3>7️⃣ Fim</h3><p>Ouvirá um bip e aparecerá "FIM" na tela.</p>
-<div class="dica-box">💡 <strong>Dica:</strong> Anote os números dos seus candidatos no papel antes de ir votar!</div>
+<section id="cargos">
+<h2 class="title">⚖️ O que cada cargo faz?</h2>
+<div class="jobs">
+<div class="job"><h3>🇧🇷 Presidente</h3><p>Chefes do Poder Executivo Federal e responsável pela administração federal.</p></div>
+<div class="job"><h3>🏛️ Governador</h3><p>Chefes do Poder Executivo Estadual e responsáveis pela administração dos estados.</p></div>
+<div class="job"><h3>🗣️ Senador</h3><p>Representa os estados no Senado Federal.</p></div>
+<div class="job"><h3>📢 Deputados</h3><p>Atuam na elaboração de leis e na fiscalização do Poder Executivo, conforme sua esfera.</p></div>
 </div>
-<div class="card"><h2>📊 Estatísticas Eleitorais</h2>
-<p><strong>Eleitores no Brasil (2026):</strong> ~156 milhões</p>
-<p><strong>Seções eleitorais:</strong> ~100 mil</p>
-<p><strong>Urna eletrônica:</strong> usada desde 1996</p>
-<p><strong>Tempo médio de voto:</strong> 1 minuto e 20 segundos</p>
-<p><strong>Idade mínima para votar:</strong> 16 anos (voto facultativo até 17; obrigatório a partir de 18)</p>
-<p><strong>Voto facultativo:</strong> analfabetos e maiores de 70 anos</p>
-</div>
-</div>
+</section>
 
-<div id="pesquisa" class="secaoo">
-<div class="card">
-<h2>🔍 Pesquisar Candidato</h2>
-<p style="opacity:0.8;font-size:clamp(0.75rem, 2vw, 0.85rem);margin-bottom:12px;">Digite o nome do candidato para verificar informações em fontes oficiais e na internet:</p>
-<input type="text" class="research-input" id="candidateName" placeholder="Ex: João da Silva" onkeypress="if(event.key==='Enter')searchCandidate()">
-<div class="research-btns">
-<button onclick="searchCandidate()">🔍 Pesquisar no Google</button>
-<button class="secondary" onclick="searchTSE()">🏛️ Consultar TSE</button>
-<button class="secondary" onclick="searchFichaLimpa()">📋 Ficha Limpa</button>
-<button class="secondary" onclick="searchNews()">📰 Notícias Recentes</button>
-<button class="secondary" onclick="searchTwitter()">🐦 X/Twitter</button>
-<button class="secondary" onclick="searchWikipedia()">📚 Wikipedia</button>
-</div>
-<div class="dica-box" style="margin-top:14px">
-💡 <strong>Dica:</strong> Para verificar se um candidato tem processos ou condenações, use a pesquisa no Google + "processo" ou "condenação" junto ao nome. A consulta ao TSE mostra a situação eleitoral e filiação partidária.
-</div>
-</div>
-<div class="card">
-<h2>⚠️ O que procurar na pesquisa?</h2>
-<div style="font-size:clamp(0.75rem, 2vw, 0.85rem);line-height:1.7;opacity:0.9;">
-<p>🚩 <strong>Ficha suja:</strong> Candidatos com condenação em segunda instância estão impedidos pela Lei da Ficha Limpa.</p>
-<p>💰 <strong>Financiamento:</strong> Verifique doações de campanha no site do TSE (Prestação de Contas).</p>
-<p>📜 <strong>Mandatos anteriores:</strong> Busque o histórico de projetos aprovados e frequência em sessões.</p>
-<p>🏛️ <strong>Processos:</strong> Consulte o nome no site dos tribunais de Justiça do estado.</p>
-<p>📰 <strong>Imprensa:</strong> Busque notícias de fontes confiáveis sobre o candidato.</p>
-<p>🤝 <strong>Lobbies:</strong> Verifique se o candidato recebeu doações de setores específicos (agronegócio, bancos, etc.).</p>
-</div>
-</div>
-</div>
+<section>
+<h2 class="title">🗳️ Como votar com consciência</h2>
+<details open><summary>1. Conheça as propostas</summary><p>Leia o que o candidato propõe e pergunte como pretende realizar.</p></details>
+<details><summary>2. Conheça o histórico</summary><p>Observe mandatos anteriores, atuação pública e posições assumidas.</p></details>
+<details><summary>3. Compare</summary><p>Não decida pelo primeiro vídeo ou propaganda que aparecer.</p></details>
+<details><summary>4. Vote</summary><p>Leve seus números anotados e siga as orientações oficiais da Justiça Eleitoral.</p></details>
+</section>
 
-<div id="eleicoes" class="secaoo">
-<div class="card"><h2>📊 Eleições Presidenciais — Resultados Recentes</h2>
-<div class="eleicao-item">
-<div class="eleicao-ano">2022 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 60,3% (50,9 mi)<br><strong>Jair Bolsonaro (PL)</strong> — 39,7% (33,5 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 20,9% | Votos válidos: 84,4 mi</span></div>
-</div>
-<div class="eleicao-item">
-<div class="eleicao-ano">2018 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Jair Bolsonaro (PSL)</strong> — 55,1% (57,8 mi)<br><strong>Fernando Haddad (PT)</strong> — 44,9% (47,0 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 20,3% | Votos válidos: 104,7 mi</span></div>
-</div>
-<div class="eleicao-item">
-<div class="eleicao-ano">2014 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Dilma Rousseff (PT)</strong> — 51,6% (54,5 mi)<br><strong>Aécio Neves (PSDB)</strong> — 48,4% (51,0 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 18,5% | Votos válidos: 105,5 mi</span></div>
-</div>
-<div class="eleicao-item">
-<div class="eleicao-ano">2010 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Dilma Rousseff (PT)</strong> — 56,0% (55,7 mi)<br><strong>José Serra (PSDB)</strong> — 44,0% (43,7 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 19,5% | Votos válidos: 99,4 mi</span></div>
-</div>
-<div class="eleicao-item">
-<div class="eleicao-ano">2006 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 60,8% (58,3 mi)<br><strong>Geraldo Alckmin (PSDB)</strong> — 39,2% (37,5 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 17,7% | Votos válidos: 95,8 mi</span></div>
-</div>
-<div class="eleicao-item">
-<div class="eleicao-ano">2002 — 2º Turno</div>
-<div class="eleicao-desc"><strong>Luiz Inácio Lula da Silva (PT)</strong> — 61,3% (52,8 mi)<br><strong>José Serra (PSDB)</strong> — 38,7% (33,4 mi)<br><span style="opacity:0.7;font-size:clamp(0.65rem, 1.6vw, 0.75rem);">Abstenção: 18,6% | Votos válidos: 86,2 mi</span></div>
-</div>
-</div>
-<div class="card">
-<h2>📈 Curiosidades Eleitorais</h2>
-<div style="font-size:clamp(0.75rem, 2vw, 0.85rem);line-height:1.7;opacity:0.9;">
-<p>🗳️ <strong>Eleitores em 2026:</strong> ~156 milhões de brasileiros aptos a votar.</p>
-<p>🖥️ <strong>Urna eletrônica:</strong> Usada desde 1996, sem registro de fraude comprovada.</p>
-<p>⏱️ <strong>Tempo médio de voto:</strong> 1 minuto e 20 segundos por eleitor.</p>
-<p>📍 <strong>Seções eleitorais:</strong> ~100 mil espalhadas pelo país.</p>
-<p>👶 <strong>Idade mínima:</strong> 16 anos (facultativo até 17; obrigatório a partir de 18).</p>
-<p>🎓 <strong>Voto facultativo:</strong> Analfabetos e maiores de 70 anos.</p>
-<p>💰 <strong>Cláusula de barreira 2026:</strong> Partidos precisam eleger 13 deputados federais distribuídos em 1/3 dos estados OU obter 2,5% dos votos válidos na Câmara.</p>
-</div>
-</div>
-</div>
+<section>
+<div class="warning"><b>⚠️ Importante:</b> este site tem finalidade educativa. Para candidatura, situação eleitoral, regras e resultados, priorize sempre os canais oficiais da Justiça Eleitoral.</div>
+</section>
+</main>
 
-<div id="links" class="secaoo">
-<div class="card"><h2>🔗 Links Úteis para Pesquisa</h2>
-<div class="links-grid">
-<a class="link-card" href="https://www.tse.jus.br" target="_blank" rel="noopener noreferrer"><h3>🏛️ TSE — Tribunal Superior Eleitoral</h3><p>Site oficial com dados de candidatos, resultados, estatísticas e normas eleitorais.</p></a>
-<a class="link-card" href="https://divulgacandcontas.tse.jus.br" target="_blank" rel="noopener noreferrer"><h3>📋 DivulgaCandContas</h3><p>Consulte candidatos, prestação de contas, bens declarados e situação eleitoral.</p></a>
-<a class="link-card" href="https://www.fichalimpa.org.br" target="_blank" rel="noopener noreferrer"><h3>⚖️ Ficha Limpa.org</h3><p>Verifique se candidatos têm condenações que os impedem de concorrer.</p></a>
-<a class="link-card" href="https://www.camara.leg.br" target="_blank" rel="noopener noreferrer"><h3>🏛️ Câmara dos Deputados</h3><p>Acompanhe votações, projetos de lei e atuação dos deputados federais.</p></a>
-<a class="link-card" href="https://www12.senado.leg.br" target="_blank" rel="noopener noreferrer"><h3>🏛️ Senado Federal</h3><p>Consulte projetos, votações e atuação dos senadores.</p></a>
-<a class="link-card" href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank" rel="noopener noreferrer"><h3>📋 Partidos Registrados no TSE</h3><p>Lista oficial dos 30 partidos com registro definitivo no TSE.</p></a>
-<a class="link-card" href="https://www.justicaeleitoral.jus.br" target="_blank" rel="noopener noreferrer"><h3>⚖️ Justiça Eleitoral</h3><p>Portal com serviços para eleitores, candidatos e partidos.</p></a>
-<a class="link-card" href="https://www.planalto.gov.br" target="_blank" rel="noopener noreferrer"><h3>🇧🇷 Planalto</h3><p>Site da Presidência da República com informações do governo federal.</p></a>
-<a class="link-card" href="https://www.transparencia.org.br" target="_blank" rel="noopener noreferrer"><h3>🔍 Transparência Brasil</h3><p>ONG que fiscaliza o poder público e combate a corrupção.</p></a>
-<a class="link-card" href="https://www.politize.com.br" target="_blank" rel="noopener noreferrer"><h3>📚 Politize!</h3><p>Educação política de forma simples e acessível para todos.</p></a>
+<footer>
+<div class="wrap">
+<p class="quote">“Se sei que sou um ser político, por que não agir como tal com plenitude?”</p>
+<p><b>— Gilson Silva</b></p>
+<p>© 2026 Voto Consciente — Educando eleitores</p>
 </div>
-</div>
-</div>
-
-<footer style="text-align:center;padding:20px 16px 30px;margin-top:10px;">
-  <p style="font-size:clamp(0.8rem, 2vw, 1rem);color:#ffd700;font-style:italic;margin-bottom:10px;">
-    "Se sei que sou um ser político, por que não agir como tal com plenitude?"
-  </p>
-  <p style="font-size:clamp(0.7rem, 1.8vw, 0.9rem);color:#a8e6cf;margin-bottom:15px;">
-    — Gilson Silva
-  </p>
-  <p style="font-size:clamp(0.65rem, 1.6vw, 0.85rem);color:#ddd;border-top:1px solid rgba(255,255,255,0.1);padding-top:15px;">
-    © 2026 Voto Consciente — Educando eleitores — Gilson Silva | Dados do TSE e fontes públicas
-  </p>
-</footer></div>
+</footer>
 
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW instalado com sucesso!'))
-      .catch(err => console.log('Erro SW:', err));
-  });
-}
-
-let currentFilter = 'todos';
-
-function atualizar(){
-  var c = document.querySelectorAll('#check input[type="checkbox"]'), m = 0;
-  c.forEach(function(x){ if(x.checked) m++; });
-  var p = c.length > 0 ? Math.round(m / c.length * 100) : 0;
-  document.getElementById('pb').style.width = p + '%';
-  document.getElementById('pt').textContent = p === 100 ? '🎉 Parabéns! Você está preparado para votar!' : p + '% concluído';
-}
-
-function mostrar(id){
-  document.querySelectorAll('.secaoo').forEach(function(s){ s.classList.remove('ativa'); });
-  var el = document.getElementById(id);
-  if(el) el.classList.add('ativa');
-  document.querySelectorAll('.nav button').forEach(function(b){ b.classList.remove('active'); });
-  var btn = document.getElementById('btn-' + id);
-  if(btn) btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function fecharMenu() {
-  const menu = document.getElementById('menu-opcoes');
-  if(menu) menu.classList.remove('aberto');
-}
-
-function toggleShare() {
-  const popup = document.getElementById('popup-compartilhar');
-  if (!popup) return;
-  popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
-}
-
-function copiarLink() {
-  const link = 'https://gilsonjs.github.io/Voto-consciente';
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText('Confira o Voto Consciente! ' + link).then(() => {
-      alert('✅ Link copiado! Compartilhe com seus contatos.');
-    }).catch(() => { fallbackCopy(link); });
-  } else { fallbackCopy(link); }
-}
-
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  document.body.appendChild(ta);
-  ta.select();
-  document.execCommand('copy');
-  document.body.removeChild(ta);
-  alert('✅ Link copiado! Compartilhe com seus contatos.');
-}
-
-document.addEventListener('click', function(event) {
-  const menu = document.querySelector('.share-menu');
-  const popup = document.getElementById('popup-compartilhar');
-  if (menu && popup && !menu.contains(event.target)) {
-    popup.style.display = 'none';
-  }
-});
-
-const parties = [
-  {sigla:'MDB',num:15,nome:'Movimento Democrático Brasileiro',filiados:'2.021.001',fundação:'30/06/1981',pres:'Baleia Rossi',ideologia:'centro',hist:'Fundado em 1966 durante a ditadura militar como MDB. Em 1979 virou PMDB e em 2018 voltou a MDB. É o partido com mais filiados do Brasil.',fed:'Nenhuma'},
-  {sigla:'PDT',num:12,nome:'Partido Democrático Trabalhista',filiados:'1.074.679',fundação:'10/11/1981',pres:'Carlos Lupi',ideologia:'centro-esquerda',hist:'Fundado por Leonel Brizola em 1981, reivindica a herança do antigo PTB de Getúlio Vargas. Trabalhista e nacionalista.',fed:'Nenhuma'},
-  {sigla:'PT',num:13,nome:'Partido dos Trabalhadores',filiados:'1.667.292',fundação:'11/02/1982',pres:'Edinho Silva',ideologia:'esquerda',hist:'Fundado em 1980 por sindicalistas e movimentos sociais. Maior partido de esquerda da América Latina.',fed:'FE Brasil'},
-  {sigla:'PCdoB',num:65,nome:'Partido Comunista do Brasil',filiados:'383.815',fundação:'23/06/1988',pres:'Nádia Campeão',ideologia:'esquerda',hist:'Fundado em 1962 após cisão no PCB. Teve atuação clandestina durante a ditadura. Filiado à FE Brasil.',fed:'FE Brasil'},
-  {sigla:'PSB',num:40,nome:'Partido Socialista Brasileiro',filiados:'639.834',fundação:'01/07/1988',pres:'João Henrique Campos',ideologia:'centro-esquerda',hist:'Fundado em 1947, refundado em 1988. Socialista democrático com forte presença no Nordeste.',fed:'Nenhuma'},
-  {sigla:'PSDB',num:45,nome:'Partido da Social Democracia Brasileira',filiados:'1.262.666',fundação:'24/08/1989',pres:'Aécio Neves',ideologia:'centro-direita',hist:'Fundado em 1988 por dissidentes do PMDB. Filiado à federação PSDB Cidadania.',fed:'PSDB Cidadania'},
-  {sigla:'AGIR',num:36,nome:'Agir',filiados:'194.716',fundação:'22/02/1990',pres:'Daniel Tourinho',ideologia:'centro-direita',hist:'Antigo PTC (Partido Trabalhista Cristão). Mudou para Agir em 2022.',fed:'Nenhuma'},
-  {sigla:'MOBILIZA',num:33,nome:'Mobilização Nacional',filiados:'207.430',fundação:'25/10/1990',pres:'Bosco Massarollo',ideologia:'centro',hist:'Antigo PMN. Mudou para Mobiliza em 2023.',fed:'Nenhuma'},
-  {sigla:'CIDADANIA',num:23,nome:'Cidadania',filiados:'414.222',fundação:'19/03/1992',pres:'Alex Manente',ideologia:'centro',hist:'Antigo PPS. Mudou para Cidadania em 2019. Filiado à PSDB Cidadania.',fed:'PSDB Cidadania'},
-  {sigla:'PV',num:43,nome:'Partido Verde',filiados:'340.807',fundação:'30/09/1993',pres:'José Luiz Penna',ideologia:'centro-esquerda',hist:'Fundado em 1986, tem pautas de sustentabilidade e meio ambiente. Filiado à FE Brasil.',fed:'FE Brasil'},
-  {sigla:'AVANTE',num:70,nome:'Avante',filiados:'243.030',fundação:'11/10/1994',pres:'Luis Henrique Resende',ideologia:'centro',hist:'Antigo PTdoB. Mudou para Avante em 2017.',fed:'Nenhuma'},
-  {sigla:'PP',num:11,nome:'Progressistas',filiados:'1.287.489',fundação:'16/11/1995',pres:'Ciro Nogueira',ideologia:'centro-direita',hist:'Resultado da fusão do PPR e PP em 1995. Filiado à União Progressista.',fed:'União Progressista'},
-  {sigla:'PSTU',num:16,nome:'Partido Socialista dos Trabalhadores Unificado',filiados:'14.641',fundação:'19/12/1995',pres:'José Maria de Almeida',ideologia:'extrema-esquerda',hist:'Fundado em 1994 de orientação trotskista.',fed:'Nenhuma'},
-  {sigla:'PCB',num:21,nome:'Partido Comunista Brasileiro',filiados:'11.784',fundação:'09/05/1996',pres:'Edmilson Costa',ideologia:'extrema-esquerda',hist:'Fundado em 1922, um dos partidos mais antigos do Brasil.',fed:'Nenhuma'},
-  {sigla:'PRTB',num:28,nome:'Partido Renovador Trabalhista Brasileiro',filiados:'143.092',fundação:'18/02/1997',pres:'Leonardo Araújo',ideologia:'direita',hist:'Fundado em 1994 com inspiração no trabalhismo e nacionalismo.',fed:'Nenhuma'},
-  {sigla:'DC',num:27,nome:'Democracia Cristã',filiados:'182.849',fundação:'05/08/1997',pres:'João Caldas',ideologia:'centro-direita',hist:'Antigo PSDC. Baseado em valores cristãos.',fed:'Nenhuma'},
-  {sigla:'PCO',num:29,nome:'Partido da Causa Operária',filiados:'7.082',fundação:'30/09/1997',pres:'Rui Costa Pimenta',ideologia:'extrema-esquerda',hist:'Fundado em 1995 por dissidentes do PSTU de orientação trotskista.',fed:'Nenhuma'},
-  {sigla:'PODE',num:20,nome:'Podemos',filiados:'797.724',fundação:'02/10/1997',pres:'Renata Abreu',ideologia:'centro',hist:'Antigo PTN. Incorporou PHS e PSC.',fed:'Nenhuma'},
-  {sigla:'REPUBLICANOS',num:10,nome:'Republicanos',filiados:'565.681',fundação:'25/08/2005',pres:'Marcos Pereira',ideologia:'direita',hist:'Antigo PRB. Mudou para Republicanos em 2019.',fed:'Nenhuma'},
-  {sigla:'PSOL',num:50,nome:'Partido Socialismo e Liberdade',filiados:'291.356',fundação:'15/09/2005',pres:'Paula Coradi',ideologia:'esquerda',hist:'Fundado em 2004 por dissidentes do PT. Filiado à PSOL REDE.',fed:'PSOL REDE'},
-  {sigla:'PL',num:22,nome:'Partido Liberal',filiados:'949.099',fundação:'19/12/2006',pres:'Valdemar Costa Neto',ideologia:'direita',hist:'Antigo PR (Partido da República). Mudou para Partido Liberal em 2019.',fed:'Nenhuma'},
-  {sigla:'PSD',num:55,nome:'Partido Social Democrático',filiados:'465.940',fundação:'27/09/2011',pres:'Gilberto Kassab',ideologia:'centro',hist:'Fundado em 2011 por Kassab e outros políticos de centro.',fed:'Nenhuma'},
-  {sigla:'SOLIDARIEDADE',num:77,nome:'Solidariedade',filiados:'374.558',fundação:'24/09/2013',pres:'Paulo Pereira da Silva',ideologia:'centro-direita',hist:'Fundado em 2012 com base sindical. Filiado à Renovação Solidária.',fed:'Renovação Solidária'},
-  {sigla:'NOVO',num:30,nome:'Partido Novo',filiados:'80.910',fundação:'15/09/2015',pres:'Eduardo Ribeiro',ideologia:'centro-direita',hist:'Defende liberalismo econômico e gestão privada.',fed:'Nenhuma'},
-  {sigla:'REDE',num:18,nome:'Rede Sustentabilidade',filiados:'55.839',fundação:'22/09/2015',pres:'Paulo Lamac',ideologia:'centro-esquerda',hist:'Fundada por Marina Silva. Filiada à PSOL REDE.',fed:'PSOL REDE'},
-  {sigla:'DEMOCRATA',num:35,nome:'Democrata',filiados:'55.602',fundação:'29/09/2015',pres:'Suêd Haidar',ideologia:'centro-direita',hist:'Antigo PMB (Partido da Mulher Brasileira).',fed:'Nenhuma'},
-  {sigla:'UP',num:80,nome:'Unidade Popular',filiados:'14.089',fundação:'10/12/2019',pres:'Leonardo Péricles',ideologia:'esquerda',hist:'Fundado em 2016 por movimentos sociais e sindicais.',fed:'Nenhuma'},
-  {sigla:'UNIÃO',num:44,nome:'União Brasil',filiados:'1.067.839',fundação:'08/02/2022',pres:'Antônio de Rueda',ideologia:'centro-direita',hist:'Fusão entre DEM e PSL em 2022. Filiado à União Progressista.',fed:'União Progressista'},
-  {sigla:'PRD',num:25,nome:'Partido Renovação Democrática',filiados:'1.282.825',fundação:'09/11/2023',pres:'Ovasco Resende',ideologia:'centro-direita',hist:'Fusão entre PTB e Patriota em 2023. Filiado à Renovação Solidária.',fed:'Renovação Solidária'},
-  {sigla:'MISSÃO',num:14,nome:'Partido Missão',filiados:'23.730',fundação:'04/11/2025',pres:'Renan Ferreira',ideologia:'direita',hist:'Registrado em 2025. Defende liberalismo econômico.',fed:'Nenhuma'}
-];
-
-function renderParties(filter='todos', search=''){
-  const grid = document.getElementById('partyGrid');
-  const count = document.getElementById('partyCount');
-  if(!grid) return;
-  grid.innerHTML = '';
-  let filtered = parties;
-  if(filter !== 'todos') filtered = filtered.filter(p => p.ideologia === filter);
-  if(search) {
-    const s = search.toLowerCase();
-    filtered = filtered.filter(p => p.sigla.toLowerCase().includes(s) || p.nome.toLowerCase().includes(s) || String(p.num).includes(s));
-  }
-  count.textContent = 'Exibindo ' + filtered.length + ' partido' + (filtered.length !== 1 ? 's' : '');
-
-  filtered.forEach(p => {
-    const badgeHtml = '<div class="vc-party-logo"><span>' + p.sigla + '</span></div>';
-    const detailBadgeHtml = '<div class="vc-detail-logo"><span>' + p.sigla + '</span></div>';
-    const tags = [p.ideologia];
-    if(p.fed !== 'Nenhuma') tags.push('Fed: ' + p.fed);
-    const tagHtml = tags.map(t => '<span class="vc-tag">' + t + '</span>').join('');
-
-    const div = document.createElement('div');
-    div.className = 'partido';
-    div.innerHTML = '<div class="vc-party-header">' + badgeHtml + '<div class="vc-party-info"><div class="vc-party-name">' + p.sigla + ' <span class="numero">' + p.num + '</span></div><div class="vc-party-meta">' + p.nome + '</div></div></div><div class="vc-party-desc">' + p.hist + '</div><div class="vc-party-tags">' + tagHtml + '</div><div class="vc-party-links"><a href="https://www.google.com/search?q=' + encodeURIComponent(p.nome + ' partido Brasil') + '" target="_blank" rel="noopener noreferrer">🔍 Google</a><a href="https://www.tse.jus.br/partidos/partidos-registrados-no-tse" target="_blank" rel="noopener noreferrer">🏛️ TSE</a><a href="https://divulgacandcontas.tse.jus.br" target="_blank" rel="noopener noreferrer">📋 Candidatos</a></div><div class="vc-toggle" onclick="toggleDetail(this)">📊 Ver detalhes ▼</div><div class="vc-detail"><div class="vc-detail-header">' + detailBadgeHtml + '<div><strong>' + p.sigla + '</strong> — ' + p.nome + '</div></div><div class="vc-detail-row"><span class="vc-detail-label">Fundação</span><span>' + p.fundação + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Filiados</span><span>' + p.filiados + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Presidente</span><span>' + p.pres + '</span></div><div class="vc-detail-row"><span class="vc-detail-label">Federação</span><span>' + p.fed + '</span></div></div>';
-    grid.appendChild(div);
-  });
-}
-
-function toggleDetail(el){
-  const detail = el.nextElementSibling;
-  if(!detail) return;
-  detail.classList.toggle('show');
-  el.textContent = detail.classList.contains('show') ? '📊 Ocultar detalhes ▲' : '📊 Ver detalhes ▼';
-}
-
-function filterByIdeology(ideology, evt){
-  currentFilter = ideology;
-  document.querySelectorAll('.vc-filter').forEach(f => f.classList.remove('active'));
-  if(evt && evt.target) evt.target.classList.add('active');
-  renderParties(currentFilter, document.getElementById('partySearch').value);
-}
-
-function filterParties(){
-  renderParties(currentFilter, document.getElementById('partySearch').value);
-}
-
-function getCandidateName(){
-  const el = document.getElementById('candidateName');
-  return el ? el.value.trim() : '';
-}
-
-function searchCandidate(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' candidato Brasil processo condenação ficha'), '_blank');
-}
-
-function searchTSE(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://divulgacandcontas.tse.jus.br/divulga/#/candidatos', '_blank');
-}
-
-function searchFichaLimpa(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.fichalimpa.org.br', '_blank');
-}
-
-function searchNews(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://www.google.com/search?q=' + encodeURIComponent(name + ' notícias 2026') + '&tbm=nws', '_blank');
-}
-
-function searchTwitter(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://x.com/search?q=' + encodeURIComponent(name), '_blank');
-}
-
-function searchWikipedia(){
-  const name = getCandidateName();
-  if(!name){ alert('Digite o nome de um candidato primeiro!'); return; }
-  window.open('https://pt.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(name), '_blank');
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-    renderParties();
-    atualizar();
-});
+const checks=[...document.querySelectorAll('#checklist input')],bar=document.getElementById('bar'),pct=document.getElementById('pct');
+checks.forEach((c,i)=>{c.checked=localStorage.getItem('vc'+i)==='1';c.onchange=()=>{localStorage.setItem('vc'+i,c.checked?'1':'0');update()}});
+function update(){let n=checks.filter(x=>x.checked).length,p=Math.round(n/checks.length*100);bar.style.width=p+'%';pct.textContent=p+'% concluído';}
+function pesquisar(){let n=document.getElementById('nome').value.trim();if(!n){alert('Digite o nome do candidato.');return}let q=encodeURIComponent(n);document.getElementById('google').href='https://www.google.com/search?q='+q;document.getElementById('noticias').href='https://news.google.com/search?q='+q;window.open('https://www.google.com/search?q='+q,'_blank');}
+update();
 </script>
 </body>
 </html>
