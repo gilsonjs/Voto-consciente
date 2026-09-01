@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b6b3a">
 <title>Voto Consciente 2026 — Gilson Silva</title>
 <style>
@@ -19,12 +19,12 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; }
 body { 
   font-family: Arial, Helvetica, sans-serif; 
   color: var(--ink); 
   background: var(--bg); 
-  line-height: 1.5; 
+  line-height: 1.55; 
 }
 
 a { text-decoration: none; color: inherit; }
@@ -34,7 +34,7 @@ a { text-decoration: none; color: inherit; }
 header { 
   background: linear-gradient(135deg, #064f2b, #0b9b54); 
   color: #fff; 
-  padding: 15px 0 35px; 
+  padding: 18px 0 45px; 
 }
 
 nav { 
@@ -44,17 +44,18 @@ nav {
   flex-wrap: wrap;
 }
 
-.brand { font-weight: 900; font-size: 1.1rem; }
+.brand { font-weight: 900; font-size: 1.25rem; }
 .brand span { color: var(--yellow); }
 
 .menu-toggle {
+  display: block;
   background: rgba(255,255,255,0.2);
-  border: 1px solid #fff;
+  border: 1px solid rgba(255,255,255,0.4);
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -65,24 +66,24 @@ nav {
   background: #04381e; 
   margin-top: 15px;
   padding: 10px; 
-  border-radius: 8px; 
+  border-radius: 10px; 
 }
 
 .menu.show { display: flex; }
 
 .menu a { 
   padding: 12px; 
-  font-size: 1rem;
+  font-size: 0.95rem;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   text-align: center;
 }
 
-/* HERO SECTION - PADRÃO CELULAR */
+/* HERO SECTION - MOBILE FIRST */
 .hero { 
-  padding: 25px 0 10px; 
+  padding: 30px 0 10px; 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
 .badge { 
@@ -90,25 +91,24 @@ nav {
   background: var(--yellow); 
   color: #222; 
   font-weight: bold; 
-  padding: 6px 12px; 
+  padding: 7px 12px; 
   border-radius: 999px; 
-  font-size: 0.75rem;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
 }
 
 .hero h1 { 
-  font-size: 2.2rem; 
+  font-size: clamp(2.2rem, 7vw, 4.5rem); 
   line-height: 1.1; 
-  margin-bottom: 12px; 
+  margin: 16px 0; 
 }
 
-.hero p { font-size: 1rem; }
+.hero p { font-size: 1.15rem; max-width: 700px; }
 
 .actions { 
   display: flex; 
   flex-direction: column; 
-  gap: 10px; 
-  margin-top: 20px; 
+  gap: 12px; 
+  margin-top: 24px; 
 }
 
 .btn { 
@@ -116,48 +116,50 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px; 
+  padding: 14px 20px; 
   border-radius: 10px; 
-  font-weight: bold; 
-  font-size: 0.95rem;
+  font-weight: 800; 
+  cursor: pointer; 
   text-align: center;
+  font-size: 0.95rem;
 }
 
 .primary { background: var(--yellow); color: #1b1b1b; }
 .light { background: #fff; color: #075d32; }
 .outline { border: 2px solid #fff; background: transparent; color: #fff; }
 
-.hero-card { display: none; } /* Oculto no celular */
+.hero-card { display: none; }
 
-/* CONTEÚDO PRINCIPAL */
-main { padding: 30px 0; }
-section { margin-bottom: 35px; scroll-margin-top: 20px; }
-.title { text-align: center; font-size: 1.5rem; margin-bottom: 8px; }
-.lead { text-align: center; color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
+/* MAIN CONTENT */
+main { padding: 38px 0; }
+section { margin-bottom: 42px; scroll-margin-top: 20px; }
+.title { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
+.lead { text-align: center; color: var(--muted); margin: 0 auto 25px; max-width: 750px; font-size: 1rem; }
 
 .grid { 
   display: flex;
   flex-direction: column;
-  gap: 15px; 
+  gap: 16px; 
 }
 
 .card { 
   background: var(--card); 
-  padding: 18px; 
-  border-radius: 14px; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+  padding: 22px; 
+  border-radius: 16px; 
+  box-shadow: 0 7px 25px rgba(11, 59, 27, 0.06); 
 }
 
-.card h3 { margin: 8px 0 4px; font-size: 1.2rem; }
-.icon { font-size: 1.8rem; }
+.card h3 { margin-top: 8px; margin-bottom: 6px; font-size: 1.25rem; }
+.icon { font-size: 2rem; }
 
-/* CHECKLIST */
+/* CHECKLIST RESTAURADO */
 .check { 
   display: flex; 
   align-items: flex-start; 
   gap: 12px; 
-  padding: 12px 0; 
+  padding: 13px 0; 
   border-bottom: 1px solid #edf0ed; 
+  cursor: pointer;
 }
 
 .check input { 
@@ -168,40 +170,40 @@ section { margin-bottom: 35px; scroll-margin-top: 20px; }
   margin-top: 2px;
 }
 
-.check span { font-size: 0.95rem; }
-.progress { height: 14px; background: #e3e8e3; border-radius: 20px; overflow: hidden; }
+.check label { font-size: 1rem; cursor: pointer; }
+.progress { height: 16px; background: #e3e8e3; border-radius: 20px; overflow: hidden; margin-top: 15px; }
 .bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--green2)); transition: .3s; }
-.percent { font-weight: bold; margin: 10px 0 6px; font-size: 0.9rem; }
+.percent { font-weight: bold; margin: 15px 0 5px; }
 
-/* SEÇÃO LIVE */
+/* PAINEL DE APURAÇÃO */
 .live { 
   background: linear-gradient(135deg, #142b55, #07172f); 
   color: #fff; 
-  border-radius: 18px; 
-  padding: 20px; 
+  border-radius: 22px; 
+  padding: 28px; 
 }
 
-.live h2 { font-size: 1.3rem; margin: 10px 0; }
-.live p { font-size: 0.95rem; margin-bottom: 15px; }
+.live h2 { margin: 12px 0; font-size: 1.6rem; }
+.live p { font-size: 1.05rem; margin-bottom: 20px; }
 .live-status { 
   display: inline-flex; 
   align-items: center; 
-  gap: 6px; 
+  gap: 8px; 
   background: rgba(255,255,255,0.15); 
-  padding: 5px 10px; 
+  padding: 8px 14px; 
   border-radius: 999px; 
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; display: inline-block; animation: pulse 1s infinite; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #ff3b30; display: inline-block; animation: pulse 1s infinite; }
 @keyframes pulse { 50% { opacity: .25; } }
 
-/* PESQUISA */
+/* PESQUISA DE CANDIDATO COM QUADRO DE RESULTADOS NO PRÓPRIO SITE */
 .searchbox { display: flex; flex-direction: column; gap: 10px; }
 .searchbox input { 
   width: 100%; 
-  padding: 14px; 
+  padding: 15px; 
   border: 1px solid #ccd5cd; 
-  border-radius: 8px; 
+  border-radius: 10px; 
   font-size: 1rem; 
 }
 .searchbox button { 
@@ -209,46 +211,63 @@ section { margin-bottom: 35px; scroll-margin-top: 20px; }
   background: var(--green); 
   color: #fff; 
   border: 0; 
-  border-radius: 8px; 
-  padding: 14px; 
+  border-radius: 10px; 
+  padding: 15px; 
   font-weight: bold; 
   cursor: pointer; 
+  font-size: 1rem;
 }
 
-.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+/* Painel do Resultado da Pesquisa */
+.results-panel {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  background: #f0f7f2;
+  border: 2px solid var(--green2);
+  border-radius: 12px;
+}
+.results-panel.active { display: block; }
+.results-panel h4 { color: var(--green); font-size: 1.2rem; margin-bottom: 10px; }
+.results-panel ul { padding-left: 20px; margin-bottom: 15px; }
+.results-panel li { margin-bottom: 8px; }
+
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
 .linkbtn { 
   background: #eef6f0; 
   color: #075d32; 
-  padding: 8px 12px; 
-  border-radius: 6px; 
+  padding: 10px 14px; 
+  border-radius: 9px; 
   font-weight: bold; 
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  display: inline-block;
 }
 
-.warning { border-left: 4px solid var(--red); background: #fff7f7; padding: 15px; border-radius: 8px; font-size: 0.9rem; }
-.jobs { display: flex; flex-direction: column; gap: 12px; }
-.job { background: #fff; padding: 15px; border-radius: 10px; border-top: 4px solid var(--green); }
-.job h3 { font-size: 1.1rem; margin-bottom: 5px; }
-.job p { font-size: 0.9rem; }
+/* OUTRAS SEÇÕES EDUCATIVAS RESTAURADAS */
+.warning { border-left: 5px solid var(--red); background: #fff7f7; padding: 18px; border-radius: 10px; line-height: 1.6; }
+.jobs { display: flex; flex-direction: column; gap: 14px; }
+.job { background: #fff; padding: 18px; border-radius: 14px; border-top: 4px solid var(--green); }
+.job h3 { font-size: 1.2rem; margin-bottom: 6px; }
 
-details { background: #fff; border-radius: 10px; padding: 14px; margin: 8px 0; font-size: 0.95rem; }
-summary { font-weight: bold; cursor: pointer; }
+details { background: #fff; border-radius: 12px; padding: 16px; margin: 10px 0; }
+summary { font-weight: bold; cursor: pointer; font-size: 1.05rem; }
+details p { margin-top: 8px; color: var(--muted); }
 
-footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; font-size: 0.9rem; }
-.quote { font-style: italic; margin-bottom: 5px; }
+footer { background: #0a2516; color: #fff; padding: 36px 0; text-align: center; }
+.quote { font-size: 1.1rem; font-style: italic; margin-bottom: 8px; }
 
-/* AJUSTES PARA COMPUTADORES (TELAS GRANDES) */
-@media (min-width: 769px) {
+/* REGRAS PARA COMPUTADOR */
+@media (min-width: 820px) {
   .menu-toggle { display: none; }
   .menu { display: flex; flex-direction: row; width: auto; background: transparent; margin: 0; padding: 0; }
   .menu a { border: 0; padding: 8px 12px; }
   .hero { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 30px; }
-  .hero-card { display: block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 22px; padding: 25px; text-align: center; }
-  .hero-card .vote { font-size: 4rem; }
-  .hero h1 { font-size: 3.5rem; }
+  .hero-card { display: block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 22px; padding: 25px; text-align: center; backdrop-filter: blur(6px); }
+  .hero-card .vote { font-size: 5rem; }
   .actions { flex-direction: row; }
   .btn { width: auto; }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .grid.two { grid-template-columns: repeat(2, 1fr); }
   .jobs { display: grid; grid-template-columns: repeat(2, 1fr); }
   .searchbox { flex-direction: row; }
   .searchbox input { flex: 1; }
@@ -261,7 +280,7 @@ footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; 
 <div class="wrap">
 <nav>
 <a class="brand" href="#inicio">🗳️ VOTO <span>CONSCIENTE</span> 2026</a>
-<button class="menu-toggle" onclick="toggleMenu()">☰ MENU</button>
+<button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 <div class="menu" id="mobileMenu">
 <a href="#checklist">Checklist</a>
 <a href="#pesquisa">Pesquisar</a>
@@ -273,9 +292,9 @@ footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; 
 
 <div class="hero" id="inicio">
 <div>
-<span class="badge">🇧🇷 EDUCAÇÃO ELEITORAL</span>
+<span class="badge">🇧🇷 EDUCAÇÃO ELEITORAL PARA TODOS</span>
 <h1>SEU VOTO<br>TEM PODER.</h1>
-<p>Não escolha apenas pela propaganda. <b>Pesquise. Compare. Questione. Vote consciente.</b></p>
+<p>Não escolha apenas pela propaganda, amizade ou promessa. <b>Pesquise. Compare. Questione. Vote consciente.</b></p>
 <div class="actions">
 <a class="btn primary" href="#checklist">✅ FAZER MEU CHECKLIST</a>
 <a class="btn light" href="#pesquisa">🔎 PESQUISAR CANDIDATO</a>
@@ -289,7 +308,7 @@ footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; 
 
 <main class="wrap">
 <section>
-<h2 class="title">Comece por aqui</h2>
+<h2 class="title">Comece por aqui</h2><p class="lead">Tudo em um só lugar, de forma simples e acessível.</p>
 <div class="grid">
 <a class="card" href="#checklist"><div class="icon">📋</div><h3>Checklist</h3><p>Veja se você pesquisou o suficiente antes de votar.</p></a>
 <a class="card" href="#pesquisa"><div class="icon">🔎</div><h3>Pesquisar candidato</h3><p>Atalhos rápidos para fontes públicas e oficiais.</p></a>
@@ -298,64 +317,87 @@ footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; 
 </section>
 
 <section id="checklist">
-<h2 class="title">📋 Checklist do Eleitor</h2>
+<h2 class="title">📋 Checklist do Eleitor Consciente</h2>
 <div class="card">
-<label class="check"><input type="checkbox"><span>Consultei informações públicas sobre o candidato.</span></label>
-<label class="check"><input type="checkbox"><span>Li propostas e planos de governo.</span></label>
-<label class="check"><input type="checkbox"><span>Verifiquei o histórico político e administrativo.</span></label>
-<label class="check"><input type="checkbox"><span>Comparei candidatos e suas propostas.</span></label>
-<label class="check"><input type="checkbox"><span>Pesquisei em fontes diferentes das redes sociais.</span></label>
-<label class="check"><input type="checkbox"><span>Conferi meu local de votação e documentos.</span></label>
+<div class="check"><input type="checkbox" id="c0"><label for="c0">Consultei informações públicas sobre o candidato.</label></div>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">Li propostas e planos de governo.</label></div>
+<div class="check"><input type="checkbox" id="c2"><label for="c2">Verifiquei o histórico político e administrativo.</label></div>
+<div class="check"><input type="checkbox" id="c3"><label for="c3">Comparei candidatos e suas propostas.</label></div>
+<div class="check"><input type="checkbox" id="c4"><label for="c4">Pesquisei em fontes diferentes, não apenas nas redes sociais.</label></div>
+<div class="check"><input type="checkbox" id="c5"><label for="c5">Conferi meu local de votação e os documentos necessários.</label></div>
 <div class="percent" id="pct">0% concluído</div><div class="progress"><div class="bar" id="bar"></div></div>
 </div>
 </section>
 
 <section id="votacao">
 <div class="live">
-<div class="live-status"><span class="dot"></span> ACOMPANHAMENTO</div>
+<div class="live-status"><span class="dot"></span> CENTRAL DE ACOMPANHAMENTO</div>
 <h2>📊 ACOMPANHE A VOTAÇÃO</h2>
-<p>Acompanhe a apuração oficial diretamente na Justiça Eleitoral.</p>
+<p>Esta página está preparada para levar o eleitor diretamente à <b>apuração oficial da Justiça Eleitoral</b>. No dia da votação, os resultados dependem da divulgação oficial.</p>
 <div class="actions">
-<a class="btn primary" target="_blank" rel="noopener" href="https://resultados.tse.jus.br/">🔴 RESULTADOS DO TSE</a>
+<a class="btn primary" target="_blank" rel="noopener" href="https://resultados.tse.jus.br/">🔴 RESULTADOS OFICIAIS DO TSE</a>
 <a class="btn light" target="_blank" rel="noopener" href="https://www.tse.jus.br/">🏛️ PORTAL DO TSE</a>
 </div>
 </div>
 </section>
 
 <section id="pesquisa">
-<h2 class="title">🔎 Pesquise um candidato</h2>
+<h2 class="title">🔎 Pesquise um candidato</h2><p class="lead">Digite o nome do candidato abaixo para analisar no próprio site as etapas recomendadas de verificação.</p>
 <div class="card">
-<div class="searchbox"><input id="nome" placeholder="Ex.: Nome do candidato"><button onclick="pesquisar()">PESQUISAR</button></div>
-<div class="links">
-<a class="linkbtn" id="google" target="_blank">🔎 Google</a>
-<a class="linkbtn" target="_blank" href="https://divulgacandcontas.tse.jus.br/">🏛️ DivulgaCandContas</a>
-<a class="linkbtn" target="_blank" href="https://www.tse.jus.br/">🗳️ TSE</a>
-<a class="linkbtn" id="noticias" target="_blank">📰 Notícias</a>
+<div class="searchbox">
+  <input id="nome" placeholder="Ex.: Nome do candidato">
+  <button onclick="pesquisar()">PESQUISAR CANDIDATO</button>
 </div>
+
+<div id="painelResultado" class="results-panel">
+  <h4>📋 Painel de Análise: <span id="nomeCandidatoDisplay" style="color:var(--ink);"></span></h4>
+  <p>Siga o roteiro oficial para validar esta candidatura antes do seu voto:</p>
+  <ul>
+    <li><b>Prestação de Contas & Bens:</b> Consulte o registro do candidato no portal DivulgaCandContas oficial.</li>
+    <li><b>Histórico de Propostas:</b> Leia o plano de governo protocolado e verifique a viabilidade das promessas.</li>
+    <li><b>Checagem de Notícias:</b> Faça buscas cruzadas em portais jornalísticos e agências de checagem de fatos.</li>
+  </ul>
+  <p style="margin-bottom: 10px;"><b>Links de busca gerados para este nome:</b></p>
+  <div class="links">
+    <a class="linkbtn" id="google" target="_blank">🔎 Buscar "<span class="nomeSearch"></span>" no Google</a>
+    <a class="linkbtn" id="noticias" target="_blank">📰 Notícias de "<span class="nomeSearch"></span>"</a>
+    <a class="linkbtn" href="https://divulgacandcontas.tse.jus.br/" target="_blank">🏛️ Abrir DivulgaCandContas</a>
+  </div>
+</div>
+
+<p style="margin-top: 15px;"><small>💡 Dica: compare fontes, consulte dados oficiais e observe sempre a data das notícias.</small></p>
 </div>
 </section>
 
 <section id="fakenews">
 <h2 class="title">🚨 Não caia em fake news</h2>
 <div class="grid">
-<div class="card"><div class="icon">✋</div><h3>Pare</h3><p>Não compartilhe imediatamente o que recebe nas redes.</p></div>
-<div class="card"><div class="icon">🔍</div><h3>Verifique</h3><p>Procure a fonte original e a data das informações.</p></div>
-<div class="card"><div class="icon">📰</div><h3>Compare</h3><p>Consulte veículos jornalísticos confiáveis.</p></div>
+<div class="card"><div class="icon">✋</div><h3>Pare</h3><p>Não compartilhe imediatamente algo recebido no WhatsApp ou nas redes sociais.</p></div>
+<div class="card"><div class="icon">🔍</div><h3>Verifique</h3><p>Procure a fonte original, a data de publicação e outras confirmações oficiais.</p></div>
+<div class="card"><div class="icon">📰</div><h3>Compare</h3><p>Consulte fontes oficiais e veículos de imprensa jornalísticos confiáveis.</p></div>
 </div>
 </section>
 
 <section id="cargos">
 <h2 class="title">⚖️ O que cada cargo faz?</h2>
 <div class="jobs">
-<div class="job"><h3>🇧🇷 Presidente</h3><p>Chefe do Poder Executivo Federal.</p></div>
-<div class="job"><h3>🏛️ Governador</h3><p>Chefe do Poder Executivo Estadual.</p></div>
-<div class="job"><h3>🗣️ Senador</h3><p>Representa o estado no Congresso.</p></div>
-<div class="job"><h3>📢 Deputados</h3><p>Elaboram leis e fiscalizam o Executivo.</p></div>
+<div class="job"><h3>🇧🇷 Presidente</h3><p>Chefe do Poder Executivo Federal e responsável pela administração geral do país, defesa, economia e política externa.</p></div>
+<div class="job"><h3>🏛️ Governador</h3><p>Chefe do Poder Executivo Estadual e responsável pela administração pública do estado, segurança pública, saúde e educação estadual.</p></div>
+<div class="job"><h3>🗣️ Senador</h3><p>Representa o estado no Senado Federal. Propõe, debate e aprova leis federais, além de fiscalizar o Executivo.</p></div>
+<div class="job"><h3>📢 Deputados</h3><p>Atuam na elaboração de leis e na fiscalização direta das contas do Poder Executivo, conforme sua esfera (Federal ou Estadual).</p></div>
 </div>
 </section>
 
 <section>
-<div class="warning"><b>⚠️ Importante:</b> Conteúdo educativo. Para dados oficiais, acesse o TSE.</div>
+<h2 class="title">🗳️ Como votar com consciência</h2>
+<details open><summary>1. Conheça as propostas</summary><p>Leia o que o candidato propõe e pergunte como ele pretende realizar essas promessas na prática.</p></details>
+<details><summary>2. Conheça o histórico</summary><p>Observe mandatos anteriores, atuação pública, projetos aprovados e posições assumidas ao longo da carreira.</p></details>
+<details><summary>3. Compare</summary><p>Não decida pelo primeiro vídeo, santinho ou propaganda que aparecer. Compare com outras opções disponíveis.</p></details>
+<details><summary>4. Vote</summary><p>Leve seus números anotados num papel e siga rigorosamente as orientações oficiais da Justiça Eleitoral no dia do pleito.</p></details>
+</section>
+
+<section>
+<div class="warning"><b>⚠️ Importante:</b> este site tem finalidade estritamente educativa e informativa. Para detalhes sobre registro de candidatura, situação eleitoral, regras de votação e resultados oficiais, priorize sempre os canais oficiais da Justiça Eleitoral (TSE).</div>
 </section>
 </main>
 
@@ -363,11 +405,12 @@ footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; 
 <div class="wrap">
 <p class="quote">“Se sei que sou um ser político, por que não agir como tal com plenitude?”</p>
 <p><b>— Gilson Silva</b></p>
-<p>© 2026 Voto Consciente</p>
+<p>© 2026 Voto Consciente — Educando eleitores</p>
 </div>
 </footer>
 
 <script>
+// Toggle Menu Mobile
 function toggleMenu() {
   var menu = document.getElementById("mobileMenu");
   menu.classList.toggle("show");
@@ -379,6 +422,7 @@ document.querySelectorAll('#mobileMenu a').forEach(function(link) {
   });
 });
 
+// Checklist Lógica
 const checks = [...document.querySelectorAll('#checklist input')], 
       bar = document.getElementById('bar'), 
       pct = document.getElementById('pct');
@@ -398,16 +442,28 @@ function update() {
   pct.textContent = p + '% concluído';
 }
 
+// Pesquisa com resposta DENTRO do site
 function pesquisar() {
-  let n = document.getElementById('nome').value.trim();
-  if (!n) {
-    alert('Digite o nome do candidato.');
+  let nomeInput = document.getElementById('nome').value.trim();
+  if (!nomeInput) {
+    alert('Por favor, digite o nome do candidato.');
     return;
   }
-  let q = encodeURIComponent(n);
-  document.getElementById('google').href = 'https://www.google.com/search?q=' + q;
-  document.getElementById('noticias').href = 'https://news.google.com/search?q=' + q;
-  window.open('https://www.google.com/search?q=' + q, '_blank');
+  
+  let query = encodeURIComponent(nomeInput);
+  
+  // Atualizar painel de resultados no próprio site
+  document.getElementById('nomeCandidatoDisplay').textContent = nomeInput;
+  
+  document.querySelectorAll('.nomeSearch').forEach(el => {
+    el.textContent = nomeInput;
+  });
+
+  document.getElementById('google').href = 'https://www.google.com/search?q=' + query;
+  document.getElementById('noticias').href = 'https://news.google.com/search?q=' + query;
+  
+  // Exibir o painel diretamente na página sem redirecionar forçado
+  document.getElementById('painelResultado').classList.add('active');
 }
 
 update();
