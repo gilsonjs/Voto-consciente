@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="theme-color" content="#0b6b3a">
 <title>Voto Consciente 2026 — Gilson Silva</title>
 <style>
@@ -18,127 +18,140 @@
   --card: #fff;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body { 
-  margin: 0; 
   font-family: Arial, Helvetica, sans-serif; 
   color: var(--ink); 
   background: var(--bg); 
-  line-height: 1.55; 
+  line-height: 1.5; 
 }
 
 a { text-decoration: none; color: inherit; }
-.wrap { width: min(1120px, 92%); margin: auto; }
+.wrap { width: 92%; max-width: 1120px; margin: auto; }
 
-/* Header & Nav */
+/* HEADER & NAV */
 header { 
   background: linear-gradient(135deg, #064f2b, #0b9b54); 
   color: #fff; 
-  padding: 18px 0 40px; 
+  padding: 15px 0 35px; 
 }
+
 nav { 
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
-  position: relative;
+  flex-wrap: wrap;
 }
-.brand { font-weight: 900; font-size: 1.15rem; }
+
+.brand { font-weight: 900; font-size: 1.1rem; }
 .brand span { color: var(--yellow); }
 
 .menu-toggle {
-  display: none;
-  background: transparent;
-  border: 1px solid #ffffff66;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid #fff;
   color: #fff;
-  font-size: 1.5rem;
-  padding: 4px 12px;
-  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .menu { 
-  display: flex; 
-  gap: 8px; 
-  flex-wrap: wrap; 
-}
-.menu a { 
-  padding: 8px 12px; 
-  border-radius: 20px; 
-  font-size: 0.9rem; 
+  display: none; 
+  flex-direction: column; 
+  width: 100%; 
+  background: #04381e; 
+  margin-top: 15px;
+  padding: 10px; 
+  border-radius: 8px; 
 }
 
-/* Hero Section */
-.hero { 
-  padding: 30px 0 10px; 
-  display: grid; 
-  grid-template-columns: 1.3fr 0.7fr; 
-  gap: 30px; 
-  align-items: center; 
+.menu.show { display: flex; }
+
+.menu a { 
+  padding: 12px; 
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
 }
+
+/* HERO SECTION - PADRÃO CELULAR */
+.hero { 
+  padding: 25px 0 10px; 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .badge { 
   display: inline-block; 
   background: var(--yellow); 
   color: #222; 
   font-weight: bold; 
-  padding: 7px 12px; 
+  padding: 6px 12px; 
   border-radius: 999px; 
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  margin-bottom: 10px;
 }
+
 .hero h1 { 
-  font-size: clamp(2rem, 8vw, 4rem); 
+  font-size: 2.2rem; 
   line-height: 1.1; 
-  margin: 16px 0; 
+  margin-bottom: 12px; 
 }
-.hero p { font-size: 1.05rem; }
-.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+.hero p { font-size: 1rem; }
+
+.actions { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  margin-top: 20px; 
+}
+
 .btn { 
-  border: 0; 
-  display: inline-flex;
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 20px; 
+  padding: 15px; 
   border-radius: 10px; 
-  font-weight: 800; 
-  cursor: pointer; 
-  min-height: 48px;
+  font-weight: bold; 
+  font-size: 0.95rem;
   text-align: center;
 }
+
 .primary { background: var(--yellow); color: #1b1b1b; }
 .light { background: #fff; color: #075d32; }
 .outline { border: 2px solid #fff; background: transparent; color: #fff; }
 
-.hero-card { 
-  background: #ffffff14; 
-  border: 1px solid #ffffff33; 
-  border-radius: 22px; 
-  padding: 25px; 
-  text-align: center; 
-}
-.hero-card .vote { font-size: 4rem; }
+.hero-card { display: none; } /* Oculto no celular */
 
-/* Main Content */
+/* CONTEÚDO PRINCIPAL */
 main { padding: 30px 0; }
-section { margin: 0 0 35px; scroll-margin-top: 20px; }
-.title { text-align: center; font-size: 1.6rem; margin-bottom: 8px; }
-.lead { text-align: center; color: var(--muted); margin: 0 auto 20px; }
+section { margin-bottom: 35px; scroll-margin-top: 20px; }
+.title { text-align: center; font-size: 1.5rem; margin-bottom: 8px; }
+.lead { text-align: center; color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
 
-/* Grids Adaptáveis */
 .grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-  gap: 16px; 
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
 }
+
 .card { 
   background: var(--card); 
-  padding: 20px; 
-  border-radius: 16px; 
-  box-shadow: 0 4px 15px #0b3b1b0d; 
+  padding: 18px; 
+  border-radius: 14px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
 }
-.card h3 { margin-top: 0; }
-.icon { font-size: 2rem; }
 
-/* Checklist */
+.card h3 { margin: 8px 0 4px; font-size: 1.2rem; }
+.icon { font-size: 1.8rem; }
+
+/* CHECKLIST */
 .check { 
   display: flex; 
   align-items: flex-start; 
@@ -146,50 +159,49 @@ section { margin: 0 0 35px; scroll-margin-top: 20px; }
   padding: 12px 0; 
   border-bottom: 1px solid #edf0ed; 
 }
+
 .check input { 
-  width: 24px; 
-  height: 24px; 
+  width: 22px; 
+  height: 22px; 
   accent-color: var(--green); 
   flex-shrink: 0;
+  margin-top: 2px;
 }
-.progress { height: 16px; background: #e3e8e3; border-radius: 20px; overflow: hidden; }
-.bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--green2)); transition: .3s; }
-.percent { font-weight: bold; margin: 10px 0; }
 
-/* Live Box */
+.check span { font-size: 0.95rem; }
+.progress { height: 14px; background: #e3e8e3; border-radius: 20px; overflow: hidden; }
+.bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--green2)); transition: .3s; }
+.percent { font-weight: bold; margin: 10px 0 6px; font-size: 0.9rem; }
+
+/* SEÇÃO LIVE */
 .live { 
   background: linear-gradient(135deg, #142b55, #07172f); 
   color: #fff; 
-  border-radius: 22px; 
-  padding: 22px; 
+  border-radius: 18px; 
+  padding: 20px; 
 }
-.live h2 { margin-top: 0; font-size: 1.4rem; }
+
+.live h2 { font-size: 1.3rem; margin: 10px 0; }
+.live p { font-size: 0.95rem; margin-bottom: 15px; }
 .live-status { 
   display: inline-flex; 
   align-items: center; 
-  gap: 8px; 
-  background: #ffffff18; 
-  padding: 6px 12px; 
+  gap: 6px; 
+  background: rgba(255,255,255,0.15); 
+  padding: 5px 10px; 
   border-radius: 999px; 
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
-.dot { 
-  width: 10px; 
-  height: 10px; 
-  border-radius: 50%; 
-  background: #ff3b30; 
-  display: inline-block; 
-  animation: pulse 1s infinite;
-}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; display: inline-block; animation: pulse 1s infinite; }
 @keyframes pulse { 50% { opacity: .25; } }
 
-/* Formulário de Pesquisa */
-.searchbox { display: flex; gap: 10px; flex-direction: column; }
+/* PESQUISA */
+.searchbox { display: flex; flex-direction: column; gap: 10px; }
 .searchbox input { 
   width: 100%; 
   padding: 14px; 
   border: 1px solid #ccd5cd; 
-  border-radius: 10px; 
+  border-radius: 8px; 
   font-size: 1rem; 
 }
 .searchbox button { 
@@ -197,64 +209,50 @@ section { margin: 0 0 35px; scroll-margin-top: 20px; }
   background: var(--green); 
   color: #fff; 
   border: 0; 
-  border-radius: 10px; 
+  border-radius: 8px; 
   padding: 14px; 
   font-weight: bold; 
   cursor: pointer; 
-  min-height: 48px;
 }
 
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
 .linkbtn { 
   background: #eef6f0; 
   color: #075d32; 
-  padding: 10px 12px; 
-  border-radius: 9px; 
+  padding: 8px 12px; 
+  border-radius: 6px; 
   font-weight: bold; 
   font-size: 0.85rem;
 }
 
-.warning { border-left: 5px solid var(--red); background: #fff7f7; padding: 16px; border-radius: 10px; }
+.warning { border-left: 4px solid var(--red); background: #fff7f7; padding: 15px; border-radius: 8px; font-size: 0.9rem; }
+.jobs { display: flex; flex-direction: column; gap: 12px; }
+.job { background: #fff; padding: 15px; border-radius: 10px; border-top: 4px solid var(--green); }
+.job h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.job p { font-size: 0.9rem; }
 
-.jobs { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.job { background: #fff; padding: 18px; border-radius: 14px; border-top: 4px solid var(--green); }
-
-details { background: #fff; border-radius: 12px; padding: 16px; margin: 10px 0; }
+details { background: #fff; border-radius: 10px; padding: 14px; margin: 8px 0; font-size: 0.95rem; }
 summary { font-weight: bold; cursor: pointer; }
 
-footer { background: #0a2516; color: #fff; padding: 30px 0; text-align: center; }
-.quote { font-size: 1rem; font-style: italic; }
+footer { background: #0a2516; color: #fff; padding: 25px 0; text-align: center; font-size: 0.9rem; }
+.quote { font-style: italic; margin-bottom: 5px; }
 
-/* REGRAS ESPECÍFICAS PARA CELULAR */
-@media screen and (max-width: 768px) {
-  nav { flex-wrap: wrap; }
-  
-  .menu-toggle { display: block !important; }
-
-  .menu { 
-    display: none !important; 
-    flex-direction: column; 
-    width: 100%; 
-    background: #04381e; 
-    margin-top: 12px;
-    padding: 10px; 
-    border-radius: 10px; 
-  }
-  
-  .menu.show { display: flex !important; }
-  
-  .menu a { 
-    display: block; 
-    padding: 12px; 
-    text-align: center; 
-    border-bottom: 1px solid #ffffff1a;
-  }
-
-  .hero { grid-template-columns: 1fr !important; }
-  .hero-card { display: none !important; }
-
-  .actions { flex-direction: column !important; }
-  .actions .btn { width: 100% !important; box-sizing: border-box; }
+/* AJUSTES PARA COMPUTADORES (TELAS GRANDES) */
+@media (min-width: 769px) {
+  .menu-toggle { display: none; }
+  .menu { display: flex; flex-direction: row; width: auto; background: transparent; margin: 0; padding: 0; }
+  .menu a { border: 0; padding: 8px 12px; }
+  .hero { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 30px; }
+  .hero-card { display: block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 22px; padding: 25px; text-align: center; }
+  .hero-card .vote { font-size: 4rem; }
+  .hero h1 { font-size: 3.5rem; }
+  .actions { flex-direction: row; }
+  .btn { width: auto; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .jobs { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .searchbox { flex-direction: row; }
+  .searchbox input { flex: 1; }
+  .searchbox button { width: auto; }
 }
 </style>
 </head>
@@ -263,7 +261,7 @@ footer { background: #0a2516; color: #fff; padding: 30px 0; text-align: center; 
 <div class="wrap">
 <nav>
 <a class="brand" href="#inicio">🗳️ VOTO <span>CONSCIENTE</span> 2026</a>
-<button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir Menu">☰ Menu</button>
+<button class="menu-toggle" onclick="toggleMenu()">☰ MENU</button>
 <div class="menu" id="mobileMenu">
 <a href="#checklist">Checklist</a>
 <a href="#pesquisa">Pesquisar</a>
@@ -272,6 +270,7 @@ footer { background: #0a2516; color: #fff; padding: 30px 0; text-align: center; 
 <a href="#fakenews">Fake News</a>
 </div>
 </nav>
+
 <div class="hero" id="inicio">
 <div>
 <span class="badge">🇧🇷 EDUCAÇÃO ELEITORAL</span>
