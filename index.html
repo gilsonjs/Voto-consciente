@@ -3,204 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6b3a">
-<title>Voto Consciente 2026 — Gilson Silva</title>
-
-<link rel="icon" href="icone-192.png" type="image/png">
-
+<title>Voto Consciente 2026</title>
 <style>
-:root {
-  --green: #08783f;
-  --green2: #0b9b54;
-  --yellow: #ffd400;
-  --blue: #123b75;
-  --red: #c62828;
-  --ink: #17221b;
-  --muted: #607064;
-  --bg: #f4f7f4;
-  --card: #fff;
-}
+  body { font-family: sans-serif; background: #f4f7f4; color: #111; margin: 0; padding: 15px; }
+  header { background: #064f2b; color: #fff; padding: 20px; border-radius: 8px; text-align: center; }
+  .logo { height: 50px; background: #fff; padding: 4px; border-radius: 4px; }
+  .card { background: #fff; padding: 15px; margin-top: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  .btn { display: block; background: #ffd400; color: #000; text-align: center; padding: 12px; font-weight: bold; border-radius: 6px; text-decoration: none; margin-top: 10px; }
+</style>
+</head>
+<body>
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { 
-  font-family: Arial, Helvetica, sans-serif; 
-  color: var(--ink); 
-  background: var(--bg); 
-  line-height: 1.55; 
-}
+<header>
+  <img src="icone-192.png" alt="Logo Voto Consciente" class="logo" onerror="this.style.display='none'">
+  <h1>VOTO CONSCIENTE 2026</h1>
+</header>
 
-a { text-decoration: none; color: inherit; }
-.wrap { width: 92%; max-width: 1120px; margin: auto; }
+<div class="card">
+  <h2>🔎 Teste do Site</h2>
+  <p>Se você está lendo esta mensagem, o arquivo HTML carregou com sucesso no seu dispositivo!</p>
+  <a class="btn" href="https://resultados.tse.jus.br/" target="_blank">Acessar Resultados TSE</a>
+</div>
 
-/* HEADER & NAV */
-header { 
-  background: linear-gradient(135deg, #064f2b, #0b9b54); 
-  color: #fff; 
-  padding: 15px 0 35px; 
-}
-
-nav { 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  flex-wrap: wrap;
-}
-
-.brand-area {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Ajuste da Logo icone-192.png */
-.logo-img {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
-  background: #fff;
-  padding: 3px;
-  border-radius: 6px;
-}
-
-.brand { font-weight: 900; font-size: 1.1rem; color: #fff; }
-.brand span { color: var(--yellow); }
-
-.menu-toggle {
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.4);
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.menu { 
-  display: none; 
-  flex-direction: column; 
-  width: 100%; 
-  background: #04381e; 
-  margin-top: 15px;
-  padding: 10px; 
-  border-radius: 8px; 
-}
-
-.menu.show { display: flex; }
-
-.menu a { 
-  padding: 12px; 
-  font-size: 0.95rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-}
-
-/* HERO SECTION - PADRÃO CELULAR */
-.hero { 
-  padding: 25px 0 10px; 
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.badge { 
-  display: inline-block; 
-  background: var(--yellow); 
-  color: #222; 
-  font-weight: bold; 
-  padding: 6px 12px; 
-  border-radius: 999px; 
-  font-size: 0.75rem;
-}
-
-.hero h1 { 
-  font-size: 2.2rem; 
-  line-height: 1.1; 
-  margin: 12px 0; 
-}
-
-.hero p { font-size: 1rem; }
-
-.actions { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
-  margin-top: 15px; 
-}
-
-.btn { 
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 18px; 
-  border-radius: 8px; 
-  font-weight: 800; 
-  cursor: pointer; 
-  text-align: center;
-  font-size: 0.95rem;
-}
-
-.primary { background: var(--yellow); color: #1b1b1b; }
-.light { background: #fff; color: #075d32; }
-.outline { border: 2px solid #fff; background: transparent; color: #fff; }
-
-.hero-card { display: none; }
-
-/* MAIN CONTENT */
-main { padding: 30px 0; }
-section { margin-bottom: 35px; scroll-margin-top: 20px; }
-.title { text-align: center; font-size: 1.5rem; margin-bottom: 8px; color: #064f2b; }
-.lead { text-align: center; color: var(--muted); margin: 0 auto 20px; font-size: 0.95rem; }
-
-.grid { 
-  display: flex;
-  flex-direction: column;
-  gap: 15px; 
-}
-
-.card { 
-  background: var(--card); 
-  padding: 18px; 
-  border-radius: 12px; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-}
-
-.card h3 { margin-top: 6px; margin-bottom: 6px; font-size: 1.15rem; }
-.icon { font-size: 1.8rem; }
-
-/* CHECKLIST */
-.check { 
-  display: flex; 
-  align-items: flex-start; 
-  gap: 10px; 
-  padding: 10px 0; 
-  border-bottom: 1px solid #edf0ed; 
-}
-
-.check input { 
-  width: 20px; 
-  height: 20px; 
-  accent-color: var(--green); 
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.check label { font-size: 0.95rem; cursor: pointer; }
-.progress { height: 14px; background: #e3e8e3; border-radius: 20px; overflow: hidden; margin-top: 12px; }
-.bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--green2)); transition: .3s; }
-.percent { font-weight: bold; margin: 12px 0 4px; font-size: 0.9rem; }
-
-/* LIVE / APURAÇÃO */
-.live { 
-  background: linear-gradient(135deg, #142b55, #07172f); 
-  color: #fff; 
-  border-radius: 16px; 
-  padding: 22px; 
-}
-
-.live h2 { font-size: 1.4rem; margin: 10px 0; }
-.live p { font-size: 0.95rem; margin-bottom: 15px; }
-.live-status { 
-  display: inline-flex;
+</body>
+</html>
