@@ -20,14 +20,18 @@ header p { font-size: 0.95rem; opacity: 0.9; }
 nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 15px; }
 nav a { background: rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
 
-/* CARDS E SEÇÕES */
+/* CARDS */
 .card { background: #fff; padding: 18px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); margin-bottom: 15px; }
 .card h2 { color: #064f2b; font-size: 1.25rem; margin-bottom: 10px; }
 .card h3 { color: #064f2b; font-size: 1.05rem; margin: 10px 0 5px; }
 
-/* BOTÕES */
-.btn { display: block; width: 100%; text-align: center; background: #ffd400; color: #000; font-weight: bold; padding: 12px; border-radius: 8px; margin-top: 10px; border: 0; cursor: pointer; font-size: 0.95rem; }
+/* BOTÕES E BUSCA */
+.btn { display: block; width: 100%; text-align: center; background: #ffd400; color: #000; font-weight: bold; padding: 12px; border-radius: 8px; margin-top: 8px; border: 0; cursor: pointer; font-size: 0.9rem; }
 .btn-blue { background: #123b75; color: #fff; }
+.btn-red { background: #c62828; color: #fff; }
+.btn-dark { background: #222222; color: #fff; }
+
+.search-box input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; margin-bottom: 8px; }
 
 /* CHECKLIST */
 .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #eee; }
@@ -36,9 +40,9 @@ nav a { background: rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; bord
 .progress-bar { height: 12px; background: #e0e0e0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
 .progress-fill { height: 100%; width: 0%; background: #0b9b54; transition: 0.3s; }
 
-/* PESQUISA INTERNA */
-.search-box input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; margin-bottom: 8px; }
-#resultadoPesquisa { display: none; margin-top: 12px; padding: 12px; background: #eef6f0; border-radius: 8px; border: 1px solid #0b9b54; font-size: 0.9rem; }
+/* PAINEL DE INVESTIGAÇÃO */
+#resultadoPesquisa { display: none; margin-top: 15px; padding: 15px; background: #eef6f0; border-radius: 10px; border: 2px solid #0b9b54; }
+.tag-section { font-size: 0.85rem; font-weight: bold; margin-top: 12px; margin-bottom: 4px; text-transform: uppercase; color: #555; }
 
 footer { background: #04381e; color: #fff; text-align: center; padding: 20px; border-radius: 12px; font-size: 0.85rem; margin-top: 20px; }
 </style>
@@ -50,48 +54,58 @@ footer { background: #04381e; color: #fff; text-align: center; padding: 20px; bo
   <h1>VOTO CONSCIENTE 2026</h1>
   <p>Movimento para Cidadania Ativa e Transparente</p>
   <nav>
+    <a href="#pesquisa">Investigar Candidato</a>
     <a href="#checklist">Checklist</a>
-    <a href="#pesquisa">Pesquisar</a>
     <a href="#votacao">Apuração</a>
     <a href="#cargos">Cargos</a>
     <a href="#fakenews">Fake News</a>
   </nav>
 </header>
 
+<div class="card" id="pesquisa">
+  <h2>🔎 Investigação Profunda do Candidato</h2>
+  <p style="font-size:0.9rem; margin-bottom:10px;">Digite o nome completo ou nome de urna do candidato para realizar a checagem cruzada:</p>
+  
+  <div class="search-box">
+    <input type="text" id="inputNome" placeholder="Ex: Nome do Candidato...">
+    <button class="btn" onclick="buscarCandidato()">🔍 INVESTIGAR HISTÓRICO COMPLETO</button>
+  </div>
+
+  <div id="resultadoPesquisa">
+    <h3 style="font-size:1.1rem; border-bottom:1px solid #ccc; padding-bottom:5px;">
+      Painel de Análise: <span id="nomeExibido" style="color:#064f2b;"></span>
+    </h3>
+
+    <div class="tag-section">⚖️ 1. Processos, Crimes e Ficha Limpa</div>
+    <a id="btnCrimes" target="_blank" class="btn btn-red">🚨 Buscar Processos, Investigações e Crimes</a>
+    <a id="btnJusbrasil" target="_blank" class="btn btn-dark">⚖️ Consultar Processos no Jusbrasil</a>
+
+    <div class="tag-section">🏛️ 2. Partido e Ideologia Política</div>
+    <a id="btnPartido" target="_blank" class="btn btn-blue">🚩 Buscar Partido, Histórico e Ideologia</a>
+
+    <div class="tag-section">💼 3. Patrimônio e Dados Oficiais do TSE</div>
+    <a id="btnTse" target="_blank" class="btn" style="background:#0b9b54; color:#fff;">📜 Portal DivulgaCandContas (Bens e Gastos)</a>
+
+    <div class="tag-section">📰 4. Notícias e Checagem de Fatos</div>
+    <a id="btnNoticias" target="_blank" class="btn" style="background:#e0e0e0;">📰 Ver Notícias Recentes no Google News</a>
+  </div>
+</div>
+
 <div class="card" id="checklist">
   <h2>📋 Checklist do Eleitor</h2>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Consultei informações públicas sobre o candidato.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Li propostas e planos de governo.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Verifiquei o histórico político e administrativo.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Comparei candidatos e suas propostas.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Pesquisei em fontes diferentes das redes sociais.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Conferi meu local de votação e documentos.</label></div>
+  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Consultei a situação do candidato no DivulgaCandContas (TSE).</label></div>
+  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Pesquisei se o candidato possui processos ou pendências judiciais.</label></div>
+  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Verifiquei a filiação partidária e o histórico de partidos anteriores.</label></div>
+  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Li o plano de governo registrado oficialmente.</label></div>
+  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Comparei o histórico com outros candidatos do mesmo cargo.</label></div>
+  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Chequei notícias em fontes jornalísticas confiáveis.</label></div>
   <p id="pctText" style="margin-top:10px; font-weight:bold; font-size:0.9rem;">0% concluído</p>
   <div class="progress-bar"><div class="progress-fill" id="barFill"></div></div>
 </div>
 
-<div class="card" id="pesquisa">
-  <h2>🔎 Pesquisar Candidato</h2>
-  <div class="search-box">
-    <input type="text" id="inputNome" placeholder="Digite o nome do candidato...">
-    <button class="btn" onclick="buscarCandidato()">PESQUISAR CANDIDATO</button>
-  </div>
-
-  <div id="resultadoPesquisa">
-    <h3>Análise de: <span id="nomeExibido" style="color:#064f2b;"></span></h3>
-    <p style="margin: 8px 0;">Consulte os registros oficiais para este nome:</p>
-    <ul style="padding-left: 18px; margin-bottom: 10px;">
-      <li><b>Contas e Bens:</b> Portal DivulgaCandContas do TSE.</li>
-      <li><b>Propostas:</b> Plano de governo protocolado.</li>
-    </ul>
-    <a id="linkGoogle" target="_blank" class="btn" style="background:#e0e0e0; margin-bottom:5px;">🔎 Buscar no Google</a>
-    <a id="linkNoticias" target="_blank" class="btn" style="background:#e0e0e0;">📰 Ver Notícias</a>
-  </div>
-</div>
-
 <div class="card" id="votacao" style="background:#0a1e3f; color:#fff;">
   <h2 style="color:#fff;">📊 Acompanhe a Votação</h2>
-  <p style="font-size:0.9rem; margin-bottom:10px;">No dia da eleição, acesse a apuração oficial da Justiça Eleitoral:</p>
+  <p style="font-size:0.9rem; margin-bottom:10px;">No dia da eleição, acesse os resultados oficiais da Justiça Eleitoral:</p>
   <a class="btn" href="https://resultados.tse.jus.br/" target="_blank">🔴 RESULTADOS OFICIAIS DO TSE</a>
   <a class="btn btn-blue" href="https://www.tse.jus.br/" target="_blank">🏛️ PORTAL DO TSE</a>
 </div>
@@ -110,9 +124,9 @@ footer { background: #04381e; color: #fff; text-align: center; padding: 20px; bo
 
 <div class="card" id="fakenews">
   <h2>🚨 Combate a Fake News</h2>
-  <p style="font-size:0.9rem; margin-bottom:8px;"><b>1. Pare:</b> Não compartilhe sem checar.</p>
-  <p style="font-size:0.9rem; margin-bottom:8px;"><b>2. Verifique:</b> Confirme a fonte original e a data.</p>
-  <p style="font-size:0.9rem;"><b>3. Compare:</b> Procure a notícia em veículos de imprensa conhecidos.</p>
+  <p style="font-size:0.9rem; margin-bottom:8px;"><b>1. Pare:</b> Não compartilhe conteúdos sem confirmação.</p>
+  <p style="font-size:0.9rem; margin-bottom:8px;"><b>2. Cheque:</b> Verifique se a notícia traz dados apuráveis ou se é boato de rede social.</p>
+  <p style="font-size:0.9rem;"><b>3. Compare:</b> Confirme em veículos de imprensa e agências de checagem.</p>
 </div>
 
 <footer>
@@ -137,8 +151,13 @@ function buscarCandidato() {
   
   document.getElementById('nomeExibido').innerText = txt;
   var q = encodeURIComponent(txt);
-  document.getElementById('linkGoogle').href = 'https://www.google.com/search?q=' + q;
-  document.getElementById('linkNoticias').href = 'https://news.google.com/search?q=' + q;
+  
+  // Links de Pesquisa Especializada
+  document.getElementById('btnCrimes').href = 'https://www.google.com/search?q=' + q + '+processo+OR+investigado+OR+reu+OR+crime+OR+condenado';
+  document.getElementById('btnJusbrasil').href = 'https://www.jusbrasil.com.br/busca?q=' + q;
+  document.getElementById('btnPartido').href = 'https://www.google.com/search?q=' + q + '+partido+OR+ideologia+OR+esquerda+OR+direita';
+  document.getElementById('btnTse').href = 'https://divulgacandcontas.tse.jus.br/';
+  document.getElementById('btnNoticias').href = 'https://news.google.com/search?q=' + q;
   
   document.getElementById('resultadoPesquisa').style.display = 'block';
 }
