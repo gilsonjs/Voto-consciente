@@ -46,3 +46,47 @@
     <option value="AM">Amazonas</option>
     <option value="BA">Bahia</option>
     <option value="CE">Ceará</option>
+    <option value="DF">Distrito Federal</option>
+    <option value="ES">Espírito Santo</option>
+    <option value="GO">Goiás</option>
+    <option value="MA">Maranhão</option>
+    <option value="MT">Mato Grosso</option>
+    <option value="MS">Mato Grosso do Sul</option>
+    <option value="MG">Minas Gerais</option>
+    <option value="PA">Pará</option>
+    <option value="PB">Paraíba</option>
+    <option value="PR">Paraná</option>
+    <option value="PE">Pernambuco</option>
+    <option value="PI">Piauí</option>
+    <option value="RJ">Rio de Janeiro</option>
+    <option value="RN">Rio Grande do Norte</option>
+    <option value="RS">Rio Grande do Sul</option>
+    <option value="RO">Rondônia</option>
+    <option value="RR">Roraima</option>
+    <option value="SC">Santa Catarina</option>
+    <option value="SP">São Paulo</option>
+    <option value="SE">Sergipe</option>
+    <option value="TO">Tocantins</option>
+  </select>
+
+  <h2>Lista de Candidatos</h2>
+  <ul id="lista-candidatos">
+    <li>Selecione um estado para exibir as informações.</li>
+  </ul>
+
+  <script>
+    function carregarCandidatos() {
+      const estado = document.getElementById('estado').value;
+      const lista = document.getElementById('lista-candidatos');
+      
+      if(estado === "") {
+        lista.innerHTML = "<li>Selecione um estado para exibir as informações.</li>";
+        return;
+      }
+      
+      // Exemplo de funcionamento simples para demonstração
+      lista.innerHTML = `<li>Carregando dados de transparência para o estado: <b>\${estado}</b>...</li>`;
+    }
+  </script>
+</body>
+</html>
