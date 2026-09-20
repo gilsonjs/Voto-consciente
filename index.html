@@ -2,428 +2,88 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Voto Consciente 2026</title>
-<link rel="icon" href="icone-192.png" type="image/png">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #f4f7f4; color: #17221b; line-height: 1.5; padding: 12px; }
-a { text-decoration: none; color: inherit; }
-
-/* HEADER */
-header { background: #064f2b; color: #fff; padding: 20px 15px; border-radius: 12px; text-align: center; margin-bottom: 15px; }
-.logo { height: 60px; background: #fff; padding: 4px; border-radius: 6px; margin-bottom: 10px; }
-header h1 { font-size: 1.6rem; margin-bottom: 5px; }
-header p { font-size: 0.95rem; opacity: 0.9; }
-
-/* MENU */
-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 15px; }
-nav a { background: rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
-
-/* CARDS */
-.card { background: #fff; padding: 18px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); margin-bottom: 15px; }
-.card h2 { color: #064f2b; font-size: 1.25rem; margin-bottom: 10px; }
-.card h3 { color: #064f2b; font-size: 1.05rem; margin: 10px 0 5px; }
-
-/* BOTÕES E BUSCA */
-.btn { display: block; width: 100%; text-align: center; background: #ffd400; color: #000; font-weight: bold; padding: 12px; border-radius: 8px; margin-top: 8px; border: 0; cursor: pointer; font-size: 0.9rem; }
-.btn-blue { background: #123b75; color: #fff; }
-.btn-red { background: #c62828; color: #fff; }
-.btn-dark { background: #222222; color: #fff; }
-
-.search-box input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; margin-bottom: 8px; }
-
-/* CHECKLIST */
-.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #eee; }
-.check-item input { width: 20px; height: 20px; margin-top: 2px; }
-.check-item label { font-size: 0.9rem; }
-.progress-bar { height: 12px; background: #e0e0e0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
-.progress-fill { height: 100%; width: 0%; background: #0b9b54; transition: 0.3s; }
-
-/* PAINEL DE INVESTIGAÇÃO */
-#resultadoPesquisa { display: none; margin-top: 15px; padding: 15px; background: #eef6f0; border-radius: 10px; border: 2px solid #0b9b54; }
-.tag-section { font-size: 0.85rem; font-weight: bold; margin-top: 12px; margin-bottom: 4px; text-transform: uppercase; color: #555; }
-
-footer { background: #04381e; color: #fff; text-align: center; padding: 20px; border-radius: 12px; font-size: 0.85rem; margin-top: 20px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f5; color: #17221b; line-height: 1.6; padding: 16px; }
+  a { text-decoration: none; color: inherit; }
+  header { background: #064f2b; color: #fff; padding: 25px 15px; border-radius: 16px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(6,79,43,0.15); }
+  header h1 { font-size: 1.8rem; margin-bottom: 6px; letter-spacing: 0.5px; }
+  header p { font-size: 0.95rem; opacity: 0.9; }
+  nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 15px; }
+  nav a { background: rgba(255,255,255,0.12); color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; }
+  .card { background: #fff; padding: 22px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); margin-bottom: 20px; }
+  .card h2 { color: #064f2b; font-size: 1.35rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .card h3 { color: #064f2b; font-size: 1.1rem; margin: 15px 0 6px; }
+  .search-box { display: flex; flex-direction: column; gap: 10px; }
+  .search-box input, .search-box select { width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 10px; font-size: 1rem; outline: none; background: #fff; }
+  .grid-filtros { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn { display: block; width: 100%; text-align: center; background: #ffd400; color: #000; font-weight: bold; padding: 14px; border-radius: 10px; margin-top: 10px; border: 0; cursor: pointer; font-size: 0.95rem; }
+  .btn-blue { background: #123b75; color: #fff; }
+  .btn-red { background: #c62828; color: #fff; }
+  .btn-dark { background: #222222; color: #fff; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; }
+  .check-item input { width: 22px; height: 22px; margin-top: 2px; }
+  .check-item label { font-size: 0.95rem; }
+  .progress-bar { height: 14px; background: #e0e0e0; border-radius: 10px; overflow: hidden; margin-top: 12px; }
+  .progress-fill { height: 100%; width: 0%; background: #0b9b54; transition: width 0.4s ease-out; }
+  #resultadoPesquisa { display: none; margin-top: 20px; padding: 20px; background: #f7faf8; border-radius: 12px; border: 2px solid #0b9b54; }
+  .tag-section { font-size: 0.85rem; font-weight: bold; margin-top: 16px; margin-bottom: 6px; text-transform: uppercase; color: #555; }
+  footer { background: #04381e; color: #fff; text-align: center; padding: 25px; border-radius: 16px; font-size: 0.9rem; margin-top: 25px; }
 </style>
 </head>
 <body>
-
 <header>
-  <img src="icone-192.png" alt="Logo" class="logo" onerror="this.style.display='none'">
   <h1>VOTO CONSCIENTE 2026</h1>
   <p>Movimento para Cidadania Ativa e Transparente</p>
   <nav>
     <a href="#pesquisa">Investigar Candidato</a>
     <a href="#checklist">Checklist</a>
     <a href="#votacao">Apuração</a>
-    <a href="#cargos">Cargos</a>
-    <a href="#fakenews">Fake News</a>
   </nav>
 </header>
-
 <div class="card" id="pesquisa">
-  <h2>🔎 Investigação Profunda do Candidato</h2>
-  <p style="font-size:0.9rem; margin-bottom:10px;">Digite o nome completo ou nome de urna do candidato para realizar a checagem cruzada:</p>
-  
+  <h2>🔎 Investigação Profunda</h2>
   <div class="search-box">
-    <input type="text" id="inputNome" placeholder="Ex: Nome do Candidato...">
-    <button class="btn" onclick="buscarCandidato()">🔍 INVESTIGAR HISTÓRICO COMPLETO</button>
+    <input type="text" id="inputNome" placeholder="Nome do candidato...">
+    <div class="grid-filtros">
+      <select id="selectEstado">
+        <option value="BR">Brasil</option><option value="PE">Pernambuco</option><option value="SP">São Paulo</option>
+      </select>
+      <select id="selectCargo">
+        <option value="1">Presidente</option><option value="3">Governador</option>
+      </select>
+    </div>
+    <button class="btn" onclick="buscarCandidato()">🔍 INVESTIGAR HISTÓRICO</button>
   </div>
-
   <div id="resultadoPesquisa">
-    <h3 style="font-size:1.1rem; border-bottom:1px solid #ccc; padding-bottom:5px;">
-      Painel de Análise: <span id="nomeExibido" style="color:#064f2b;"></span>
-    </h3>
-
-    <div class="tag-section">⚖️ 1. Processos, Crimes e Ficha Limpa</div>
-    <a id="btnCrimes" target="_blank" class="btn btn-red">🚨 Buscar Processos, Investigações e Crimes</a>
-    <a id="btnJusbrasil" target="_blank" class="btn btn-dark">⚖️ Consultar Processos no Jusbrasil</a>
-
-    <div class="tag-section">🏛️ 2. Partido e Ideologia Política</div>
-    <a id="btnPartido" target="_blank" class="btn btn-blue">🚩 Buscar Partido, Histórico e Ideologia</a>
-
-    <div class="tag-section">💼 3. Patrimônio e Dados Oficiais do TSE</div>
-    <a id="btnTse" target="_blank" class="btn" style="background:#0b9b54; color:#fff;">📜 Portal DivulgaCandContas (Bens e Gastos)</a>
-
-    <div class="tag-section">📰 4. Notícias e Checagem de Fatos</div>
-    <a id="btnNoticias" target="_blank" class="btn" style="background:#e0e0e0;">📰 Ver Notícias Recentes no Google News</a>
+    <h3>Painel: <span id="nomeExibido"></span></h3>
+    <div class="tag-section">⚖️ Judiciário</div>
+    <a id="btnCrimes" target="_blank" class="btn btn-red">🚨 Google Processos</a>
+    <a id="btnJusbrasil" target="_blank" class="btn btn-dark">⚖️ Jusbrasil</a>
+    <div class="tag-section">💼 Transparência</div>
+    <a id="btnTse" target="_blank" class="btn" style="background:#0b9b54;color:#fff;">📜 DivulgaCand TSE</a>
+    <a id="btnFatos" target="_blank" class="btn" style="background:#ff7b00;color:#fff;">🛡️ Checar Fake News</a>
   </div>
 </div>
 
 <div class="card" id="checklist">
   <h2>📋 Checklist do Eleitor</h2>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Consultei a situação do candidato no DivulgaCandContas (TSE).</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Pesquisei se o candidato possui processos ou pendências judiciais.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Verifiquei a filiação partidária e o histórico de partidos anteriores.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Li o plano de governo registrado oficialmente.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Comparei o histórico com outros candidatos do mesmo cargo.</label></div>
-  <div class="check-item"><input type="checkbox" onchange="atualizarCheck()"><label>Chequei notícias em fontes jornalísticas confiáveis.</label></div>
-  <p id="pctText" style="margin-top:10px; font-weight:bold; font-size:0.9rem;">0% concluído</p>
+  <div class="check-item"><input type="checkbox" id="c1" onchange="atualizarCheck()"><label for="c1">Chequei o DivulgaCand (TSE).</label></div>
+  <div class="check-item"><input type="checkbox" id="c2" onchange="atualizarCheck()"><label for="c2">Pesquisei processos judiciais.</label></div>
+  <p id="pctText" style="margin-top:12px;font-weight:bold;color:#064f2b;">0% concluído</p>
   <div class="progress-bar"><div class="progress-fill" id="barFill"></div></div>
-</div>
-
-<div class="card" id="votacao" style="background:#0a1e3f; color:#fff;">
-  <h2 style="color:#fff;">📊 Acompanhe a Votação</h2>
-  <p style="font-size:0.9rem; margin-bottom:10px;">No dia da eleição, acesse os resultados oficiais da Justiça Eleitoral:</p>
-  <a class="btn" href="https://resultados.tse.jus.br/" target="_blank">🔴 RESULTADOS OFICIAIS DO TSE</a>
-  <a class="btn btn-blue" href="https://www.tse.jus.br/" target="_blank">🏛️ PORTAL DO TSE</a>
-</div>
-
-<div class="card" id="cargos">
-  <h2>⚖️ O que faz cada cargo?</h2>
-  <h3>🇧🇷 Presidente</h3>
-  <p style="font-size:0.9rem;">Chefe do Executivo Federal. Cuida da administração geral do país, economia e política externa.</p>
-  
-  <h3>🏛️ Governador</h3>
-  <p style="font-size:0.9rem;">Chefe do Executivo Estadual. Cuida da segurança pública, saúde estadual e redes de ensino.</p>
-  
-  <h3>🗣️ Senador e Deputados</h3>
-  <p style="font-size:0.9rem;">Elaboram leis, debatem projetos e fiscalizam a aplicação das verbas públicas pelo Executivo.</p>
-</div>
-
-<div class="card" id="fakenews">
-  <h2>🚨 Combate a Fake News</h2>
-  <p style="font-size:0.9rem; margin-bottom:8px;"><b>1. Pare:</b> Não compartilhe conteúdos sem confirmação.</p>
-  <p style="font-size:0.9rem; margin-bottom:8px;"><b>2. Cheque:</b> Verifique se a notícia traz dados apuráveis ou se é boato de rede social.</p>
-  <p style="font-size:0.9rem;"><b>3. Compare:</b> Confirme em veículos de imprensa e agências de checagem.</p>
 </div>
 
 <footer>
   <p>“Se sei que sou um ser político, por que não agir como tal com plenitude?”</p>
-  <p style="margin-top:5px;"><b>— Gilson Silva</b></p>
-  <p style="margin-top:10px; opacity:0.7;">© 2026 Voto Consciente</p>
+  <p style="margin-top:6px;color:#ffd400;"><b>— Gilson Silva</b></p>
 </footer>
 
 <script>
-function atualizarCheck() {
-  var inputs = document.querySelectorAll('.check-item input');
-  var marcados = 0;
-  inputs.forEach(function(i) { if(i.checked) marcados++; });
-  var pct = Math.round((marcados / inputs.length) * 100);
-  document.getElementById('barFill').style.width = pct + '%';
-  document.getElementById('pctText').innerText = pct + '% concluído';
-}
-
-function buscarCandidato() {
-  var txt = document.getElementById('inputNome').value.trim();
-  if(!txt) { alert('Digite o nome do candidato!'); return; }
-  
-  document.getElementById('nomeExibido').innerText = txt;
-  var q = encodeURIComponent(txt);
-  
-  // Links de Pesquisa Especializada
-  document.getElementById('btnCrimes').href = 'https://www.google.com/search?q=' + q + '+processo+OR+investigado+OR+reu+OR+crime+OR+condenado';
-  document.getElementById('btnJusbrasil').href = 'https://www.jusbrasil.com.br/busca?q=' + q;
-  document.getElementById('btnPartido').href = 'https://www.google.com/search?q=' + q + '+partido+OR+ideologia+OR+esquerda+OR+direita';
-  document.getElementById('btnTse').href = 'https://divulgacandcontas.tse.jus.br/';
-  document.getElementById('btnNoticias').href = 'https://news.google.com/search?q=' + q;
-  
-  document.getElementById('resultadoPesquisa').style.display = 'block';
-}
+function atualizarCheck(){var e=document.querySelectorAll(".check-item input"),t=0;e.forEach(function(e){e.checked&&t++});var n=Math.round(t/e.length*100);document.getElementById("barFill").style.width=n+"%",document.getElementById("pctText").innerText=n+"% concluído"}
+function buscarCandidato(){var e=document.getElementById("inputNome").value.trim(),t=document.getElementById("selectEstado").value,n=document.getElementById("selectCargo").value;if(!e){alert("Digite o nome!");return}document.getElementById("nomeExibido").innerText=e;var c=encodeURIComponent(e);document.getElementById("btnCrimes").href="https://google.com"+encodeURIComponent('"'+e+'" processo crime');document.getElementById("btnJusbrasil").href="https://jusbrasil.com.br"+c;document.getElementById("btnTse").href="https://tse.jus.br"+t+"/candidatos/"+n;document.getElementById("btnFatos").href="https://google.com"+c+"+fato+ou+fake";document.getElementById("resultadoPesquisa").style.display="block"}
 </script>
-<script 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rádio Rosas</title>
-  <style>
-    :root {
-      --cor-fundo: #160209;
-      --cor-caixa: #3d0a17;
-      --cor-ouro: #ffd700;
-      --cor-ouro-brilho: #ffe875;
-      --cor-texto: #ffffff;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--cor-fundo);
-      color: var(--cor-texto);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .container-central {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .card-player {
-      background-color: var(--cor-caixa);
-      padding: 35px 25px;
-      border-radius: 24px;
-      text-align: center;
-      border: 3px solid var(--cor-ouro);
-      width: 100%;
-      max-width: 320px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.8);
-      box-sizing: border-box;
-    }
-
-    /* Container com a sua Logo Real Ajustada */
-    .logo-container {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 20px;
-      border-radius: 18px;
-      border: 2px solid var(--cor-ouro);
-      background-color: #ffffff;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-
-    .logo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    h1 {
-      font-size: 28px;
-      color: var(--cor-ouro-brilho);
-      margin: 0 0 5px 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: bold;
-      color: #ffffff;
-      margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .ponto-status {
-      width: 8px;
-      height: 8px;
-      background-color: #ffffff;
-      border-radius: 50%;
-    }
-
-    .area-controle {
-      margin: 20px 0 10px;
-    }
-
-    /* Botão moderno com pulsação artística */
-    .btn-controle-rosa {
-      background-color: #ff3366;
-      border: 3px solid var(--cor-ouro);
-      color: white;
-      width: 85px;
-      height: 85px;
-      border-radius: 50%;
-      font-size: 36px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      box-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
-      transition: transform 0.2s, background-color 0.2s;
-      animation: pulsarBotao 2s infinite;
-    }
-
-    .btn-controle-rosa:hover {
-      transform: scale(1.05);
-      background-color: #ff4d79;
-    }
-
-    @keyframes pulsarBotao {
-      0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(255, 51, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
-    }
-
-    /* ESTILO DO LETREIRO AUTOMÁTICO */
-    .ticker-noticias {
-      background-color: #000000;
-      border-top: 2px solid var(--cor-ouro);
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      box-sizing: border-box;
-      padding: 14px 0;
-    }
-
-    .letreiro-texto {
-      display: inline-block;
-      padding-left: 100%;
-      animation: moverLetreiro 35s linear infinite;
-    }
-
-    .letreiro-texto span {
-      font-weight: bold;
-      color: var(--cor-ouro-brilho);
-      margin-right: 8px;
-    }
-
-    .letreiro-texto a {
-      color: var(--cor-texto);
-      text-decoration: none;
-      margin-right: 50px;
-      font-size: 15px;
-    }
-
-    @keyframes moverLetreiro {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-100%, 0, 0); }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container-central">
-    <div class="card-player">
-      
-      <div class="logo-container">
-        <!-- O link direto abaixo puxará a imagem real da sua rádio para a tela do teste -->
-        <img src="https://prodia.rocks" alt="Rádio Rosas">
-      </div>
-
-      <h1>Rádio Rosas</h1>
-      
-      <div class="status-badge">
-        <div class="ponto-status" id="sinalPonto"></div>
-        <span id="textoStatus">Clique para Ouvir</span>
-      </div>
-
-      <div class="area-controle">
-        <button class="btn-controle-rosa" id="gatilhoPlay" onclick="gerenciarAudio()">🌹</button>
-      </div>
-
-    </div>
-  </div>
-
-  <audio id="playerOriginal"></audio>
-
-  <div class="ticker-noticias">
-    <div class="letreiro-texto" id="feedConteudo">
-      <span>Carregando notícias em tempo real de Pernambuco...</span>
-    </div>
-  </div>
-
-  <script>
-    const streamUrl = "https://zeno.fm";
-    const somNode = document.getElementById('playerOriginal');
-    const btnRosa = document.getElementById('gatilhoPlay');
-    const txtEstado = document.getElementById('textoStatus');
-    const indicador = document.getElementById('sinalPonto');
-    let ativo = false;
-
-    function gerenciarAudio() {
-      if (!ativo) {
-        somNode.src = streamUrl;
-        somNode.play()
-          .then(() => {
-            ativo = true;
-            btnRosa.innerHTML = "⏹️";
-            btnRosa.style.backgroundColor = "#222222";
-            txtEstado.innerHTML = "No Ar";
-            txtEstado.style.color = "#00ff66";
-            indicador.style.backgroundColor = "#00ff66";
-          })
-          .catch(() => {
-            alert("A transmissão está offline. Inicie o seu aplicativo de streaming para ativar o som.");
-          });
-      } else {
-        somNode.pause();
-        somNode.src = "";
-        ativo = false;
-        btnRosa.innerHTML = "🌹";
-        btnRosa.style.backgroundColor = "#ff3366";
-        txtEstado.innerHTML = "Clique para Ouvir";
-        txtEstado.style.color = "#ffffff";
-        indicador.style.backgroundColor = "#ffffff";
-      }
-    }
-
-    async function sincronizarNoticias() {
-      const canalRss = 'https://globo.com';
-      const endpoint = `https://rss2json.com{encodeURIComponent(canalRss)}`;
-
-      try {
-        const res = await fetch(endpoint);
-        const obj = await res.json();
-        if (obj.status === 'ok' && obj.items.length > 0) {
-          let listaItens = "";
-          obj.items.forEach(item => {
-            listaItens += `<span>[NOTÍCIA PE]</span> <a href="${item.link}" target="_blank">${item.title}</a> &nbsp;&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp;&nbsp; `;
-          });
-          document.getElementById('feedConteudo').innerHTML = listaItens;
-        }
-      } catch (err) {
-        document.getElementById('feedConteudo').innerHTML = "<span>[RÁDIO ROSAS]</span> Acompanhe a nossa programação de poesias e músicas regionais!";
-      }
-    }
-
-    sincronizarNoticias();
-    setInterval(sincronizarNoticias, 480000);
-  </script>
-
-</body>
-</html>
-
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </body>
 </html>
