@@ -163,6 +163,266 @@ function buscarCandidato() {
 }
 </script>
 <script 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rádio Rosas</title>
+  <style>
+    :root {
+      --cor-fundo: #160209;
+      --cor-caixa: #3d0a17;
+      --cor-ouro: #ffd700;
+      --cor-ouro-brilho: #ffe875;
+      --cor-texto: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container-central {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card-player {
+      background-color: var(--cor-caixa);
+      padding: 35px 25px;
+      border-radius: 24px;
+      text-align: center;
+      border: 3px solid var(--cor-ouro);
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+      box-sizing: border-box;
+    }
+
+    /* Container com a sua Logo Real Ajustada */
+    .logo-container {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+      border-radius: 18px;
+      border: 2px solid var(--cor-ouro);
+      background-color: #ffffff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: var(--cor-ouro-brilho);
+      margin: 0 0 5px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .ponto-status {
+      width: 8px;
+      height: 8px;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .area-controle {
+      margin: 20px 0 10px;
+    }
+
+    /* Botão moderno com pulsação artística */
+    .btn-controle-rosa {
+      background-color: #ff3366;
+      border: 3px solid var(--cor-ouro);
+      color: white;
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+      transition: transform 0.2s, background-color 0.2s;
+      animation: pulsarBotao 2s infinite;
+    }
+
+    .btn-controle-rosa:hover {
+      transform: scale(1.05);
+      background-color: #ff4d79;
+    }
+
+    @keyframes pulsarBotao {
+      0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 51, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+    }
+
+    /* ESTILO DO LETREIRO AUTOMÁTICO */
+    .ticker-noticias {
+      background-color: #000000;
+      border-top: 2px solid var(--cor-ouro);
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 14px 0;
+    }
+
+    .letreiro-texto {
+      display: inline-block;
+      padding-left: 100%;
+      animation: moverLetreiro 35s linear infinite;
+    }
+
+    .letreiro-texto span {
+      font-weight: bold;
+      color: var(--cor-ouro-brilho);
+      margin-right: 8px;
+    }
+
+    .letreiro-texto a {
+      color: var(--cor-texto);
+      text-decoration: none;
+      margin-right: 50px;
+      font-size: 15px;
+    }
+
+    @keyframes moverLetreiro {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-central">
+    <div class="card-player">
+      
+      <div class="logo-container">
+        <!-- O link direto abaixo puxará a imagem real da sua rádio para a tela do teste -->
+        <img src="https://prodia.rocks" alt="Rádio Rosas">
+      </div>
+
+      <h1>Rádio Rosas</h1>
+      
+      <div class="status-badge">
+        <div class="ponto-status" id="sinalPonto"></div>
+        <span id="textoStatus">Clique para Ouvir</span>
+      </div>
+
+      <div class="area-controle">
+        <button class="btn-controle-rosa" id="gatilhoPlay" onclick="gerenciarAudio()">🌹</button>
+      </div>
+
+    </div>
+  </div>
+
+  <audio id="playerOriginal"></audio>
+
+  <div class="ticker-noticias">
+    <div class="letreiro-texto" id="feedConteudo">
+      <span>Carregando notícias em tempo real de Pernambuco...</span>
+    </div>
+  </div>
+
+  <script>
+    const streamUrl = "https://zeno.fm";
+    const somNode = document.getElementById('playerOriginal');
+    const btnRosa = document.getElementById('gatilhoPlay');
+    const txtEstado = document.getElementById('textoStatus');
+    const indicador = document.getElementById('sinalPonto');
+    let ativo = false;
+
+    function gerenciarAudio() {
+      if (!ativo) {
+        somNode.src = streamUrl;
+        somNode.play()
+          .then(() => {
+            ativo = true;
+            btnRosa.innerHTML = "⏹️";
+            btnRosa.style.backgroundColor = "#222222";
+            txtEstado.innerHTML = "No Ar";
+            txtEstado.style.color = "#00ff66";
+            indicador.style.backgroundColor = "#00ff66";
+          })
+          .catch(() => {
+            alert("A transmissão está offline. Inicie o seu aplicativo de streaming para ativar o som.");
+          });
+      } else {
+        somNode.pause();
+        somNode.src = "";
+        ativo = false;
+        btnRosa.innerHTML = "🌹";
+        btnRosa.style.backgroundColor = "#ff3366";
+        txtEstado.innerHTML = "Clique para Ouvir";
+        txtEstado.style.color = "#ffffff";
+        indicador.style.backgroundColor = "#ffffff";
+      }
+    }
+
+    async function sincronizarNoticias() {
+      const canalRss = 'https://globo.com';
+      const endpoint = `https://rss2json.com{encodeURIComponent(canalRss)}`;
+
+      try {
+        const res = await fetch(endpoint);
+        const obj = await res.json();
+        if (obj.status === 'ok' && obj.items.length > 0) {
+          let listaItens = "";
+          obj.items.forEach(item => {
+            listaItens += `<span>[NOTÍCIA PE]</span> <a href="${item.link}" target="_blank">${item.title}</a> &nbsp;&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp;&nbsp; `;
+          });
+          document.getElementById('feedConteudo').innerHTML = listaItens;
+        }
+      } catch (err) {
+        document.getElementById('feedConteudo').innerHTML = "<span>[RÁDIO ROSAS]</span> Acompanhe a nossa programação de poesias e músicas regionais!";
+      }
+    }
+
+    sincronizarNoticias();
+    setInterval(sincronizarNoticias, 480000);
+  </script>
+
+</body>
+</html>
 
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </body>
